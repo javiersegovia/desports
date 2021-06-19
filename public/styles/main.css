@@ -5,3 +5,8 @@
 html, body {
   overflow-x: hidden;
 }
+
+.active {
+  font-size: 50px !important;
+  color: red;
+}
