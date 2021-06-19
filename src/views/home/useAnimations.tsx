@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 // import { debounce } from 'lodash'
 
 // function throttle(func: any, limit: number) {
@@ -16,61 +16,61 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 //   }
 // }
 
-let scrollAnim: gsap.core.Timeline
-let timeout: any
-let newScroll = true
+// let scrollAnim: gsap.core.Timeline
+// let timeout: any
+// let newScroll = true
 
-const scrollToSectionY = (i: number, tweens?: any) => {
-  if (timeout) {
-    clearTimeout(timeout)
-  }
-  timeout = setTimeout(() => {
-    newScroll = true
-  }, 50)
+// const scrollToSectionY = (i: number, tweens?: any) => {
+//   if (timeout) {
+//     clearTimeout(timeout)
+//   }
+//   timeout = setTimeout(() => {
+//     newScroll = true
+//   }, 50)
 
-  if (!newScroll || scrollAnim?.isActive()) return
+//   if (!newScroll || scrollAnim?.isActive()) return
 
-  // console.log({
-  //   window: gsap.isTweening(window),
-  //   tw: gsap.isTweening(tweens),
-  //   scrollAnim: scrollAnim?.isActive(),
-  //   newScroll,
-  //   scrollTrigger: ScrollTrigger.isScrolling(),
-  // })
+//   // console.log({
+//   //   window: gsap.isTweening(window),
+//   //   tw: gsap.isTweening(tweens),
+//   //   scrollAnim: scrollAnim?.isActive(),
+//   //   newScroll,
+//   //   scrollTrigger: ScrollTrigger.isScrolling(),
+//   // })
 
-  if (
-    gsap.isTweening(window) ||
-    gsap.isTweening(tweens) ||
-    !newScroll ||
-    scrollAnim?.isActive()
-  ) {
-    console.log('is tewweening~~~~~~~~~~~~~')
-    return
-  }
+//   if (
+//     gsap.isTweening(window) ||
+//     gsap.isTweening(tweens) ||
+//     !newScroll ||
+//     scrollAnim?.isActive()
+//   ) {
+//     console.log('is tewweening~~~~~~~~~~~~~')
+//     return
+//   }
 
-  if (!scrollAnim || !scrollAnim.isActive()) {
-    newScroll = false
-    scrollAnim = gsap.timeline({ onComplete: () => console.log('COMPLETED') })
+//   if (!scrollAnim || !scrollAnim.isActive()) {
+//     newScroll = false
+//     scrollAnim = gsap.timeline({ onComplete: () => console.log('COMPLETED') })
 
-    scrollAnim.to(window, {
-      scrollTo: { y: i * innerHeight, autoKill: false },
-      duration: 0.6,
-      ease: 'none',
-      // onStart: () => {
-      //   setIsScrolling(true)
-      // },
-      // onComplete: () => {
-      //   setIsScrolling(false)
-      // },
-    })
-  }
-}
+//     scrollAnim.to(window, {
+//       scrollTo: { y: i * innerHeight, autoKill: false },
+//       duration: 0.6,
+//       ease: 'none',
+//       // onStart: () => {
+//       //   setIsScrolling(true)
+//       // },
+//       // onComplete: () => {
+//       //   setIsScrolling(false)
+//       // },
+//     })
+//   }
+// }
 
 export const useAnimations = () => {
-  const [isScrolling, setIsScrolling] = useState(false)
-  const [activeNav, setActiveNav] = useState<string>()
+  // const [isScrolling, setIsScrolling] = useState(false)
+  // const [activeNav, setActiveNav] = useState<string>()
   const sectionAvailable = useRef(false)
-  const insideSection = useRef(false)
+  // const insideSection = useRef(false)
 
   const parentRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -101,11 +101,11 @@ export const useAnimations = () => {
     let lastY = 0
     let lastX = 0
 
-    const duration = 0.5
+    const duration = 0.7
     let offsetsY: number[] = []
     let offsetsX: number[] = []
-    let innerHeight = window.innerHeight
-    let innerWidth = window.innerWidth
+    // let innerHeight = window.innerHeight
+    // let innerWidth = window.innerWidth
 
     const vSections = [
       landingRef.current,
@@ -122,10 +122,10 @@ export const useAnimations = () => {
       s3Ref.current,
     ] as HTMLDivElement[]
 
-    for (let vSection of vSections) {
+    for (const vSection of vSections) {
       offsetsY.push(-vSection.offsetTop)
     }
-    for (let hSection of hSections) {
+    for (const hSection of hSections) {
       offsetsX.push(-hSection.offsetLeft)
     }
 
@@ -143,7 +143,7 @@ export const useAnimations = () => {
       const sections = [...vSections, ...hSections]
 
       if (gsap.isTweening(container)) {
-        console.log('CONTAINER IS ALREADY TWEENING!')
+        // console.log('CONTAINER IS ALREADY TWEENING!')
         // prevent(e)
         return
       }
@@ -173,8 +173,6 @@ export const useAnimations = () => {
         sectionAvailable.current = true
       }
 
-      console.log({ activeSlide, newSlide, oldSlide })
-
       if (
         sectionAvailable.current &&
         !(activeSlide > totalSize - 1 || activeSlide < 0)
@@ -190,8 +188,6 @@ export const useAnimations = () => {
 
       const item = sections[activeSlide]
       const old = sections[oldSlide]
-      
-      console.log({ item, old })
 
       if (item === old) {
         activeSlide = e.deltaY > 0 ? activeSlide + 1 : activeSlide - 1
@@ -199,14 +195,10 @@ export const useAnimations = () => {
 
       if (activeSlide < vSections.length) {
         lastY = offsetsY[activeSlide]
-        
       } else if (activeSlide < totalSize) {
         const xIndex = activeSlide - (vSections.length - 1)
-        console.log({xIndex })
         lastX = offsetsX[xIndex]
       }
-
-      console.log({ lastX, lastY })
 
       tl.to(container, {
         duration,
@@ -244,20 +236,18 @@ export const useAnimations = () => {
     function newSize() {
       offsetsY = []
       offsetsX = []
-      innerHeight = window.innerHeight
-      innerWidth = window.innerWidth
       gsap.set(container, {
-        height: vSections.length * innerHeight,
+        height: vSections.length * window.innerHeight,
         // width: hSections.length * innerWidth,
       })
       // gsap.set(vSections, { width: innerHeight })
 
-      for (let vSection of vSections) {
+      for (const vSection of vSections) {
         offsetsY.push(-vSection.offsetTop)
       }
-      // for (let hSection of hSections) {
-      //   offsetsY.push(-hSection.offsetLeft)
-      // }
+      for (const hSection of hSections) {
+        offsetsY.push(-hSection.offsetLeft)
+      }
 
       gsap.set(container, {
         y: offsetsY[activeSlide],
@@ -479,8 +469,8 @@ export const useAnimations = () => {
   }, [])
 
   return {
-    isScrolling,
-    activeNav,
+    // isScrolling,
+    // activeNav,
     parentRef,
     containerRef,
     landingRef,

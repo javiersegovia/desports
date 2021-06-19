@@ -1,5 +1,4 @@
 import { FullScreen } from '@components/UI/FullScreen'
-import { gsap } from 'gsap'
 import { RefObject, useEffect, useRef } from 'react'
 
 interface LandingProps {

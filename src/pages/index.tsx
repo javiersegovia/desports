@@ -1,22 +1,21 @@
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { FullScreen } from '@components/UI/FullScreen'
-import { Features, Landing, Roadmap, Tokenomics } from '@views/home'
-import { useEffect, useRef } from 'react'
+import { Features, Landing, Tokenomics } from '@views/home'
+// import { useEffect, useRef } from 'react'
 import { useAnimations } from '../views/home/useAnimations'
-import tw from 'twin.macro'
 
 export default function Home() {
   const {
-    isScrolling,
-    parentRef,
+    // isScrolling,
+    // parentRef,
     containerRef,
-    activeNav,
+    // activeNav,
     landingRef,
     featuresRef,
     tokenomicsRef,
     roadmapContainerRef,
-    navCheckpointRef,
-    navRef,
+    // navCheckpointRef,
+    // navRef,
     s0Ref,
     s1Ref,
     s2Ref,
@@ -69,20 +68,14 @@ export default function Home() {
               tw="bg-green-300 min-width[100vw] w-screen flex items-center justify-center"
               data-tag="stage2"
             >
-              <div css={[activeNav === 'stage2' && tw`text-4xl font-bold`]}>
-                {activeNav}
-                Stage 2
-              </div>
+              Stage 2
             </FullScreen>
             <FullScreen
               sectionRef={s3Ref}
               tw="bg-purple-300 min-width[100vw] w-screen flex items-center justify-center"
               data-tag="stage3"
             >
-              <div css={[activeNav === 'stage3' && tw`text-4xl font-bold`]}>
-                {activeNav}
-                Stage 3
-              </div>
+              Stage 3
             </FullScreen>
           </FullScreen>
         </div>
