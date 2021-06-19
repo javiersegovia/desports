@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { GlobalStyles } from 'twin.macro'
-import ReactFullpage from '@fullpage/react-fullpage'
+// import ReactFullpage from '@fullpage/react-fullpage'
 
 interface LayoutProps {
   children?: ReactNode

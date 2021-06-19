@@ -10,46 +10,85 @@ export default function Home() {
     // parentRef,
     containerRef,
     // activeNav,
-    checkRef,
     landingRef,
     featuresRef,
     tokenomicsRef,
-    handleNav,
-    navRef,
-    hContainerRef,
+    roadmapContainerRef,
+    // navCheckpointRef,
+    // navRef,
     s0Ref,
     s1Ref,
+    s12Ref,
     s2Ref,
     s3Ref,
-    s4Ref,
   } = useAnimations()
 
   return (
     <>
       {/* <FullScreen tw="bg-indigo-200 w-full h-full">1</FullScreen> */}
 
-      <div ref={containerRef} tw="w-full h-full">
-        <FullScreen
-          sectionRef={landingRef}
-          tw="bg-red-500 flex items-center justify-center"
-        >
-          <Landing />
-        </FullScreen>
-        <FullScreen
-          sectionRef={featuresRef}
-          tw="bg-green-500 flex items-center justify-center"
-        >
-          <Features />
-        </FullScreen>
-        <FullScreen
-          sectionRef={tokenomicsRef}
-          tw="bg-yellow-300 flex items-center justify-center"
-        >
-          <Tokenomics />
-        </FullScreen>
-      </div>
+      <div tw="absolute overflow-hidden w-full h-full z-50">
+        <div ref={containerRef} tw="w-full h-full">
+          <FullScreen
+            sectionRef={landingRef}
+            tw="bg-red-500 flex items-center justify-center"
+          >
+            <Landing />
+          </FullScreen>
+          <FullScreen
+            sectionRef={featuresRef}
+            tw="bg-green-500 flex items-center justify-center"
+          >
+            <Features />
+          </FullScreen>
+          <FullScreen
+            sectionRef={tokenomicsRef}
+            tw="bg-yellow-300 flex items-center justify-center"
+          >
+            <Tokenomics />
+          </FullScreen>
 
-      <div ref={checkRef} />
+          <FullScreen
+            tw="width[500%] flex flex-row flex-nowrap sticky"
+            sectionRef={roadmapContainerRef}
+          >
+            <FullScreen
+              sectionRef={s0Ref}
+              tw="bg-purple-300 flex items-center justify-center"
+            >
+              Stage 0
+            </FullScreen>
+            <FullScreen tw="bg-pink-400 flex items-center justify-center width[200%] flex-row">
+              <FullScreen
+                sectionRef={s1Ref}
+                tw="flex items-center justify-center"
+              >
+                STAGE1
+              </FullScreen>
+              <FullScreen
+                sectionRef={s12Ref}
+                tw="flex items-center justify-center"
+              >
+                STAGE1.5
+              </FullScreen>
+            </FullScreen>
+            <FullScreen
+              sectionRef={s2Ref}
+              tw="bg-green-300 min-width[100vw] w-screen flex items-center justify-center"
+              data-tag="stage2"
+            >
+              Stage 2
+            </FullScreen>
+            <FullScreen
+              sectionRef={s3Ref}
+              tw="bg-purple-300 min-width[100vw] w-screen flex items-center justify-center"
+              data-tag="stage3"
+            >
+              Stage 3
+            </FullScreen>
+          </FullScreen>
+        </div>
+      </div>
 
       {/* <FullScreen
         sectionRef={parentRef}
@@ -69,98 +108,65 @@ export default function Home() {
       {/* <FullScreen tw="bg-blue-200 w-full h-full" /> */}
       {/* <FullScreen tw="bg-red-200 w-full h-full" /> */}
 
-      <div
-        tw="fixed bottom-4 left-1/2 transform -translate-x-1/2 mx-auto z-50"
+      {/* <div
+        tw="fixed bottom-4 left-1/2 transform -translate-x-1/2 translate-y-40 mx-auto z-50"
         ref={navRef}
       >
         <div tw="flex items-center justify-center space-x-4">
-          <button
-            type="button"
-            onClick={() => handleNav(1)}
-            tw="bg-gray-400 font-medium"
-          >
-            Stage 1
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNav(2)}
-            tw="bg-gray-400 font-medium"
-          >
-            Stage 2
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNav(3)}
-            tw="bg-gray-400 font-medium"
-          >
-            Stage 3
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNav(4)}
-            tw="bg-gray-400 font-medium"
-          >
-            Stage 4
-          </button>
+          <div tw="bg-gray-400 font-medium">Stage 1</div>
+          <div tw="bg-gray-400 font-medium">Stage 2</div>
+          <div tw="bg-gray-400 font-medium">Stage 3</div>
+          <div tw="bg-gray-400 font-medium">Stage 4</div>
         </div>
       </div>
-
       <FullScreen
-        tw="width[500%] flex flex-row flex-nowrap sticky"
-        sectionRef={hContainerRef}
+        tw="width[400%] flex flex-row flex-nowrap sticky"
+        sectionRef={roadmapContainerRef}
       >
         <>
+          <div ref={navCheckpointRef} tw="overflow-hidden" />
           <FullScreen
             sectionRef={s0Ref}
             tw="bg-blue-500 min-width[100vw] w-screen flex items-center justify-center relative"
             data-tag="roadmap"
           >
-            RoadMap
+            <div css={[activeNav === 'roadmap' && tw`text-4xl font-bold`]}>
+              RoadMap
+              {activeNav}
+            </div>
           </FullScreen>
-
           <FullScreen
             sectionRef={s1Ref}
-            tw="width[200vw] h-full bg-indigo-500 flex flex-row flex-nowrap"
+            tw="bg-red-300 min-width[100vw] w-screen flex items-center justify-center"
+            data-tag="stage1"
           >
-            <FullScreen
-              tw="min-width[100vw] flex items-center justify-center"
-              data-tag="stage1"
-            >
+            <div css={[activeNav === 'stage1' && tw`text-4xl font-bold`]}>
+              {activeNav}
               Stage 1
-            </FullScreen>
-            <FullScreen
-              tw="min-width[100vw] flex items-center justify-center"
-              data-tag="stage12"
-            >
-              Stage 1.5
-            </FullScreen>
+            </div>
           </FullScreen>
-
           <FullScreen
             sectionRef={s2Ref}
-            tw="bg-green-300 min-width[100vw] flex items-center justify-center"
+            tw="bg-green-300 min-width[100vw] w-screen flex items-center justify-center"
             data-tag="stage2"
           >
-            Stage 2
+            <div css={[activeNav === 'stage2' && tw`text-4xl font-bold`]}>
+              {activeNav}
+              Stage 2
+            </div>
           </FullScreen>
-
           <FullScreen
             sectionRef={s3Ref}
-            tw="bg-purple-300 min-width[100vw] flex items-center justify-center"
+            tw="bg-purple-300 min-width[100vw] w-screen flex items-center justify-center"
             data-tag="stage3"
           >
-            Stage 3
-          </FullScreen>
-
-          <FullScreen
-            sectionRef={s4Ref}
-            tw="bg-indigo-600 min-width[100vw] flex items-center justify-center"
-            data-tag="stage3"
-          >
-            Stage 4
+            <div css={[activeNav === 'stage3' && tw`text-4xl font-bold`]}>
+              {activeNav}
+              Stage 3
+            </div>
           </FullScreen>
         </>
-      </FullScreen>
+      </FullScreen> */}
     </>
   )
 }

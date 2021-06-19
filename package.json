@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "lint:lint": "eslint . --ext ts --ext tsx --ext js",
+    "lint:type-check": "tsc --pretty --noEmit"
   },
   "dependencies": {
     "@emotion/css": "^11.1.3",
