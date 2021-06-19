@@ -89,8 +89,48 @@ export const useAnimations = () => {
     })
   }, [])
 
+  const handleNav = (i: number) => {
+    const targetElem = sRefs[i].current as HTMLDivElement
+    const container = checkRef.current as HTMLDivElement
+    const y = container.getBoundingClientRect().top + window.scrollY
+
+    const containerOffset = y
+
+    const getMaxWidth = () =>
+      sRefs.reduce((val, section) => val + section.current.offsetWidth, 0)
+    const maxWidth = getMaxWidth()
+
+    const travel = y + targetElem.offsetLeft / sRefs.length - 1
+    const fly = targetElem.offsetWidth * (4 / (maxWidth - window.innerWidth))
+
+    console.log({ containerOffset, travel, fly })
+
+    gsap.to(window, {
+      ease: 'none',
+      scrollTo: {
+        y: travel,
+        autoKill: false,
+      },
+      duration: 0.2,
+    })
+
+    // if (targetElem && container.isSameNode(targetElem.parentElement)) {
+    //   console.log({ containerOffset })
+    // } else {
+    //   console.log('scrolll')
+    //   gsap.to(window, {
+    //     scrollTo: {
+    //       y: targetElem,
+    //       autoKill: false,
+    //     },
+    //     duration: 1,
+    //   })
+    // }
+  }
+
   return {
     checkRef,
+    handleNav,
     parentRef,
     containerRef,
     landingRef,

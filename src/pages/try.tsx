@@ -2,9 +2,9 @@
 import { FullScreen } from '@components/UI/FullScreen'
 import { Features, Landing, Tokenomics } from '@views/home'
 // import { useEffect, useRef } from 'react'
-import { useAnimations } from '../views/home/useAnimations'
+import { useAnimations } from '../views/home/useAnimationsTry'
 
-export default function Home() {
+export default function Test() {
   const {
     // isScrolling,
     // parentRef,
@@ -23,6 +23,15 @@ export default function Home() {
     s3Ref,
     s4Ref,
   } = useAnimations()
+
+  return (
+    <>
+      <div className="section">1</div>
+      <div className="section">2</div>
+      <div className="section">3</div>
+      <div className="section">4</div>
+    </>
+  )
 
   return (
     <>

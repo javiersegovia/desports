@@ -44,7 +44,7 @@
   "rules": {
     "linebreak-style": 0,
     "no-console": [
-      2,
+      1,
       {
         "allow": ["warn", "error"]
       }

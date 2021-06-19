@@ -9,6 +9,10 @@ import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(ScrollToPlugin)
 
+// const pluginWrapper = () => {
+
+// }
+
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
