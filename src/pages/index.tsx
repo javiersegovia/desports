@@ -18,6 +18,7 @@ export default function Home() {
     // navRef,
     s0Ref,
     s1Ref,
+    s12Ref,
     s2Ref,
     s3Ref,
   } = useAnimations()
@@ -48,7 +49,7 @@ export default function Home() {
           </FullScreen>
 
           <FullScreen
-            tw="width[400%] flex flex-row flex-nowrap sticky"
+            tw="width[500%] flex flex-row flex-nowrap sticky"
             sectionRef={roadmapContainerRef}
           >
             <FullScreen
@@ -57,11 +58,19 @@ export default function Home() {
             >
               Stage 0
             </FullScreen>
-            <FullScreen
-              sectionRef={s1Ref}
-              tw="bg-pink-400 flex items-center justify-center"
-            >
-              STAGE1
+            <FullScreen tw="bg-pink-400 flex items-center justify-center width[200%] flex-row">
+              <FullScreen
+                sectionRef={s1Ref}
+                tw="flex items-center justify-center"
+              >
+                STAGE1
+              </FullScreen>
+              <FullScreen
+                sectionRef={s12Ref}
+                tw="flex items-center justify-center"
+              >
+                STAGE1.5
+              </FullScreen>
             </FullScreen>
             <FullScreen
               sectionRef={s2Ref}
