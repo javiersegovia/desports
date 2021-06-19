@@ -31,7 +31,7 @@ export default function Home() {
         <div ref={containerRef} tw="w-full h-full">
           <FullScreen
             sectionRef={landingRef}
-            tw="bg-red-500 flex items-center justify-center"
+            tw="bg-blue-500 flex items-center justify-center"
           >
             <Landing />
           </FullScreen>

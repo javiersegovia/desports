@@ -1,11 +1,7 @@
-import { FullScreen } from '@components/UI/FullScreen'
-import { RefObject, useEffect, useRef } from 'react'
+// import { FullScreen } from '@components/UI/FullScreen'
+import { useEffect, useRef } from 'react'
 
-interface LandingProps {
-  animationRef?: RefObject<HTMLDivElement>
-}
-
-export const Landing = ({ animationRef }: LandingProps) => {
+export const Landing = () => {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -21,12 +17,5 @@ export const Landing = ({ animationRef }: LandingProps) => {
     // })
   }, [])
 
-  return (
-    <FullScreen
-      sectionRef={animationRef}
-      tw="bg-red-500 flex items-center justify-center"
-    >
-      <div ref={ref}>Landing Section</div>
-    </FullScreen>
-  )
+  return <div ref={ref}>Landing Section</div>
 }

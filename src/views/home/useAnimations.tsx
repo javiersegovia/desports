@@ -139,27 +139,68 @@ export const useAnimations = () => {
     window.addEventListener('wheel', slideAnim, { passive: false })
     window.addEventListener('resize', newSize)
 
-    let touchLastY: number
+    // let touchLastY: number
 
-    // const slideDown = (e: TouchEvent) => throttle(() => slideAnim(e, true), 100)
+    const throttledDown = throttle((e: TouchEvent) => slideAnim(e, true), 200)
+    const throttledUp = throttle((e: TouchEvent) => slideAnim(e, false), 200)
+
+    // const slideDown = (e: TouchEvent) => {
+    //   throttledDown(e)
+    // }
     // const slideUp = (e: TouchEvent) => throttle(() => slideAnim(e, false), 100)
 
-    const touchScroll = throttle((e: TouchEvent) => {
-      const currentY = e.touches[0].clientY
-      if (currentY > touchLastY) {
-        // moved down
-        // console.log('down')
-        slideAnim(e, true)
-      } else if (currentY < touchLastY) {
-        // console.log('up')
-        slideAnim(e, false)
-        // slideAnim(e, false)
-        // moved up
-      }
-      touchLastY = currentY
-    }, 200)
+    let touchStart: number
+    window.addEventListener('touchstart', (e: TouchEvent) => {
+      touchStart = e.touches[0]?.clientY
+    })
 
-    window.addEventListener('touchmove', touchScroll)
+    window.addEventListener('touchmove', (e: TouchEvent) => {
+      const touchEnd = e.changedTouches[0].clientY
+
+      if (touchStart > touchEnd + 5) {
+        throttledDown(e)
+      } else if (touchStart < touchEnd - 5) {
+        throttledUp(e)
+      }
+    })
+    // window.addEventListener('touchmove', (e: TouchEvent) => {
+    //   console.log({ touchStart, te: e.changedTouches[0], touches: e.touches })
+    //   const touchEnd = e.changedTouches[0].screenY
+
+    //   slideDown(e)
+
+    //   if (touchStart > touchEnd + 5) {
+    //     slideAnim(e, true)
+    //   } else if (touchStart < touchEnd - 5) {
+    //     slideAnim(e, false)
+    //   }
+    // })
+
+    // $(document).bind('touchend', function (e) {
+    //   var te = e.originalEvent.changedTouches[0].clientY
+    //   if (ts > te + 5) {
+    //     slide_down()
+    //   } else if (ts < te - 5) {
+    //     slide_up()
+    //   }
+    // })
+
+    // const touchScroll = throttle((e: TouchEvent) => {
+    //   const currentY = e.touches[0].clientY
+    //   if (currentY > touchLastY) {
+    //     // moved down
+    //     // console.log('down')
+    //     slideAnim(e, true)
+    //   } else if (currentY < touchLastY) {
+    //     // console.log('up')
+    //     slideAnim(e, false)
+    //     // slideAnim(e, false)
+    //     // moved up
+    //   }
+    //   touchLastY = currentY
+    // }, 200)
+
+    // window.addEventListener('touchmove', touchScroll)
   }, [])
 
   return {
