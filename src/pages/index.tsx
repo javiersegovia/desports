@@ -1,21 +1,15 @@
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { FullScreen } from '@components/UI/FullScreen'
 import { Features, Landing, Tokenomics } from '@views/home'
-// import { useEffect, useRef } from 'react'
-import { useAnimations } from '../views/home/useAnimations'
+import { useAnimations } from '@views/home/useAnimations'
 
 export default function Home() {
   const {
-    // isScrolling,
-    // parentRef,
+    wrapperRef,
     containerRef,
-    // activeNav,
     landingRef,
     featuresRef,
     tokenomicsRef,
     roadmapContainerRef,
-    // navCheckpointRef,
-    // navRef,
     s0Ref,
     s1Ref,
     s12Ref,
@@ -25,9 +19,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <FullScreen tw="bg-indigo-200 w-full h-full">1</FullScreen> */}
-
-      <div tw="absolute overflow-hidden w-full h-full z-50">
+      <div ref={wrapperRef} tw="absolute overflow-hidden w-full h-full z-50">
         <div ref={containerRef} tw="w-full h-full">
           <FullScreen
             sectionRef={landingRef}
@@ -49,30 +41,38 @@ export default function Home() {
           </FullScreen>
 
           <FullScreen
+            data-name="hContainer"
             tw="width[500%] flex flex-row flex-nowrap sticky"
             sectionRef={roadmapContainerRef}
           >
             <FullScreen
+              data-name="s0"
               sectionRef={s0Ref}
-              tw="bg-purple-300 flex items-center justify-center"
+              tw="bg-purple-300 min-width[100vw] w-screen flex items-center justify-center"
             >
               Stage 0
             </FullScreen>
-            <FullScreen tw="bg-pink-400 flex items-center justify-center width[200%] flex-row">
+            <FullScreen
+              data-name="s1 container"
+              tw="bg-pink-400 flex items-center justify-center min-width[200vw] flex-row"
+            >
               <FullScreen
+                data-name="s1.1"
                 sectionRef={s1Ref}
-                tw="flex items-center justify-center"
+                tw="flex items-center justify-center w-screen"
               >
                 STAGE1
               </FullScreen>
               <FullScreen
+                data-name="s1.2"
                 sectionRef={s12Ref}
-                tw="flex items-center justify-center"
+                tw="flex items-center justify-center w-screen"
               >
                 STAGE1.5
               </FullScreen>
             </FullScreen>
             <FullScreen
+              data-name="s2"
               sectionRef={s2Ref}
               tw="bg-green-300 min-width[100vw] w-screen flex items-center justify-center"
               data-tag="stage2"
@@ -80,6 +80,7 @@ export default function Home() {
               Stage 2
             </FullScreen>
             <FullScreen
+              data-name="s3"
               sectionRef={s3Ref}
               tw="bg-purple-300 min-width[100vw] w-screen flex items-center justify-center"
               data-tag="stage3"

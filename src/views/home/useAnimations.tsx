@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-// import debounce from 'lodash.debounce'
 import throttle from 'lodash.throttle'
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
+interface ScrollDirection {
+  x: 'LEFT' | 'RIGHT' | null
+  y: 'UP' | 'DOWN' | null
+}
 
 export const useAnimations = () => {
-  const parentRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const landingRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
@@ -24,6 +27,7 @@ export const useAnimations = () => {
     let oldSlide = 0
     let activeSlide = 0
     let newSlide: number
+    let insideXSection: boolean
 
     let lastY = 0
     let lastX = 0
@@ -32,14 +36,14 @@ export const useAnimations = () => {
     let offsetsY: number[] = []
     let offsetsX: number[] = []
 
-    const vSections = [
+    const ySections = [
       landingRef.current,
       featuresRef.current,
       tokenomicsRef.current,
       hContainer,
     ] as HTMLDivElement[]
 
-    const hSections = [
+    const xSections = [
       hContainer,
       s0Ref.current,
       s1Ref.current,
@@ -48,64 +52,45 @@ export const useAnimations = () => {
       s3Ref.current,
     ] as HTMLDivElement[]
 
-    for (const vSection of vSections) {
-      offsetsY.push(-vSection.offsetTop)
-    }
+    const sections = [...ySections, ...xSections]
+    const maxIndex = sections.length - 2
 
-    for (const hSection of hSections) {
-      offsetsX.push(-hSection.getBoundingClientRect().left)
-    }
+    const tl = gsap.timeline()
 
     const slideAnim = (
       e: WheelEvent | TouchEvent,
-      isScrollingDown?: boolean
+      direction?: ScrollDirection
     ) => {
-      // console.log({ isScrollingDown, tweening: gsap.isTweening(container) })
-      if (gsap.isTweening(container)) {
-        // console.log('tweening. return')
-        return
-      }
+      if (gsap.isTweening(container)) return
+
+      const { x } = direction || {}
+      let { y } = direction || {}
+
       oldSlide = activeSlide
 
-      const sections = [...vSections, ...hSections]
-      const maxIndex = sections.length - 2
+      if (e instanceof WheelEvent) y = e.deltaY > 0 ? 'DOWN' : 'UP'
 
-      if (e instanceof WheelEvent) isScrollingDown = e.deltaY > 0 ? true : false
+      if (oldSlide >= ySections.length) insideXSection = true
+      else insideXSection = false
 
-      // if (e instanceof WheelEvent) {
-      //   direction = e.deltaY > 0 ? activeSlide + 1 : activeSlide - 1
-      //   // direction = newSlide < 0 ? 0 : newSlide
-      //   // direction = newSlide > maxIndex ? maxIndex : newSlide
-      // }
+      const shouldAdvance = insideXSection && x ? x === 'LEFT' : y === 'DOWN'
+      newSlide = shouldAdvance ? activeSlide + 1 : activeSlide - 1
 
-      // if (e instanceof WheelEvent) {
-      //   console.log('wheel event!')
-      // }
-
-      // NEW SLIDER INDEX
-      newSlide = isScrollingDown ? activeSlide + 1 : activeSlide - 1
-
-      // Here we make sure that the newSlide is not less than 0 or greather than the maxIndex.
       if (newSlide < 0) newSlide = 0
       if (newSlide > maxIndex) newSlide = maxIndex
-      // newSlide = newSlide < 0 ? 0 : newSlide
-      // newSlide = newSlide > maxIndex ? maxIndex : newSlide
-
       if (oldSlide === newSlide) return
-      activeSlide = newSlide
 
-      //THEN... WE ANIMATE
-      const tl = gsap.timeline()
+      activeSlide = newSlide
 
       // TRANSITION FROM VERTICAL SLIDER TO HORIZONTAL SLIDER
       if (sections[activeSlide] === sections[oldSlide]) {
-        activeSlide = isScrollingDown ? activeSlide + 1 : activeSlide - 1
+        activeSlide = shouldAdvance ? activeSlide + 1 : activeSlide - 1
       }
 
-      if (activeSlide < vSections.length) {
+      if (activeSlide < ySections.length) {
         lastY = offsetsY[activeSlide]
       } else if (activeSlide <= maxIndex) {
-        const xIndex = activeSlide - (vSections.length - 1)
+        const xIndex = activeSlide - (ySections.length - 1)
         lastX = offsetsX[xIndex]
       }
 
@@ -120,91 +105,103 @@ export const useAnimations = () => {
     function newSize() {
       offsetsY = []
       offsetsX = []
+
+      // gsap.set(wrapperRef.current, {
+      //   height: window.innerHeight,
+      //   width: window.innerWidth,
+      // })
       gsap.set(container, {
-        height: vSections.length * window.innerHeight,
+        height: ySections.length * window.innerHeight,
+      })
+      // gsap.set(hContainer, {
+      //   width: (xSections.length - 1) * window.innerWidth,
+      // })
+
+      for (const ySection of ySections) {
+        offsetsY.push(-ySection.offsetTop)
+      }
+
+      xSections.forEach((xSection) => {
+        const elementOffsetLeft = xSection.offsetLeft
+
+        if (
+          xSection.parentElement &&
+          !xSection.parentElement.isSameNode(hContainer) &&
+          !xSection.isSameNode(hContainer)
+        ) {
+          offsetsX.push(
+            -(xSection.parentElement.offsetLeft + elementOffsetLeft)
+          )
+        } else {
+          offsetsX.push(-elementOffsetLeft)
+        }
       })
 
-      for (const vSection of vSections) {
-        offsetsY.push(-vSection.offsetTop)
-      }
-      for (const hSection of hSections) {
-        offsetsY.push(-hSection.getBoundingClientRect().left)
+      const xIndex = activeSlide - (ySections.length - 1)
+
+      if (activeSlide < ySections.length) {
+        lastY = offsetsY[activeSlide]
+        lastX = 0
+      } else {
+        lastX = offsetsX[xIndex]
       }
 
       gsap.set(container, {
-        y: offsetsY[activeSlide],
+        y: lastY,
+        x: lastX,
       })
     }
 
     window.addEventListener('wheel', slideAnim, { passive: false })
     window.addEventListener('resize', newSize)
+    newSize()
 
-    // let touchLastY: number
+    const throttledAnim = throttle(
+      (e: TouchEvent, direction: ScrollDirection) => slideAnim(e, direction),
+      200
+    )
 
-    const throttledDown = throttle((e: TouchEvent) => slideAnim(e, true), 200)
-    const throttledUp = throttle((e: TouchEvent) => slideAnim(e, false), 200)
+    let touchStartY: number
+    let touchStartX: number
 
-    // const slideDown = (e: TouchEvent) => {
-    //   throttledDown(e)
-    // }
-    // const slideUp = (e: TouchEvent) => throttle(() => slideAnim(e, false), 100)
-
-    let touchStart: number
     window.addEventListener('touchstart', (e: TouchEvent) => {
-      touchStart = e.touches[0]?.clientY
+      touchStartY = e.touches[0].clientY
+      touchStartX = e.touches[0].clientX
     })
 
     window.addEventListener('touchmove', (e: TouchEvent) => {
-      const touchEnd = e.changedTouches[0].clientY
+      const touchEndY = e.changedTouches[0].clientY
+      const touchEndX = e.changedTouches[0].clientX
+      const touchDistance = 20
+      const y =
+        touchStartY > touchEndY + touchDistance
+          ? 'DOWN'
+          : touchStartY < touchEndY - touchDistance
+          ? 'UP'
+          : null
 
-      if (touchStart > touchEnd + 5) {
-        throttledDown(e)
-      } else if (touchStart < touchEnd - 5) {
-        throttledUp(e)
+      const x =
+        touchStartX > touchEndX + touchDistance
+          ? 'LEFT'
+          : touchStartX < touchEndX - touchDistance
+          ? 'RIGHT'
+          : null
+
+      if (x || y) {
+        throttledAnim(e, {
+          x,
+          y,
+        })
       }
     })
-    // window.addEventListener('touchmove', (e: TouchEvent) => {
-    //   console.log({ touchStart, te: e.changedTouches[0], touches: e.touches })
-    //   const touchEnd = e.changedTouches[0].screenY
 
-    //   slideDown(e)
-
-    //   if (touchStart > touchEnd + 5) {
-    //     slideAnim(e, true)
-    //   } else if (touchStart < touchEnd - 5) {
-    //     slideAnim(e, false)
-    //   }
-    // })
-
-    // $(document).bind('touchend', function (e) {
-    //   var te = e.originalEvent.changedTouches[0].clientY
-    //   if (ts > te + 5) {
-    //     slide_down()
-    //   } else if (ts < te - 5) {
-    //     slide_up()
-    //   }
-    // })
-
-    // const touchScroll = throttle((e: TouchEvent) => {
-    //   const currentY = e.touches[0].clientY
-    //   if (currentY > touchLastY) {
-    //     // moved down
-    //     // console.log('down')
-    //     slideAnim(e, true)
-    //   } else if (currentY < touchLastY) {
-    //     // console.log('up')
-    //     slideAnim(e, false)
-    //     // slideAnim(e, false)
-    //     // moved up
-    //   }
-    //   touchLastY = currentY
-    // }, 200)
-
-    // window.addEventListener('touchmove', touchScroll)
+    return () => {
+      tl.kill()
+    }
   }, [])
 
   return {
-    parentRef,
+    wrapperRef,
     containerRef,
     landingRef,
     featuresRef,
