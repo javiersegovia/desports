@@ -1,7 +1,7 @@
 import '@styles/main.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { Layout } from '@components/Layout'
+import { Layout } from '@components/Layout/Layout'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'

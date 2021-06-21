@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <div ref={wrapperRef} tw="absolute overflow-hidden w-full h-full z-50">
+      <div ref={wrapperRef} tw="absolute overflow-hidden w-full h-full">
         <div ref={containerRef} tw="w-full h-full">
           <FullScreen
             sectionRef={landingRef}

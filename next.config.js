@@ -1,4 +1,7 @@
-module.exports = {
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withTranslations = require('next-translate')
+
+module.exports = withTranslations({
   reactStrictMode: true,
   webpack: (config) => {
     // Unset client-side javascript that only works server-side
@@ -6,4 +9,4 @@ module.exports = {
 
     return config
   },
-}
+})

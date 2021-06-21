@@ -1,4 +1,5 @@
 // import { FullScreen } from '@components/UI/FullScreen'
+import Button from '@components/UI/TButton'
 import { useEffect, useRef } from 'react'
 
 export const Landing = () => {
@@ -17,5 +18,9 @@ export const Landing = () => {
     // })
   }, [])
 
-  return <div ref={ref}>Landing Section</div>
+  return (
+    <div ref={ref} tw="font-mono text-2xl font-bold">
+      <Button>Buy Now</Button>
+    </div>
+  )
 }
