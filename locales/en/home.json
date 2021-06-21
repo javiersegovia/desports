@@ -1,0 +1,23 @@
+{
+  "landing": {
+    "pre-sale": "Pre-sale",
+    "launch": "Launch",
+    "title": "DeSports Network",
+    "description": "Decentralized P2P Platform for eSports Competitions \nPrize Pools, Tournaments, Cheering, Challenges, Showmatches, Events, Profiles and NFT Rewards",
+    "join-telegram": "Join our Telegram",
+    "trackers": "Trackers",
+    "buy-now": "Buy now",
+    "contract-address": "Contract address",
+    "view-tokenomics": "View Tokenomics and distributions",
+    "available-pool": "Competitions pool",
+    "total-rewarded": "Total rewarded",
+    "current-total": "Accumulated",
+    "ath-pool": "ATH Reward",
+    "next-goal": "Next Goal",
+    "donation": "Donation / Goals Wallet",
+    "current-price": "Current price",
+    "holders": "Holders",
+    "supply": "Supply",
+    "marketcap": "Marketcap"
+  }
+}

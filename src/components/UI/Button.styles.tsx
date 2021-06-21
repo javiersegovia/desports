@@ -6,6 +6,8 @@ type ButtonProps =
   | AnchorHTMLAttributes<HTMLAnchorElement>
 
 export const StyledButton = styled.button<ButtonProps>`
+  padding: 0 20px;
+
   --primary: ${theme`colors.emerald.400`};
   --shadow-primary: ${theme`colors.emerald.300`};
   --color: black;
@@ -168,6 +170,7 @@ export const StyledButton = styled.button<ButtonProps>`
     8% {
       clip-path: var(--clip-two);
       transform: translate(calc(var(--shimmy-distance) * -1%), 0);
+      /* background: red; */
     }
     6% {
       clip-path: var(--clip-two);
@@ -197,23 +200,28 @@ export const StyledButton = styled.button<ButtonProps>`
     30% {
       clip-path: var(--clip-five);
       transform: translate(calc(var(--shimmy-distance) * -1%), 0);
+      background: blue;
     }
     35%,
     45% {
       clip-path: var(--clip-six);
       transform: translate(calc(var(--shimmy-distance) * -1%));
+      background: transparent;
     }
     40% {
       clip-path: var(--clip-six);
       transform: translate(calc(var(--shimmy-distance) * 1%));
+      background: yellow;
     }
     50% {
       clip-path: var(--clip-six);
       transform: translate(0, 0);
+      background: lightgreen;
     }
     55% {
       clip-path: var(--clip-seven);
       transform: translate(calc(var(--shimmy-distance) * 1%), 0);
+      background: #ff42c0;
     }
     60% {
       clip-path: var(--clip-seven);

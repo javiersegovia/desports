@@ -14,6 +14,14 @@ module.exports = {
           800: '#22242c',
           900: '#15171e',
         },
+        yellow: {
+          ...colors.yellow,
+          400: '#fff500',
+        },
+        cyan: {
+          ...colors.cyan,
+          400: '#02d7f2',
+        },
       },
       fontFamily: {
         sans: ['Cabin', ...defaultTheme.fontFamily.sans],

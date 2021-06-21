@@ -24,10 +24,7 @@ export default function Home() {
     <>
       <div ref={wrapperRef} tw="absolute overflow-hidden w-full h-full">
         <div ref={containerRef} tw="w-full h-full">
-          <FullScreen
-            sectionRef={landingRef}
-            tw="bg-blue-500 flex items-center justify-center"
-          >
+          <FullScreen sectionRef={landingRef}>
             <Landing />
           </FullScreen>
           <FullScreen

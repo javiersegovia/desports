@@ -16,6 +16,8 @@ export const Button = ({ href, ...props }: ButtonProps) =>
     <ButtonElement {...props} />
   )
 
+// todo: add color variations to button
+
 export const ButtonElement = ({
   type = 'button',
   disabled = false,
