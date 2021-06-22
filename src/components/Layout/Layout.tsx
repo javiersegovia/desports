@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { ThemeProvider } from '@emotion/react'
-import { Nav } from '@components/Nav'
+// import { Nav } from '@components/Nav'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import { GlobalStyles } from './Global.styles'
 

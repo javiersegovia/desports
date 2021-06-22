@@ -88,7 +88,6 @@ interface MiniFrameProps extends FrameProps {
 
 export const MiniFrame = ({
   children,
-  color,
   className,
   type,
   ...otherProps
