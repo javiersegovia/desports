@@ -11,7 +11,7 @@ export const Title = ({
   ...props
 }: TitleProps) => (
   <Element
-    tw="text-5xl font-bold font-mono uppercase text-white letter-spacing[3px]"
+    tw="text-3xl lg:text-5xl font-bold font-mono uppercase text-white letter-spacing[3px]"
     {...props}
   >
     {children}

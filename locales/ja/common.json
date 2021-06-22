@@ -1,0 +1,17 @@
+{
+  "socialBar": {
+    "english": "Inglés",
+    "spanish": "Español"
+  },
+  "navBar": {
+    "buy-now": "Comprar",
+    "links": {
+      "trackers": "Seguimiento",
+      "platform": "Plataforma",
+      "team": "Equipo",
+      "whitepaper": "Whitepaper",
+      "shop": "Tienda",
+      "news": "Noticias"
+    }
+  }
+}

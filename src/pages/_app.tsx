@@ -15,8 +15,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Layout>
         <Head>
-          <link rel="shortcut icon" href="/img/favicon.png" />
-          <title>$DESP - DeSports Network</title>
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <title>DeSports Network</title>
         </Head>
         <Component {...pageProps} />
       </Layout>

@@ -16,7 +16,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => (
   <>
     <ThemeProvider theme={theme}>
-      <Nav />
+      {/* <Nav /> */}
       <GlobalStyles />
       {children}
     </ThemeProvider>
