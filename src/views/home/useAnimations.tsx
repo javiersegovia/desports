@@ -44,8 +44,8 @@ export const useAnimations = () => {
 
   const ySections = useRef([
     landingRef,
-    featuresRef,
     tokenomicsRef,
+    featuresRef,
     roadmapContainerRef,
   ])
 

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
-import { GlobalStyles } from 'twin.macro'
 import { ThemeProvider } from '@emotion/react'
 import { Nav } from '@components/Nav'
 import defaultTheme from 'tailwindcss/defaultTheme'
+import { GlobalStyles } from './Global.styles'
 
 const theme = {
   breakpoints: {

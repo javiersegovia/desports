@@ -3,6 +3,8 @@ interface BarProps {
   current: number
 }
 
+// todo: add rectangle to the yellow bar
+
 export const Bar = ({ max, current, ...props }: BarProps) => {
   const completion = (current * 100) / max
   return (

@@ -6,20 +6,3 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import './fonts.css';
-
-/* Todo: Move styles to a new "GlobalStyles" Component */
-/* Todo: enable the overscroll-behaviour-y when we are not scrolling in mobile */
-html, body {
-  overflow-x: hidden;
-  overscroll-behavior-y: contain;
-}
-
-body {
- background: black; 
- color: white;
-}
-
-*:focus,
-button:focus {
-  outline: none !important;
-}

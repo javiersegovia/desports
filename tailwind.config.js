@@ -22,6 +22,10 @@ module.exports = {
           ...colors.cyan,
           400: '#02d7f2',
         },
+        blueGray: {
+          ...colors.blueGray,
+          500: '#4b5e73',
+        },
       },
       fontFamily: {
         sans: ['Cabin', ...defaultTheme.fontFamily.sans],

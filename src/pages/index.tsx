@@ -27,17 +27,16 @@ export default function Home() {
           <FullScreen sectionRef={landingRef}>
             <Landing />
           </FullScreen>
+
+          <FullScreen sectionRef={tokenomicsRef}>
+            <Tokenomics />
+          </FullScreen>
+
           <FullScreen
             sectionRef={featuresRef}
             tw="bg-green-500 flex items-center justify-center"
           >
             <Features />
-          </FullScreen>
-          <FullScreen
-            sectionRef={tokenomicsRef}
-            tw="bg-yellow-300 flex items-center justify-center"
-          >
-            <Tokenomics />
           </FullScreen>
 
           <FullScreen

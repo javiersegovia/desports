@@ -3,7 +3,7 @@
     "pre-sale": "Pre-venta",
     "launch": "Lanzamiento",
     "title": "DeSports Network",
-    "description": "Decentralized P2P Platform for eSports Competitions \nPrize Pools, Tournaments, Cheering, Challenges, Showmatches, Events, Profiles and NFT Rewards",
+    "description": "Building a sustainable ecosystem by integrating the eSports into the blockchain",
     "join-telegram": "Únete al Telegram",
     "trackers": "Seguimiento",
     "buy-now": "Comprar",
@@ -19,5 +19,35 @@
     "holders": "Holders",
     "supply": "En circulación",
     "marketcap": "Capitalización"
+  },
+  "tokenomics": {
+    "title": "Tokenomics and Distributions",
+    "description": "$DESP a deflationary token launched on July 4th 2021, running on the BSC Network. DeSports Network is a vast, long-term project requiring significant development, marketing, and operations. Every transaction will consist of a 10% fee, which will be applied in the following manner:",
+    "tokenomics": [
+      {
+        "title": "4% Automatic liquidity pool",
+        "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
+      },
+      {
+        "title": "1% Competition Rewards",
+        "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
+      },
+      {
+        "title": "1% Redistributed to the ecosystem",
+        "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
+      },
+      {
+        "title": "2% Foundation and decentralized platform development",
+        "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
+      },
+      {
+        "title": "2% Marketing, Operations and eSports financing",
+        "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
+      },
+      {
+        "title": "25% Manual buybacks(?)",
+        "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
+      }
+    ]
   }
 }

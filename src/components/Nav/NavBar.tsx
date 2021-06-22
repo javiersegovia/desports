@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import Button from '@components/UI/Button'
+import { Button } from '@components/UI/Button'
 import { Container } from '@components/UI/Container'
 import useTranslation from 'next-translate/useTranslation'
 import { Logo } from './Logo'

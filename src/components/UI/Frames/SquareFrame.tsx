@@ -1,41 +1,39 @@
-import React from 'react'
-import { ReactNode } from 'react'
-import tw, { styled, theme } from 'twin.macro'
+import tw, { styled } from 'twin.macro'
+import { FrameProps } from '.'
+
+// Todo: fix square frame polygon
 
 const StyledFrame = styled.div`
   .frame,
   .shadowFrame {
     clip-path: polygon(
-      5% 0,
-      60% 0,
-      62% 5%,
-      80% 5%,
-      82% 0%,
-      95% 0,
+      0 10%,
+      8% 0,
+      64% 0,
+      65% 2%,
+      83% 2%,
+      84% 0,
+      92% 0,
       100% 10%,
-      100% 90%,
-      95% 100%,
-      82% 100%,
-      80% 95%,
-      22% 95%,
-      20% 100%,
-      5% 100%,
-      0% 90%,
-      0 62%,
-      2% 58%,
-      2% 32%,
-      0 28%,
-      0 10%
+      100% 91%,
+      92% 100%,
+      80% 100%,
+      78% 98%,
+      18% 98%,
+      16% 100%,
+      6% 100%,
+      0 93%,
+      0% 47%,
+      2% 45%,
+      2% 24%,
+      0 22%
     );
   }
 `
 
-interface FrameProps {
-  children?: ReactNode
-  color?: 'cyan' | 'yellow'
-}
+// Todo: refactor frame to Clip Path SVG
 
-export const Frame = ({ children, color, ...otherProps }: FrameProps) => {
+export const SquareFrame = ({ children, color, ...otherProps }: FrameProps) => {
   return (
     <StyledFrame tw="relative" {...otherProps}>
       {color && (
