@@ -23,6 +23,7 @@
       "@lib/*": ["src/lib/*"],
       "@pages/*": ["src/pages/*"],
       "@root/*": ["./*"],
+      "@public/*": ["public/*"],
       "@styles/*": ["public/styles/*"],
       "@tests/*": ["tests/*"],
       "@views/*": ["src/views/*"]

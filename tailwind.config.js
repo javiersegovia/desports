@@ -34,12 +34,5 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 }
-
-// TONOS GRISES OPACOS
-// #1E171E (FONDO, DARKEST BACKGROUND)
-// #22242C (NAV, STAGES BACKGROUND)
-
-// TONOS GRISES AZULADOS
-// #4B5E73

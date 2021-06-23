@@ -18,7 +18,7 @@ export const Landing = () => {
 
   return (
     <>
-      <StyledBackground tw="absolute z-index[-1] bg-cover bg-no-repeat opacity[.35] w-full h-full" />
+      <StyledBackground tw="absolute z-index[-1] bg-cover bg-center bg-no-repeat opacity[.35] w-full h-full" />
       <Container tw="w-full my-auto">
         <div tw="flex justify-between items-center">
           <div tw="space-y-4">

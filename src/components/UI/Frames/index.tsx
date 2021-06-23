@@ -1,6 +1,8 @@
 import { HTMLAttributes, ReactNode } from 'react'
 
+export type FrameShadowColor = 'cyan' | 'yellow' | 'emerald'
 export interface FrameProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
-  color?: 'cyan' | 'yellow'
+  color?: FrameShadowColor
+  shadowColor?: FrameShadowColor
 }

@@ -187,6 +187,7 @@ export const useAnimations = () => {
       gsap.set(container, {
         y: lastY,
         x: lastX,
+        rotation: 0.0001,
       })
     }
 
@@ -242,7 +243,6 @@ export const useAnimations = () => {
 
     return () => {
       //TODO: test the unmounting of this component
-      console.log('unmounted useAnimations')
       scrollTL.kill()
       navTL.kill()
       window.removeEventListener('wheel', sAnimation)

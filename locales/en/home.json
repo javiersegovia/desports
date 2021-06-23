@@ -4,7 +4,7 @@
     "pre-sale": "Pre-sale",
     "launch": "Launch",
     "title": "DeSports Network",
-    "description": "Decentralizing the eSports through a sustainable P2P ecosystem. \nEarn rewards and unique NFTs without any third-party involvement by interacting directly with the blockchain.",
+    "description": "Decentralizing the eSports through an sustainable P2P ecosystem. \nCreate custom events, compete, earn rewards and NFTs without any third-party involvement by using $DESP.",
     "join-telegram": "Join our Telegram",
     "trackers": "Trackers",
     "buy-now": "Buy Now",
@@ -24,7 +24,7 @@
   "tokenomics": {
     "title": "Tokenomics and Distributions",
     "description": "$DESP a deflationary token launched on July 4th 2021, running on the BSC Network. DeSports Network is a vast, long-term project requiring significant development, marketing, and operations. Every transaction will consist of a 10% fee, which will be applied in the following manner:",
-    "tokenomics": [
+    "list": [
       {
         "title": "4% Automatic liquidity pool",
         "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
@@ -50,5 +50,35 @@
         "description": "Locked until the year 8888. This fee for liquidity will go to an address that the contract creates, and the contract will sell it and add to liquidity automatically."
       }
     ]
+  },
+  "features": {
+    "title": "Platform Features and Token Utility",
+    "description": "The aim behind DeSports Network token is to create a peer-to-peer sustainable ecosystem that is going to entertain and benefit both the creators and the fans; professionals and amateurs. \nEveryone has a chance to be part of it.",
+    "list": [
+      {
+        "title": "New Era of Gaming Prize Pools",
+        "description": "DeSports Network will create a system for players to be justly rewarded for the liquidity they provide, in a competitive decentralized platform."
+      },
+      {
+        "title": "Tournaments, showmatches and custom events",
+        "description": "DeSports Network will create a system for players to be justly rewarded for the liquidity they provide, in a competitive decentralized platform."
+      },
+      {
+        "title": "Cheering and support retribution",
+        "description": "DeSports Network will create a system for players to be justly rewarded for the liquidity they provide, in a competitive decentralized platform."
+      },
+      {
+        "title": "NFT Rewards, achivements and ownership",
+        "description": "DeSports Network will create a system for players to be justly rewarded for the liquidity they provide, in a competitive decentralized platform."
+      },
+      {
+        "title": "DeSports Wallet and the Decentralized Platform",
+        "description": "DeSports Network will create a system for players to be justly rewarded for the liquidity they provide, in a competitive decentralized platform."
+      }
+    ]
+  },
+  "roadmap": {
+    "title": "Our roadmap",
+    "description": "First crucial token and technology foundations and planning development. Building a community and getting people involvedFirst crucial token and technology foundations and planning development. Building a community and getting people involved."
   }
 }

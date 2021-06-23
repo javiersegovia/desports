@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { ThemeProvider } from '@emotion/react'
-// import { Nav } from '@components/Nav'
+import { Nav } from '@components/Nav'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import { GlobalStyles } from './Global.styles'
 
@@ -16,7 +16,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => (
   <>
     <ThemeProvider theme={theme}>
-      {/* <Nav /> */}
+      <Nav />
       <GlobalStyles />
       {children}
     </ThemeProvider>
