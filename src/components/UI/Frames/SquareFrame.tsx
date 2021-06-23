@@ -56,6 +56,7 @@ export const SquareFrame = ({
   children,
   color,
   shadowColor,
+  removePadding,
   ...otherProps
 }: FrameProps) => {
   return (
@@ -77,7 +78,8 @@ export const SquareFrame = ({
         />
       )}
       <div
-        className="frame w-full h-full relative p-6 flex flex-col"
+        className="frame w-full h-full relative flex flex-col"
+        css={!removePadding && tw`p-6`}
         tw="bg-gray-800"
       >
         {children}

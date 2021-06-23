@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import tw, { styled } from 'twin.macro'
 import { up } from 'styled-breakpoints'
 
@@ -20,9 +20,15 @@ const StyledContainer = styled.section<ContainerProps>`
     max-width: 1200px;
   }
 
-  ${tw`px-7 sm:px-4 mx-auto`}
+  ${tw`px-7 sm:px-4 mx-auto w-full`}
 `
 
-export const Container = ({ children, ...otherProps }: ContainerProps) => {
-  return <StyledContainer {...otherProps}>{children}</StyledContainer>
-}
+export const Container = forwardRef<HTMLDivElement, ContainerProps>(
+  ({ children, ...otherProps }, ref) => {
+    return (
+      <StyledContainer ref={ref} {...otherProps}>
+        {children}
+      </StyledContainer>
+    )
+  }
+)

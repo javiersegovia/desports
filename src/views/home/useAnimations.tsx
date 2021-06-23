@@ -267,7 +267,7 @@ export const useAnimations = () => {
     if (activeSlide <= lastIndexY && isVisible.current) {
       navTimeline.current.to(navRef.current, {
         duration: speed * 0.5,
-        y: 100,
+        yPercent: 100,
         onStart: () => {
           isVisible.current = false
         },
@@ -280,9 +280,9 @@ export const useAnimations = () => {
       oldSlide < activeSlide
     ) {
       navTimeline.current.to(navRef.current, {
-        delay: speed * 0.75,
-        duration: speed * 0.5,
-        y: -100,
+        // delay: speed * 0.5,
+        duration: speed,
+        yPercent: 0,
         onStart: () => {
           isVisible.current = true
         },
@@ -306,7 +306,7 @@ export const useAnimations = () => {
     // MAKE NAVIGATION SMALLER (ENTER STAGE 1)
     if (activeSlide > transitionIndex2 && !isSmaller.current) {
       navTimeline.current.to(navRef.current, {
-        scale: 2,
+        scale: 0.5,
         duration: speed,
         onStart: () => {
           isSmaller.current = true

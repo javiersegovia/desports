@@ -8,13 +8,10 @@ export const Roadmap = () => {
 
   return (
     <>
-      <NavSpacer />
-      <Container tw="mx-auto">
-        <div tw="text-center mt-10">
-          <Title>{t`roadmap.title`}</Title>
-          <p tw="text-coolGray-300 mt-6 max-w-2xl mx-auto whitespace-pre-line">{t`roadmap.description`}</p>
-        </div>
-      </Container>
+      <div tw="text-center mt-10">
+        <Title>{t`roadmap.title`}</Title>
+        <p tw="text-coolGray-300 mt-6 max-w-2xl mx-auto whitespace-pre-line">{t`roadmap.description`}</p>
+      </div>
     </>
   )
 }

@@ -5,4 +5,5 @@ export interface FrameProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
   color?: FrameShadowColor
   shadowColor?: FrameShadowColor
+  removePadding?: boolean
 }
