@@ -1,10 +1,13 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react'
-import tw from 'twin.macro'
-import { StyledButton } from './Button.styles'
+import tw, { theme } from 'twin.macro'
+import { StyledButton, TButtonSize } from './Button.styles'
 import Link from 'next/link'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string
+  size?: TButtonSize
+  color?: string
+  bgColor?: string
 }
 
 export const Button = ({ href, ...props }: ButtonProps) =>
@@ -20,7 +23,16 @@ export const Button = ({ href, ...props }: ButtonProps) =>
 
 export const ButtonElement = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { type = 'button', disabled = false, children, href, ...otherProps },
+    {
+      type = 'button',
+      disabled = false,
+      color = theme`colors.black`,
+      bgColor = theme`colors.emerald.400`,
+      size = 'md',
+      children,
+      href,
+      ...otherProps
+    },
     ref
   ) => {
     const tag = href ? 'a' : 'button'
@@ -33,6 +45,9 @@ export const ButtonElement = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         css={[disabled && tw`opacity-40 cursor-not-allowed`]}
         as={tag}
+        color={color as string}
+        bgColor={bgColor as string}
+        size={size}
         {...otherProps}
       >
         {children}

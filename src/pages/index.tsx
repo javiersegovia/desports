@@ -3,11 +3,14 @@ import { Features, Landing, Tokenomics } from '@views/home'
 import { useAnimations } from '@views/home/useAnimations'
 import { RoadmapNav } from '@views/home/RoadmapNav'
 import { StageFullPage } from '@views/home/StageFullPage'
-
-import stage1Img from '@public/images/stage1.jpg'
-import stage2Img from '@public/images/stage2.jpg'
-import stage3Img from '@public/images/stage3.jpg'
+import stage1BG from '@public/images/stage1.jpg'
+import stage2BG from '@public/images/stage2.jpg'
+import stage3BG from '@public/images/stage3.jpg'
+import stage1Img from '@public/images/stage1_iso.jpg'
+import stage2Img from '@public/images/stage2_iso.jpg'
+import stage3Img from '@public/images/stage3_iso.jpg'
 import { theme } from 'twin.macro'
+import { HomeFooter } from '../views/home/HomeFooter'
 
 export default function Home() {
   const {
@@ -24,6 +27,7 @@ export default function Home() {
     s1Ref,
     s2Ref,
     s3Ref,
+    footerRef,
     stage1NavRef,
     stage2NavRef,
     stage3NavRef,
@@ -57,19 +61,30 @@ export default function Home() {
             color={theme`colors.blue.300`}
             stageKey="stage1"
             image={stage1Img}
+            bgImage={stage1BG}
           />
           <StageFullPage
             innerRef={s2Ref}
             color={theme`colors.purple.300`}
             stageKey="stage2"
             image={stage2Img}
+            bgImage={stage2BG}
           />
           <StageFullPage
             innerRef={s3Ref}
             color={theme`colors.red.500`}
             stageKey="stage3"
             image={stage3Img}
+            bgImage={stage3BG}
+            isLocked
           />
+
+          <FullScreen
+            sectionRef={footerRef}
+            tw="min-width[100vw] w-screen bg-gray-900"
+          >
+            <HomeFooter />
+          </FullScreen>
 
           {/* <FullScreen
             sectionRef={s2Ref}

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 export type TNavSource = 'WHEEL' | 'TOUCH' | 'CLICK'
-type TNavPosition = 'body' | 'bridge' | 'roadmap'
+type TNavPosition = 'body' | 'bridge' | 'roadmap' | 'footer'
 
 type TransitionPayload = {
   oldIndex: number
@@ -18,7 +18,7 @@ type TNavSectionName =
   | 'stage1'
   | 'stage2'
   | 'stage3'
-// | 'stage4'
+  | 'footer'
 
 const mapIndexToSection: { [key: number]: TNavSectionName } = {
   0: 'landing',
@@ -29,7 +29,7 @@ const mapIndexToSection: { [key: number]: TNavSectionName } = {
   5: 'stage1',
   6: 'stage2',
   7: 'stage3',
-  // 8: 'stage4',
+  8: 'footer',
 }
 
 const mapIndexToNavPosition: { [key: number]: TNavPosition } = {
@@ -41,7 +41,7 @@ const mapIndexToNavPosition: { [key: number]: TNavPosition } = {
   5: 'roadmap',
   6: 'roadmap',
   7: 'roadmap',
-  8: 'roadmap',
+  8: 'footer',
 }
 
 interface INavSection {

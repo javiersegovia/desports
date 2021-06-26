@@ -1,20 +1,25 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
-import tw, { styled, theme } from 'twin.macro'
+import tw, { styled } from 'twin.macro'
 
-type ButtonProps =
-  | ButtonHTMLAttributes<HTMLButtonElement>
-  | AnchorHTMLAttributes<HTMLAnchorElement>
+export type TButtonSize = 'md' | 'lg' | 'xl'
 
-export const StyledButton = styled.button<ButtonProps>`
-  padding: 0 20px;
+type AdditionalProps = {
+  size: TButtonSize
+  color: string
+  bgColor: string
+}
 
-  --primary: ${theme`colors.emerald.400`};
-  --shadow-primary: ${theme`colors.emerald.300`};
-  --color: black;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & AdditionalProps
+type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & AdditionalProps
+
+export const StyledButton = styled.button<ButtonProps | AnchorProps>`
+  --primary: ${(props) => props.bgColor};
+  --shadow-primary: ${(props) => props.bgColor};
+  --color: ${(props) => props.color};
   --glitch-color: white;
   --font-size: 1rem;
   --shadow-secondary: #fffb00;
-  --shadow-terciary: black;
+  --shadow-terciary: ${(props) => props.color};
   --clip: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
   --border: 4px;
   --shimmy-distance: 15;
@@ -100,14 +105,21 @@ export const StyledButton = styled.button<ButtonProps>`
   letter-spacing: 1px;
   min-width: 10rem;
   line-height: 3rem;
+  min-height: 3rem;
   transition: background 0.2s;
   text-align: center;
 
-  ${tw`border-0 h-12 cursor-pointer outline-none bg-transparent relative font-mono font-bold z-10`}
+  ${({ size }) => {
+    if (size === 'lg') return tw`py-8 px-20 line-height[3.75rem]`
+
+    return tw`py-0 px-10`
+  }}
+
+  ${tw`inline-flex items-center justify-center border-0 h-12 cursor-pointer outline-none bg-transparent relative font-mono font-bold z-10`}
 
   &:active {
     ${tw`transform scale-95`}
-    --primary: ${theme`colors.emerald.500`};
+    filter: brightness(90%);
   }
 
   &:after,

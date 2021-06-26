@@ -1,12 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import throttle from 'lodash.throttle'
-// import {
-//   clipPathV1,
-//   clipPathV2,
-//   clipPathV3,
-//   clipPathV4,
-// } from '@components/UI/Frames/MiniFrames'
 
 import { TNavSource, transitionActions } from '@lib/redux/slices/navSlice'
 import { useAppDispatch } from '@lib/redux/hooks'
@@ -50,7 +44,7 @@ export const useAnimations = () => {
   const s1Ref = useRef<HTMLDivElement>(null)
   const s2Ref = useRef<HTMLDivElement>(null)
   const s3Ref = useRef<HTMLDivElement>(null)
-  // const s4Ref = useRef<HTMLDivElement>(null)
+  const footerRef = useRef<HTMLDivElement>(null)
 
   const stage1NavRef = useRef<HTMLDivElement>(null)
   const stage2NavRef = useRef<HTMLDivElement>(null)
@@ -70,13 +64,8 @@ export const useAnimations = () => {
     s1Ref,
     s2Ref,
     s3Ref,
-    // s4Ref,
+    footerRef,
   ])
-
-  // const [state, dispatch] = useReducer(
-  //   animationsReducer,
-  //   animationsDefaultState
-  // )
 
   const dispatch = useAppDispatch()
 
@@ -289,7 +278,7 @@ export const useAnimations = () => {
     s1Ref,
     s2Ref,
     s3Ref,
-    // s4Ref,
+    footerRef,
     stage1NavRef,
     stage2NavRef,
     stage3NavRef,

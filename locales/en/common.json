@@ -1,4 +1,13 @@
 {
+  "shared": {
+    "team": "Team",
+    "whitepaper": "Whitepaper",
+    "telegram": "Telegram",
+    "buy-now": "Buy Now",
+    "contract": "Contract",
+    "how-to-buy": "How to buy",
+    "blog": "Blog"
+  },
   "socialBar": {
     "english": "English",
     "spanish": "Spanish"
@@ -13,5 +22,16 @@
       "shop": "Shop",
       "news": "News"
     }
+  },
+  "footer": {
+    "title": "This is just the beginning",
+    "pre-sale": "Pre-sale in",
+    "launch": "Fair launch in",
+    "contact-us": "Contact us at",
+    "brand-guidelines": "Brand guidelines",
+    "dao-description": "is completely DAO-driven",
+    "desp-description": "is a fair launch eSports focused token",
+    "copyright": "Copyright DeSports Network © 2021. All rights reserved.",
+    "trademarks": "All other copyrights and trademarks are the property of their respective owners."
   }
 }

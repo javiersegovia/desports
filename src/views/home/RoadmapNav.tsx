@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from '@lib/redux/hooks'
 import {
   selectAnimation,
   toggleShowRoadmapNav,
-  toggleShowNavbar,
   toggleTransformedRoadmapNav,
 } from '@lib/redux/slices/navSlice'
 import { gsap } from 'gsap'
@@ -32,10 +31,6 @@ export const RoadmapNav = ({
   const state = useAppSelector(selectAnimation)
   const tl = useRef(gsap.timeline())
   const roadmapNavRef = useRef<HTMLDivElement>(null)
-  // const uiState = useRef({
-  //   transformedRoadmapNav: false,
-  //   hidedRoadmap: false,
-  // })
 
   const {
     context: { showRoadmapNav, transformedRoadmapNav },
@@ -75,19 +70,55 @@ export const RoadmapNav = ({
         xPercent: -100,
         autoAlpha: 0,
         ease: 'power2.inOut',
-
         duration: state.animationSpeed,
+      })
+
+      gsap.set(navRef.current, {
+        delay: state.animationSpeed,
+        height: 'auto',
+        minHeight: 'auto',
+      })
+      gsap.to(roadmapRef.current, {
+        display: 'none',
+        delay: state.animationSpeed,
       })
     }
 
     // OnEnterBack Roadmap Bridge
     if (state.events.onEnterBack?.name === 'bridge' && showRoadmapNav) {
+      gsap.set(navRef.current, {
+        height: '100%',
+        minHeight: '100vh',
+      })
+      gsap.set(roadmapRef.current, {
+        display: 'block',
+      })
+
       gsap.to(roadmapRef.current, {
         xPercent: 0,
         autoAlpha: 1,
+        height: 'auto',
         ease: 'power2.inOut',
         // delay: state.animationSpeed * 0.5,
         duration: state.animationSpeed,
+      })
+    }
+
+    // Entering Footer
+    if (state.activeSection?.name === 'footer' && showRoadmapNav) {
+      gsap.set(navRef.current, {
+        delay: state.animationSpeed,
+        height: 0,
+        minHeight: 0,
+      })
+    }
+
+    // Leaving Footer
+    if (state.oldSection?.name === 'footer' && showRoadmapNav) {
+      gsap.set(navRef.current, {
+        // delay: state.animationSpeed,
+        height: 'auto',
+        minHeight: 'auto',
       })
     }
 
@@ -96,17 +127,24 @@ export const RoadmapNav = ({
       state.navPosition === 'roadmap' &&
       !state.context.transformedRoadmapNav
     ) {
-      dispatch((d) => {
-        d(toggleTransformedRoadmapNav())
-        d(toggleShowNavbar())
-      })
+      dispatch(toggleTransformedRoadmapNav())
 
-      timeline.to(roadmapNavRef.current, {
-        marginTop: 'auto',
-        ease: 'power2.inOut',
-        delay: state.animationSpeed * 0.75,
-        duration: state.animationSpeed * 0.25,
-      })
+      if (state.oldSection?.name === 'footer') {
+        timeline.to(roadmapNavRef.current, {
+          yPercent: 0,
+          opacity: 1,
+          ease: 'power2.inOut',
+          delay: state.animationSpeed * 0.25,
+          duration: state.animationSpeed * 0.5,
+        })
+      } else {
+        timeline.to(roadmapNavRef.current, {
+          marginTop: 'auto',
+          ease: 'power2.inOut',
+          delay: state.animationSpeed * 0.75,
+          duration: state.animationSpeed * 0.25,
+        })
+      }
     }
 
     // Leaving Roadmap
@@ -114,17 +152,23 @@ export const RoadmapNav = ({
       state.navPosition !== 'roadmap' &&
       state.context.transformedRoadmapNav
     ) {
-      dispatch((d) => {
-        d(toggleTransformedRoadmapNav())
-        d(toggleShowNavbar())
-      })
+      dispatch(toggleTransformedRoadmapNav())
 
-      timeline.to(roadmapNavRef.current, {
-        marginTop: 0,
-        ease: 'power2.inOut',
-        delay: state.animationSpeed * 0.5,
-        duration: state.animationSpeed * 0.5,
-      })
+      if (state.navPosition === 'footer') {
+        timeline.to(roadmapNavRef.current, {
+          yPercent: 100,
+          opacity: 0,
+          ease: 'power2.inOut',
+          duration: state.animationSpeed * 0.75,
+        })
+      } else {
+        timeline.to(roadmapNavRef.current, {
+          marginTop: 0,
+          ease: 'power2.inOut',
+          delay: state.animationSpeed * 0.5,
+          duration: state.animationSpeed * 0.5,
+        })
+      }
     }
   }, [state, dispatch, navRef, roadmapRef, showRoadmapNav])
 

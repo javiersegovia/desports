@@ -4,7 +4,7 @@ import { MiniFrame } from '@components/UI/Frames/MiniFrames'
 import { RectFrame } from '@components/UI/Frames/RectFrame'
 import { Title } from '@components/UI/Title'
 import { MarketInfo } from './MarketInfo'
-import { styled } from 'twin.macro'
+import { styled, theme } from 'twin.macro'
 import { Button } from '@components/UI/Button'
 import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
@@ -37,7 +37,9 @@ export const Landing = () => {
             <h2 tw="text-xl whitespace-pre-wrap text-coolGray-300 max-w-xl">{t`landing.description`}</h2>
             <div tw="pt-8 space-x-6">
               {/* <Button>{t`landing.trackers`}</Button> */}
-              <Button>{t`landing.join-telegram`}</Button>
+              <Button
+                bgColor={theme`colors.cyan.400`}
+              >{t`landing.join-telegram`}</Button>
               <Button>{t`landing.buy-now`}</Button>
             </div>
             <div tw="font-bold">

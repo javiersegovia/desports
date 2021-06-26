@@ -81,7 +81,7 @@ export const RoadmapNavItems = memo(
       <Container tw="mx-auto">
         <div tw="mt-20 flex items-center flex-1 flex-basis[25%] justify-center">
           <StageItem
-            shouldMorph={shouldMorph}
+            shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[0]}
             tw="flex-1"
             item={i18nStage1}
@@ -93,7 +93,7 @@ export const RoadmapNavItems = memo(
             isActive={activeSection?.name === 'stage1'}
           />
           <StageItem
-            shouldMorph={shouldMorph}
+            shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[1]}
             tw="flex-1"
             item={i18nStage2}
@@ -105,7 +105,7 @@ export const RoadmapNavItems = memo(
             isActive={activeSection?.name === 'stage2'}
           />
           <StageItem
-            shouldMorph={shouldMorph}
+            shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[2]}
             tw="flex-1"
             item={i18nStage3}
@@ -117,19 +117,6 @@ export const RoadmapNavItems = memo(
             isActive={activeSection?.name === 'stage3'}
             isLocked
           />
-          {/* <StageItem
-            shouldMorph={shouldMorph}
-            ref={stageRefs[3]}
-            tw="flex-1"
-            item={t('roadmap.stage4', null, { returnObjects: true })}
-            imagePath="/images/stage4_iso.jpg"
-            number={4}
-            titleColor={theme`colors.yellow.400`}
-            bgColor={theme`colors.yellow.400`}
-            onClick={() => navigate(4)}
-            isActive={activeSection?.name === 'stage4'}
-            isLocked
-          /> */}
         </div>
       </Container>
     )
