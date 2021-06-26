@@ -1,10 +1,11 @@
 import React, { RefObject } from 'react'
+import { ForwardedRef } from 'react'
 import tw from 'twin.macro'
 
 interface FullScreenProps {
   children?: React.ReactNode
   minScreen?: boolean
-  sectionRef?: RefObject<HTMLElement>
+  sectionRef?: RefObject<HTMLDivElement> | ForwardedRef<HTMLDivElement>
   isHorizontal?: boolean
   id?: string
 }

@@ -6,4 +6,5 @@ export interface FrameProps extends HTMLAttributes<HTMLDivElement> {
   color?: FrameShadowColor
   shadowColor?: FrameShadowColor
   removePadding?: boolean
+  shouldMorph?: boolean
 }

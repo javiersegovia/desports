@@ -81,6 +81,7 @@
     "title": "Our roadmap",
     "description": "First crucial token and technology foundations and planning development. Building a community and getting people involvedFirst crucial token and technology foundations and planning development. Building a community and getting people involved.",
     "stage1": {
+      "date": "07/2021 - 12/2021",
       "name": "Galaxy",
       "title": "Stage 1",
       "subtitle": "Foundation",
@@ -128,15 +129,16 @@
       ]
     },
     "stage2": {
-      "name": "Pendulum",
+      "date": "01/2022 - 01/2023",
       "title": "Stage 2",
+      "name": "Pendulum",
       "subtitle": "Growth",
       "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved."
     },
     "stage3": {
       "title": "Stage 3",
       "name": "Dimension",
-      "subtitle": "Expansion",
+      "subtitle": "Full Decentralization",
       "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved."
     },
     "stage4": {

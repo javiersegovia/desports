@@ -26,6 +26,10 @@ module.exports = {
           ...colors.blueGray,
           500: '#4b5e73',
         },
+        emerald: {
+          ...colors.emerald,
+          400: '#67f0a9',
+        },
       },
       fontFamily: {
         sans: ['Cabin', ...defaultTheme.fontFamily.sans],

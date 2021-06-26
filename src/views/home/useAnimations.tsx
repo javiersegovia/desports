@@ -1,13 +1,22 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import throttle from 'lodash.throttle'
+// import {
+//   clipPathV1,
+//   clipPathV2,
+//   clipPathV3,
+//   clipPathV4,
+// } from '@components/UI/Frames/MiniFrames'
 
-const transitionSpeed = 0.85
-const touchTransitionSpeed = 0.65
+import { TNavSource, transitionActions } from '@lib/redux/slices/navSlice'
+import { useAppDispatch } from '@lib/redux/hooks'
 
-let oldSlide = 0
-let activeSlide = 0
-let newSlide: number
+const transitionSpeed = 1.15
+const touchTransitionSpeed = 0.85
+
+let oldIndex = 0
+let activeIndex = 0
+let newIndex: number
 let insideRoadmap: boolean
 let lastY = 0
 let lastX = 0
@@ -34,13 +43,19 @@ export const useAnimations = () => {
 
   // Roadmap references
   const roadmapContainerRef = useRef<HTMLDivElement>(null)
+  const roadmapRef = useRef<HTMLDivElement>(null)
+
   const navRef = useRef<HTMLDivElement>(null)
   const s0Ref = useRef<HTMLDivElement>(null)
   const s1Ref = useRef<HTMLDivElement>(null)
-  const s12Ref = useRef<HTMLDivElement>(null)
   const s2Ref = useRef<HTMLDivElement>(null)
   const s3Ref = useRef<HTMLDivElement>(null)
-  const s4Ref = useRef<HTMLDivElement>(null)
+  // const s4Ref = useRef<HTMLDivElement>(null)
+
+  const stage1NavRef = useRef<HTMLDivElement>(null)
+  const stage2NavRef = useRef<HTMLDivElement>(null)
+  const stage3NavRef = useRef<HTMLDivElement>(null)
+  const stage4NavRef = useRef<HTMLDivElement>(null)
 
   const ySections = useRef([
     landingRef,
@@ -53,95 +68,93 @@ export const useAnimations = () => {
     roadmapContainerRef,
     s0Ref,
     s1Ref,
-    s12Ref,
     s2Ref,
     s3Ref,
-    s4Ref,
+    // s4Ref,
   ])
 
-  const [info, setInfo] = useState<{
-    oldSlide: number
-    activeSlide: number
-    lastEvent: WheelEvent | TouchEvent | null
-    insideRoadmap: boolean
-  }>({
-    oldSlide: 0,
-    activeSlide: 0,
-    lastEvent: null,
-    insideRoadmap: false,
-  })
+  // const [state, dispatch] = useReducer(
+  //   animationsReducer,
+  //   animationsDefaultState
+  // )
 
-  // todo: convert to useRef
+  const dispatch = useAppDispatch()
+
   const scrollTimeline = useRef(gsap.timeline())
   const navTimeline = useRef(gsap.timeline())
 
-  type SlideAnimationFunc = (
-    e: WheelEvent | TouchEvent | number,
+  interface ScreenAnimationProps {
+    event: WheelEvent | TouchEvent | null
+    source: TNavSource
     direction?: ScrollDirection
-  ) => void
+    target?: number
+  }
+
+  type SlideAnimationFunc = (props: ScreenAnimationProps) => void
 
   const sections = [...ySections.current, ...xSections.current]
   const lastIndexY = ySections.current.length - 2
   const maxIndex = sections.length - 2
 
-  const slideAnimation = useRef<SlideAnimationFunc>(
-    throttle((e, direction) => {
+  const screenAnimation = useRef<SlideAnimationFunc>(
+    throttle<SlideAnimationFunc>(({ event, source, direction, target }) => {
       if (gsap.isTweening(containerRef.current)) return
 
-      if (typeof e === 'number') {
-        newSlide = e
-        if (activeSlide === newSlide) return
+      if (target) {
+        newIndex = target
+        if (activeIndex === newIndex) return
       } else {
-        lastEvent = e
+        lastEvent = event
 
         const { x } = direction || {}
         let { y } = direction || {}
 
         // In wheel events we need to update the direction
-        if (lastEvent instanceof WheelEvent) y = e.deltaY > 0 ? 'DOWN' : 'UP'
-        if (activeSlide > lastIndexY) insideRoadmap = true
+        if (event instanceof WheelEvent) y = event.deltaY > 0 ? 'DOWN' : 'UP'
+        if (activeIndex > lastIndexY) insideRoadmap = true
         else insideRoadmap = false
 
         const shouldAdvance = insideRoadmap && x ? x === 'LEFT' : y === 'DOWN'
-        newSlide = shouldAdvance ? activeSlide + 1 : activeSlide - 1
+        newIndex = shouldAdvance ? activeIndex + 1 : activeIndex - 1
 
-        if (newSlide < 0) newSlide = 0
-        if (newSlide > maxIndex) newSlide = maxIndex
+        if (newIndex < 0) newIndex = 0
+        if (newIndex > maxIndex) newIndex = maxIndex
 
-        if (activeSlide === newSlide) return
+        if (activeIndex === newIndex) return
 
         // TRANSITION FROM VERTICAL SLIDER TO HORIZONTAL SLIDER
-        if (sections[newSlide] === sections[activeSlide]) {
-          newSlide = shouldAdvance ? newSlide + 1 : newSlide - 1
+        if (sections[newIndex] === sections[activeIndex]) {
+          newIndex = shouldAdvance ? newIndex + 1 : newIndex - 1
         }
       }
 
-      oldSlide = activeSlide
-      activeSlide = newSlide
+      oldIndex = activeIndex
+      activeIndex = newIndex
 
-      if (activeSlide < ySections.current.length) {
-        lastY = offsetsY[activeSlide]
-      } else if (activeSlide <= maxIndex) {
-        const xIndex = activeSlide - (ySections.current.length - 1)
+      if (activeIndex < ySections.current.length) {
+        lastY = offsetsY[activeIndex]
+      } else if (activeIndex <= maxIndex) {
+        const xIndex = activeIndex - (ySections.current.length - 1)
         lastX = offsetsX[xIndex]
       }
 
-      const speed = getSpeed(lastEvent)
+      // Increase the animationSpeed in touch devices
+      const animationSpeed = getSpeed(lastEvent)
 
       scrollTimeline.current.to(containerRef.current, {
-        // Increase the scroll speed in touch devices
-        duration: speed,
+        duration: animationSpeed,
         x: lastX,
         y: lastY,
         ease: 'power2.inOut',
+        // ease: 'none',
+        // ease: 'elastic.out(1.2, 0.75)',
+        // ease: 'circ.inOut',
+        // rotation: 0.0001,
       })
 
-      setInfo({
-        insideRoadmap,
-        activeSlide,
-        oldSlide,
-        lastEvent,
-      })
+      dispatch(
+        transitionActions[source]({ oldIndex, activeIndex, animationSpeed })
+      )
     }, 200)
   )
 
@@ -175,10 +188,10 @@ export const useAnimations = () => {
         }
       })
 
-      const xIndex = activeSlide - (ySections.current.length - 1)
+      const xIndex = activeIndex - (ySections.current.length - 1)
 
-      if (activeSlide < ySections.current.length) {
-        lastY = offsetsY[activeSlide]
+      if (activeIndex < ySections.current.length) {
+        lastY = offsetsY[activeIndex]
         lastX = 0
       } else {
         lastX = offsetsX[xIndex]
@@ -187,13 +200,13 @@ export const useAnimations = () => {
       gsap.set(container, {
         y: lastY,
         x: lastX,
-        rotation: 0.0001,
+        rotation: 0.001,
       })
     }
 
     const throttledAnim = throttle(
-      (e: TouchEvent, direction: ScrollDirection) =>
-        slideAnimation.current(e, direction),
+      (event: TouchEvent, direction: ScrollDirection) =>
+        screenAnimation.current({ event, source: 'TOUCH', direction }),
       200
     )
 
@@ -230,7 +243,10 @@ export const useAnimations = () => {
       }
     }
 
-    window.addEventListener('wheel', slideAnimation.current, { passive: false })
+    const wheelAnimation = (event: WheelEvent) =>
+      screenAnimation.current({ event, source: 'WHEEL' })
+
+    window.addEventListener('wheel', wheelAnimation, { passive: false })
     window.addEventListener('resize', newSize)
     window.addEventListener('touchstart', onTouchStart)
     window.addEventListener('touchmove', onTouchMove)
@@ -239,101 +255,44 @@ export const useAnimations = () => {
 
     const scrollTL = scrollTimeline.current
     const navTL = navTimeline.current
-    const sAnimation = slideAnimation.current
 
     return () => {
-      //TODO: test the unmounting of this component
       scrollTL.kill()
       navTL.kill()
-      window.removeEventListener('wheel', sAnimation)
+      window.removeEventListener('wheel', wheelAnimation)
       window.removeEventListener('resize', newSize)
       window.removeEventListener('touchstart', onTouchStart)
       window.removeEventListener('touchmove', onTouchMove)
     }
   }, [])
 
-  const isVisible = useRef(false)
-  const isSmaller = useRef(false)
-
-  useEffect(() => {
-    const { activeSlide, oldSlide } = info
-
-    const speed = getSpeed(lastEvent)
-
-    const transitionIndex1 = lastIndexY + 1
-    const transitionIndex2 = lastIndexY + 2
-
-    // HIDE NAV (LEAVE ROADMAD INDEX)
-    if (activeSlide <= lastIndexY && isVisible.current) {
-      navTimeline.current.to(navRef.current, {
-        duration: speed * 0.5,
-        yPercent: 100,
-        onStart: () => {
-          isVisible.current = false
-        },
-      })
-    }
-
-    // REVEAL NAV (ENTER ROADMAD INDEX)
-    if (
-      (activeSlide === transitionIndex1 || activeSlide === transitionIndex2) &&
-      oldSlide < activeSlide
-    ) {
-      navTimeline.current.to(navRef.current, {
-        // delay: speed * 0.5,
-        duration: speed,
-        yPercent: 0,
-        onStart: () => {
-          isVisible.current = true
-        },
-      })
-    }
-
-    // RESTORE DEFAULTS (ENTER BACK ROADMAP INDEX)
-    if (
-      (activeSlide === transitionIndex1 || activeSlide === transitionIndex2) &&
-      isSmaller.current
-    ) {
-      navTimeline.current.to(navRef.current, {
-        scale: 1,
-        duration: speed,
-        onStart: () => {
-          isSmaller.current = false
-        },
-      })
-    }
-
-    // MAKE NAVIGATION SMALLER (ENTER STAGE 1)
-    if (activeSlide > transitionIndex2 && !isSmaller.current) {
-      navTimeline.current.to(navRef.current, {
-        scale: 0.5,
-        duration: speed,
-        onStart: () => {
-          isSmaller.current = true
-        },
-      })
-    }
-  }, [info, lastIndexY])
-
   const navigate = (stageIndex: number) => {
-    slideAnimation.current(ySections.current.length + stageIndex)
+    screenAnimation.current({
+      event: null,
+      // todo: change Target "index" for "name"
+      target: ySections.current.length + stageIndex,
+      source: 'CLICK',
+    })
   }
 
   return {
     navigate,
-    info,
     wrapperRef,
     containerRef,
     landingRef,
     featuresRef,
     tokenomicsRef,
     roadmapContainerRef,
+    roadmapRef,
     navRef,
     s0Ref,
     s1Ref,
-    s12Ref,
     s2Ref,
     s3Ref,
-    s4Ref,
+    // s4Ref,
+    stage1NavRef,
+    stage2NavRef,
+    stage3NavRef,
+    stage4NavRef,
   }
 }
