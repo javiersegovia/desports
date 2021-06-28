@@ -1,4 +1,5 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
+import { down } from 'styled-breakpoints'
 import tw, { styled } from 'twin.macro'
 
 export type TButtonSize = 'md' | 'lg' | 'xl'
@@ -109,10 +110,16 @@ export const StyledButton = styled.button<ButtonProps | AnchorProps>`
   transition: background 0.2s;
   text-align: center;
 
-  ${({ size }) => {
-    if (size === 'lg') return tw`py-8 px-20 line-height[3.75rem]`
+  ${down('md')} {
+    min-width: 8rem;
+    max-width: 16rem;
+  }
 
-    return tw`py-0 px-10`
+  ${({ size }) => {
+    if (size === 'lg')
+      return tw`py-4 px-4 sm:py-6 sm:px-10 lg:py-8 lg:px-20 line-height[3.75rem]`
+
+    return tw`px-2 sm:px-5 lg:py-0 lg:px-10`
   }}
 
   ${tw`inline-flex items-center justify-center border-0 h-12 cursor-pointer outline-none bg-transparent relative font-mono font-bold z-10`}

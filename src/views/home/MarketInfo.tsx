@@ -5,9 +5,9 @@ interface MarketInfoProps {
 
 export const MarketInfo = ({ title, value }: MarketInfoProps) => {
   return (
-    <div tw="m-auto">
-      <div tw="font-mono">{value}</div>
+    <div tw="text-center">
       <div tw="font-bold">{title}</div>
+      <div tw="font-mono">{value}</div>
     </div>
   )
 }

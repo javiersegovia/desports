@@ -34,6 +34,8 @@ export const RoadmapNavItems = memo(
     )
 
     useEffect(() => {
+      if (activeSection?.name === 'footer') return
+
       // Entering Roadmap
       if (shouldMorph) {
         stageRefs.forEach((navItem, index) => {

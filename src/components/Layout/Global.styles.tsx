@@ -5,8 +5,9 @@ const styles = css`
   /* Todo: enable the overscroll-behaviour-y when we are not scrolling in mobile */
   html,
   body {
-    overflow: hidden;
     overscroll-behavior-y: contain;
+
+    ${tw`overflow-visible md:overflow-hidden`}
   }
 
   body {

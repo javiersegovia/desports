@@ -11,6 +11,7 @@ import stage2Img from '@public/images/stage2_iso.jpg'
 import stage3Img from '@public/images/stage3_iso.jpg'
 import { theme } from 'twin.macro'
 import { HomeFooter } from '../views/home/HomeFooter'
+import { NavSpacer } from '@components/Nav/NavSpacer'
 
 export default function Home() {
   const {
@@ -31,13 +32,19 @@ export default function Home() {
     stage1NavRef,
     stage2NavRef,
     stage3NavRef,
-    stage4NavRef,
   } = useAnimations()
 
   return (
-    <div ref={wrapperRef} tw="absolute overflow-hidden w-full h-full">
-      <div ref={containerRef} tw="w-full h-full">
-        <FullScreen sectionRef={landingRef}>
+    <div
+      ref={wrapperRef}
+      tw="relative overflow-visible overflow-x-hidden h-auto md:absolute md:overflow-hidden md:h-full w-full"
+    >
+      <div
+        ref={containerRef}
+        tw="w-full h-full min-h-screen max-h-screen max-w-full"
+      >
+        <FullScreen sectionRef={landingRef} tw="flex flex-col">
+          <NavSpacer />
           <Landing />
         </FullScreen>
 
@@ -51,7 +58,7 @@ export default function Home() {
 
         <FullScreen
           data-name="hContainer"
-          tw="width[400%] flex flex-row flex-nowrap relative"
+          tw="w-full flex-col md:width[420%] flex md:flex-row md:flex-nowrap relative"
           sectionRef={roadmapContainerRef}
         >
           <FullScreen sectionRef={s0Ref} tw="min-width[100vw] w-screen" />
@@ -63,6 +70,7 @@ export default function Home() {
             image={stage1Img}
             bgImage={stage1BG}
           />
+
           <StageFullPage
             innerRef={s2Ref}
             color={theme`colors.purple.300`}
@@ -85,43 +93,15 @@ export default function Home() {
           >
             <HomeFooter />
           </FullScreen>
-
-          {/* <FullScreen
-            sectionRef={s2Ref}
-            tw="min-width[100vw] w-screen flex items-center justify-center"
-            style={{
-              background: 'url(/images/stage2.jpg)',
-            }}
-          >
-            Stage 2
-          </FullScreen>
-          <FullScreen
-            sectionRef={s3Ref}
-            tw="min-width[100vw] w-screen flex items-center justify-center"
-            style={{
-              background: 'url(/images/stage3.jpg)',
-            }}
-          >
-            Stage 3
-          </FullScreen> */}
-          {/* <FullScreen
-            sectionRef={s4Ref}
-            tw="min-width[100vw] w-screen flex items-center justify-center"
-            style={{
-              background: 'url(/images/stage4.jpg)',
-            }}
-          >
-            Stage 4
-          </FullScreen> */}
         </FullScreen>
       </div>
 
-      <RoadmapNav
+      {/* <RoadmapNav
         navRef={navRef}
         roadmapRef={roadmapRef}
         navigate={navigate}
-        stageRefs={[stage1NavRef, stage2NavRef, stage3NavRef, stage4NavRef]}
-      />
+        stageRefs={[stage1NavRef, stage2NavRef, stage3NavRef]}
+      /> */}
     </div>
   )
 }

@@ -5,8 +5,10 @@ import throttle from 'lodash.throttle'
 import { TNavSource, transitionActions } from '@lib/redux/slices/navSlice'
 import { useAppDispatch } from '@lib/redux/hooks'
 
-const transitionSpeed = 1.15
-const touchTransitionSpeed = 0.85
+const transitionSpeed = 0.8
+const touchTransitionSpeed = 1.15
+
+const isMobile = () => window.matchMedia('(max-width: 768px)').matches
 
 let oldIndex = 0
 let activeIndex = 0
@@ -22,8 +24,6 @@ interface ScrollDirection {
   x: 'LEFT' | 'RIGHT' | null
   y: 'UP' | 'DOWN' | null
 }
-
-// todo: fix vertical resize
 
 const getSpeed = (event: WheelEvent | TouchEvent | null) =>
   event instanceof WheelEvent ? touchTransitionSpeed : transitionSpeed
@@ -49,7 +49,6 @@ export const useAnimations = () => {
   const stage1NavRef = useRef<HTMLDivElement>(null)
   const stage2NavRef = useRef<HTMLDivElement>(null)
   const stage3NavRef = useRef<HTMLDivElement>(null)
-  const stage4NavRef = useRef<HTMLDivElement>(null)
 
   const ySections = useRef([
     landingRef,
@@ -148,7 +147,7 @@ export const useAnimations = () => {
   )
 
   useEffect(() => {
-    const hContainer = roadmapContainerRef.current as HTMLDivElement
+    const xContainer = roadmapContainerRef.current as HTMLDivElement
     const container = containerRef.current as HTMLDivElement
 
     function newSize() {
@@ -164,10 +163,11 @@ export const useAnimations = () => {
 
         const elementOffsetLeft = xSection.current.offsetLeft
 
+        // This is done to be able to "Nest" multiple full-screen sections
         if (
           xSection.current.parentElement &&
-          !xSection.current.parentElement.isSameNode(hContainer) &&
-          !xSection.current.isSameNode(hContainer)
+          !xSection.current.parentElement.isSameNode(xContainer) &&
+          !xSection.current.isSameNode(xContainer)
         ) {
           offsetsX.push(
             -(xSection.current.parentElement.offsetLeft + elementOffsetLeft)
@@ -183,8 +183,11 @@ export const useAnimations = () => {
         lastY = offsetsY[activeIndex]
         lastX = 0
       } else {
+        lastY = offsetsY[offsetsY.length - 1]
         lastX = offsetsX[xIndex]
       }
+
+      // todo: handle resize on Mobile
 
       gsap.set(container, {
         y: lastY,
@@ -206,7 +209,10 @@ export const useAnimations = () => {
       touchStartY = e.touches[0].clientY
       touchStartX = e.touches[0].clientX
     }
-    const onTouchMove = (e: TouchEvent) => {
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (isMobile()) return
+
       const touchEndY = e.changedTouches[0].clientY
       const touchEndX = e.changedTouches[0].clientX
       const touchDistance = 20
@@ -232,13 +238,14 @@ export const useAnimations = () => {
       }
     }
 
-    const wheelAnimation = (event: WheelEvent) =>
-      screenAnimation.current({ event, source: 'WHEEL' })
+    const wheelAnimation = (event: WheelEvent) => {
+      if (!isMobile()) screenAnimation.current({ event, source: 'WHEEL' })
+    }
 
     window.addEventListener('wheel', wheelAnimation, { passive: false })
     window.addEventListener('resize', newSize)
     window.addEventListener('touchstart', onTouchStart)
-    window.addEventListener('touchmove', onTouchMove)
+    window.addEventListener('touchend', onTouchEnd)
 
     newSize()
 
@@ -251,7 +258,7 @@ export const useAnimations = () => {
       window.removeEventListener('wheel', wheelAnimation)
       window.removeEventListener('resize', newSize)
       window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
     }
   }, [])
 
@@ -282,6 +289,5 @@ export const useAnimations = () => {
     stage1NavRef,
     stage2NavRef,
     stage3NavRef,
-    stage4NavRef,
   }
 }

@@ -80,7 +80,7 @@ export const RoadmapNav = ({
       })
       gsap.to(roadmapRef.current, {
         display: 'none',
-        delay: state.animationSpeed,
+        delay: state.animationSpeed * 0.5,
       })
     }
 
@@ -90,22 +90,25 @@ export const RoadmapNav = ({
         height: '100%',
         minHeight: '100vh',
       })
+
       gsap.set(roadmapRef.current, {
         display: 'block',
+        height: 'auto',
       })
 
       gsap.to(roadmapRef.current, {
         xPercent: 0,
         autoAlpha: 1,
-        height: 'auto',
         ease: 'power2.inOut',
-        // delay: state.animationSpeed * 0.5,
-        duration: state.animationSpeed,
+        display: 'block',
+        delay: state.animationSpeed * 0.5,
+        duration: state.animationSpeed * 0.5,
       })
     }
 
     // Entering Footer
     if (state.activeSection?.name === 'footer' && showRoadmapNav) {
+      // Fix click problem on footer
       gsap.set(navRef.current, {
         delay: state.animationSpeed,
         height: 0,
@@ -116,7 +119,6 @@ export const RoadmapNav = ({
     // Leaving Footer
     if (state.oldSection?.name === 'footer' && showRoadmapNav) {
       gsap.set(navRef.current, {
-        // delay: state.animationSpeed,
         height: 'auto',
         minHeight: 'auto',
       })
@@ -132,7 +134,7 @@ export const RoadmapNav = ({
       if (state.oldSection?.name === 'footer') {
         timeline.to(roadmapNavRef.current, {
           yPercent: 0,
-          opacity: 1,
+          autoAlpha: 1,
           ease: 'power2.inOut',
           delay: state.animationSpeed * 0.25,
           duration: state.animationSpeed * 0.5,
@@ -157,7 +159,7 @@ export const RoadmapNav = ({
       if (state.navPosition === 'footer') {
         timeline.to(roadmapNavRef.current, {
           yPercent: 100,
-          opacity: 0,
+          autoAlpha: 0,
           ease: 'power2.inOut',
           duration: state.animationSpeed * 0.75,
         })

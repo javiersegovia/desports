@@ -44,7 +44,7 @@ export const Nav = () => {
     <>
       <div
         ref={navbarRef}
-        tw="fixed z-50 w-full transition-all duration-100 overflow-hidden max-h-40"
+        tw="fixed z-50 w-full transition-all duration-100 overflow-hidden"
       >
         <SocialBar />
         <NavBar />

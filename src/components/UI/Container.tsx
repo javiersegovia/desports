@@ -20,7 +20,7 @@ const StyledContainer = styled.section<ContainerProps>`
     max-width: 1200px;
   }
 
-  ${tw`px-7 sm:px-4 mx-auto w-full`}
+  ${tw`px-6 sm:px-4 mx-auto w-full`}
 `
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(

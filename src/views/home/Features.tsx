@@ -29,7 +29,6 @@ export const Features = () => {
           }}
         >
           <img
-            // src={platformImage}
             src="/images/platform_features.png"
             alt="Background"
             tw="absolute top-20 transform left-1/2 -translate-x-full z-index[-1]"

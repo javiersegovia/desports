@@ -2,7 +2,7 @@
   "coming-soon": "Coming soon",
   "landing": {
     "pre-sale": "Pre-sale",
-    "launch": "Launch",
+    "launch": "Fair launch",
     "title": "DeSports Network",
     "description": "Decentralizing the eSports through an sustainable P2P ecosystem. \nCreate custom events, compete, earn rewards and NFTs without any third-party involvement by using $DESP.",
     "join-telegram": "Telegram",
@@ -19,7 +19,8 @@
     "current-price": "Current price",
     "holders": "Holders",
     "supply": "Supply",
-    "marketcap": "Marketcap"
+    "marketcap": "Marketcap",
+    "scroll-more": "Scroll to know more"
   },
   "tokenomics": {
     "title": "Tokenomics and Distributions",
@@ -118,7 +119,10 @@
           "description": "NFT Airdrops"
         },
         {
-          "description": "Bridge ETH/Matic"
+          "description": "Certik Audit"
+        },
+        {
+          "description": "CEX Listing"
         },
         {
           "description": "DeSports dApp Demo"
@@ -133,13 +137,7 @@
       "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
       "list": [
         {
-          "description": "Team Reveal"
-        },
-        {
-          "description": "Certik Audit"
-        },
-        {
-          "description": "CEX Listing"
+          "description": "Bridge ETH/Matic"
         },
         {
           "description": "DeSports Wallet"

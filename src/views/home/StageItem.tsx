@@ -46,6 +46,9 @@ export const StageItem = memo(
     const animationSpeed = useAppSelector(
       (state) => state.screenAnimation.animationSpeed
     )
+    const oldSection = useAppSelector(
+      (state) => state.screenAnimation.oldSection
+    )
 
     useEffect(() => {
       // Entering Roadmap
@@ -60,12 +63,12 @@ export const StageItem = memo(
         gsap.to(imageRef.current, {
           ease: 'power2.inOut',
           autoAlpha: 0,
-          delay: animationSpeed,
-          duration: animationSpeed,
+          delay: animationSpeed * 1,
+          duration: animationSpeed * 0.75,
         })
 
         // Leaving roadmap
-      } else {
+      } else if (oldSection?.name !== 'footer') {
         gsap.to(titleRef.current, {
           autoAlpha: 1,
           delay: animationSpeed * 0.5,
@@ -112,7 +115,7 @@ export const StageItem = memo(
             style={{
               backgroundColor: isActive ? bgColor : 'transparent',
             }}
-          />
+          ></div>
         </SquareFrame>
         <div
           ref={titleRef}
