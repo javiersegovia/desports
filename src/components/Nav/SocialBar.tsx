@@ -56,11 +56,11 @@ export const SocialIcons = () => {
   )
 }
 
-export const SocialBar = () => {
+export const SocialBar = ({ ...props }) => {
   const { t } = useTranslation('common')
 
   return (
-    <div tw="top-0 w-full bg-gray-900 text-white py-2 items-center">
+    <div tw="top-0 w-full bg-gray-900 text-white py-2 items-center" {...props}>
       <Container tw="flex justify-between">
         <div>{t('socialBar.english')}</div>
         <div tw="flex space-x-4 items-center text-xl text-cyan-500">

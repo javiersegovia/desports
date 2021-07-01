@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
+import { gsap } from 'gsap'
 
 export type TNavSource = 'WHEEL' | 'TOUCH' | 'CLICK'
 type TNavPosition = 'body' | 'bridge' | 'roadmap' | 'footer'
@@ -147,10 +148,20 @@ const setCommonData = (
 
 type AnimationPayload = PayloadAction<TransitionPayload>
 
+type RoadmapNavPayload = PayloadAction<{
+  element: HTMLElement
+}>
+
 export const screenAnimationSlice = createSlice({
   name: 'screenAnimation',
   initialState: animationDefaultState,
   reducers: {
+    resetState: (state) => {
+      return {
+        ...animationDefaultState,
+        context: state.context,
+      }
+    },
     wheelTransition: (state, action: AnimationPayload) => {
       setCommonData(state, action.payload, 'WHEEL')
     },
@@ -169,6 +180,17 @@ export const screenAnimationSlice = createSlice({
     toggleTransformedRoadmapNav: (state) => {
       state.context.transformedRoadmapNav = !state.context.transformedRoadmapNav
     },
+
+    // Actions with side effects
+
+    hideRoadmapNav: (state, action: RoadmapNavPayload) => {
+      state.context.showRoadmapNav = false
+      gsap.to(action.payload.element, {
+        duration: state.animationSpeed,
+        ease: 'power2.inOut',
+        yPercent: 0,
+      })
+    },
   },
 })
 
@@ -176,9 +198,11 @@ export const {
   wheelTransition,
   touchTransition,
   clickTransition,
+  resetState,
   toggleShowRoadmapNav,
   toggleShowNavbar,
   toggleTransformedRoadmapNav,
+  hideRoadmapNav,
 } = screenAnimationSlice.actions
 
 export const transitionActions = {

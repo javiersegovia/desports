@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import tw, { styled } from 'twin.macro'
 import { FrameProps } from '.'
 

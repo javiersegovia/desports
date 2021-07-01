@@ -14,22 +14,21 @@ import {
 import { gsap } from 'gsap'
 
 interface RoadmapProps {
-  navRef: RefObject<HTMLDivElement>
-  roadmapRef: RefObject<HTMLDivElement>
+  roadmapWrapperRef: RefObject<HTMLDivElement>
+  roadmapContentRef: RefObject<HTMLDivElement>
   stageRefs: RoadmapNavItemsProps['stageRefs']
   navigate: RoadmapNavItemsProps['navigate']
 }
 
 export const RoadmapNav = ({
-  roadmapRef,
-  navRef,
+  roadmapContentRef,
+  roadmapWrapperRef,
   navigate,
   stageRefs,
 }: RoadmapProps) => {
   const { t } = useTranslation('home')
   const dispatch = useAppDispatch()
   const state = useAppSelector(selectAnimation)
-  const tl = useRef(gsap.timeline())
   const roadmapNavRef = useRef<HTMLDivElement>(null)
 
   const {
@@ -37,28 +36,31 @@ export const RoadmapNav = ({
   } = state
 
   useEffect(() => {
-    const timeline = tl.current
-
     // On enter animations (entering roadmap bridge)
     if (state.events.onEnter?.name === 'bridge' && !showRoadmapNav) {
       dispatch(toggleShowRoadmapNav())
 
-      timeline.to(navRef.current, {
-        delay: 0,
-        duration: state.animationSpeed,
+      gsap.to(roadmapWrapperRef.current, {
+        delay: 0.1,
+        duration: state.animationSpeed * 1,
         ease: 'power2.inOut',
         yPercent: -100,
       })
     }
 
     // OnLeaveBack Roadmap Bridge
-
-    if (state.events.onLeaveBack?.name === 'bridge' && showRoadmapNav) {
+    if (
+      roadmapWrapperRef.current &&
+      showRoadmapNav &&
+      state.navPosition !== 'bridge' &&
+      state.navPosition !== 'roadmap' &&
+      state.navPosition !== 'footer'
+    ) {
       dispatch(toggleShowRoadmapNav())
+      // dispatch(hideRoadmapNav({ element: roadmapWrapperRef.current }))
 
-      timeline.to(navRef.current, {
-        delay: 0,
-        duration: state.animationSpeed * 0.5,
+      gsap.to(roadmapWrapperRef.current, {
+        duration: state.animationSpeed,
         ease: 'power2.inOut',
         yPercent: 0,
       })
@@ -66,41 +68,43 @@ export const RoadmapNav = ({
 
     // OnLeave Roadmap Bridge
     if (state.events.onLeave?.name === 'bridge' && showRoadmapNav) {
-      gsap.to(roadmapRef.current, {
+      // Hides Roadmap title and text
+      gsap.set(roadmapWrapperRef.current, {
+        height: 'auto',
+        minHeight: 'auto',
+        delay: state.animationSpeed,
+      })
+
+      gsap.set(roadmapContentRef.current, {
+        display: 'none',
+        delay: state.animationSpeed,
+      })
+
+      gsap.to(roadmapContentRef.current, {
         xPercent: -100,
         autoAlpha: 0,
         ease: 'power2.inOut',
         duration: state.animationSpeed,
       })
-
-      gsap.set(navRef.current, {
-        delay: state.animationSpeed,
-        height: 'auto',
-        minHeight: 'auto',
-      })
-      gsap.to(roadmapRef.current, {
-        display: 'none',
-        delay: state.animationSpeed * 0.5,
-      })
     }
 
     // OnEnterBack Roadmap Bridge
     if (state.events.onEnterBack?.name === 'bridge' && showRoadmapNav) {
-      gsap.set(navRef.current, {
+      gsap.set(roadmapWrapperRef.current, {
         height: '100%',
         minHeight: '100vh',
       })
 
-      gsap.set(roadmapRef.current, {
+      gsap.set(roadmapContentRef.current, {
         display: 'block',
         height: 'auto',
       })
 
-      gsap.to(roadmapRef.current, {
+      gsap.to(roadmapContentRef.current, {
         xPercent: 0,
         autoAlpha: 1,
         ease: 'power2.inOut',
-        display: 'block',
+        // !!!
         delay: state.animationSpeed * 0.5,
         duration: state.animationSpeed * 0.5,
       })
@@ -108,8 +112,8 @@ export const RoadmapNav = ({
 
     // Entering Footer
     if (state.activeSection?.name === 'footer' && showRoadmapNav) {
-      // Fix click problem on footer
-      gsap.set(navRef.current, {
+      // Fix zIndex problem on footer
+      gsap.set(roadmapWrapperRef.current, {
         delay: state.animationSpeed,
         height: 0,
         minHeight: 0,
@@ -118,7 +122,7 @@ export const RoadmapNav = ({
 
     // Leaving Footer
     if (state.oldSection?.name === 'footer' && showRoadmapNav) {
-      gsap.set(navRef.current, {
+      gsap.set(roadmapWrapperRef.current, {
         height: 'auto',
         minHeight: 'auto',
       })
@@ -132,7 +136,7 @@ export const RoadmapNav = ({
       dispatch(toggleTransformedRoadmapNav())
 
       if (state.oldSection?.name === 'footer') {
-        timeline.to(roadmapNavRef.current, {
+        gsap.to(roadmapNavRef.current, {
           yPercent: 0,
           autoAlpha: 1,
           ease: 'power2.inOut',
@@ -140,7 +144,7 @@ export const RoadmapNav = ({
           duration: state.animationSpeed * 0.5,
         })
       } else {
-        timeline.to(roadmapNavRef.current, {
+        gsap.to(roadmapNavRef.current, {
           marginTop: 'auto',
           ease: 'power2.inOut',
           delay: state.animationSpeed * 0.75,
@@ -157,14 +161,14 @@ export const RoadmapNav = ({
       dispatch(toggleTransformedRoadmapNav())
 
       if (state.navPosition === 'footer') {
-        timeline.to(roadmapNavRef.current, {
+        gsap.to(roadmapNavRef.current, {
           yPercent: 100,
           autoAlpha: 0,
           ease: 'power2.inOut',
           duration: state.animationSpeed * 0.75,
         })
       } else {
-        timeline.to(roadmapNavRef.current, {
+        gsap.to(roadmapNavRef.current, {
           marginTop: 0,
           ease: 'power2.inOut',
           delay: state.animationSpeed * 0.5,
@@ -172,16 +176,16 @@ export const RoadmapNav = ({
         })
       }
     }
-  }, [state, dispatch, navRef, roadmapRef, showRoadmapNav])
+  }, [state, dispatch, roadmapWrapperRef, roadmapContentRef, showRoadmapNav])
 
   return (
     <>
       <FullScreen
-        sectionRef={navRef}
-        tw="absolute left-1/2 transform top-full -translate-x-1/2 m-auto w-full h-full"
+        sectionRef={roadmapWrapperRef}
+        tw="hidden lg:flex flex-col absolute left-1/2 transform top-full -translate-x-1/2 m-auto w-full h-full"
       >
-        <NavSpacer />
-        <Container ref={roadmapRef} tw="mx-auto">
+        <Container ref={roadmapContentRef} tw="mx-auto mb-20">
+          <NavSpacer />
           {/* todo: move roadmap to left when we leave the Stage 0 */}
           <div tw="text-center mt-10">
             <Title>{t`roadmap.title`}</Title>

@@ -1,7 +1,7 @@
-import { cx } from '@emotion/css'
+import cx from 'classnames'
 import { hexToRGB } from '@lib/utils/colors'
 import { forwardRef } from 'react'
-import tw, { styled, theme } from 'twin.macro'
+import { styled, theme } from 'twin.macro'
 import { FrameShadowColor, FrameProps } from '.'
 
 const shapeSize = '10px'
@@ -64,17 +64,16 @@ export const SquareFrame = forwardRef<HTMLDivElement, FrameProps>(
           <div
             className={cx('shadowFrame', {
               shadow: !!shadowColor,
+              'bg-cyan-400': color === 'cyan',
+              'bg-yellow-400': color === 'yellow',
             })}
             tw="absolute top-2 left-0 bottom[-6px] right[-6px]"
-            css={[
-              color === 'cyan' && tw`bg-cyan-400`,
-              color === 'yellow' && tw`bg-yellow-400`,
-            ]}
           />
         )}
         <div
-          className="frame w-full h-full relative flex flex-col"
-          css={!removePadding && tw`p-6`}
+          className={cx('frame w-full h-full relative flex flex-col', {
+            'p-6': !removePadding,
+          })}
           ref={ref}
           tw="bg-gray-800"
         >

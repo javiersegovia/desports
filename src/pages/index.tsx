@@ -12,6 +12,7 @@ import stage3Img from '@public/images/stage3_iso.jpg'
 import { theme } from 'twin.macro'
 import { HomeFooter } from '../views/home/HomeFooter'
 import { NavSpacer } from '@components/Nav/NavSpacer'
+import { MobileRoadmap } from '../views/home/MobileRoadmap'
 
 export default function Home() {
   const {
@@ -21,7 +22,7 @@ export default function Home() {
     landingRef,
     featuresRef,
     tokenomicsRef,
-    navRef,
+    roadmapNavWrapperRef,
     roadmapContainerRef,
     roadmapRef,
     s0Ref,
@@ -37,31 +38,38 @@ export default function Home() {
   return (
     <div
       ref={wrapperRef}
-      tw="relative overflow-visible overflow-x-hidden h-auto md:absolute md:overflow-hidden md:h-full w-full"
+      tw="relative overflow-visible overflow-x-hidden h-auto lg:absolute lg:overflow-hidden lg:h-full w-full"
     >
-      <div
-        ref={containerRef}
-        tw="w-full h-full min-h-screen max-h-screen max-w-full"
-      >
+      <div ref={containerRef} tw="w-full h-auto min-h-screen max-w-full">
         <FullScreen sectionRef={landingRef} tw="flex flex-col">
           <NavSpacer />
           <Landing />
         </FullScreen>
 
-        <FullScreen sectionRef={tokenomicsRef}>
+        <FullScreen
+          sectionRef={tokenomicsRef}
+          tw="lg:min-h-screen lg:max-h-screen overflow-hidden lg:overflow-visible"
+        >
           <Tokenomics />
         </FullScreen>
 
-        <FullScreen sectionRef={featuresRef}>
+        <FullScreen
+          sectionRef={featuresRef}
+          tw="lg:min-h-screen lg:max-h-screen"
+        >
           <Features />
         </FullScreen>
 
         <FullScreen
           data-name="hContainer"
-          tw="w-full flex-col md:width[420%] flex md:flex-row md:flex-nowrap relative"
+          tw="mt-20 lg:mt-0 w-full flex-col lg:width[400%] flex lg:flex-row lg:flex-nowrap relative"
           sectionRef={roadmapContainerRef}
         >
-          <FullScreen sectionRef={s0Ref} tw="min-width[100vw] w-screen" />
+          <FullScreen sectionRef={s0Ref} tw="min-width[100vw] w-screen">
+            <MobileRoadmap />
+          </FullScreen>
+
+          <div tw="mt-32 lg:hidden" />
 
           <StageFullPage
             innerRef={s1Ref}
@@ -89,19 +97,19 @@ export default function Home() {
 
           <FullScreen
             sectionRef={footerRef}
-            tw="min-width[100vw] w-screen bg-gray-900"
+            tw="min-width[100vw] lg:max-h-screen w-screen bg-gray-900"
           >
             <HomeFooter />
           </FullScreen>
         </FullScreen>
       </div>
 
-      {/* <RoadmapNav
-        navRef={navRef}
-        roadmapRef={roadmapRef}
+      <RoadmapNav
+        roadmapWrapperRef={roadmapNavWrapperRef}
+        roadmapContentRef={roadmapRef}
         navigate={navigate}
         stageRefs={[stage1NavRef, stage2NavRef, stage3NavRef]}
-      /> */}
+      />
     </div>
   )
 }

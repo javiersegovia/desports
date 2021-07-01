@@ -80,8 +80,8 @@ export const RoadmapNavItems = memo(
     })
 
     return (
-      <Container tw="mx-auto">
-        <div tw="mt-20 flex items-center flex-1 flex-basis[25%] justify-center">
+      <Container tw="mx-auto mt-auto">
+        <div tw="flex items-center flex-1 flex-basis[33%] justify-center">
           <StageItem
             shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[0]}

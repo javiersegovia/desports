@@ -1,6 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import tw from 'twin.macro'
 import { useActiveIndex } from '../../lib/hooks/useActiveIndex'
-
 export interface IAccordionItem {
   title: string
   description?: string
@@ -23,8 +23,8 @@ const AccordionItem = ({
       css={[isActive && tw`bg-gray-800 p-6`]}
     >
       <h4
-        tw="uppercase font-bold font-mono"
-        css={[isActive && tw`text-cyan-400`]}
+        tw="uppercase font-medium font-mono"
+        css={[isActive && tw`text-cyan-400 font-bold`]}
       >
         {title}
       </h4>
@@ -42,7 +42,7 @@ interface AccordionProps {
   items: IAccordionItem[]
 }
 
-export const Accordion = ({ items }: AccordionProps) => {
+export const Accordion = ({ items, ...props }: AccordionProps) => {
   // todo: update the pause value to true when the animations come in
 
   const { activeIndex, setActiveIndex, pause, unpause } = useActiveIndex({
@@ -50,7 +50,7 @@ export const Accordion = ({ items }: AccordionProps) => {
   })
 
   return (
-    <div tw="space-y-4" onMouseEnter={pause} onMouseLeave={unpause}>
+    <div tw="space-y-4" onMouseEnter={pause} onMouseLeave={unpause} {...props}>
       {items.map((item, index) => (
         <AccordionItem
           key={item.title}

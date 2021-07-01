@@ -1,14 +1,19 @@
+/** @jsxImportSource @emotion/react */
 /* eslint-disable @next/next/no-img-element */
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
 import { useAppSelector } from '@lib/redux/hooks'
 import { memo, RefObject, useEffect, useRef } from 'react'
 import tw from 'twin.macro'
 import { gsap } from 'gsap'
+import Image from 'next/image'
+import { Container } from '@components/UI/Container'
 
 interface IStageItem {
   title: string
   name: string
 }
+
+const LOCKED_OPACITY = 0.3
 
 interface StageItemProps {
   imagePath: string
@@ -21,6 +26,46 @@ interface StageItemProps {
   isLocked?: boolean
   shouldMorph?: boolean
   innerRef?: RefObject<HTMLDivElement>
+}
+
+type MobileStageItemProps = Pick<
+  StageItemProps,
+  'item' | 'titleColor' | 'isLocked' | 'innerRef'
+> & {
+  imagePath: StaticImageData
+}
+
+export const MobileStageItem = ({
+  isLocked,
+  imagePath,
+  innerRef,
+  titleColor,
+  item,
+  ...props
+}: MobileStageItemProps) => {
+  const imageOpacity = isLocked ? LOCKED_OPACITY : 1
+
+  return (
+    <Container tw="mx-auto flex relative justify-center" {...props}>
+      <SquareFrame
+        ref={innerRef}
+        tw="w-5/12 sm:w-3/12 relative"
+        removePadding
+        shadowColor="cyan"
+        style={{
+          opacity: imageOpacity,
+        }}
+      >
+        <Image src={imagePath} alt={`Stage item`} tw="object-cover" />
+      </SquareFrame>
+      <div tw="w-7/12 sm:w-3/12 mt-4 font-mono uppercase font-bold transition-all duration-500 text-3xl ml-5">
+        <h4>{item.title}</h4>
+        <h5 tw="mt-2" style={{ color: titleColor }}>
+          {item.name}
+        </h5>
+      </div>
+    </Container>
+  )
 }
 
 export const StageItem = memo(
@@ -38,10 +83,10 @@ export const StageItem = memo(
     ...otherProps
   }: StageItemProps) => {
     const titleRef = useRef<HTMLDivElement>(null)
-    const buttonRef = useRef<HTMLButtonElement>(null)
+    const buttonContentRef = useRef<HTMLDivElement>(null)
     const imageRef = useRef<HTMLImageElement>(null)
 
-    const imageOpacity = isLocked ? 0.3 : 1
+    const imageOpacity = isLocked ? LOCKED_OPACITY : 1
 
     const animationSpeed = useAppSelector(
       (state) => state.screenAnimation.animationSpeed
@@ -63,13 +108,25 @@ export const StageItem = memo(
         gsap.to(imageRef.current, {
           ease: 'power2.inOut',
           autoAlpha: 0,
-          delay: animationSpeed * 1,
+          delay: animationSpeed,
           duration: animationSpeed * 0.75,
+        })
+        gsap.to(buttonContentRef.current, {
+          ease: 'power2.inOut',
+          autoAlpha: 1,
+          delay: animationSpeed,
+          duration: animationSpeed * 0.5,
         })
 
         // Leaving roadmap
       } else if (oldSection?.name !== 'footer') {
+        gsap.to(buttonContentRef.current, {
+          ease: 'power2.inOut',
+          autoAlpha: 0,
+          duration: animationSpeed * 0.5,
+        })
         gsap.to(titleRef.current, {
+          height: 'auto',
           autoAlpha: 1,
           delay: animationSpeed * 0.5,
           duration: animationSpeed * 0.5,
@@ -81,15 +138,17 @@ export const StageItem = memo(
           duration: animationSpeed * 1.5,
         })
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [shouldMorph, animationSpeed, imageOpacity])
 
     return (
       <button
         type="button"
         tw="transition-all duration-500"
-        ref={buttonRef}
         css={[
-          shouldMorph ? tw`mx-0 max-width[250px]` : tw`mx-4 max-width[100%]`,
+          shouldMorph
+            ? tw`mx-0 max-width[15.625rem]`
+            : tw`mx-4 max-width[18.75rem]`,
         ]}
         {...otherProps}
         onClick={() => navigate(number)}
@@ -110,12 +169,17 @@ export const StageItem = memo(
             }}
           />
           <div
-            tw="absolute h-full w-full transition-colors duration-500"
-            css={[isLocked && tw`opacity-30`]}
+            tw="text-coolGray-300 absolute h-full w-full transition-colors duration-500 flex items-center justify-center font-mono uppercase"
+            css={[isLocked && tw`opacity-30`, isActive && tw`text-black`]}
             style={{
               backgroundColor: isActive ? bgColor : 'transparent',
             }}
-          ></div>
+          >
+            <div tw="text-left opacity-0" ref={buttonContentRef}>
+              <span tw="block text-base font-semibold">{item.title}</span>
+              <span tw="block text-xl font-bold">{item.name}</span>
+            </div>
+          </div>
         </SquareFrame>
         <div
           ref={titleRef}

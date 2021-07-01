@@ -2,7 +2,7 @@
   "coming-soon": "Coming soon",
   "landing": {
     "pre-sale": "Pre-sale",
-    "launch": "Fair launch",
+    "launch": "Launch",
     "title": "DeSports Network",
     "description": "Decentralizing the eSports through an sustainable P2P ecosystem. \nCreate custom events, compete, earn rewards and NFTs without any third-party involvement by using $DESP.",
     "join-telegram": "Telegram",
@@ -130,7 +130,7 @@
       ]
     },
     "stage2": {
-      "date": "01/2022 - 12/2022",
+      "date": "2022 - 2023",
       "title": "Stage 2",
       "name": "Pendulum",
       "subtitle": "Growth",
@@ -160,12 +160,12 @@
       ]
     },
     "stage3": {
-      "date": "01/2023 - ???",
+      "date": "2023 - ???",
       "title": "Stage 3",
       "name": "Dimension",
       "subtitle": "Full Decentralization",
       "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
-      "unlocking_in": "Unlocking in"
+      "unlocking_in": "Releasing in"
     },
     "stage4": {
       "title": "Stage 4",

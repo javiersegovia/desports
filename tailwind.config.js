@@ -7,6 +7,11 @@ module.exports = {
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      screens: {
+        '3xl': {
+          min: '2000px',
+        },
+      },
       colors: {
         ...colors,
         gray: {

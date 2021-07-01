@@ -1,5 +1,5 @@
 import { Accordion, IAccordionItem } from '@components/Accordion/Accordion'
-import { CircleChart } from '@components/Chart/CircleChart'
+import { LineChart } from '@components/Chart/LineChart'
 import { NavSpacer } from '@components/Nav/NavSpacer'
 import { Container } from '@components/UI/Container'
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
@@ -17,28 +17,35 @@ export const Tokenomics = () => {
   const tokenomics: IAccordionItem[] = t('tokenomics.list', null, {
     returnObjects: true,
   })
-
   return (
     <>
-      <StyledBackground />
-      <NavSpacer />
-      <Container tw="mx-auto">
+      <StyledBackground tw="bg-top lg:bg-center" />
+      <NavSpacer tw="hidden lg:block" />
+      <Container tw="mt-10 lg:mt-0 mx-auto">
         <div tw="text-center mt-10">
           <Title>{t`tokenomics.title`}</Title>
           <p tw="text-coolGray-300 mt-6 max-w-2xl mx-auto">{t`tokenomics.description`}</p>
         </div>
 
-        <div tw="grid gap-10 grid-flow-col grid-cols-[2.5fr 1.5fr] space-x-10 mt-10">
-          <div tw="mt-10">
-            <Accordion items={tokenomics} />
+        <div tw="relative block gap-0 lg:grid lg:gap-10 grid-flow-col grid-cols-[2.5fr 1.5fr] lg:space-x-10 mt-10">
+          <div tw="relative mt-0 lg:mt-10">
+            <Accordion tw="lg:min-h-0" items={tokenomics} />
           </div>
-          <div>
+
+          <div tw="mt-20 lg:mt-0">
             <SquareFrame
-              tw="width[100%] aspect-w-6 aspect-h-8"
+              tw="width[100%] mt-10 lg:mt-0 mx-auto max-w-xs"
               shadowColor="emerald"
             >
-              <div tw="mt-4 mx-auto mb-auto text-center space-y-4">
-                <div>
+              {/* todo: add translation */}
+              <Title as="h5" tw="lg:text-xl mt-4 mx-auto">
+                Token Supply
+              </Title>
+
+              <div tw="mt-6 mx-auto space-y-4">
+                <LineChart tw="m-auto mb-0" current={333} max={1000} />
+
+                <div tw="pt-4">
                   <div tw="font-bold">Original Supply</div>
                   <div tw="font-mono">8,8888,8888,888</div>
                 </div>
@@ -52,13 +59,11 @@ export const Tokenomics = () => {
                   </div>
                 </div>
 
-                <div>
+                <div tw="pb-10">
                   <div tw="font-bold text-red-500">Total Burned (33.86%)</div>
                   <div tw="font-mono text-red-500">1231,12312,231,231,32</div>
                 </div>
               </div>
-
-              <CircleChart current={333} max={1000} />
             </SquareFrame>
           </div>
         </div>

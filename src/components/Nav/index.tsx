@@ -46,7 +46,7 @@ export const Nav = () => {
         ref={navbarRef}
         tw="fixed z-50 w-full transition-all duration-100 overflow-hidden"
       >
-        <SocialBar />
+        <SocialBar tw="hidden lg:block" />
         <NavBar />
       </div>
     </>

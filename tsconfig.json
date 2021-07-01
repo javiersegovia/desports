@@ -9,7 +9,6 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
-    "jsxImportSource": "@emotion/react",
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

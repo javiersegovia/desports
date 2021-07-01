@@ -3,9 +3,9 @@ interface MarketInfoProps {
   value: string
 }
 
-export const MarketInfo = ({ title, value }: MarketInfoProps) => {
+export const MarketInfo = ({ title, value, ...props }: MarketInfoProps) => {
   return (
-    <div tw="text-center">
+    <div tw="text-center" {...props}>
       <div tw="font-bold">{title}</div>
       <div tw="font-mono">{value}</div>
     </div>
