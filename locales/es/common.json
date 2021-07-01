@@ -1,17 +1,45 @@
 {
+  "shared": {
+    "team": "Team",
+    "whitepaper": "Whitepaper",
+    "telegram": "Telegram",
+    "buy-now": "Buy Now",
+    "contract": "Contract",
+    "how-to-buy": "How to buy",
+    "blog": "Blog",
+    "trackers": {
+      "title": "Trackers",
+      "description": "Clicking on a link will open the chart in a new tab.",
+      "list": [
+        { "title": "BSCScan", "key": "bscscan" },
+        { "title": "Coinmarketcap", "key": "coinmarketcap" },
+        { "title": "Coingecko", "key": "coingecko" }
+      ]
+    }
+  },
   "socialBar": {
-    "english": "Inglés",
-    "spanish": "Español"
+    "english": "English",
+    "spanish": "Spanish"
   },
   "navBar": {
-    "buy-now": "Comprar",
+    "buy-now": "Buy Now",
     "links": {
-      "trackers": "Seguimiento",
-      "platform": "Plataforma",
-      "team": "Equipo",
+      "platform": "Platform",
+      "team": "Team",
       "whitepaper": "Whitepaper",
-      "shop": "Tienda",
-      "news": "Noticias"
+      "shop": "Shop",
+      "news": "News"
     }
+  },
+  "footer": {
+    "title": "This is just the beginning",
+    "pre-sale": "Pre-sale in",
+    "launch": "Launch in",
+    "contact-us": "Contact us at",
+    "brand-guidelines": "Brand guidelines",
+    "dao-description": "is completely DAO-driven",
+    "desp-description": "is an eSports focused token",
+    "copyright": "Copyright DeSports Network © 2021. All rights reserved.",
+    "trademarks": "All other copyrights and trademarks are the property of their respective owners."
   }
 }

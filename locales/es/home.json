@@ -1,25 +1,26 @@
 {
-  "coming-soon": "Próximamente",
+  "coming-soon": "Coming soon",
   "landing": {
-    "pre-sale": "Pre-venta",
-    "launch": "Lanzamiento",
+    "pre-sale": "Pre-sale",
+    "launch": "Launch",
     "title": "DeSports Network",
-    "description": "Building a sustainable ecosystem by integrating the eSports into the blockchain",
-    "join-telegram": "Únete al Telegram",
-    "trackers": "Seguimiento",
-    "buy-now": "Comprar",
-    "contract-address": "Billetera del contrato",
-    "view-tokenomics": "Ver economía del token y distribuciones",
-    "available-pool": "Disponible para competiciones",
-    "total-rewarded": "Repartido",
-    "current-total": "Acumulado ",
-    "ath-pool": "ATH",
-    "next-goal": "Siguiente meta",
-    "donation": "Billetera de donaciones",
-    "current-price": "Precio actual",
+    "description": "Decentralizing the eSports through an sustainable P2P ecosystem. \nCreate custom events, compete, earn rewards and NFTs without any third-party involvement by using $DESP.",
+    "join-telegram": "Telegram",
+    "trackers": "Trackers",
+    "buy-now": "Buy Now",
+    "contract-address": "Contract address",
+    "view-tokenomics": "View Tokenomics and distributions",
+    "available-pool": "Competitions pool",
+    "total-rewarded": "Total rewarded",
+    "current-total": "Accumulated",
+    "ath-pool": "ATH Reward",
+    "next-goal": "Next Goal",
+    "donation": "Donation / Goals Wallet",
+    "current-price": "Current price",
     "holders": "Holders",
-    "supply": "En circulación",
-    "marketcap": "Capitalización"
+    "supply": "Supply",
+    "marketcap": "Marketcap",
+    "scroll-more": "Scroll to know more"
   },
   "tokenomics": {
     "title": "Tokenomics and Distributions",
@@ -91,10 +92,10 @@
           "description": "Website and Social Media launch"
         },
         {
-          "description": "Marketing campaign launch"
+          "description": "Marketing Campaign launch"
         },
         {
-          "description": "Techrate audit"
+          "description": "Techrate Audit"
         },
         {
           "description": "Presale on DxSale"
@@ -103,43 +104,68 @@
           "description": "DEX Listing"
         },
         {
-          "description": "Sponsorships"
+          "description": "Blog with Weekly Updates"
         },
         {
-          "description": "DEX Listing"
+          "description": "Team Expansion"
+        },
+        {
+          "description": "Competitions and Players Sponsorships"
         },
         {
           "description": "DeSports Merch"
         },
         {
+          "description": "NFT Airdrops"
+        },
+        {
           "description": "Certik Audit"
         },
         {
-          "description": "Blog"
+          "description": "CEX Listing"
         },
         {
-          "description": "DeSports Swap & Wallet"
-        },
-        {
-          "description": "Decentralized platform Demo"
-        },
-        {
-          "description": "Team reveal"
+          "description": "DeSports dApp Demo"
         }
       ]
     },
     "stage2": {
-      "date": "01/2022 - 01/2023",
+      "date": "2022 - 2023",
       "title": "Stage 2",
       "name": "Pendulum",
       "subtitle": "Growth",
-      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved."
+      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
+      "list": [
+        {
+          "description": "Bridge ETH/Matic"
+        },
+        {
+          "description": "DeSports Wallet"
+        },
+        {
+          "description": "Closed & Open Beta Phase of DeSports dApp"
+        },
+        {
+          "description": "DeSports dApp Launch"
+        },
+        {
+          "description": "Start of DeSports Seasons"
+        },
+        {
+          "description": "NFT Trophies and Unique Achievements"
+        },
+        {
+          "description": "More to be announced..."
+        }
+      ]
     },
     "stage3": {
+      "date": "2023 - ???",
       "title": "Stage 3",
       "name": "Dimension",
       "subtitle": "Full Decentralization",
-      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved."
+      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
+      "unlocking_in": "Releasing in"
     },
     "stage4": {
       "title": "Stage 4",
