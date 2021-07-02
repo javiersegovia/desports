@@ -236,11 +236,6 @@ export const Landing = () => {
             </div>
 
             <div tw="pt-4 relative inline-block">
-              {/* todo: add link to Tokenomics section */}
-              {/* <span tw="hidden lg:inline-block ml-2"> — </span> */}
-              {/* <span tw="text-cyan-400 hidden lg:inline-block ml-2">
-                {t`landing.view-tokenomics`}
-              </span> */}
               <button
                 type="button"
                 tw="block font-normal text-left"

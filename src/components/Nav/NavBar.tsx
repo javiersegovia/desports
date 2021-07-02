@@ -18,8 +18,7 @@ import useTranslation from 'next-translate/useTranslation'
 const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
-  blog: routes.blog,
-  // 'buy-now': routes.how_to_buy,
+  // blog: routes.blog,
 } as const
 
 const StyledTransitions = styled.div`
@@ -77,14 +76,7 @@ export const NavBar = () => {
                   {(Object.keys(paths) as Array<keyof typeof paths>).map(
                     (key) => (
                       <Link key={key} href={paths[key]} passHref>
-                        <a
-                          href={paths[key]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          tw="hover:text-yellow-400"
-                        >
-                          {links[key]}
-                        </a>
+                        <a tw="hover:text-yellow-400">{links[key]}</a>
                       </Link>
                     )
                   )}
@@ -139,12 +131,7 @@ export const NavBar = () => {
                       (key, index) => (
                         <Fragment key={key}>
                           <Link href={paths[key]} passHref>
-                            <a
-                              href={paths[key]}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              tw="inline-block text-left py-2 hover:text-yellow-400"
-                            >
+                            <a tw="inline-block text-left py-2 hover:text-yellow-400">
                               {links[key]}
                             </a>
                           </Link>

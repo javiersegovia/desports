@@ -12,7 +12,7 @@ import {
   clipPathV4,
 } from '@components/UI/Frames/MiniFrames'
 import { squareClipPath } from '@components/UI/Frames/SquareFrame'
-import { RoadmapI18NResult } from './StageFullPage'
+import { IStage } from './StageFullPage'
 
 const navClipPaths = [clipPathV1, clipPathV3, clipPathV4]
 
@@ -24,7 +24,7 @@ export interface RoadmapNavItemsProps {
 
 export const RoadmapNavItems = memo(
   ({ navigate, stageRefs, shouldMorph = false }: RoadmapNavItemsProps) => {
-    const { t } = useTranslation('home')
+    const { t } = useTranslation('roadmap')
 
     const animationSpeed = useAppSelector(
       (state) => state.screenAnimation.animationSpeed
@@ -71,13 +71,9 @@ export const RoadmapNavItems = memo(
       }
     }, [shouldMorph, animationSpeed, stageRefs])
 
-    const {
-      stage1: i18nStage1,
-      stage2: i18nStage2,
-      stage3: i18nStage3,
-    }: RoadmapI18NResult = t('roadmap', null, {
-      returnObjects: true,
-    })
+    const i18nStage1: IStage = t('stage1', null, { returnObjects: true })
+    const i18nStage2: IStage = t('stage2', null, { returnObjects: true })
+    const i18nStage3: IStage = t('stage3', null, { returnObjects: true })
 
     return (
       <Container tw="mx-auto mt-auto">

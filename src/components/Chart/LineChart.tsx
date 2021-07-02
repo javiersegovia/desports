@@ -5,8 +5,6 @@ interface LineChartProps {
   current: number
 }
 
-// todo: add rectangle to the yellow bar
-
 const StyledCompletionBar = styled.div`
   clip-path: polygon(0% 100%, 12% 0%, 88% 0%, 100% 100%);
 

@@ -25,6 +25,7 @@
   "tokenomics": {
     "title": "Tokenomics and Distributions",
     "description": "$DESP a deflationary token launched on July 4th 2021, running on the BSC Network. DeSports Network is a vast, long-term project requiring significant development, marketing, and operations. Every transaction will consist of a 10% fee, which will be applied in the following manner:",
+    "token_supply": "Token Supply",
     "list": [
       {
         "title": "4% Automatic liquidity pool",
@@ -80,98 +81,6 @@
   },
   "roadmap": {
     "title": "Our roadmap",
-    "description": "First crucial token and technology foundations and planning development. Building a community and getting people involvedFirst crucial token and technology foundations and planning development. Building a community and getting people involved.",
-    "stage1": {
-      "date": "07/2021 - 12/2021",
-      "name": "Galaxy",
-      "title": "Stage 1",
-      "subtitle": "Foundation",
-      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
-      "list": [
-        {
-          "description": "Website and Social Media launch"
-        },
-        {
-          "description": "Marketing Campaign launch"
-        },
-        {
-          "description": "Techrate Audit"
-        },
-        {
-          "description": "Presale on DxSale"
-        },
-        {
-          "description": "DEX Listing"
-        },
-        {
-          "description": "Blog with Weekly Updates"
-        },
-        {
-          "description": "Team Expansion"
-        },
-        {
-          "description": "Competitions and Players Sponsorships"
-        },
-        {
-          "description": "DeSports Merch"
-        },
-        {
-          "description": "NFT Airdrops"
-        },
-        {
-          "description": "Certik Audit"
-        },
-        {
-          "description": "CEX Listing"
-        },
-        {
-          "description": "DeSports dApp Demo"
-        }
-      ]
-    },
-    "stage2": {
-      "date": "2022 - 2023",
-      "title": "Stage 2",
-      "name": "Pendulum",
-      "subtitle": "Growth",
-      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
-      "list": [
-        {
-          "description": "Bridge ETH/Matic"
-        },
-        {
-          "description": "DeSports Wallet"
-        },
-        {
-          "description": "Closed & Open Beta Phase of DeSports dApp"
-        },
-        {
-          "description": "DeSports dApp Launch"
-        },
-        {
-          "description": "Start of DeSports Seasons"
-        },
-        {
-          "description": "NFT Trophies and Unique Achievements"
-        },
-        {
-          "description": "More to be announced..."
-        }
-      ]
-    },
-    "stage3": {
-      "date": "2023 - ???",
-      "title": "Stage 3",
-      "name": "Dimension",
-      "subtitle": "Full Decentralization",
-      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
-      "unlocking_in": "Releasing in"
-    },
-    "stage4": {
-      "title": "Stage 4",
-      "name": "Immersion",
-      "subtitle": "Beyond Reality",
-      "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved."
-    }
+    "description": "First crucial token and technology foundations and planning development. Building a community and getting people involvedFirst crucial token and technology foundations and planning development. Building a community and getting people involved."
   }
 }

@@ -1,0 +1,49 @@
+{
+  "stage1": {
+    "date": "07/2021 - 12/2021",
+    "name": "Galaxy",
+    "title": "Stage 1",
+    "subtitle": "Foundation",
+    "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
+    "list": [
+      "Website and Social Media launch",
+      "Marketing Campaign launch",
+      "Techrate Audit",
+      "Presale on DxSale",
+      "DEX Listing",
+      "Blog with Weekly Updates",
+      "Team Expansion",
+      "Competitions and Players Sponsorships",
+      "DeSports Merch",
+      "NFT Airdrops",
+      "Certik Audit",
+      "CEX Listing",
+      "DeSports dApp Demo"
+    ]
+  },
+  "stage2": {
+    "date": "2022 - 2023",
+    "title": "Stage 2",
+    "name": "Pendulum",
+    "subtitle": "Growth",
+    "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
+    "list": [
+      "Bridge ETH/Matic",
+      "DeSports Wallet",
+      "Closed & Open Beta Phase of DeSports dApp",
+      "DeSports dApp Launch",
+      "Start of DeSports Seasons",
+      "NFT Trophies and Unique Achievements",
+      "More to be announced..."
+    ]
+  },
+  "stage3": {
+    "date": "2023 - 2024",
+    "title": "Stage 3",
+    "name": "Dimension",
+    "subtitle": "Full Decentralization",
+    "description": "First crucial token and technology foundations and planning development. Building a community and getting people involved.",
+    "unlocking_in": "Releasing in",
+    "list": ["To be announced in Q3, 2022"]
+  }
+}

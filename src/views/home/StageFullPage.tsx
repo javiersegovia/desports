@@ -8,24 +8,15 @@ import { RefObject } from 'react'
 import tw from 'twin.macro'
 import { VscLock } from 'react-icons/vsc'
 
-interface IScopeItem {
-  description: string
-}
-
-interface IStage {
+export interface IStage {
   title: string
   description: string
   name: string
   subtitle: string
   date?: string
-  list: IScopeItem[]
+  timeframe?: string
+  list: string[]
   unlocking_in?: string
-}
-
-export interface RoadmapI18NResult {
-  stage1: IStage
-  stage2: IStage
-  stage3: IStage
 }
 
 interface StageFullPageProps {
@@ -45,11 +36,10 @@ export const StageFullPage = ({
   innerRef,
   isLocked,
 }: StageFullPageProps) => {
-  const { t } = useTranslation('home')
+  const { t } = useTranslation('roadmap')
 
-  const stage: RoadmapI18NResult = t('roadmap', null, { returnObjects: true })
-  const { title, date, description, list, name, subtitle, unlocking_in } =
-    stage[stageKey] as IStage
+  const stage: IStage = t(stageKey, null, { returnObjects: true })
+  const { title, date, description, list, name, subtitle, unlocking_in } = stage
 
   return (
     <FullScreen
@@ -106,9 +96,9 @@ export const StageFullPage = ({
                   list.map((listItem) => (
                     <li
                       tw="list-disc ml-4 sm:text-lg lg:text-base"
-                      key={listItem.description}
+                      key={listItem}
                     >
-                      {listItem.description}
+                      {listItem}
                     </li>
                   ))}
               </ul>

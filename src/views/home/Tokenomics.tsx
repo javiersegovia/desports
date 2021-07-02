@@ -38,9 +38,8 @@ export const Tokenomics = () => {
               tw="width[100%] mt-10 lg:mt-0 mx-auto max-w-xs"
               shadowColor="emerald"
             >
-              {/* todo: add translation */}
               <Title as="h5" tw="lg:text-xl mt-4 mx-auto">
-                Token Supply
+                {t`tokenomics.token_supply`}
               </Title>
 
               <div tw="mt-6 mx-auto space-y-4">

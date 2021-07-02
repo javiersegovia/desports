@@ -186,7 +186,6 @@ export const RoadmapNav = ({
       >
         <Container ref={roadmapContentRef} tw="mx-auto mb-20">
           <NavSpacer />
-          {/* todo: move roadmap to left when we leave the Stage 0 */}
           <div tw="text-center mt-10">
             <Title>{t`roadmap.title`}</Title>
             <p tw="text-coolGray-300 mt-6 max-w-2xl mx-auto whitespace-pre-line">{t`roadmap.description`}</p>

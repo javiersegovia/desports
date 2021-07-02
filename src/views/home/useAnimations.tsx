@@ -192,9 +192,6 @@ export const useAnimations = () => {
         lastX = offsetsX[xIndex]
       }
 
-      // todo: handle resize on Mobile
-      // todo: change 0 for "window.scrollTop"
-
       const shouldSetCustomCoords = isDesktop()
 
       if (!shouldSetCustomCoords && (activeIndex !== 0 || oldIndex !== 0)) {
