@@ -12,7 +12,7 @@ export const Title = ({
 }: TitleProps) => {
   return (
     <Element
-      tw="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-mono uppercase text-white letter-spacing[3px]"
+      tw="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold font-mono uppercase text-white letter-spacing[3px]"
       {...props}
     >
       {children}

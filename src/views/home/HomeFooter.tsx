@@ -67,6 +67,12 @@ const CountdownItem = ({
   )
 }
 
+const StyledContainer = styled(Container)`
+  li {
+    ${tw`hover:text-yellow-400`}
+  }
+`
+
 const StyledMobileBackgroundTop = styled.div`
   background: url('/images/background-final.jpg');
 
@@ -84,19 +90,13 @@ const launchDate = new Date()
 
 export const HomeFooter = () => {
   const { t } = useTranslation('common')
+
   return (
     <>
       <NavSpacer />
       <StyledMobileBackgroundTop />
       <StyledMobileBackgroundBottom />
-      {/* <div
-        style={{ background: "url('/images/background-final.jpg')" }}
-        tw="lg:hidden absolute bg-left-top top-0 w-full h-1/2"
-      />
-      <div
-        style={{ background: "url('/images/background-final.jpg')" }}
-        tw="lg:hidden absolute bg-right-bottom bottom-0 w-full h-1/2"
-      /> */}
+
       <StyledBackgroundShape tw="bg-gray-900">
         <Container tw="h-full flex flex-col justify-center relative">
           <Title tw="mt-40 sm:mt-28 lg:mt-20 text-left">{t`footer.title`}</Title>
@@ -105,13 +105,13 @@ export const HomeFooter = () => {
               color={theme`colors.emerald.400`}
               title={t`footer.pre-sale`}
               date={presaleDate}
-              tw="text-xl lg:text-xl xl:text-3xl text-left"
+              tw="text-xl lg:text-xl xl:text-4xl text-left"
             />
             <CountdownItem
               color={theme`colors.yellow.400`}
               title={t`footer.launch`}
               date={launchDate}
-              tw="text-xl lg:text-xl xl:text-3xl text-left"
+              tw="text-xl lg:text-xl xl:text-4xl text-left"
             />
           </div>
           <div tw="flex flex-row items-center justify-start space-y-0 space-x-6 sm:space-x-10 mt-12">
@@ -136,38 +136,38 @@ export const HomeFooter = () => {
         </Container>
       </StyledBackgroundShape>
 
-      <Container tw="mt-auto text-sm lg:text-base relative">
+      <StyledContainer tw="mt-auto text-sm lg:text-base relative">
         <footer tw="space-y-7 mb-20 text-coolGray-300 relative lg:w-1/2">
-          <DeSportsFooterLogo tw="lg:hidden absolute top-[-80px]" />
+          <DeSportsFooterLogo tw="lg:hidden absolute top-[-100px]" />
 
-          <div tw="flex justify-between sm:justify-around lg:justify-start lg:space-x-10 items-center">
-            <DeSportsFooterLogo tw="hidden invisible lg:block lg:visible" />
-            <ul>
+          <ul tw="flex justify-between sm:justify-around lg:justify-start lg:space-x-10 items-center">
+            <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
+            <div className="space-y-3 lg:space-y-0">
               <li>
                 <Link href="/whitepaper">{t`shared.whitepaper`}</Link>
               </li>
               <li>
                 <Link href="/contract">{t`shared.contract`}</Link>
               </li>
-            </ul>
-            <ul>
+            </div>
+            <div className="space-y-3 lg:space-y-0">
               <li>
                 <Link href="/team">{t`shared.team`}</Link>
               </li>
               <li>
                 <Link href="/how-to-buy">{t`shared.how-to-buy`}</Link>
               </li>
-            </ul>
-            <ul>
+            </div>
+            <div className="space-y-3 lg:space-y-0">
               <li>
                 <Link href="/blog">{t`shared.blog`}</Link>
               </li>
               <li>
                 <Link href="/brand-guidelines">{t`footer.brand-guidelines`}</Link>
               </li>
-            </ul>
-          </div>
-          <div tw="pt-6 lg:pt-0 text-center lg:text-left">
+            </div>
+          </ul>
+          <div tw="pt-3 lg:pt-0 text-center lg:text-left">
             <p>
               <span tw="font-bold">DeSports Network</span>{' '}
               {t`footer.dao-description`}
@@ -182,10 +182,10 @@ export const HomeFooter = () => {
           </div>
         </footer>
 
-        <div tw="hidden lg:flex absolute bottom-20 right-0 text-coolGray-300 z-10 space-x-6 lg:text-3xl">
+        <div tw="hidden lg:flex absolute bottom-20 right-0 text-coolGray-300 z-10 space-x-6 lg:text-4xl">
           <SocialIcons />
         </div>
-      </Container>
+      </StyledContainer>
 
       <StyledGeometricBackground tw="hidden lg:block" />
     </>

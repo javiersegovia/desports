@@ -123,7 +123,7 @@ export const StageFullPage = ({
             {isLocked && (
               <div tw="z-10 absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400 animate-pulse">
                 <VscLock tw="text-8xl" />
-                <p tw="font-mono uppercase font-bold text-2xl mt-4 text-center letter-spacing[1px]">
+                <p tw="font-mono uppercase font-bold text-3xl mt-4 text-center letter-spacing[1px]">
                   {unlocking_in}
                   <br /> 2022
                 </p>
@@ -145,7 +145,7 @@ export const StageFullPage = ({
                   />
                   <div tw="z-10 absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400 animate-pulse">
                     <VscLock tw="text-8xl" />
-                    <p tw="font-mono uppercase font-bold text-2xl mt-4 text-center letter-spacing[1px]">
+                    <p tw="font-mono uppercase font-bold text-3xl mt-4 text-center letter-spacing[1px]">
                       {unlocking_in}
                       <br /> 2022
                     </p>
@@ -183,7 +183,7 @@ export const StageFullPage = ({
 
               {/* <div tw="hidden lg:flex top-0 bottom-0 text-coolGray-500 items-center justify-center flex-col absolute transform w-full h-full animate-pulse">
                 <VscLock tw="text-8xl -mt-20" />
-                <p tw="font-mono uppercase font-bold text-2xl mt-4 text-center">
+                <p tw="font-mono uppercase font-bold text-3xl mt-4 text-center">
                   {unlocking_in}
                   <br /> 2022
                 </p>

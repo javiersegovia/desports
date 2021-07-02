@@ -81,11 +81,10 @@ export const RoadmapNavItems = memo(
 
     return (
       <Container tw="mx-auto mt-auto">
-        <div tw="flex items-center flex-1 flex-basis[33%] justify-center">
+        <div tw="flex items-center flex-1 justify-center">
           <StageItem
             shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[0]}
-            tw="flex-1"
             item={i18nStage1}
             imagePath="/images/stage1_iso.jpg"
             number={1}
@@ -97,7 +96,6 @@ export const RoadmapNavItems = memo(
           <StageItem
             shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[1]}
-            tw="flex-1"
             item={i18nStage2}
             imagePath="/images/stage2_iso.jpg"
             number={2}
@@ -109,7 +107,6 @@ export const RoadmapNavItems = memo(
           <StageItem
             shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[2]}
-            tw="flex-1"
             item={i18nStage3}
             imagePath="/images/stage3_iso.jpg"
             number={3}

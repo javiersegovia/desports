@@ -17,18 +17,14 @@
       ]
     }
   },
-  "socialBar": {
-    "english": "English",
-    "spanish": "Spanish"
-  },
   "navBar": {
     "buy-now": "Buy Now",
     "links": {
-      "platform": "Platform",
+      "economy": "Economy",
       "team": "Team",
       "whitepaper": "Whitepaper",
       "shop": "Shop",
-      "news": "News"
+      "blog": "Blog"
     }
   },
   "footer": {

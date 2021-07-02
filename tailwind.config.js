@@ -2,16 +2,18 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
+const screens = {
+  ...defaultTheme.screens,
+  '3xl': '1900px',
+  '4xl': '2200px',
+}
+
 module.exports = {
   mode: 'jit',
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    screens,
     extend: {
-      screens: {
-        '3xl': {
-          min: '2000px',
-        },
-      },
       colors: {
         ...colors,
         gray: {

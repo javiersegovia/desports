@@ -94,7 +94,7 @@ const PrizePool = ({ ...props }) => {
         <h4 tw="text-sm lg:text-base letter-spacing[1px]">
           Competitions Prize Pool
         </h4>
-        <div tw="text-yellow-400 text-xl lg:text-2xl xl:text-4xl lg:mt-2">
+        <div tw="text-yellow-400 text-xl lg:text-3xl xl:text-4xl lg:mt-2">
           231.123.235,32 USD
         </div>
         <FrameDivider
@@ -199,7 +199,7 @@ export const Landing = () => {
           <div tw="lg:mt-20 xl:mt-32 space-y-4 lg:w-6/12">
             {/* ~~~~~~~~~~~~~~~~~ COUNTDOWNS ~~~~~~~~~~~~~~~~~ */}
 
-            <div tw="flex-col lg:flex-row flex lg:space-x-4 uppercase font-bold font-mono tracking-widest 2xl:text-[1.25rem]">
+            <div tw="flex-col lg:flex-row flex lg:space-x-4 uppercase font-bold font-mono tracking-widest 3xl:text-[1.25rem]">
               <div>
                 <span tw="text-emerald-400">{t`landing.pre-sale`}:</span>
                 <span> 2D 24H 15S</span>
@@ -217,7 +217,7 @@ export const Landing = () => {
               {t`landing.title`}
             </Title>
 
-            <h2 tw="text-base lg:text-lg xl:text-xl pt-2 whitespace-pre-wrap text-coolGray-300 lg:max-w-2xl xl:max-w-xl">
+            <h2 tw="text-base lg:text-lg xl:text-xl pt-2 whitespace-pre-wrap text-coolGray-300 lg:max-w-3xl xl:max-w-xl">
               {t`landing.description`}
             </h2>
 
@@ -255,10 +255,12 @@ export const Landing = () => {
                 <span tw="font-bold font-sans">
                   {t`landing.contract-address`}:{' '}
                 </span>
-                <span tw="text-xs md:text-sm font-mono">
-                  {config.blockchain.contractAddress}
+                <span tw="whitespace-nowrap">
+                  <span tw="text-xs md:text-sm font-mono">
+                    {config.blockchain.contractAddress}
+                  </span>
+                  <RiFileCopyLine tw="ml-2 inline-block" />
                 </span>
-                <RiFileCopyLine tw="ml-2 inline-block" />
               </button>
 
               <Transition

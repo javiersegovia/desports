@@ -24,7 +24,7 @@ const StyledContainer = styled.section<ContainerProps>`
     max-width: 1200px;
   }
 
-  ${up('2xl')} {
+  ${up('3xl')} {
     max-width: 1400px;
   }
 `

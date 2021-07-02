@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /** @jsxImportSource @emotion/react */
 /* eslint-disable @next/next/no-img-element */
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
@@ -58,7 +60,7 @@ export const MobileStageItem = ({
       >
         <Image src={imagePath} alt={`Stage item`} tw="object-cover" />
       </SquareFrame>
-      <div tw="w-7/12 sm:w-3/12 mt-4 font-mono uppercase font-bold transition-all duration-500 text-3xl ml-5">
+      <div tw="w-7/12 sm:w-3/12 mt-4 font-mono uppercase font-bold transition-all duration-500 text-4xl ml-5">
         <h4>{item.title}</h4>
         <h5 tw="mt-2" style={{ color: titleColor }}>
           {item.name}
@@ -144,7 +146,7 @@ export const StageItem = memo(
     return (
       <button
         type="button"
-        tw="transition-all duration-500"
+        tw="transition-all duration-500 lg:max-w-[12.5rem] xl:max-w-[15rem] 2xl:max-w-[17.5rem]"
         css={[
           shouldMorph
             ? tw`mx-0 max-width[15.625rem]`
@@ -183,7 +185,7 @@ export const StageItem = memo(
         </SquareFrame>
         <div
           ref={titleRef}
-          tw="mt-8 font-mono uppercase font-bold transition-all duration-500 text-3xl ml-5"
+          tw="mt-8 font-mono uppercase font-bold transition-all duration-500 lg:text-2xl 2xl:text-3xl 3xl:text-4xl ml-5"
         >
           <h4>{item.title}</h4>
           <h5 tw="mt-2" style={{ color: titleColor }}>

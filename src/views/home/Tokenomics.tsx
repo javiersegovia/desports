@@ -21,15 +21,16 @@ export const Tokenomics = () => {
     <>
       <StyledBackground tw="bg-top lg:bg-center" />
       <NavSpacer tw="hidden lg:block" />
-      <Container tw="mt-10 lg:mt-0 mx-auto">
+
+      <Container tw="mt-10 lg:mt-0 mx-auto flex flex-col max-h-full flex-1">
         <div tw="text-center mt-10">
           <Title>{t`tokenomics.title`}</Title>
-          <p tw="text-coolGray-300 mt-6 max-w-2xl mx-auto">{t`tokenomics.description`}</p>
+          <p tw="text-coolGray-300 mt-6 max-w-3xl mx-auto">{t`tokenomics.description`}</p>
         </div>
 
-        <div tw="relative block gap-0 lg:grid lg:gap-10 grid-flow-col grid-cols-[2.5fr 1.5fr] lg:space-x-10 mt-10">
-          <div tw="relative mt-0 lg:mt-10">
-            <Accordion tw="lg:min-h-0" items={tokenomics} />
+        <div tw="relative block gap-0 lg:grid lg:gap-10 grid-flow-col grid-cols-[2.5fr 1.5fr] lg:space-x-10 max-h-full flex-1 pt-10 overflow-hidden">
+          <div tw="relative max-h-full overflow-hidden">
+            <Accordion tw="lg:absolute lg:top-0" items={tokenomics} />
           </div>
 
           <div tw="mt-20 lg:mt-0">

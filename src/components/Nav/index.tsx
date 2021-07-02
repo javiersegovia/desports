@@ -42,10 +42,7 @@ export const Nav = () => {
 
   return (
     <>
-      <div
-        ref={navbarRef}
-        tw="fixed z-50 w-full transition-all duration-100 overflow-hidden"
-      >
+      <div ref={navbarRef} tw="fixed z-50 w-full transition-all duration-100">
         <SocialBar tw="hidden lg:block" />
         <NavBar />
       </div>

@@ -1,3 +1,5 @@
+// Here we add all the external links
+
 export const config = {
   blockchain: {
     contractAddress: '0x53Ab68442DB471F9584a5D768390e2FE3fD36fAB',
@@ -18,4 +20,8 @@ export const config = {
     coinmarketcap: '/coinmarketcap',
   },
   demoVideo: 'https://www.youtube.com/embed/ANDeiXFiYC4',
+  languages: {
+    es: 'Español',
+    en: 'English',
+  },
 } as const

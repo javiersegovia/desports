@@ -31,7 +31,7 @@ export const TrackersModal = ({ isOpen, close }: InstanceModalProps) => {
           <div tw="flex justify-between">
             <Dialog.Title
               as="h3"
-              tw="text-2xl font-bold leading-6 font-mono uppercase text-yellow-400"
+              tw="text-3xl font-bold leading-6 font-mono uppercase text-yellow-400"
             >
               {trackers.title}
             </Dialog.Title>

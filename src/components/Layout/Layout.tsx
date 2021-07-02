@@ -9,8 +9,11 @@ import { store } from '@lib/redux/store'
 const theme = {
   breakpoints: {
     ...defaultTheme.screens,
+    '3xl': '1900px',
+    '4xl': '2200px',
   },
 }
+
 interface LayoutProps {
   children?: ReactNode
 }

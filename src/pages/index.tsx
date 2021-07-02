@@ -65,11 +65,14 @@ export default function Home() {
           tw="mt-20 lg:mt-0 w-full flex-col lg:width[400%] flex lg:flex-row lg:flex-nowrap relative"
           sectionRef={roadmapContainerRef}
         >
-          <FullScreen sectionRef={s0Ref} tw="min-width[100vw] w-screen">
+          <FullScreen
+            sectionRef={s0Ref}
+            tw="min-h-0 lg:min-h-screen min-width[100vw] w-screen"
+          >
             <MobileRoadmap />
           </FullScreen>
 
-          <div tw="mt-32 lg:hidden" />
+          <div tw="mt-20 lg:hidden" />
 
           <StageFullPage
             innerRef={s1Ref}

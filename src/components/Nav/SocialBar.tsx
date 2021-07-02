@@ -1,5 +1,5 @@
+import { LanguageDropdown } from '@components/Dropdown/LanguageDropdown'
 import { Container } from '@components/UI/Container'
-import useTranslation from 'next-translate/useTranslation'
 import {
   FaFacebook,
   FaTwitter,
@@ -34,14 +34,6 @@ const socialNetworks = [
     url: 'ig',
     icon: FaInstagram,
   },
-  // {
-  //   url: 'yt',
-  //   icon: FaYoutube,
-  // },
-  // {
-  //   url: 'twitch',
-  //   icon: FaTwitch,
-  // },
 ]
 
 export const SocialIcons = () => {
@@ -57,12 +49,13 @@ export const SocialIcons = () => {
 }
 
 export const SocialBar = ({ ...props }) => {
-  const { t } = useTranslation('common')
-
   return (
     <div tw="top-0 w-full bg-gray-900 text-white py-2 items-center" {...props}>
       <Container tw="flex justify-between">
-        <div>{t('socialBar.english')}</div>
+        <div>
+          <LanguageDropdown />
+        </div>
+
         <div tw="flex space-x-4 items-center text-xl text-cyan-500">
           <SocialIcons />
         </div>
