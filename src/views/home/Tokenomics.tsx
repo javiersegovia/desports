@@ -28,7 +28,7 @@ export const Tokenomics = () => {
           <p tw="text-coolGray-300 mt-6 max-w-3xl mx-auto">{t`tokenomics.description`}</p>
         </div>
 
-        <div tw="relative block gap-0 lg:grid lg:gap-10 grid-flow-col grid-cols-[2.5fr 1.5fr] lg:space-x-10 max-h-full flex-1 pt-10 overflow-hidden">
+        <div tw="relative grid-auto-rows[100%] block gap-0 lg:grid lg:gap-10 grid-flow-col grid-cols-[2.5fr 1.5fr] lg:space-x-10 max-h-full flex-1 pt-10 overflow-hidden">
           <div tw="relative max-h-full overflow-hidden">
             <Accordion tw="lg:absolute lg:top-0" items={tokenomics} />
           </div>

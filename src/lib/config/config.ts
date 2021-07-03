@@ -19,6 +19,7 @@ export const config = {
     coingecko: '/coingecko',
     coinmarketcap: '/coinmarketcap',
   },
+  shop: '/',
   demoVideo: 'https://www.youtube.com/embed/ANDeiXFiYC4',
   languages: {
     es: 'Español',

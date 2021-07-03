@@ -13,11 +13,13 @@ import { routes } from '@lib/config/routes'
 import { Logo } from './Logo'
 import { SocialIcons } from './SocialBar'
 import useTranslation from 'next-translate/useTranslation'
+import { config } from '@lib/config/config'
 
 // This paths keys should map to the content of common:navBar.links
 const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
+  shop: config.shop,
   // blog: routes.blog,
 } as const
 
@@ -136,17 +138,25 @@ export const NavBar = () => {
                             </a>
                           </Link>
 
-                          {(index + 1) % 2 !== 0 && (
-                            <FrameDivider
-                              frameWidth={3}
-                              frameHeight={4}
-                              color={theme`colors.blueGray.500`}
-                              tw="lg:hidden col-span-2"
-                            />
-                          )}
+                          {(index + 1) % 2 !== 0 &&
+                            index !== Object.keys(paths).length - 1 && (
+                              <FrameDivider
+                                frameWidth={3}
+                                frameHeight={4}
+                                color={theme`colors.blueGray.500`}
+                                tw="lg:hidden col-span-2"
+                              />
+                            )}
                         </Fragment>
                       )
                     )}
+                    <FrameDivider
+                      frameWidth={3}
+                      frameHeight={4}
+                      color={theme`colors.blueGray.500`}
+                      tw="lg:hidden col-span-2"
+                    />
+
                     <div tw="col-span-2 flex pt-4 justify-center space-x-6 text-3xl text-cyan-400">
                       <SocialIcons />
                     </div>

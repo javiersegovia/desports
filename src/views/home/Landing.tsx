@@ -49,6 +49,21 @@ const StyledVideoThumbnail = styled.div<any>`
     height: 100%;
     position: absolute;
     content: '';
+    background-image: -moz-linear-gradient(
+      180deg,
+      rgba(255, 0, 0, 0) 0%,
+      ${theme`colors.gray.900`} 95%
+    );
+    background-image: -webkit-gradient(
+      180deg,
+      rgba(255, 0, 0, 0) 0%,
+      ${theme`colors.gray.900`} 95%
+    );
+    background-image: -webkit-linear-gradient(
+      180deg,
+      rgba(255, 0, 0, 0) 0%,
+      ${theme`colors.gray.900`} 95%
+    );
     background-image: linear-gradient(
       180deg,
       rgba(255, 0, 0, 0) 0%,
