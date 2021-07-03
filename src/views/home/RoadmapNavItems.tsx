@@ -1,40 +1,46 @@
 import { memo, RefObject, useEffect } from 'react'
 import { theme } from 'twin.macro'
-import { StageItem } from './StageItem'
-import { Container } from '@components/UI/Container'
-import useTranslation from 'next-translate/useTranslation'
-import { useAppSelector } from '@lib/redux/hooks'
 import { gsap } from 'gsap'
-
+import useTranslation from 'next-translate/useTranslation'
+import { Container } from '@components/UI/Container'
+import { StageItem } from './StageItem'
+import { useAppSelector } from '@lib/redux/hooks'
+import { squareClipPath } from '@components/UI/Frames/SquareFrame'
+import { IStage } from './StageFullPage'
 import {
   clipPathV1,
   clipPathV3,
   clipPathV4,
 } from '@components/UI/Frames/MiniFrames'
-import { squareClipPath } from '@components/UI/Frames/SquareFrame'
-import { IStage } from './StageFullPage'
+import {
+  selectAnimationSpeed,
+  selectFooterSection,
+  selectNavPosition,
+  selectStage1Section,
+  selectStage2Section,
+  selectStage3Section,
+} from '@lib/redux/slices/navSlice'
 
 const navClipPaths = [clipPathV1, clipPathV3, clipPathV4]
 
 export interface RoadmapNavItemsProps {
   navigate: (index: number) => void
   stageRefs: RefObject<HTMLDivElement>[]
-  shouldMorph?: boolean
 }
 
 export const RoadmapNavItems = memo(
-  ({ navigate, stageRefs, shouldMorph = false }: RoadmapNavItemsProps) => {
+  ({ navigate, stageRefs }: RoadmapNavItemsProps) => {
     const { t } = useTranslation('roadmap')
 
-    const animationSpeed = useAppSelector(
-      (state) => state.screenAnimation.animationSpeed
-    )
-    const activeSection = useAppSelector(
-      (state) => state.screenAnimation.activeSection
-    )
+    const animationSpeed = useAppSelector(selectAnimationSpeed)
+    const stage1Section = useAppSelector(selectStage1Section)
+    const stage2Section = useAppSelector(selectStage2Section)
+    const stage3Section = useAppSelector(selectStage3Section)
+    const footerSection = useAppSelector(selectFooterSection)
+    const navPosition = useAppSelector(selectNavPosition)
 
     useEffect(() => {
-      if (activeSection?.name === 'footer') return
+      const shouldMorph = navPosition === 'roadmap' || navPosition === 'footer'
 
       // Entering Roadmap
       if (shouldMorph) {
@@ -69,7 +75,7 @@ export const RoadmapNavItems = memo(
           })
         })
       }
-    }, [shouldMorph, animationSpeed, stageRefs])
+    }, [navPosition, animationSpeed, stageRefs, footerSection.isActive])
 
     const i18nStage1: IStage = t('stage1', null, { returnObjects: true })
     const i18nStage2: IStage = t('stage2', null, { returnObjects: true })
@@ -79,7 +85,6 @@ export const RoadmapNavItems = memo(
       <Container tw="mx-auto mt-auto">
         <div tw="flex items-center flex-1 justify-center">
           <StageItem
-            shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[0]}
             item={i18nStage1}
             imagePath="/images/stage1_iso.jpg"
@@ -87,10 +92,9 @@ export const RoadmapNavItems = memo(
             titleColor={theme`colors.blue.300`}
             bgColor={theme`colors.blue.300`}
             navigate={navigate}
-            isActive={activeSection?.name === 'stage1'}
+            isActive={stage1Section.isActive}
           />
           <StageItem
-            shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[1]}
             item={i18nStage2}
             imagePath="/images/stage2_iso.jpg"
@@ -98,10 +102,9 @@ export const RoadmapNavItems = memo(
             titleColor={theme`colors.purple.400`}
             bgColor={theme`colors.purple.400`}
             navigate={navigate}
-            isActive={activeSection?.name === 'stage2'}
+            isActive={stage2Section.isActive}
           />
           <StageItem
-            shouldMorph={shouldMorph || activeSection?.name === 'footer'}
             innerRef={stageRefs[2]}
             item={i18nStage3}
             imagePath="/images/stage3_iso.jpg"
@@ -109,7 +112,7 @@ export const RoadmapNavItems = memo(
             navigate={navigate}
             titleColor={theme`colors.red.600`}
             bgColor={theme`colors.red.600`}
-            isActive={activeSection?.name === 'stage3'}
+            isActive={stage3Section.isActive}
             isLocked
           />
         </div>

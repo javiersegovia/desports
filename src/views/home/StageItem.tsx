@@ -1,6 +1,6 @@
+/** @jsxImportSource @emotion/react */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/** @jsxImportSource @emotion/react */
 /* eslint-disable @next/next/no-img-element */
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
 import { useAppSelector } from '@lib/redux/hooks'
@@ -9,6 +9,11 @@ import tw from 'twin.macro'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import { Container } from '@components/UI/Container'
+import {
+  selectAnimationSpeed,
+  selectFooterSection,
+  selectNavPosition,
+} from '@lib/redux/slices/navSlice'
 
 interface IStageItem {
   title: string
@@ -26,7 +31,6 @@ interface StageItemProps {
   isActive?: boolean
   navigate: (index: number) => void
   isLocked?: boolean
-  shouldMorph?: boolean
   innerRef?: RefObject<HTMLDivElement>
 }
 
@@ -60,6 +64,7 @@ export const MobileStageItem = ({
       >
         <Image src={imagePath} alt={`Stage item`} tw="object-cover" />
       </SquareFrame>
+
       <div tw="w-7/12 sm:w-3/12 mt-4 font-mono uppercase font-bold transition-all duration-500 text-4xl ml-5">
         <h4>{item.title}</h4>
         <h5 tw="mt-2" style={{ color: titleColor }}>
@@ -80,7 +85,6 @@ export const StageItem = memo(
     isActive,
     navigate,
     isLocked = false,
-    shouldMorph = false,
     innerRef,
     ...otherProps
   }: StageItemProps) => {
@@ -90,12 +94,11 @@ export const StageItem = memo(
 
     const imageOpacity = isLocked ? LOCKED_OPACITY : 1
 
-    const animationSpeed = useAppSelector(
-      (state) => state.screenAnimation.animationSpeed
-    )
-    const oldSection = useAppSelector(
-      (state) => state.screenAnimation.oldSection
-    )
+    const animationSpeed = useAppSelector(selectAnimationSpeed)
+    const navPosition = useAppSelector(selectNavPosition)
+    const footerSection = useAppSelector(selectFooterSection)
+
+    const shouldMorph = navPosition === 'roadmap' || navPosition === 'footer'
 
     useEffect(() => {
       // Entering Roadmap
@@ -121,7 +124,7 @@ export const StageItem = memo(
         })
 
         // Leaving roadmap
-      } else if (oldSection?.name !== 'footer') {
+      } else {
         gsap.to(buttonContentRef.current, {
           ease: 'power2.inOut',
           autoAlpha: 0,
@@ -140,8 +143,7 @@ export const StageItem = memo(
           duration: animationSpeed * 1.5,
         })
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [shouldMorph, animationSpeed, imageOpacity])
+    }, [shouldMorph, animationSpeed, imageOpacity, footerSection])
 
     return (
       <button

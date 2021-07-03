@@ -1,44 +1,64 @@
+import { gsap } from 'gsap'
+import { useEffect, useRef } from 'react'
 import { NavBar } from '@components/Nav/NavBar'
 import { SocialBar } from '@components/Nav/SocialBar'
 import { useAppDispatch, useAppSelector } from '@lib/redux/hooks'
 import {
-  selectAnimation,
   selectAnimationSpeed,
+  selectNavPosition,
   selectShowNavbar,
   toggleShowNavbar,
 } from '@lib/redux/slices/navSlice'
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+// import { RootState } from '@lib/redux/store'
+
+// const selectFooterSection = (state: RootState) =>
+//   state.screenAnimation.sections.footer
+
+// const selectStage1Section = (state: RootState) =>
+//   state.screenAnimation.sections.stage1
+
+// const selectStage2Section = (state: RootState) =>
+//   state.screenAnimation.sections.stage2
+
+// const selectStage3Section = (state: RootState) =>
+//   state.screenAnimation.sections.stage3
 
 export const Nav = () => {
-  const speed = useAppSelector(selectAnimationSpeed)
-  const showNavbar = useAppSelector(selectShowNavbar)
   const navbarRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
-  const state = useAppSelector(selectAnimation)
+
+  const speed = useAppSelector(selectAnimationSpeed)
+  const showNavbar = useAppSelector(selectShowNavbar)
+  const navPosition = useAppSelector(selectNavPosition)
 
   useEffect(() => {
     if (gsap.isTweening(navbarRef.current)) return
 
-    const isEnteringRoadmapOrFooter =
-      (state.navPosition === 'roadmap' || state.navPosition === 'footer') &&
-      !showNavbar
+    const isInsideRoadmapOrFooter =
+      navPosition === 'roadmap' || navPosition === 'footer'
 
-    const isLeavingRoadmapOrFooter =
-      state.navPosition !== 'roadmap' &&
-      state.navPosition !== 'footer' &&
-      showNavbar
+    /**
+    If both values are TRUE, it means that the user is
+    INSIDE Roadmap/Footer with showNav true, so we change to false (hidden).
 
-    // Entering Roadmap
-    if (isEnteringRoadmapOrFooter || isLeavingRoadmapOrFooter) {
+    If both values are FALSE, it means that the user is
+    OUTSIDE Roadmap/Footer with showNav false, so we change to true (visible).
+     */
+
+    console.log({ isInsideRoadmapOrFooter, showNavbar })
+
+    let show = showNavbar
+
+    if (isInsideRoadmapOrFooter === showNavbar) {
       dispatch(toggleShowNavbar())
-
-      gsap.to(navbarRef.current, {
-        yPercent: showNavbar ? 0 : -100,
-        duration: 0.25,
-      })
+      show = !showNavbar
     }
-  }, [showNavbar, speed, state.navPosition, dispatch])
+
+    gsap.to(navbarRef.current, {
+      yPercent: show ? 0 : -100,
+      duration: 0.25,
+    })
+  }, [showNavbar, speed, navPosition, dispatch])
 
   return (
     <>

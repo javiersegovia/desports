@@ -49,24 +49,28 @@ interface INavSection {
   index: number
   name: TNavSectionName
 }
-
-const sectionEvents: ISectionEvents = {
+const defaultEvents: ISectionEvents = {
   onLeave: null,
   onEnter: null,
   onEnterBack: null,
   onLeaveBack: null,
 }
 
-type Defaults = {
-  [k in TNavSectionName]: ISectionEvents
+interface ISection {
+  isActive: boolean
+  events: ISectionEvents
 }
 
-const sectionDefaults: Defaults = Object.values(mapIndexToSection).reduce(
+type ISectionsState = {
+  [k in TNavSectionName]: ISection
+}
+
+const sectionDefaults: ISectionsState = Object.values(mapIndexToSection).reduce(
   (total, sectionName) => {
-    total[sectionName] = sectionEvents
+    total[sectionName] = { isActive: false, events: defaultEvents }
     return total
   },
-  {} as Defaults
+  {} as ISectionsState
 )
 
 interface ISectionEvents {
@@ -77,8 +81,17 @@ interface ISectionEvents {
 }
 
 interface NavState {
-  // Core
+  // // Controls
+  // oldIndex: number
+  // activeIndex: number
+  // newIndex: number
+  // insideRoadmap: boolean
+  // lastY: number
+  // lastX: number
+  // offsetsY: number[]
+  // offsetsX: number[]
 
+  // Core
   animationSpeed: number
   oldSection: INavSection | null
   activeSection: INavSection | null
@@ -92,32 +105,28 @@ interface NavState {
     showSocialBar: boolean
     showRoadmapNav: boolean
     transformedRoadmapNav: boolean
+    transformedRoadmapNavIsHided: boolean
   }
 
   // Sections
 
-  sections: {
-    [k in TNavSectionName]: ISectionEvents
-  }
+  sections: ISectionsState
 
   // Events
-
-  events: {
-    onLeave: INavSection | null
-    onEnter: INavSection | null
-    onEnterBack: INavSection | null
-    onLeaveBack: INavSection | null
-  }
-}
-
-const defaultEvents = {
-  onLeave: null,
-  onEnter: null,
-  onEnterBack: null,
-  onLeaveBack: null,
 }
 
 export const animationDefaultState: NavState = {
+  // // Controls
+  // oldIndex: 0, // could be replaced by oldSection.index?
+  // activeIndex: 0, // could be replaced by activeSection.index?
+
+  // newIndex: 0, // could be local?
+  // insideRoadmap: false, // could be replaced by navPosition // local ?
+  // lastY = 0
+  // lastX = 0
+  // offsetsY: number[] = []
+  // offsetsX: number[] = []
+
   // Core
   animationSpeed: 0.75,
   oldSection: null,
@@ -132,14 +141,11 @@ export const animationDefaultState: NavState = {
     showSocialBar: true,
     showRoadmapNav: false,
     transformedRoadmapNav: false,
+    transformedRoadmapNavIsHided: false,
   },
 
   // Events
   sections: sectionDefaults,
-
-  events: {
-    ...defaultEvents,
-  },
 } as NavState
 
 const getSection = (index: number): INavSection => ({
@@ -165,18 +171,40 @@ const setCommonData = (
 
   // If advancing, we set the values of back events to null
   if (activeSection.index > oldSection.index) {
-    state.events = {
-      onEnter: activeSection,
-      onLeave: oldSection,
-      onEnterBack: null,
-      onLeaveBack: null,
+    state.sections = {
+      ...sectionDefaults,
+      [activeSection.name]: {
+        isActive: true,
+        events: {
+          ...defaultEvents,
+          onEnter: true,
+        },
+      },
+      [oldSection.name]: {
+        isActive: false,
+        events: {
+          ...defaultEvents,
+          onLeave: true,
+        },
+      },
     }
   } else {
-    state.events = {
-      onEnter: null,
-      onLeave: null,
-      onEnterBack: activeSection,
-      onLeaveBack: oldSection,
+    state.sections = {
+      ...sectionDefaults,
+      [activeSection.name]: {
+        isActive: true,
+        events: {
+          ...defaultEvents,
+          onEnterBack: true,
+        },
+      },
+      [oldSection.name]: {
+        isActive: false,
+        events: {
+          ...defaultEvents,
+          onLeaveBack: true,
+        },
+      },
     }
   }
 
@@ -223,6 +251,10 @@ export const screenAnimationSlice = createSlice({
     toggleTransformedRoadmapNav: (state) => {
       state.context.transformedRoadmapNav = !state.context.transformedRoadmapNav
     },
+    toggleTransformedRoadmapNavIsHided: (state) => {
+      state.context.transformedRoadmapNavIsHided =
+        !state.context.transformedRoadmapNavIsHided
+    },
 
     // Actions with side effects
 
@@ -245,6 +277,7 @@ export const {
   toggleShowRoadmapNav,
   toggleShowNavbar,
   toggleTransformedRoadmapNav,
+  toggleTransformedRoadmapNavIsHided,
   hideRoadmapNav,
   makeNavbarNotVisible,
   makeNavbarVisible,
@@ -263,13 +296,35 @@ export const selectAnimation = (state: RootState) => state.screenAnimation
 export const selectAnimationSpeed = (state: RootState) =>
   state.screenAnimation.animationSpeed
 
+export const selectContext = (state: RootState) => state.screenAnimation.context
+
+export const selectShowRoadmapNav = (state: RootState) =>
+  state.screenAnimation.context.showRoadmapNav
+
 export const selectShowNavbar = (state: RootState) =>
   state.screenAnimation.context.showNavbar
 
-export const selectAnimationEvents = (state: RootState) =>
-  state.screenAnimation.events
+export const selectNavPosition = (state: RootState) =>
+  state.screenAnimation.navPosition
 
 export const selectAnimationContext = (state: RootState) =>
   state.screenAnimation.context
 
 export const screenAnimationReducer = screenAnimationSlice.reducer
+
+// Select Sections
+
+export const selectBridgeSection = (state: RootState) =>
+  state.screenAnimation.sections.bridge
+
+export const selectStage1Section = (state: RootState) =>
+  state.screenAnimation.sections.stage1
+
+export const selectStage2Section = (state: RootState) =>
+  state.screenAnimation.sections.stage2
+
+export const selectStage3Section = (state: RootState) =>
+  state.screenAnimation.sections.stage3
+
+export const selectFooterSection = (state: RootState) =>
+  state.screenAnimation.sections.footer

@@ -18,14 +18,25 @@ export const isDesktop = () =>
   typeof window !== 'undefined' &&
   window.matchMedia(`(min-width: ${lgBreakpoint})`).matches
 
+// WE HAVE TO MOVE ALL OF THIS TO REDUX, SO WE CAN CONTROL THIS FROM ANYWHERE
+
 let oldIndex = 0
 let activeIndex = 0
-let newIndex: number
-let insideRoadmap: boolean
+let insideRoadmap = false
 let lastY = 0
 let lastX = 0
 let offsetsY: number[] = []
 let offsetsX: number[] = []
+
+export const resetControls = () => {
+  oldIndex = 0
+  activeIndex = 0
+  insideRoadmap = false
+  lastY = 0
+  lastX = 0
+  offsetsY = []
+  offsetsX = []
+}
 
 interface ScrollDirection {
   x: 'LEFT' | 'RIGHT' | null
@@ -71,7 +82,6 @@ export const useAnimations = () => {
   const dispatch = useAppDispatch()
 
   const scrollTimeline = useRef(gsap.timeline())
-  const navTimeline = useRef(gsap.timeline())
 
   interface ScreenAnimationProps {
     event: WheelEvent | TouchEvent | null
@@ -90,6 +100,8 @@ export const useAnimations = () => {
 
   const screenAnimation = useRef<SlideAnimationFunc>(
     throttle<SlideAnimationFunc>(({ event, source, direction, target }) => {
+      let newIndex: number
+
       if (gsap.isTweening(containerRef.current) || isAnimating.current) return
       if (target) {
         newIndex = target
@@ -195,11 +207,7 @@ export const useAnimations = () => {
       const shouldSetCustomCoords = isDesktop()
 
       if (!shouldSetCustomCoords && (activeIndex !== 0 || oldIndex !== 0)) {
-        activeIndex = 0
-        oldIndex = 0
-        lastY = 0
-        lastX = 0
-
+        resetControls()
         dispatch(resetState())
       }
 
@@ -265,14 +273,15 @@ export const useAnimations = () => {
     newSize()
 
     const scrollTL = scrollTimeline.current
-    const navTL = navTimeline.current
 
     return () => {
       // todo: do the dispatch "reset" here!
       // todo: refactor the STORE and make the roadmap animations independent
 
+      resetControls()
+      dispatch(resetState())
+
       scrollTL.kill()
-      navTL.kill()
       window.removeEventListener('wheel', wheelAnimation)
       window.removeEventListener('resize', newSize)
       window.removeEventListener('touchstart', onTouchStart)

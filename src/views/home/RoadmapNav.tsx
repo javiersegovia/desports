@@ -7,9 +7,15 @@ import useTranslation from 'next-translate/useTranslation'
 import { RoadmapNavItems, RoadmapNavItemsProps } from './RoadmapNavItems'
 import { useAppDispatch, useAppSelector } from '@lib/redux/hooks'
 import {
-  selectAnimation,
+  selectAnimationContext,
+  selectAnimationSpeed,
+  selectBridgeSection,
+  selectFooterSection,
+  selectNavPosition,
+  selectShowRoadmapNav,
   toggleShowRoadmapNav,
   toggleTransformedRoadmapNav,
+  toggleTransformedRoadmapNavIsHided,
 } from '@lib/redux/slices/navSlice'
 import { gsap } from 'gsap'
 
@@ -28,21 +34,23 @@ export const RoadmapNav = ({
 }: RoadmapProps) => {
   const { t } = useTranslation('home')
   const dispatch = useAppDispatch()
-  const state = useAppSelector(selectAnimation)
   const roadmapNavRef = useRef<HTMLDivElement>(null)
 
-  const {
-    context: { showRoadmapNav, transformedRoadmapNav },
-  } = state
+  const animationSpeed = useAppSelector(selectAnimationSpeed)
+  const animationContext = useAppSelector(selectAnimationContext)
+  const showRoadmapNav = useAppSelector(selectShowRoadmapNav)
+  const navPosition = useAppSelector(selectNavPosition)
+  const bridgeSection = useAppSelector(selectBridgeSection)
+  const footerSection = useAppSelector(selectFooterSection)
 
   useEffect(() => {
     // On enter animations (entering roadmap bridge)
-    if (state.events.onEnter?.name === 'bridge' && !showRoadmapNav) {
+    if (bridgeSection.events.onEnter && !showRoadmapNav) {
       dispatch(toggleShowRoadmapNav())
 
       gsap.to(roadmapWrapperRef.current, {
         delay: 0.1,
-        duration: state.animationSpeed * 1,
+        duration: animationSpeed * 1,
         ease: 'power2.inOut',
         yPercent: -100,
       })
@@ -52,44 +60,47 @@ export const RoadmapNav = ({
     if (
       roadmapWrapperRef.current &&
       showRoadmapNav &&
-      state.navPosition !== 'bridge' &&
-      state.navPosition !== 'roadmap' &&
-      state.navPosition !== 'footer'
+      navPosition !== 'bridge' &&
+      navPosition !== 'roadmap' &&
+      navPosition !== 'footer'
     ) {
       dispatch(toggleShowRoadmapNav())
-      // dispatch(hideRoadmapNav({ element: roadmapWrapperRef.current }))
 
       gsap.to(roadmapWrapperRef.current, {
-        duration: state.animationSpeed,
+        duration: animationSpeed,
         ease: 'power2.inOut',
         yPercent: 0,
       })
     }
 
     // OnLeave Roadmap Bridge
-    if (state.events.onLeave?.name === 'bridge' && showRoadmapNav) {
+    if (bridgeSection.events.onLeave && showRoadmapNav) {
       // Hides Roadmap title and text
       gsap.set(roadmapWrapperRef.current, {
         height: 'auto',
         minHeight: 'auto',
-        delay: state.animationSpeed,
+        delay: animationSpeed,
       })
 
       gsap.set(roadmapContentRef.current, {
         display: 'none',
-        delay: state.animationSpeed,
+        delay: animationSpeed,
       })
 
       gsap.to(roadmapContentRef.current, {
         xPercent: -100,
         autoAlpha: 0,
         ease: 'power2.inOut',
-        duration: state.animationSpeed,
+        duration: animationSpeed,
       })
     }
 
     // OnEnterBack Roadmap Bridge
-    if (state.events.onEnterBack?.name === 'bridge' && showRoadmapNav) {
+    if (
+      navPosition !== 'roadmap' &&
+      navPosition !== 'footer' &&
+      showRoadmapNav
+    ) {
       gsap.set(roadmapWrapperRef.current, {
         height: '100%',
         minHeight: '100vh',
@@ -104,79 +115,101 @@ export const RoadmapNav = ({
         xPercent: 0,
         autoAlpha: 1,
         ease: 'power2.inOut',
-        // !!!
-        delay: state.animationSpeed * 0.5,
-        duration: state.animationSpeed * 0.5,
+        delay: animationSpeed * 0.5,
+        duration: animationSpeed * 0.5,
       })
     }
 
     // Entering Footer
-    if (state.activeSection?.name === 'footer' && showRoadmapNav) {
+    if (footerSection.isActive && showRoadmapNav) {
       // Fix zIndex problem on footer
       gsap.set(roadmapWrapperRef.current, {
-        delay: state.animationSpeed,
+        delay: animationSpeed,
         height: 0,
         minHeight: 0,
       })
     }
 
-    // Leaving Footer
-    if (state.oldSection?.name === 'footer' && showRoadmapNav) {
+    // Footer onLeaveBack (back to Roadmap)
+    if (footerSection.events.onLeaveBack && showRoadmapNav) {
       gsap.set(roadmapWrapperRef.current, {
         height: 'auto',
         minHeight: 'auto',
       })
     }
 
-    // Entering Roadmap
+    // Entering Roadmap from Bridge
     if (
-      state.navPosition === 'roadmap' &&
-      !state.context.transformedRoadmapNav
+      navPosition === 'roadmap' &&
+      !animationContext.transformedRoadmapNav &&
+      !animationContext.transformedRoadmapNavIsHided
     ) {
       dispatch(toggleTransformedRoadmapNav())
-
-      if (state.oldSection?.name === 'footer') {
-        gsap.to(roadmapNavRef.current, {
-          yPercent: 0,
-          autoAlpha: 1,
-          ease: 'power2.inOut',
-          delay: state.animationSpeed * 0.25,
-          duration: state.animationSpeed * 0.5,
-        })
-      } else {
-        gsap.to(roadmapNavRef.current, {
-          marginTop: 'auto',
-          ease: 'power2.inOut',
-          delay: state.animationSpeed * 0.75,
-          duration: state.animationSpeed * 0.25,
-        })
-      }
+      gsap.to(roadmapNavRef.current, {
+        marginTop: 'auto',
+        ease: 'power2.inOut',
+        delay: animationSpeed * 0.75,
+        duration: animationSpeed * 0.25,
+      })
     }
 
-    // Leaving Roadmap
+    // TransformedRoadmap should be hided only on footer,
+    // this changes it back to normal
     if (
-      state.navPosition !== 'roadmap' &&
-      state.context.transformedRoadmapNav
+      animationContext.transformedRoadmapNav &&
+      animationContext.transformedRoadmapNavIsHided &&
+      navPosition !== 'footer'
+    ) {
+      dispatch(toggleTransformedRoadmapNavIsHided())
+      gsap.to(roadmapNavRef.current, {
+        yPercent: 0,
+        autoAlpha: 1,
+        ease: 'power2.inOut',
+        delay: animationSpeed * 0.25,
+        duration: animationSpeed * 0.5,
+      })
+    }
+
+    // If "transformedRoadmapNav" is true and user is NOT inside Roadmap or footer,
+    // set roadmapNav back to normal
+    if (
+      navPosition !== 'roadmap' &&
+      navPosition !== 'footer' &&
+      animationContext.transformedRoadmapNav
     ) {
       dispatch(toggleTransformedRoadmapNav())
-
-      if (state.navPosition === 'footer') {
-        gsap.to(roadmapNavRef.current, {
-          yPercent: 100,
-          autoAlpha: 0,
-          ease: 'power2.inOut',
-          duration: state.animationSpeed * 0.75,
-        })
-      } else {
-        gsap.to(roadmapNavRef.current, {
-          marginTop: 0,
-          ease: 'power2.inOut',
-          delay: state.animationSpeed * 0.5,
-          duration: state.animationSpeed * 0.5,
-        })
-      }
+      gsap.to(roadmapNavRef.current, {
+        marginTop: 0,
+        ease: 'power2.inOut',
+        delay: animationSpeed * 0.5,
+        duration: animationSpeed * 0.5,
+      })
     }
-  }, [state, dispatch, roadmapWrapperRef, roadmapContentRef, showRoadmapNav])
+
+    if (
+      navPosition === 'footer' &&
+      animationContext.transformedRoadmapNav &&
+      !animationContext.transformedRoadmapNavIsHided
+    ) {
+      dispatch(toggleTransformedRoadmapNavIsHided())
+      gsap.to(roadmapNavRef.current, {
+        yPercent: 100,
+        autoAlpha: 0,
+        ease: 'power2.inOut',
+        duration: animationSpeed * 0.75,
+      })
+    }
+  }, [
+    dispatch,
+    animationSpeed,
+    roadmapWrapperRef,
+    roadmapContentRef,
+    showRoadmapNav,
+    bridgeSection,
+    footerSection,
+    animationContext,
+    navPosition,
+  ])
 
   return (
     <>
@@ -192,11 +225,7 @@ export const RoadmapNav = ({
           </div>
         </Container>
         <div ref={roadmapNavRef} tw="w-full">
-          <RoadmapNavItems
-            navigate={navigate}
-            stageRefs={stageRefs}
-            shouldMorph={transformedRoadmapNav}
-          />
+          <RoadmapNavItems navigate={navigate} stageRefs={stageRefs} />
         </div>
       </FullScreen>
     </>
