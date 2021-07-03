@@ -268,6 +268,9 @@ export const useAnimations = () => {
     const navTL = navTimeline.current
 
     return () => {
+      // todo: do the dispatch "reset" here!
+      // todo: refactor the STORE and make the roadmap animations independent
+
       scrollTL.kill()
       navTL.kill()
       window.removeEventListener('wheel', wheelAnimation)

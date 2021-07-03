@@ -7,26 +7,26 @@ import { FrameShadowColor, FrameProps } from '.'
 const shapeSize = '10px'
 
 export const squareClipPath = `polygon(
-  0px 10%,
-  10% 0,
-  60% 0,
-  62% min(${shapeSize}, 2%),
-  78% min(${shapeSize}, 2%),
-  80% 0%,
-  90% 0%,
-  100% 10%,
-  100% 90%,
-  90% 100%,
+  0px 1.5rem,
+  1.5rem 0,
+  calc(62% - .75rem) 0,
+  62% max(${shapeSize}, 2%),
+  calc(80% - .75rem) max(${shapeSize}, 2%),
+  80% 0,
+  calc(100% - 1.5rem) 0,
+  100% 1.5rem,
+  100% calc(100% - 1.5rem),
+  calc(100% - 1.5rem) 100%,
   80% 100%,
-  78% min(calc(100% - ${shapeSize}), 100%),
-  22% min(calc(100% - ${shapeSize})),
-  20% 100%,
-  10% 100%,
-  0% 90%,
-  0% 45%,
-  min(${shapeSize}, 2%) 43%,
-  min(${shapeSize}, 2%) 22%,
-  0% 20%
+  calc(80% - .75rem) min(calc(100% - ${shapeSize}), 98%),
+  22% min(calc(100% - ${shapeSize}), 98%),
+  calc(22% - .75rem) 100%,
+  1.5rem 100%,
+  0 calc(100% - 1.5rem),
+  0 65%,
+  min(${shapeSize}, 2%) 63%,
+  min(${shapeSize}, 2%) 32%,
+  0 30%
 )`
 
 const StyledFrame = styled.div<{ shadowColor?: FrameShadowColor }>`

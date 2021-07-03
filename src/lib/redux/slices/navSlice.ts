@@ -43,11 +43,37 @@ const mapIndexToNavPosition: { [key: number]: TNavPosition } = {
   6: 'roadmap',
   7: 'roadmap',
   8: 'footer',
-}
+} as const
 
 interface INavSection {
   index: number
   name: TNavSectionName
+}
+
+const sectionEvents: ISectionEvents = {
+  onLeave: null,
+  onEnter: null,
+  onEnterBack: null,
+  onLeaveBack: null,
+}
+
+type Defaults = {
+  [k in TNavSectionName]: ISectionEvents
+}
+
+const sectionDefaults: Defaults = Object.values(mapIndexToSection).reduce(
+  (total, sectionName) => {
+    total[sectionName] = sectionEvents
+    return total
+  },
+  {} as Defaults
+)
+
+interface ISectionEvents {
+  onLeave: boolean | null
+  onEnter: boolean | null
+  onEnterBack: boolean | null
+  onLeaveBack: boolean | null
 }
 
 interface NavState {
@@ -68,6 +94,12 @@ interface NavState {
     transformedRoadmapNav: boolean
   }
 
+  // Sections
+
+  sections: {
+    [k in TNavSectionName]: ISectionEvents
+  }
+
   // Events
 
   events: {
@@ -76,6 +108,13 @@ interface NavState {
     onEnterBack: INavSection | null
     onLeaveBack: INavSection | null
   }
+}
+
+const defaultEvents = {
+  onLeave: null,
+  onEnter: null,
+  onEnterBack: null,
+  onLeaveBack: null,
 }
 
 export const animationDefaultState: NavState = {
@@ -96,12 +135,10 @@ export const animationDefaultState: NavState = {
   },
 
   // Events
+  sections: sectionDefaults,
 
   events: {
-    onLeave: null,
-    onEnter: null,
-    onEnterBack: null,
-    onLeaveBack: null,
+    ...defaultEvents,
   },
 } as NavState
 
@@ -174,6 +211,12 @@ export const screenAnimationSlice = createSlice({
     toggleShowRoadmapNav: (state) => {
       state.context.showRoadmapNav = !state.context.showRoadmapNav
     },
+    makeNavbarNotVisible: (state) => {
+      state.context.showNavbar = false
+    },
+    makeNavbarVisible: (state) => {
+      state.context.showNavbar = true
+    },
     toggleShowNavbar: (state) => {
       state.context.showNavbar = !state.context.showNavbar
     },
@@ -203,6 +246,8 @@ export const {
   toggleShowNavbar,
   toggleTransformedRoadmapNav,
   hideRoadmapNav,
+  makeNavbarNotVisible,
+  makeNavbarVisible,
 } = screenAnimationSlice.actions
 
 export const transitionActions = {

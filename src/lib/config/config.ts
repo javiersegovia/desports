@@ -13,6 +13,7 @@ export const config = {
   },
   email: {
     info: 'info@desports.network',
+    careers: 'careers@desports.network',
   },
   trackers: {
     bscscan: '/bscscan',

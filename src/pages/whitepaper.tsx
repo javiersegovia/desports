@@ -3,14 +3,13 @@ import { Container } from '@components/UI/Container'
 import { Title } from '@components/UI/Title'
 import { NavSpacer } from '@components/Nav/NavSpacer'
 import useTranslation from 'next-translate/useTranslation'
-import tw, { styled, theme } from 'twin.macro'
+import { styled, theme } from 'twin.macro'
+import Image from 'next/image'
 import { IStage } from '../views/home/StageFullPage'
+import bgImg from '@public/images/background-final.jpg'
 
-const StyledBackground = styled.div`
-  background-image: url('/images/background-final.jpg');
+const StyledBackground = styled(Image)`
   filter: brightness(30%);
-
-  ${tw`fixed inset-0 bg-cover bg-fixed bg-center z-index[-1]`}
 `
 
 // TODO: Split the contents of this page between multiple ones in @views/whitepaper
@@ -100,7 +99,9 @@ const WhitepaperPage = () => {
 
   return (
     <>
-      <StyledBackground />
+      <div tw="fixed w-full h-full z-index[-1]">
+        <StyledBackground src={bgImg} layout="fill" objectFit="cover" />
+      </div>
       <div>
         <NavSpacer />
         <Container tw="mx-auto mt-10">

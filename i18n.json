@@ -2,8 +2,9 @@
   "locales": ["en", "es"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["common"],
+    "*": ["common", "error"],
     "/": ["home", "roadmap"],
-    "/whitepaper": ["whitepaper", "roadmap"]
+    "/whitepaper": ["whitepaper", "roadmap"],
+    "/team": ["team"]
   }
 }
