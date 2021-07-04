@@ -9,7 +9,6 @@ import { Provider } from 'react-redux'
 import { store } from '@lib/redux/store'
 import tw, { styled } from 'twin.macro'
 import { useRouter } from 'next/router'
-import { routes } from '@lib/config/routes'
 
 const dummyArray = Array.from({ length: 20 })
 
@@ -22,7 +21,7 @@ const theme = {
 }
 
 const StyledGlitchBox = styled.div`
-  opacity: 0.6;
+  opacity: 0.3;
   background-attachment: fixed;
   background-blend-mode: overlay;
   filter: hue-rotate(50deg);
@@ -35,11 +34,11 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
     let interval: NodeJS.Timeout
 
     if (tick <= 30) {
-      interval = setInterval(() => setTick((prev) => prev + 1), 20)
+      interval = setInterval(() => setTick((prev) => prev + 1), 30)
     }
 
     return () => {
-      clearInterval(interval)
+      interval && clearInterval(interval)
     }
   }, [tick])
 
@@ -53,8 +52,8 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
           style={{
             left: Math.floor(Math.random() * 100) + 'vw',
             top: Math.floor(Math.random() * 100) + 'vh',
-            width: Math.floor(Math.random() * 200) + 'px',
-            height: Math.floor(Math.random() * 40) + 'px',
+            width: Math.floor(Math.random() * 300) + 'px',
+            height: Math.floor(Math.random() * 50) + 'px',
             backgroundImage: bgPath,
           }}
         />
@@ -75,17 +74,24 @@ export const Layout = ({ children }: LayoutProps) => {
   const [showGlitch, setShowGlitch] = useState(false)
   const router = useRouter()
 
-  let bgPath = 'url(/images/home_bg-min.jpeg)'
-
-  if (router.pathname !== routes.home) {
-    bgPath = 'url(/images/background-final.jpg)'
-  }
+  const bgPath = 'url(/images/background-final.jpg)'
 
   useEffect(() => {
-    router.events.on('routeChangeStart', () => setShowGlitch(true))
-    router.events.on('routeChangeComplete', () => setShowGlitch(false))
-    router.events.on('routeChangeError', () => setShowGlitch(false))
+    router.events.on('routeChangeComplete', () => setShowGlitch(true))
+    router.events.on('routeChangeError', () => setShowGlitch(true))
   }, [router.events])
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+
+    if (showGlitch) {
+      interval = setInterval(() => setShowGlitch(false), 250)
+    }
+
+    return () => {
+      interval && clearInterval(interval)
+    }
+  }, [showGlitch])
 
   return (
     <Provider store={store}>
