@@ -35,6 +35,7 @@ const paths = {
 
 const StyledTransitions = styled.div`
   .enter {
+    -webkit-transition: opacity 450ms ease-in-out, max-height 300ms ease-out;
     transition: opacity 450ms ease-in-out, max-height 300ms ease-out;
   }
 
@@ -81,7 +82,10 @@ export const NavBar = () => {
 
   return (
     <>
-      <div tw="w-full bg-gray-800 text-white py-2 items-center shadow">
+      <div
+        ref={dropdownRef}
+        tw="w-full bg-gray-800 text-white py-2 items-center shadow"
+      >
         <Container tw="flex items-center">
           <Link href="/" passHref>
             <a>
@@ -126,12 +130,8 @@ export const NavBar = () => {
           </button>
         </Container>
 
-        {dropdownNavIsOpen && (
-          <div tw="z-index[-1] fixed min-h-screen inset-0 bg-gray-900 bg-opacity-70" />
-        )}
-
         {/* Mobile Navigation */}
-        <StyledTransitions tw="z-10" ref={dropdownRef}>
+        <StyledTransitions tw="z-10">
           <Transition
             as={Fragment}
             show={dropdownNavIsOpen}
@@ -188,6 +188,10 @@ export const NavBar = () => {
           </Transition>
         </StyledTransitions>
       </div>
+
+      {dropdownNavIsOpen && (
+        <div tw="z-index[-1] fixed min-h-screen inset-0 bg-gray-900 bg-opacity-70" />
+      )}
 
       <TrackersModal isOpen={trackersModalIsOpen} close={closeTrackersModal} />
     </>

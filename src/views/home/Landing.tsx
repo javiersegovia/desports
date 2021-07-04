@@ -41,7 +41,7 @@ const StyledVideoFrame = styled.div`
 `
 
 const StyledVideoThumbnail = styled.div<any>`
-  background: url('/images/background-final.jpg');
+  background-image: url('/images/background-final.jpg');
   ${tw`bg-cover bg-no-repeat bg-center relative`}
 
   &:after {
@@ -49,22 +49,22 @@ const StyledVideoThumbnail = styled.div<any>`
     height: 100%;
     position: absolute;
     content: '';
-    background-image: -moz-linear-gradient(
+    background: -moz-linear-gradient(
       180deg,
       rgba(255, 0, 0, 0) 0%,
       ${theme`colors.gray.900`} 95%
     );
-    background-image: -webkit-gradient(
+    background: -webkit-gradient(
       180deg,
       rgba(255, 0, 0, 0) 0%,
       ${theme`colors.gray.900`} 95%
     );
-    background-image: -webkit-linear-gradient(
+    background: -webkit-linear-gradient(
       180deg,
       rgba(255, 0, 0, 0) 0%,
       ${theme`colors.gray.900`} 95%
     );
-    background-image: linear-gradient(
+    background: linear-gradient(
       180deg,
       rgba(255, 0, 0, 0) 0%,
       ${theme`colors.gray.900`} 95%

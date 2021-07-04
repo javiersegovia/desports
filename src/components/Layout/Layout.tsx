@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import { store } from '@lib/redux/store'
 import tw, { styled } from 'twin.macro'
 import { useRouter } from 'next/router'
+import { routes } from '@lib/config/routes'
 
 const dummyArray = Array.from({ length: 20 })
 
@@ -74,8 +75,6 @@ export const Layout = ({ children }: LayoutProps) => {
   const [showGlitch, setShowGlitch] = useState(false)
   const router = useRouter()
 
-  const bgPath = 'url(/images/background-final.jpg)'
-
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setShowGlitch(true))
     router.events.on('routeChangeError', () => setShowGlitch(true))
@@ -98,8 +97,12 @@ export const Layout = ({ children }: LayoutProps) => {
       <ThemeProvider theme={theme}>
         <Nav />
         <GlobalStyles />
-        {showGlitch && <GlitchEffect bgPath={bgPath} />}
-        {showGlitch && <StyledTransition />}
+        {showGlitch && (
+          <>
+            <GlitchEffect bgPath="url(/images/background-final.jpg)" />
+            <StyledTransition />
+          </>
+        )}
         {children}
       </ThemeProvider>
     </Provider>

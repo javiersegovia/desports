@@ -160,7 +160,7 @@ export const useAnimations = () => {
           animationSpeed: TRANSITION_SPEED,
         })
       )
-    }, TRANSITION_SPEED * 0.5)
+    }, TRANSITION_SPEED * 1.25)
   )
 
   useEffect(() => {
