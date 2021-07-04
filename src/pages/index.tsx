@@ -15,10 +15,10 @@ import { NavSpacer } from '@components/Nav/NavSpacer'
 import { MobileRoadmap } from '../views/home/MobileRoadmap'
 import { up } from 'styled-breakpoints'
 import { Global, css } from '@emotion/react'
+import { useEffect } from 'react'
 
 const styles = css`
-  html,
-  body {
+  body.home {
     ${tw`overflow-visible lg:overflow-hidden`}
 
     ${up('lg')} {
@@ -47,6 +47,14 @@ export default function Home() {
     stage2NavRef,
     stage3NavRef,
   } = useAnimations()
+
+  useEffect(() => {
+    document.querySelector('body')?.classList.add('home')
+
+    return () => {
+      document.querySelector('body')?.classList.remove('home')
+    }
+  }, [])
 
   return (
     <>

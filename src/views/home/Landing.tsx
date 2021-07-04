@@ -107,6 +107,7 @@ const PrizePool = ({ ...props }) => {
       <GiTrophyCup tw="text-yellow-400 inline-block lg:hidden text-5xl mr-2" />
       <div tw="font-mono font-bold uppercase">
         <h4 tw="text-sm lg:text-base letter-spacing[1px]">
+          {/* todo: translate */}
           Competitions Prize Pool
         </h4>
         <div tw="text-yellow-400 text-xl lg:text-3xl xl:text-4xl lg:mt-2">
