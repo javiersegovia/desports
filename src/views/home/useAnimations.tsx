@@ -19,31 +19,30 @@ export const isDesktop = () =>
   window.matchMedia(`(min-width: ${lgBreakpoint})`).matches
 
 // WE HAVE TO MOVE ALL OF THIS TO REDUX, SO WE CAN CONTROL THIS FROM ANYWHERE
-
-let oldIndex = 0
-let activeIndex = 0
-let insideRoadmap = false
-let lastY = 0
-let lastX = 0
-let offsetsY: number[] = []
-let offsetsX: number[] = []
-
-export const resetControls = () => {
-  oldIndex = 0
-  activeIndex = 0
-  insideRoadmap = false
-  lastY = 0
-  lastX = 0
-  offsetsY = []
-  offsetsX = []
-}
-
 interface ScrollDirection {
   x: 'LEFT' | 'RIGHT' | null
   y: 'UP' | 'DOWN' | null
 }
 
 export const useAnimations = () => {
+  const oldIndex = useRef(0)
+  const activeIndex = useRef(0)
+  const insideRoadmap = useRef(false)
+  const lastY = useRef(0)
+  const lastX = useRef(0)
+  const offsetsY = useRef<number[]>([])
+  const offsetsX = useRef<number[]>([])
+
+  const resetControls = () => {
+    oldIndex.current = 0
+    activeIndex.current = 0
+    insideRoadmap.current = false
+    lastY.current = 0
+    lastX.current = 0
+    offsetsY.current = []
+    offsetsX.current = []
+  }
+
   const wrapperRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const landingRef = useRef<HTMLDivElement>(null)
@@ -97,46 +96,47 @@ export const useAnimations = () => {
   const maxIndex = sections.length - 1
 
   const isAnimating = useRef(false)
+  let newIndex: number
 
   const screenAnimation = useRef<SlideAnimationFunc>(
     throttle<SlideAnimationFunc>(({ event, source, direction, target }) => {
-      let newIndex: number
-
       if (gsap.isTweening(containerRef.current) || isAnimating.current) return
       if (target) {
         newIndex = target
-        if (activeIndex === newIndex) return
+        if (activeIndex.current === newIndex) return
       } else {
         const { x } = direction || {}
         let { y } = direction || {}
 
         // In wheel events we need to update the direction
         if (event instanceof WheelEvent) y = event.deltaY > 0 ? 'DOWN' : 'UP'
-        if (activeIndex > lastIndexY) insideRoadmap = true
-        else insideRoadmap = false
+        if (activeIndex.current > lastIndexY) insideRoadmap.current = true
+        else insideRoadmap.current = false
 
         const shouldAdvance = insideRoadmap && x ? x === 'LEFT' : y === 'DOWN'
-        newIndex = shouldAdvance ? activeIndex + 1 : activeIndex - 1
+        newIndex = shouldAdvance
+          ? activeIndex.current + 1
+          : activeIndex.current - 1
 
         if (newIndex < 0) newIndex = 0
         if (newIndex > maxIndex) newIndex = maxIndex
 
-        if (activeIndex === newIndex) return
+        if (activeIndex.current === newIndex) return
 
         // TRANSITION FROM VERTICAL SLIDER TO HORIZONTAL SLIDER
-        if (sections[newIndex] === sections[activeIndex]) {
+        if (sections[newIndex] === sections[activeIndex.current]) {
           newIndex = shouldAdvance ? newIndex + 1 : newIndex - 1
         }
       }
 
-      oldIndex = activeIndex
-      activeIndex = newIndex
+      oldIndex.current = activeIndex.current
+      activeIndex.current = newIndex
 
-      if (activeIndex < ySections.current.length) {
-        lastY = offsetsY[activeIndex]
-      } else if (activeIndex <= maxIndex) {
-        const xIndex = activeIndex - ySections.current.length
-        lastX = offsetsX[xIndex]
+      if (activeIndex.current < ySections.current.length) {
+        lastY.current = offsetsY.current[activeIndex.current]
+      } else if (activeIndex.current <= maxIndex) {
+        const xIndex = activeIndex.current - ySections.current.length
+        lastX.current = offsetsX.current[xIndex]
       }
 
       // Increase the animationSpeed in touch devices
@@ -144,8 +144,8 @@ export const useAnimations = () => {
 
       scrollTimeline.current.to(containerRef.current, {
         duration: TRANSITION_SPEED,
-        x: lastX,
-        y: lastY,
+        x: lastX.current,
+        y: lastY.current,
         ease: 'power2.inOut',
 
         onComplete: () => {
@@ -155,77 +155,80 @@ export const useAnimations = () => {
 
       dispatch(
         transitionActions[source]({
-          oldIndex,
-          activeIndex,
+          oldIndex: oldIndex.current,
+          activeIndex: activeIndex.current,
           animationSpeed: TRANSITION_SPEED,
         })
       )
     }, TRANSITION_SPEED * 1.35)
   )
 
-  useEffect(() => {
+  function newSize() {
     const xContainer = roadmapContainerRef.current as HTMLDivElement
     const container = containerRef.current as HTMLDivElement
 
-    function newSize() {
-      offsetsY = []
-      offsetsX = []
+    offsetsY.current = []
+    offsetsX.current = []
 
-      for (const ySection of ySections.current) {
-        ySection.current && offsetsY.push(-ySection.current.offsetTop)
-      }
-
-      xSections.current.forEach((xSection) => {
-        if (!xSection.current) return
-
-        const elementOffsetLeft = xSection.current.offsetLeft
-
-        // This is done to be able to "Nest" multiple full-screen sections
-        if (
-          xSection.current.parentElement &&
-          !xSection.current.parentElement.isSameNode(xContainer) &&
-          !xSection.current.isSameNode(xContainer)
-        ) {
-          offsetsX.push(
-            -(xSection.current.parentElement.offsetLeft + elementOffsetLeft)
-          )
-        } else {
-          offsetsX.push(-elementOffsetLeft)
-        }
-      })
-
-      const xIndex = activeIndex - ySections.current.length
-
-      if (activeIndex < ySections.current.length) {
-        lastY = offsetsY[activeIndex]
-        lastX = 0
-      } else {
-        lastY = offsetsY[offsetsY.length - 1]
-        lastX = offsetsX[xIndex]
-      }
-
-      const shouldSetCustomCoords = isDesktop()
-
-      if (!shouldSetCustomCoords && (activeIndex !== 0 || oldIndex !== 0)) {
-        resetControls()
-        dispatch(resetState())
-      }
-
-      gsap.set(container, {
-        y: shouldSetCustomCoords ? lastY : 0,
-        x: shouldSetCustomCoords ? lastX : 0,
-        rotation: 0.001,
-      })
+    for (const ySection of ySections.current) {
+      ySection.current && offsetsY.current.push(-ySection.current.offsetTop)
     }
+
+    xSections.current.forEach((xSection) => {
+      if (!xSection.current) return
+
+      const elementOffsetLeft = xSection.current.offsetLeft
+
+      // This is done to be able to "Nest" multiple full-screen sections
+      if (
+        xSection.current.parentElement &&
+        !xSection.current.parentElement.isSameNode(xContainer) &&
+        !xSection.current.isSameNode(xContainer)
+      ) {
+        offsetsX.current.push(
+          -(xSection.current.parentElement.offsetLeft + elementOffsetLeft)
+        )
+      } else {
+        offsetsX.current.push(-elementOffsetLeft)
+      }
+    })
+
+    const xIndex = activeIndex.current - ySections.current.length
+
+    if (activeIndex.current < ySections.current.length) {
+      lastY.current = offsetsY.current[activeIndex.current]
+      lastX.current = 0
+    } else {
+      lastY.current = offsetsY.current[offsetsY.current.length - 1]
+      lastX.current = offsetsX.current[xIndex]
+    }
+
+    const shouldSetCustomCoords = isDesktop()
+
+    if (
+      !shouldSetCustomCoords &&
+      (activeIndex.current !== 0 || oldIndex.current !== 0)
+    ) {
+      resetControls()
+      dispatch(resetState())
+    }
+
+    gsap.set(container, {
+      y: shouldSetCustomCoords ? lastY.current : 0,
+      x: shouldSetCustomCoords ? lastX.current : 0,
+      rotation: 0.001,
+    })
+  }
+
+  useEffect(() => {
+    let touchStartY: number
+    let touchStartX: number
 
     const throttledAnim = throttle(
       (event: TouchEvent, direction: ScrollDirection) =>
         screenAnimation.current({ event, source: 'TOUCH', direction }),
       TRANSITION_SPEED
     )
-
-    let touchStartY: number
-    let touchStartX: number
 
     const onTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY
@@ -296,8 +299,20 @@ export const useAnimations = () => {
     })
   }
 
+  const goToStart = () => {
+    resetControls()
+    dispatch(resetState())
+    newSize()
+
+    gsap.set(containerRef.current, {
+      y: 0,
+      x: 0,
+    })
+  }
+
   return {
     navigate,
+    goToStart,
     wrapperRef,
     containerRef,
     landingRef,

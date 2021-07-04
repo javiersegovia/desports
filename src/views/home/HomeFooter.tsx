@@ -29,7 +29,7 @@ const StyledGeometricBackground = styled.div`
     43% 20%
   );
 
-  background: url('/images/home_bg.jpeg');
+  background: url('/images/home_bg.jpg');
 
   ${tw`bg-right-bottom bg-no-repeat bg-cover absolute w-1/2 right-0 bottom-0 top-0 opacity-40`}
 `
@@ -72,15 +72,8 @@ const StyledContainer = styled(Container)`
   }
 `
 
-// todo: remove
-// const StyledMobileBackgroundTop = styled.div`
-//   background: url('/images/home_bg.jpeg');
-
-//   ${tw`opacity-30 lg:hidden absolute bg-left-top top-0 w-full h-1/2 bg-cover`}
-// `
-
 const StyledMobileBackgroundBottom = styled.div`
-  background: url('/images/home_bg.jpeg');
+  background: url('/images/home_bg.jpg');
 
   ${tw`opacity-20 lg:hidden absolute bg-right-bottom bottom-0 w-full h-1/2 bg-cover`}
 `
@@ -88,7 +81,11 @@ const StyledMobileBackgroundBottom = styled.div`
 const presaleDate = new Date()
 const launchDate = new Date()
 
-export const HomeFooter = () => {
+interface HomeFooterProps {
+  goToStart: () => void
+}
+
+export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
   const { t } = useTranslation('common')
 
   return (
@@ -141,7 +138,9 @@ export const HomeFooter = () => {
           <DeSportsFooterLogo tw="lg:hidden absolute top-[-100px]" />
 
           <ul tw="flex justify-between sm:justify-around lg:justify-start lg:space-x-10 items-center">
-            <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
+            <button type="button" onClick={goToStart}>
+              <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
+            </button>
             <div className="space-y-3 lg:space-y-0">
               <li>
                 <Link href="/whitepaper">{t`shared.whitepaper`}</Link>
@@ -183,7 +182,7 @@ export const HomeFooter = () => {
         </footer>
 
         <div tw="hidden lg:flex absolute bottom-20 right-0 text-coolGray-300 z-10 space-x-6 lg:text-4xl">
-          <SocialIcons />
+          <SocialIcons tw="hover:text-cyan-400" />
         </div>
       </StyledContainer>
 

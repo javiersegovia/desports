@@ -5,11 +5,14 @@ import { Container } from '@components/UI/Container'
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
 import { Title } from '@components/UI/Title'
 import useTranslation from 'next-translate/useTranslation'
+import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
+import bgImg from '@public/images/tokenomics_background.webp'
 
-const StyledBackground = styled.div`
-  background: url('/images/tokenomics_background.png');
-  ${tw`absolute z-index[-1] bg-contain bg-center bg-no-repeat opacity[.1] w-full h-full`}
+const StyledBackground = styled(Image)`
+  ${tw`absolute z-index[-1] bg-contain bg-center bg-no-repeat w-full h-full opacity-[.15]`}
+  mix-blend-mode: color-dodge;
+  filter: brightness(50%);
 `
 
 export const Tokenomics = () => {
@@ -17,9 +20,15 @@ export const Tokenomics = () => {
   const tokenomics: IAccordionItem[] = t('tokenomics.list', null, {
     returnObjects: true,
   })
+
   return (
     <>
-      <StyledBackground tw="bg-top lg:bg-center" />
+      <StyledBackground
+        src={bgImg}
+        tw="bg-top lg:bg-center"
+        layout="fill"
+        objectFit="contain"
+      />
       <NavSpacer tw="hidden lg:block" />
 
       <Container tw="mt-10 lg:mt-0 mx-auto flex flex-col max-h-full flex-1">

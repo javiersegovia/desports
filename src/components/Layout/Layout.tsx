@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
 import { Nav } from '@components/Nav'
 import defaultTheme from 'tailwindcss/defaultTheme'
@@ -9,6 +9,10 @@ import { Provider } from 'react-redux'
 import { store } from '@lib/redux/store'
 import tw, { styled } from 'twin.macro'
 import { useRouter } from 'next/router'
+import NProgress from 'nprogress'
+
+const PROGRESS_BAR_DELAY = 500
+const GLITCH_EFFECT_DURATION = 200
 
 const dummyArray = Array.from({ length: 20 })
 
@@ -33,8 +37,8 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
   useEffect(() => {
     let interval: NodeJS.Timeout
 
-    if (tick <= 30) {
-      interval = setInterval(() => setTick((prev) => prev + 1), 30)
+    if (tick <= 50) {
+      interval = setInterval(() => setTick((prev) => prev + 1), 60)
     }
 
     return () => {
@@ -74,20 +78,48 @@ export const Layout = ({ children }: LayoutProps) => {
   const [showGlitch, setShowGlitch] = useState(false)
   const router = useRouter()
 
+  const progressBarInterval = useRef<NodeJS.Timeout>(null)
+
   useEffect(() => {
-    router.events.on('routeChangeComplete', () => setShowGlitch(true))
-    router.events.on('routeChangeError', () => setShowGlitch(true))
+    progressBarInterval.current && clearInterval(progressBarInterval.current)
+    let currentInterval = glitchInterval.current
+
+    router.events.on('routeChangeStart', () => {
+      currentInterval = setInterval(() => NProgress.start(), PROGRESS_BAR_DELAY)
+    })
+    // router.events.on('routeChangeComplete', () => NProgress.done())
+    // router.events.on('routeChangeError', () => NProgress.done())
+
+    router.events.on('routeChangeComplete', () => {
+      currentInterval && clearInterval(currentInterval)
+      NProgress.done()
+      setShowGlitch(true)
+    })
+    router.events.on('routeChangeError', () => {
+      currentInterval && clearInterval(currentInterval)
+      NProgress.done()
+      setShowGlitch(true)
+    })
+
+    return () => {
+      currentInterval && clearInterval(currentInterval)
+    }
   }, [router.events])
 
-  useEffect(() => {
-    let interval: NodeJS.Timeout
+  const glitchInterval = useRef<NodeJS.Timeout>(null)
 
+  useEffect(() => {
+    glitchInterval.current && clearInterval(glitchInterval.current)
+    let currentInterval = glitchInterval.current
     if (showGlitch) {
-      interval = setInterval(() => setShowGlitch(false), 250)
+      currentInterval = setInterval(
+        () => setShowGlitch(false),
+        GLITCH_EFFECT_DURATION
+      )
     }
 
     return () => {
-      interval && clearInterval(interval)
+      currentInterval && clearInterval(currentInterval)
     }
   }, [showGlitch])
 

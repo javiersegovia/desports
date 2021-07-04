@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
-import { down } from 'styled-breakpoints'
+import { down, up } from 'styled-breakpoints'
 import tw, { styled } from 'twin.macro'
 
 export type TButtonSize = 'md' | 'lg' | 'xl'
@@ -165,8 +165,16 @@ export const StyledButton = styled.button<ButtonProps | AnchorProps>`
     display: none;
   }
 
-  &:hover .glitch {
-    display: block;
+  ${up('lg')} {
+    &:hover .glitch {
+      display: block;
+    }
+  }
+
+  ${down('md')} {
+    &:active .glitch {
+      display: block;
+    }
   }
 
   .glitch:before {

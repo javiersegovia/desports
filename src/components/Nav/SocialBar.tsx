@@ -36,11 +36,17 @@ const socialNetworks = [
   },
 ]
 
-export const SocialIcons = () => {
+export const SocialIcons = ({ ...props }) => {
   return (
     <>
       {socialNetworks.map(({ url, icon: Icon }) => (
-        <a key={url} href={url} target="_blank" rel="noopener noreferrer">
+        <a
+          key={url}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...props}
+        >
           <Icon />
         </a>
       ))}

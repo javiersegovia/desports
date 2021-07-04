@@ -21,7 +21,8 @@ export const config = {
     coinmarketcap: '/coinmarketcap',
   },
   shop: '/',
-  demoVideo: 'https://www.youtube.com/embed/ANDeiXFiYC4',
+  demoVideo: '',
+  // demoVideo: 'https://www.youtube.com/embed/ANDeiXFiYC4',
   languages: {
     es: 'Español',
     en: 'English',

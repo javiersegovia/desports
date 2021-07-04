@@ -15,17 +15,29 @@ import coingeckoImg from '@public/images/trackers/coingecko.png'
 import { FaYoutube } from 'react-icons/fa'
 import { SquareFrame } from '../../components/UI/Frames/SquareFrame'
 import { RiFileCopyLine } from 'react-icons/ri'
-import { TrackersModal } from '@components/Modal/TrackersModal'
 import { useToggle } from '@lib/hooks/useToggle'
 import { config } from '@lib/config/config'
 import { Transition } from '@headlessui/react'
 import { useEffect } from 'react'
 import { Fragment } from 'react'
-import { DemoVideoModal } from '@components/Modal/DemoVideoModal'
 
-import bgImg from '@public/images/home_bg.jpeg'
+import bgImg from '@public/images/home_bg.jpg'
+import introVideoImg from '@public/images/bg__intro-video.jpg'
+import { VscLock } from 'react-icons/vsc'
+import dynamic from 'next/dynamic'
+import { InstanceModalProps } from '@components/Modal/BaseModal'
 
-const StyledBackground = styled(Image)``
+const DemoVideoModal = dynamic<InstanceModalProps>(() =>
+  import('@components/Modal/DemoVideoModal').then(
+    (module) => module.DemoVideoModal
+  )
+)
+
+const TrackersModal = dynamic<InstanceModalProps>(() =>
+  import('@components/Modal/TrackersModal').then(
+    (module) => module.TrackersModal
+  )
+)
 
 const StyledVideoFrame = styled.div`
   .background {
@@ -147,7 +159,7 @@ const MarketItems = ({ ...props }) => {
     <div {...props}>
       <MarketInfo title={t`landing.current-price`} value="123124" />
       <MarketInfo title={t`landing.marketcap`} value="123124" />
-      {/* <div tw="lg:hidden bg-pink-600 height[2px] w-full block col-span-2" /> */}
+
       <FrameDivider
         color={theme`colors.pink.600`}
         frameWidth={4}
@@ -163,6 +175,27 @@ const MarketItems = ({ ...props }) => {
         tw="lg:hidden col-span-2"
       />
       {/* <div tw="lg:hidden bg-purple-600 height[2px] w-full block col-span-2" /> */}
+    </div>
+  )
+}
+
+const CountdownItems = ({ ...props }) => {
+  const { t } = useTranslation('home')
+
+  return (
+    <div
+      tw="flex-col flex lg:space-y-4 uppercase font-bold font-mono tracking-widest xl:text-2xl"
+      {...props}
+    >
+      <div>
+        <span tw="text-emerald-400">{t`landing.pre-sale`}:</span>
+        <span> 2D 24H 15S</span>
+      </div>
+
+      <div>
+        <span tw="text-yellow-400">{t`landing.launch`}:</span>
+        <span> 2D 24H 15S</span>
+      </div>
     </div>
   )
 }
@@ -196,17 +229,28 @@ export const Landing = () => {
     }
   }, [closeClipboardTooltip, isClipboardTooltipOpen])
 
+  // todo: make dynamic
+  const navSize = '100px'
+
+  const navigator =
+    (typeof window !== 'undefined' &&
+      typeof window?.navigator?.clipboard !== 'undefined' &&
+      window.navigator) ||
+    null
+
   return (
     <>
       {/* <StyledBackground tw="hidden lg:block absolute z-index[-1] bg-cover bg-center bg-no-repeat opacity[.35] w-full h-full" /> */}
 
       <div tw="opacity-20 z-index[-1] hidden lg:block">
-        <StyledBackground
+        <Image
           src={bgImg}
+          alt="Background"
           placeholder="blur"
           layout="fill"
           objectFit="cover"
-          objectPosition="top"
+          objectPosition={`0 ${navSize}`}
+          tw="w-screen h-screen"
         />
       </div>
 
@@ -223,19 +267,9 @@ export const Landing = () => {
 
         <Container tw="relative w-full flex-1 lg:flex">
           <div tw="lg:mt-20 xl:mt-32 space-y-4 lg:w-6/12">
-            {/* ~~~~~~~~~~~~~~~~~ COUNTDOWNS ~~~~~~~~~~~~~~~~~ */}
+            {/* ~~~~~~~~~~~~~~~~~ COUNTDOWN ~~~~~~~~~~~~~~~~~ */}
 
-            <div tw="flex-col lg:flex-row flex lg:space-x-4 uppercase font-bold font-mono tracking-widest 3xl:text-[1.25rem]">
-              <div>
-                <span tw="text-emerald-400">{t`landing.pre-sale`}:</span>
-                <span> 2D 24H 15S</span>
-              </div>
-
-              <div>
-                <span tw="text-yellow-400">{t`landing.launch`}:</span>
-                <span> 2D 24H 15S</span>
-              </div>
-            </div>
+            <CountdownItems tw="lg:hidden" />
 
             {/* ~~~~~~~~~~~~~~~~~ TITLE AND DESCRIPTION ~~~~~~~~~~~~~~~~~ */}
 
@@ -266,11 +300,12 @@ export const Landing = () => {
                 type="button"
                 tw="block font-normal text-left"
                 onClick={() => {
-                  // todo: check mobile alternative
-                  navigator?.clipboard?.writeText(
-                    config.blockchain.contractAddress
-                  )
-                  openClipboardTooltip()
+                  if (navigator) {
+                    navigator.clipboard?.writeText(
+                      config.blockchain.contractAddress
+                    )
+                    openClipboardTooltip()
+                  }
                 }}
               >
                 <span tw="font-bold font-sans">
@@ -280,7 +315,7 @@ export const Landing = () => {
                   <span tw="text-xs md:text-sm font-mono">
                     {config.blockchain.contractAddress}
                   </span>
-                  <RiFileCopyLine tw="ml-2 inline-block" />
+                  {navigator && <RiFileCopyLine tw="ml-2 inline-block" />}
                 </span>
               </button>
 
@@ -311,14 +346,39 @@ export const Landing = () => {
               <div tw="z-10 flex flex-col justify-start w-full bg-gray-900 -ml-2">
                 <div tw="h-[60%] flex items-center pl-4 pt-10 overflow-hidden">
                   <StyledVideoFrame tw="my-auto">
-                    <div className="background" />
-                    <button type="button" onClick={openDemoVideoModal}>
-                      <FaYoutube tw="text-cyan-400 text-5xl mx-auto" />
-                    </button>
+                    <Image
+                      src={introVideoImg}
+                      alt="video"
+                      tw="z-[-1] opacity-30"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+
+                    {config.demoVideo ? (
+                      <button type="button" onClick={openDemoVideoModal}>
+                        <FaYoutube tw="text-cyan-400 text-5xl mx-auto" />
+                      </button>
+                    ) : (
+                      <div tw="z-10 absolute bg-gray-900 bg-opacity-60 top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400 ">
+                        <div tw="relative flex items-end justify-center">
+                          <FaYoutube tw="text-cyan-400 text-4xl mx-auto absolute opacity-40" />
+                          <VscLock tw="text-7xl animate-pulse opacity-80" />
+                        </div>
+                        <p tw="font-mono uppercase font-bold animate-pulse opacity-80 text-base mt-4 text-center letter-spacing[1px]">
+                          {t`landing.intro-release`}
+                          {/* <br /> 2022 */}
+                        </p>
+                      </div>
+                    )}
                   </StyledVideoFrame>
                 </div>
-
-                <PrizePool tw="mt-16 ml-10" />
+                {/* todo: fix this based on countdown time */}
+                {/* ~~~~~~~~~~~~~~~~~ COUNTDOWNS ~~~~~~~~~~~~~~~~~ */}
+                {false ? (
+                  <PrizePool tw="mt-16 ml-10" />
+                ) : (
+                  <CountdownItems tw="mt-16 ml-10" />
+                )}
               </div>
             </div>
           </div>
@@ -332,15 +392,11 @@ export const Landing = () => {
           <Container tw="flex relative flex-col">
             <StyledDataLine tw="hidden lg:block -ml-10 w-full min-h-[1rem] -mt-4 bg-gray-900" />
             <div tw="bg-transparent mx-0 text-coolGray-300">
+              {/* TODO: ACTIVATE MARKET_ITEMS */}
               <MarketItems tw="flex flex-nowrap space-x-20" />
             </div>
           </Container>
         </div>
-        <SquareFrame tw="mt-8 block lg:hidden mx-auto max-w-xs">
-          <MarketItems tw="grid grid-cols-2 gap-y-5" />
-          <PartnerLogos tw="my-5 mx-auto" />
-          <PrizePool tw="pb-5" />
-        </SquareFrame>
 
         <StyledPartnerLine tw="hidden lg:block ml-auto absolute right-0 w-5/12 h-4 -mt-4 bg-gray-800 z-10" />
 
@@ -354,10 +410,18 @@ export const Landing = () => {
               />
               <span tw="font-mono uppercase font-bold letter-spacing[1px] text-sm">{t`landing.scroll-more`}</span>
             </div>
-            <PartnerLogos />
+            {/* TODO: ACTIVATE PARTNERS_LOGOS */}
+            {/* <PartnerLogos /> */}
           </Container>
         </div>
       </section>
+
+      <SquareFrame tw="mt-8 block lg:hidden mx-auto max-w-xs">
+        <MarketItems tw="grid grid-cols-2 gap-y-5" />
+        {/* TODO: ACTIVATE square_frame */}
+        {/* <PartnerLogos tw="mt-5 mx-auto" /> */}
+        <PrizePool tw="py-5" />
+      </SquareFrame>
 
       <TrackersModal isOpen={trackersModalIsOpen} close={closeTrackersModal} />
       <DemoVideoModal

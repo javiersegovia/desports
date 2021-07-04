@@ -30,6 +30,7 @@ const styles = css`
 
 export default function Home() {
   const {
+    goToStart,
     navigate,
     wrapperRef,
     containerRef,
@@ -64,8 +65,14 @@ export default function Home() {
         ref={wrapperRef}
         tw="relative overflow-visible overflow-x-hidden h-auto lg:absolute lg:overflow-hidden lg:h-full w-full"
       >
-        <div ref={containerRef} tw="w-full h-auto min-h-screen max-w-full">
-          <FullScreen sectionRef={landingRef} tw="flex flex-col">
+        <div
+          ref={containerRef}
+          tw="w-full h-auto min-h-0 lg:min-h-screen max-w-full"
+        >
+          <FullScreen
+            sectionRef={landingRef}
+            tw="min-h-0 lg:min-h-screen flex flex-col"
+          >
             <NavSpacer />
             <Landing />
           </FullScreen>
@@ -119,7 +126,7 @@ export default function Home() {
               sectionRef={footerRef}
               tw="min-width[100vw] lg:max-h-screen w-screen bg-gray-900"
             >
-              <HomeFooter />
+              <HomeFooter goToStart={goToStart} />
             </FullScreen>
           </FullScreen>
         </div>

@@ -24,7 +24,7 @@ export const TeamMember = ({ member, avatar, color }: TeamMemberProps) => {
   return (
     <div tw="h-full flex flex-col items-center">
       <figure
-        tw="relative w-32 h-32 sm:w-40 sm:h-40 2xl:w-48 2xl:h-48 rounded-full overflow-hidden border-4"
+        tw="relative w-28 h-28 sm:w-40 sm:h-40 2xl:w-48 2xl:h-48 rounded-full overflow-hidden border-4"
         style={{
           borderColor: color,
         }}
@@ -38,11 +38,14 @@ export const TeamMember = ({ member, avatar, color }: TeamMemberProps) => {
         />
       </figure>
 
-      <h4 tw="mt-6 font-mono font-bold text-2xl" style={{ color }}>
+      <h4
+        tw="mt-4 sm:mt-6 font-mono font-bold text-xl sm:text-2xl"
+        style={{ color }}
+      >
         {name}
       </h4>
 
-      <div tw="mt-2">
+      <div tw="mt-2 text-sm sm:text-base">
         <p>{pos_1}</p>
         <p>{pos_2}</p>
       </div>
@@ -78,7 +81,7 @@ export const TeamMembers = ({ ...props }) => {
 
   return (
     <main
-      tw="grid grid-cols-2 gap-y-10 lg:flex items-center w-full justify-center lg:space-x-14 2xl:space-x-20"
+      tw="grid grid-cols-2 gap-y-6 sm:gap-y-10 lg:flex items-center w-full justify-center lg:space-x-14 2xl:space-x-20"
       {...props}
     >
       {teamMembers.map((member) => (

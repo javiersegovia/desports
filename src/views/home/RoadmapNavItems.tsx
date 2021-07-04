@@ -1,5 +1,5 @@
-import { memo, RefObject, useEffect } from 'react'
-import { theme } from 'twin.macro'
+import { memo, RefObject, useEffect, useRef } from 'react'
+import tw, { styled, theme } from 'twin.macro'
 import { gsap } from 'gsap'
 import useTranslation from 'next-translate/useTranslation'
 import { Container } from '@components/UI/Container'
@@ -28,9 +28,100 @@ export interface RoadmapNavItemsProps {
   stageRefs: RefObject<HTMLDivElement>[]
 }
 
+const arrowDefaultColor = theme`colors.blueGray.500`
+
+const StyledArrow = styled.button<{
+  className?: string
+  lightColor: string
+  darkColor: string
+}>`
+  ${tw`opacity-80`}
+
+  & > div {
+    ${tw`transition duration-200`}
+  }
+
+  .arrow {
+    transform: rotate(45deg);
+    border-style: solid;
+  }
+
+  .arrow.right {
+    border-width: 7px 7px 18px 18px;
+    border-color: ${() =>
+      `${arrowDefaultColor} ${arrowDefaultColor} transparent transparent`};
+  }
+
+  &:hover .arrow.right {
+    border-color: ${(p) =>
+      `${p.darkColor} ${p.darkColor} transparent transparent`};
+  }
+
+  .arrow.left {
+    border-width: 18px 18px 7px 7px;
+    border-color: ${() =>
+      `transparent transparent ${arrowDefaultColor} ${arrowDefaultColor}`};
+  }
+
+  &:hover .arrow.left {
+    border-color: ${(p) =>
+      `transparent transparent ${p.darkColor} ${p.darkColor}`};
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+  }
+
+  .triangle.left {
+    margin-left: 6px;
+    border-right: 7px solid ${arrowDefaultColor};
+  }
+
+  &:hover .triangle.left {
+    border-right: 7px solid ${(p) => p.lightColor};
+  }
+
+  .triangle.right {
+    border-left: 7px solid ${arrowDefaultColor};
+    margin-left: 11px;
+  }
+
+  &:hover .triangle.right {
+    border-left: 7px solid ${(p) => p.lightColor};
+  }
+`
+
+const colors = [
+  {
+    light: theme`colors.blueGray.300`,
+    dark: theme`colors.blueGray.300`,
+  },
+  {
+    light: theme`colors.cyan.400`,
+    dark: theme`colors.cyan.800`,
+  },
+  {
+    light: theme`colors.purple.400`,
+    dark: theme`colors.purple.800`,
+  },
+  {
+    light: theme`colors.red.500`,
+    dark: theme`colors.red.800`,
+  },
+  {
+    light: theme`colors.blueGray.300`,
+    dark: theme`colors.blueGray.300`,
+  },
+]
+
 export const RoadmapNavItems = memo(
   ({ navigate, stageRefs }: RoadmapNavItemsProps) => {
     const { t } = useTranslation('roadmap')
+
+    const arrowRefs = useRef<(HTMLButtonElement | null)[]>([])
 
     const animationSpeed = useAppSelector(selectAnimationSpeed)
     const stage1Section = useAppSelector(selectStage1Section)
@@ -39,9 +130,9 @@ export const RoadmapNavItems = memo(
     const footerSection = useAppSelector(selectFooterSection)
     const navPosition = useAppSelector(selectNavPosition)
 
-    useEffect(() => {
-      const shouldMorph = navPosition === 'roadmap' || navPosition === 'footer'
+    const shouldMorph = navPosition === 'roadmap' || navPosition === 'footer'
 
+    useEffect(() => {
       // Entering Roadmap
       if (shouldMorph) {
         stageRefs.forEach((navItem, index) => {
@@ -59,6 +150,15 @@ export const RoadmapNavItems = memo(
             duration: animationSpeed * 0.1,
           })
         })
+
+        arrowRefs.current.forEach((arrowItem) => {
+          gsap.to(arrowItem, {
+            autoAlpha: 1,
+            ease: 'power2.inOut',
+            delay: animationSpeed * 0.85,
+            duration: animationSpeed,
+          })
+        })
       } else {
         stageRefs.forEach((navItem) => {
           gsap.to(navItem.current, {
@@ -74,16 +174,66 @@ export const RoadmapNavItems = memo(
             duration: animationSpeed * 0.1,
           })
         })
+
+        arrowRefs.current.forEach((arrowItem) => {
+          gsap.to(arrowItem, {
+            autoAlpha: 0,
+            ease: 'power2.inOut',
+            duration: animationSpeed,
+          })
+        })
       }
-    }, [navPosition, animationSpeed, stageRefs, footerSection.isActive])
+    }, [
+      navPosition,
+      animationSpeed,
+      stageRefs,
+      footerSection.isActive,
+      shouldMorph,
+    ])
 
     const i18nStage1: IStage = t('stage1', null, { returnObjects: true })
     const i18nStage2: IStage = t('stage2', null, { returnObjects: true })
     const i18nStage3: IStage = t('stage3', null, { returnObjects: true })
 
+    const activeStageIndex = (() => {
+      if (stage1Section.isActive) return 1
+      if (stage2Section.isActive) return 2
+      if (stage3Section.isActive) return 3
+      return null
+    })()
+
+    const prevColors = {
+      light: colors[(activeStageIndex || 1) - 1].light,
+      dark: colors[(activeStageIndex || 1) - 1].dark,
+    }
+    const nextColors = {
+      light: colors[(activeStageIndex || -1) + 1].light,
+      dark: colors[(activeStageIndex || -1) + 1].dark,
+    }
+
+    const arrowNavigate = (moveForward: boolean) => {
+      if (activeStageIndex && moveForward) return navigate(activeStageIndex + 1)
+      if (activeStageIndex && !moveForward)
+        return navigate(activeStageIndex - 1)
+    }
+
     return (
       <Container tw="mx-auto mt-auto">
         <div tw="flex items-center flex-1 justify-center">
+          {/* Left arrows */}
+
+          <StyledArrow
+            type="button"
+            onClick={() => arrowNavigate(false)}
+            ref={(ref) => arrowRefs.current.push(ref)}
+            tw="absolute left-10 flex items-center space-x-0 mr-auto mb-4"
+            lightColor={prevColors.light}
+            darkColor={prevColors.dark}
+          >
+            <div className="left absolute triangle" />
+            <div className="arrow left" />
+          </StyledArrow>
+
           <StageItem
             innerRef={stageRefs[0]}
             item={i18nStage1}
@@ -115,6 +265,19 @@ export const RoadmapNavItems = memo(
             isActive={stage3Section.isActive}
             isLocked
           />
+
+          {/* Right arrow */}
+          <StyledArrow
+            type="button"
+            onClick={() => arrowNavigate(true)}
+            ref={(ref) => arrowRefs.current.push(ref)}
+            tw="absolute right-10 flex items-center space-x-0 ml-auto mb-4"
+            lightColor={nextColors.light}
+            darkColor={nextColors.dark}
+          >
+            <div className="right absolute triangle" />
+            <div className="arrow right" />
+          </StyledArrow>
         </div>
       </Container>
     )

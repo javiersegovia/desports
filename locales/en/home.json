@@ -20,7 +20,8 @@
     "holders": "Holders",
     "supply": "Supply",
     "marketcap": "Marketcap",
-    "scroll-more": "Scroll to know more"
+    "scroll-more": "Scroll to know more",
+    "intro-release": "Unlocking video soon"
   },
   "tokenomics": {
     "title": "Tokenomics and Distributions",

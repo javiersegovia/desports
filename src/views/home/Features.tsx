@@ -39,7 +39,7 @@ export const Features = () => {
           <img
             src="/images/platform_features.png"
             alt="Platform Features"
-            tw="absolute top-0 transform left-1/2 -translate-x-full z-index[-1] max-h-full xl:max-h-[110%]"
+            tw="absolute top-0 transform opacity-70 left-1/2 -translate-x-full z-index[-1] max-h-full xl:max-h-[110%]"
           />
         </div>
 

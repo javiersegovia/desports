@@ -4,12 +4,12 @@ import { Title } from '@components/UI/Title'
 import { NavSpacer } from '@components/Nav/NavSpacer'
 import { Container } from '@components/UI/Container'
 import { styled } from 'twin.macro'
-import teamImg from '@public/images/team_background.png'
 import useTranslation from 'next-translate/useTranslation'
 import { IJobPosition, JobPosition } from '@views/team/JobPosition'
 import { TeamMembers } from '@views/team/TeamMember'
 import { ReadyPlayerMe } from '@views/team/ReadyPlayerMe'
 import { config } from '@lib/config/config'
+import teamImg from '@public/images/team_background.webp'
 
 const StyledBackground = styled(Image)`
   filter: brightness(50%);
@@ -32,21 +32,20 @@ const TeamPage = () => {
       <StyledBackground src={teamImg} layout="fill" objectFit="contain" />
       <NavSpacer />
 
-      <Container tw="mt-20 text-center pb-20">
+      <Container tw="mt-6 lg:mt-10 text-center pb-20">
         <Title as="h1">{t`title`}</Title>
         <p tw="mt-4">{t`description`}</p>
 
-        <TeamMembers tw="mt-14" />
+        <TeamMembers tw="mt-8 lg:mt-14" />
 
-        <aside tw="mt-32">
+        <aside tw="mt-14">
           <ReadyPlayerMe />
         </aside>
 
         <section tw="mt-32 text-left">
-          <Title
-            as="h2"
-            tw="text-xl lg:text-2xl xl:text-3xl"
-          >{t`dao_1.title`}</Title>
+          <Title as="h2" tw="text-xl lg:text-2xl xl:text-3xl">
+            {t`dao_1.title`}
+          </Title>
           <p tw="mt-4 text-justify">{t`dao_1.content`}</p>
         </section>
 

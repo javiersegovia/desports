@@ -4,6 +4,8 @@ import { RiCloseFill } from 'react-icons/ri'
 import { BaseModal, InstanceModalProps } from './BaseModal'
 
 export const DemoVideoModal = ({ isOpen, close }: InstanceModalProps) => {
+  if (!config.demoVideo) return null
+
   const videoUrl = `${config.demoVideo}?theme=dark&color=white&autohide=2&autoplay=1&modestbranding=1&amp&showinfo=0&rel=0&loop=1`
   return (
     <BaseModal isOpen={isOpen} close={close}>
