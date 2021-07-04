@@ -9,7 +9,6 @@ import { Provider } from 'react-redux'
 import { store } from '@lib/redux/store'
 import tw, { styled } from 'twin.macro'
 import { useRouter } from 'next/router'
-import { routes } from '@lib/config/routes'
 
 const dummyArray = Array.from({ length: 20 })
 
