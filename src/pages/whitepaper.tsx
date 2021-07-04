@@ -117,7 +117,7 @@ const WhitepaperPage = () => {
         </Container>
 
         <Container tw="mx-auto mt-10 mb-20">
-          <div tw="rounded bg-gray-800 text-coolGray-300 p-10 text-lg space-y-20 text-justify">
+          <div tw="rounded bg-gray-800 text-coolGray-300 p-10 text-lg space-y-20 text-justify overflow-hidden">
             {generalSections.map(({ title, content }, index) => (
               <article key={title}>
                 <Title

@@ -13,9 +13,8 @@ import { config } from '@lib/config/config'
 
 const StyledBackgroundShape = styled.div`
   ${down('md')} {
-    padding-top: 30%;
     padding-bottom: 75%;
-    clip-path: polygon(0% 0%, 100% 25%, 100% 100%, 0% 75%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 75%);
   }
 `
 
@@ -30,9 +29,9 @@ const StyledGeometricBackground = styled.div`
     43% 20%
   );
 
-  background: url('/images/background-final.jpg');
+  background: url('/images/home_bg.jpeg');
 
-  ${tw`bg-right-bottom bg-no-repeat bg-cover absolute w-1/2 right-0 bottom-0 top-0`}
+  ${tw`bg-right-bottom bg-no-repeat bg-cover absolute w-1/2 right-0 bottom-0 top-0 opacity-40`}
 `
 
 const DeSportsFooterLogo = ({ ...props }) => {
@@ -73,16 +72,17 @@ const StyledContainer = styled(Container)`
   }
 `
 
-const StyledMobileBackgroundTop = styled.div`
-  background: url('/images/background-final.jpg');
+// todo: remove
+// const StyledMobileBackgroundTop = styled.div`
+//   background: url('/images/home_bg.jpeg');
 
-  ${tw`opacity-30 lg:hidden absolute bg-left-top top-0 w-full h-1/2`}
-`
+//   ${tw`opacity-30 lg:hidden absolute bg-left-top top-0 w-full h-1/2 bg-cover`}
+// `
 
 const StyledMobileBackgroundBottom = styled.div`
-  background: url('/images/background-final.jpg');
+  background: url('/images/home_bg.jpeg');
 
-  ${tw`opacity-30 lg:hidden absolute bg-right-bottom bottom-0 w-full h-1/2`}
+  ${tw`opacity-20 lg:hidden absolute bg-right-bottom bottom-0 w-full h-1/2 bg-cover`}
 `
 
 const presaleDate = new Date()
@@ -94,12 +94,12 @@ export const HomeFooter = () => {
   return (
     <>
       <NavSpacer />
-      <StyledMobileBackgroundTop />
+      {/* <StyledMobileBackgroundTop /> */}
       <StyledMobileBackgroundBottom />
 
       <StyledBackgroundShape tw="bg-gray-900">
         <Container tw="h-full flex flex-col justify-center relative">
-          <Title tw="mt-40 sm:mt-28 lg:mt-20 text-left">{t`footer.title`}</Title>
+          <Title tw="mt-32 lg:mt-20 text-left">{t`footer.title`}</Title>
           <div tw="flex flex-col items-start lg:flex-row space-y-8 lg:space-y-0 lg:space-x-20 mt-12">
             <CountdownItem
               color={theme`colors.emerald.400`}

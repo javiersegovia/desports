@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 import Router from 'next/router'
 import NProgress from 'nprogress'
+import { useEffect } from 'react'
 
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
@@ -17,6 +18,8 @@ if (typeof window !== 'undefined') {
 }
 
 const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {}, [])
+
   return (
     <>
       <Layout>

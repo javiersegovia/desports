@@ -23,9 +23,9 @@ import { useEffect } from 'react'
 import { Fragment } from 'react'
 import { DemoVideoModal } from '@components/Modal/DemoVideoModal'
 
-const StyledBackground = styled.div`
-  background: url('/images/background-final.jpg');
-`
+import bgImg from '@public/images/home_bg.jpeg'
+
+const StyledBackground = styled(Image)``
 
 const StyledVideoFrame = styled.div`
   .background {
@@ -197,7 +197,17 @@ export const Landing = () => {
 
   return (
     <>
-      <StyledBackground tw="hidden lg:block absolute z-index[-1] bg-cover bg-center bg-no-repeat opacity[.35] w-full h-full" />
+      {/* <StyledBackground tw="hidden lg:block absolute z-index[-1] bg-cover bg-center bg-no-repeat opacity[.35] w-full h-full" /> */}
+
+      <div tw="opacity-20 z-index[-1] hidden lg:block">
+        <StyledBackground
+          src={bgImg}
+          placeholder="blur"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="top"
+        />
+      </div>
 
       <main tw="relative flex-1 flex flex-col">
         <StyledVideoThumbnail tw="h-40 w-full relative lg:hidden">

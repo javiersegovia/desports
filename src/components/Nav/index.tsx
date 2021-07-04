@@ -45,8 +45,6 @@ export const Nav = () => {
     OUTSIDE Roadmap/Footer with showNav false, so we change to true (visible).
      */
 
-    console.log({ isInsideRoadmapOrFooter, showNavbar })
-
     let show = showNavbar
 
     if (isInsideRoadmapOrFooter === showNavbar) {
