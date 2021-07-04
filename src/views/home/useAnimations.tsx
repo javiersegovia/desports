@@ -160,7 +160,7 @@ export const useAnimations = () => {
           animationSpeed: TRANSITION_SPEED,
         })
       )
-    }, TRANSITION_SPEED * 1.25)
+    }, TRANSITION_SPEED * 1.35)
   )
 
   useEffect(() => {
@@ -221,7 +221,7 @@ export const useAnimations = () => {
     const throttledAnim = throttle(
       (event: TouchEvent, direction: ScrollDirection) =>
         screenAnimation.current({ event, source: 'TOUCH', direction }),
-      200
+      TRANSITION_SPEED
     )
 
     let touchStartY: number
@@ -262,6 +262,7 @@ export const useAnimations = () => {
 
     const wheelAnimation = (event: WheelEvent) => {
       if (!isDesktop() || isAnimating.current) return
+      event.preventDefault()
       screenAnimation.current({ event, source: 'WHEEL' })
     }
 
@@ -275,9 +276,6 @@ export const useAnimations = () => {
     const scrollTL = scrollTimeline.current
 
     return () => {
-      // todo: do the dispatch "reset" here!
-      // todo: refactor the STORE and make the roadmap animations independent
-
       resetControls()
       dispatch(resetState())
 

@@ -22,6 +22,7 @@ const styles = css`
     ${tw`overflow-visible lg:overflow-hidden`}
 
     ${up('lg')} {
+      -webkit-overflow-scrolling: auto;
       overscroll-behavior-y: contain;
     }
   }

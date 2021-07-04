@@ -33,21 +33,11 @@ const referencesList = [
   'Joseph Macey, Brett Abarbanel and Juho Hamari. What predicts esports betting? A study on consumption of video games, esports, gambling and demographic factors. Research Article. March 3, 2020. https://journals.sagepub.com/doi/full/10.1177/1461444820908510',
 ]
 
-const colors = [
-  theme`colors.purple.400`,
-  theme`colors.pink.600`,
-  theme`colors.yellow.400`,
-  theme`colors.red.400`,
-  theme`colors.emerald.400`,
-  theme`colors.cyan.400`,
-]
-
 interface RoadmapItemProps {
   stageKey: 'stage1' | 'stage2' | 'stage3'
-  color: string
 }
 
-const RoadmapItem = ({ stageKey, color }: RoadmapItemProps) => {
+const RoadmapItem = ({ stageKey }: RoadmapItemProps) => {
   const { t } = useTranslation('roadmap')
 
   const stage: IStage = t(stageKey, null, { returnObjects: true })
@@ -55,10 +45,7 @@ const RoadmapItem = ({ stageKey, color }: RoadmapItemProps) => {
 
   return (
     <div>
-      <div
-        tw="space-y-2 sm:space-y-0 flex flex-col sm:flex-row sm:items-center"
-        style={{ color }}
-      >
+      <div tw="space-y-2 sm:space-y-0 flex flex-col sm:flex-row sm:items-center">
         <h6 tw="font-mono font-bold uppercase letter-spacing[2px] text-xl">
           {title} · {name} <span tw="hidden sm:inline-block"> ·</span>
         </h6>
@@ -118,31 +105,16 @@ const WhitepaperPage = () => {
 
         <Container tw="mx-auto mt-10 mb-20">
           <div tw="rounded bg-gray-800 text-coolGray-300 p-10 text-lg space-y-20 text-justify overflow-hidden">
-            {generalSections.map(({ title, content }, index) => (
+            {generalSections.map(({ title, content }) => (
               <article key={title}>
-                <Title
-                  as="h3"
-                  tw="lg:text-4xl text-left"
-                  style={{
-                    color:
-                      colors[
-                        index < colors.length ? index : index % colors.length
-                      ],
-                  }}
-                >
+                <Title as="h3" tw="lg:text-4xl text-left">
                   {title}
                 </Title>
                 <p tw="mt-5 whitespace-pre-line">{content}</p>
               </article>
             ))}
             <article>
-              <Title
-                as="h3"
-                tw="lg:text-4xl text-left"
-                style={{
-                  color: colors[1],
-                }}
-              >
+              <Title as="h3" tw="lg:text-4xl text-left">
                 {t`tokenomics.title`}
               </Title>
               <ul tw="list-disc ml-5 mt-5 space-y-4">
@@ -170,12 +142,9 @@ const WhitepaperPage = () => {
                 {t`roadmap.title`}
               </Title>
               <div tw="mt-6 space-y-10">
-                <RoadmapItem stageKey="stage1" color={theme`colors.blue.300`} />
-                <RoadmapItem
-                  stageKey="stage2"
-                  color={theme`colors.purple.300`}
-                />
-                <RoadmapItem stageKey="stage3" color={theme`colors.red.500`} />
+                <RoadmapItem stageKey="stage1" />
+                <RoadmapItem stageKey="stage2" />
+                <RoadmapItem stageKey="stage3" />
               </div>
             </article>
 
@@ -184,15 +153,9 @@ const WhitepaperPage = () => {
                 {t`core_platform.title`}
               </Title>
               <p tw="mt-5 whitespace-pre-line">{t`core_platform.content`}</p>
-              {corePlatformItems.map((item, index) => (
+              {corePlatformItems.map((item) => (
                 <div key={item.title} tw="mt-10">
-                  <Title
-                    as="h3"
-                    tw="text-xl lg:text-xl text-left"
-                    style={{
-                      color: colors[index % colors.length],
-                    }}
-                  >
+                  <Title as="h3" tw="text-xl lg:text-xl text-left">
                     {item.title}
                   </Title>
                   <p tw="mt-5 whitespace-pre-line">{item.content}</p>
@@ -205,15 +168,9 @@ const WhitepaperPage = () => {
                 {t`use_cases.title`}
               </Title>
 
-              {useCaseItems.map((item, index) => (
+              {useCaseItems.map((item) => (
                 <div key={item.title} tw="mt-10">
-                  <Title
-                    as="h3"
-                    tw="text-xl sm:text-xl lg:text-xl text-left"
-                    style={{
-                      color: colors[index % colors.length],
-                    }}
-                  >
+                  <Title as="h3" tw="text-xl sm:text-xl lg:text-xl text-left">
                     {item.title}
                   </Title>
                   <p tw="mt-5 whitespace-pre-line">{item.content}</p>
