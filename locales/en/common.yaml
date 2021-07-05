@@ -9,7 +9,7 @@ shared:
   blog: Blog
   trackers:
     title: Trackers
-    description: Clicking on a link will open the chart in a new tab.
+    description: Clicking on a link will open the website in a new tab.
     list:
     - title: BSCScan
       key: bscscan

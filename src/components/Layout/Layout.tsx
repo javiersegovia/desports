@@ -85,36 +85,36 @@ export const Layout = ({ children }: LayoutProps) => {
   const progressBarInterval = useRef<NodeJS.Timeout>(null)
 
   useEffect(() => {
-    progressBarInterval.current && clearInterval(progressBarInterval.current)
+    progressBarInterval.current && clearTimeout(progressBarInterval.current)
     let currentInterval = glitchInterval.current
 
     router.events.on('routeChangeStart', () => {
-      currentInterval = setInterval(() => NProgress.start(), PROGRESS_BAR_DELAY)
+      currentInterval = setTimeout(() => NProgress.start(), PROGRESS_BAR_DELAY)
     })
 
     router.events.on('routeChangeComplete', () => {
-      currentInterval && clearInterval(currentInterval)
+      currentInterval && clearTimeout(currentInterval)
       NProgress.done()
       setShowGlitch(true)
     })
     router.events.on('routeChangeError', () => {
-      currentInterval && clearInterval(currentInterval)
+      currentInterval && clearTimeout(currentInterval)
       NProgress.done()
       setShowGlitch(true)
     })
 
     return () => {
-      currentInterval && clearInterval(currentInterval)
+      currentInterval && clearTimeout(currentInterval)
     }
   }, [router.events])
 
   const glitchInterval = useRef<NodeJS.Timeout>(null)
 
   useEffect(() => {
-    glitchInterval.current && clearInterval(glitchInterval.current)
+    glitchInterval.current && clearTimeout(glitchInterval.current)
     let currentInterval = glitchInterval.current
 
-    currentInterval = setInterval(
+    currentInterval = setTimeout(
       () => setShowGlitch(false),
       isDesktop()
         ? GLITCH_EFFECT_DURATION_DESKTOP
@@ -122,7 +122,7 @@ export const Layout = ({ children }: LayoutProps) => {
     )
 
     return () => {
-      currentInterval && clearInterval(currentInterval)
+      currentInterval && clearTimeout(currentInterval)
     }
   }, [showGlitch])
 

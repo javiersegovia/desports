@@ -27,6 +27,7 @@ import { InstanceModalProps } from '@components/Modal/BaseModal'
 import { routes } from '@lib/config/routes'
 import { useClipboard } from '@lib/hooks/useClipboard'
 import { ClipboardTooltip } from '@components/Miscellaneous/ClipboardTooltip'
+import { useTimeLeft } from '@lib/hooks/useTimeLeft'
 
 const DemoVideoModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/DemoVideoModal').then(
@@ -180,6 +181,23 @@ const MarketItems = ({ ...props }) => {
   )
 }
 
+const PresaleTimer = () => {
+  const { TimeComponent: PresaleCountdown } = useTimeLeft(config.presale_date)
+  return (
+    <>
+      <PresaleCountdown />
+    </>
+  )
+}
+const LaunchTimer = () => {
+  const { TimeComponent: PresaleCountdown } = useTimeLeft(config.launch_date)
+  return (
+    <>
+      <PresaleCountdown />
+    </>
+  )
+}
+
 const CountdownItems = ({ ...props }) => {
   const { t } = useTranslation('home')
 
@@ -190,12 +208,16 @@ const CountdownItems = ({ ...props }) => {
     >
       <div>
         <span tw="text-emerald-400">{t`landing.pre-sale`}:</span>
-        <span> 2D 24H 15S</span>
+        <span>
+          <PresaleTimer />
+        </span>
       </div>
 
       <div>
         <span tw="text-yellow-400">{t`landing.launch`}:</span>
-        <span> 2D 24H 15S</span>
+        <span>
+          <LaunchTimer />
+        </span>
       </div>
     </div>
   )
@@ -239,8 +261,6 @@ export const Landing = () => {
 
   return (
     <>
-      {/* <StyledBackground tw="hidden lg:block absolute z-index[-1] bg-cover bg-center bg-no-repeat opacity[.35] w-full h-full" /> */}
-
       <div tw="opacity-20 z-index[-1] hidden lg:block">
         <Image
           src={bgImg}

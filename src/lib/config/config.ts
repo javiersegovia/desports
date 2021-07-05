@@ -39,6 +39,9 @@ export const config = {
 
   ready_player_me: 'https://desports.readyplayer.me/',
 
+  presale_date: new Date('July 12, 2021 13:00:00'),
+  launch_date: new Date('July 12, 2021 15:00:00'),
+
   languages: {
     es: 'Español',
     en: 'English',

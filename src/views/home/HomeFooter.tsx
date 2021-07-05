@@ -8,6 +8,7 @@ import tw, { styled, theme } from 'twin.macro'
 import { down } from 'styled-breakpoints'
 import { config } from '@lib/config/config'
 import { BaseFooter, DeSportsFooterLogo } from '@components/Footer/BaseFooter'
+import { useTimeLeft } from '@lib/hooks/useTimeLeft'
 
 const StyledBackgroundShape = styled.div`
   ${down('md')} {
@@ -38,20 +39,16 @@ interface CountdownItem {
   date: Date // Todo: check the type of this date
 }
 
-const CountdownItem = ({
-  /* date */
-  color,
-  title,
-  ...props
-}: CountdownItem) => {
-  // todo: implement date library manipulation and countdown on this component
+const CountdownItem = ({ date, color, title, ...props }: CountdownItem) => {
+  const { TimeComponent } = useTimeLeft(date)
+
   return (
     <div
       tw="font-mono letter-spacing[3px] uppercase font-bold space-y-2"
       {...props}
     >
       <p style={{ color }}>{title}</p>
-      <p>2d 17h 15m 06s</p>
+      <TimeComponent />
     </div>
   )
 }
@@ -61,9 +58,6 @@ const StyledMobileBackgroundBottom = styled.div`
 
   ${tw`opacity-20 lg:hidden absolute bg-right-bottom bottom-0 w-full h-1/2 bg-cover`}
 `
-
-const presaleDate = new Date()
-const launchDate = new Date()
 
 interface HomeFooterProps {
   goToStart: () => void
@@ -85,14 +79,14 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
             <CountdownItem
               color={theme`colors.emerald.400`}
               title={t`footer.pre-sale`}
-              date={presaleDate}
-              tw="text-xl lg:text-xl xl:text-4xl text-left"
+              date={config.presale_date}
+              tw="text-xl lg:min-w-[200px] xl:min-w-[330px] lg:text-xl xl:text-4xl text-left"
             />
             <CountdownItem
               color={theme`colors.yellow.400`}
               title={t`footer.launch`}
-              date={launchDate}
-              tw="text-xl lg:text-xl xl:text-4xl text-left"
+              date={config.launch_date}
+              tw="text-xl lg:min-w-[200px] xl:min-w-[330px] lg:text-xl xl:text-4xl text-left"
             />
           </div>
           <div tw="flex flex-row items-center justify-start space-y-0 space-x-6 sm:space-x-10 mt-12">
