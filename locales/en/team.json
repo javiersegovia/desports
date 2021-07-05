@@ -25,7 +25,7 @@
   ],
   "work_with_us": {
     "title": "Join us",
-    "description": "DeSports Network is looking for talented and driven people in the blockchain, video game, and software development industries.",
+    "description": "DeSports Network is looking for talented and driven individuals with experience in marketing & social media, software development, the blockchain, video games & eSports",
     "list": [
       {
         "title": "Solidity Developer",
@@ -47,17 +47,17 @@
   "contact_us": "Interested? Contact us at",
   "readyplayerme": {
     "title": "Official Partner",
-    "description": "Do you want a custom avatar like ours? Choose from 300+ customization options and create your own player.",
+    "description": "Do you want to have a custom avatar like ours? Create your own by choosing from over 300+ customization options. These will be used as your profile pictures in our platform.",
     "button": "Create your own avatar",
     "responsive_button": "Create your avatar"
   },
   "dao_1": {
     "title": "What is the DeSports Network DAO?",
-    "content": "DAO stands for \"Decentralized Autonomous Organization\". The DeSports Network DAO develop the most important smart contracts and NFTs that make up DeSports Network – the competition contracts, donations and achievements. It also owns a small purse of $DESP which allows it to be truly autonomous as well as subsidize various operations and initiatives throughout DeSports Network."
+    "content": "DAO stands for \"Decentralized Autonomous Organization\". The DAO is an organization created by developers to automate decisions and facilitate cryptocurrency transactions. The DeSports Network DAO develops smart contracts and NFTs that make up DeSports Network – the smart contracts, for competition, betting, donations and achievements. It also owns a small purse of $DESP which allows it to be truly autonomous, as well as subsidize various operations and initiatives throughout the DeSports Network."
   },
   "dao_2": {
     "title": "How does the DAO work and How is it relevant to me?",
-    "content": "It is important that users and holders be informed and also have a voice and vote in what happens in the future of the token and the project. Participate in the development of:",
+    "content": "It is important that users and holders are informed, have a voice and vote in what happens to the future of the token and the project. You can participate in the development of:",
     "bullets": [
       "Listing of new games inside the platform",
       "Player verification",
