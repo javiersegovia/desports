@@ -30,7 +30,6 @@ const StyledGlitchEffect = styled.div`
 `
 
 const StyledGlitchBox = styled.div`
-  opacity: 0.3;
   background-attachment: fixed;
   background-blend-mode: overlay;
 `
@@ -51,7 +50,7 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
   }, [tick])
 
   return (
-    <StyledGlitchEffect tw="overflow-hidden absolute w-full h-screen">
+    <StyledGlitchEffect tw="overflow-hidden absolute w-full h-screen opacity-20">
       {dummyArray.map((_, index) => (
         <StyledGlitchBox
           key={index}
