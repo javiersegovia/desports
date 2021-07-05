@@ -17,9 +17,7 @@ import { SquareFrame } from '../../components/UI/Frames/SquareFrame'
 import { RiFileCopyLine } from 'react-icons/ri'
 import { useToggle } from '@lib/hooks/useToggle'
 import { config } from '@lib/config/config'
-import { Transition } from '@headlessui/react'
 import { useEffect } from 'react'
-import { Fragment } from 'react'
 
 import bgImg from '@public/images/home_bg.jpg'
 import introVideoImg from '@public/images/bg__intro-video.jpg'
@@ -27,6 +25,8 @@ import { VscLock } from 'react-icons/vsc'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
 import { routes } from '@lib/config/routes'
+import { useClipboard } from '@lib/hooks/useClipboard'
+import { ClipboardTooltip } from '@components/Miscellaneous/ClipboardTooltip'
 
 const DemoVideoModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/DemoVideoModal').then(
@@ -226,18 +226,13 @@ export const Landing = () => {
     }
 
     return () => {
-      hideTimeout && clearTimeout(hideTimeout)
+      clearTimeout(hideTimeout)
     }
   }, [closeClipboardTooltip, isClipboardTooltipOpen])
 
   // todo: make dynamic
   const navSize = '100px'
-
-  const navigator =
-    (typeof window !== 'undefined' &&
-      typeof window?.navigator?.clipboard !== 'undefined' &&
-      window.navigator) ||
-    null
+  const clipboard = useClipboard()
 
   // todo: remove this
   const prizePoolIsAvailable = false
@@ -306,10 +301,8 @@ export const Landing = () => {
                 type="button"
                 tw="block font-normal text-left"
                 onClick={() => {
-                  if (navigator) {
-                    navigator.clipboard?.writeText(
-                      config.blockchain.contractAddress
-                    )
+                  if (clipboard) {
+                    clipboard?.writeText(config.blockchain.contractAddress)
                     openClipboardTooltip()
                   }
                 }}
@@ -321,27 +314,11 @@ export const Landing = () => {
                   <span tw="text-xs md:text-sm font-mono">
                     {config.blockchain.contractAddress}
                   </span>
-                  {navigator && <RiFileCopyLine tw="ml-2 inline-block" />}
+                  {clipboard && <RiFileCopyLine tw="ml-2 inline-block" />}
                 </span>
               </button>
 
-              <Transition
-                as={Fragment}
-                show={isClipboardTooltipOpen}
-                enter="transition duration-100 ease-out"
-                enterFrom="transform scale-95 opacity-0"
-                enterTo="transform scale-100 opacity-100"
-                leave="transition duration-75 ease-out"
-                leaveFrom="transform scale-100 opacity-100"
-                leaveTo="transform scale-95 opacity-0"
-              >
-                <div
-                  aria-hidden="true"
-                  tw="absolute font-mono z-20 top-full mt-1 left-1/2 transform -translate-x-1/2 rounded bg-gray-900 text-cyan-400 py-1 px-2 text-sm"
-                >
-                  Copied to the clipboard!
-                </div>
-              </Transition>
+              <ClipboardTooltip isOpen={isClipboardTooltipOpen} />
             </div>
           </div>
 

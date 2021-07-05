@@ -1,4 +1,4 @@
-import { isDesktop } from '@root/src/views/home/useAnimations'
+import { isDesktop } from '@views/home/useAnimations'
 import { useEffect, useState } from 'react'
 
 interface ActiveIndexDefaultState {

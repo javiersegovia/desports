@@ -9,9 +9,11 @@ import { store } from '@lib/redux/store'
 import tw, { styled } from 'twin.macro'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
+import { isDesktop } from '@views/home/useAnimations'
 
 const PROGRESS_BAR_DELAY = 500
-const GLITCH_EFFECT_DURATION = 300
+const GLITCH_EFFECT_DURATION_DESKTOP = 250
+const GLITCH_EFFECT_DURATION_MOBILE = 550
 
 const dummyArray = Array.from({ length: 20 })
 
@@ -23,11 +25,14 @@ const theme = {
   },
 }
 
+const StyledGlitchEffect = styled.div`
+  /* filter: hue-rotate(50deg); */
+`
+
 const StyledGlitchBox = styled.div`
   opacity: 0.3;
   background-attachment: fixed;
   background-blend-mode: overlay;
-  filter: hue-rotate(50deg);
 `
 
 const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
@@ -37,7 +42,7 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
     let interval: NodeJS.Timeout
 
     if (tick <= 50) {
-      interval = setInterval(() => setTick((prev) => prev + 1), 60)
+      interval = setInterval(() => setTick((prev) => prev + 1), 30)
     }
 
     return () => {
@@ -46,7 +51,7 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
   }, [tick])
 
   return (
-    <div tw="overflow-hidden absolute w-full h-screen">
+    <StyledGlitchEffect tw="overflow-hidden absolute w-full h-screen">
       {dummyArray.map((_, index) => (
         <StyledGlitchBox
           key={index}
@@ -56,12 +61,12 @@ const GlitchEffect = ({ bgPath }: { bgPath: string }) => {
             left: Math.floor(Math.random() * 100) + 'vw',
             top: Math.floor(Math.random() * 100) + 'vh',
             width: Math.floor(Math.random() * 300) + 'px',
-            height: Math.floor(Math.random() * 50) + 'px',
+            height: Math.floor(Math.random() * 30) + 'px',
             backgroundImage: bgPath,
           }}
         />
       ))}
-    </div>
+    </StyledGlitchEffect>
   )
 }
 
@@ -111,7 +116,9 @@ export const Layout = ({ children }: LayoutProps) => {
 
     currentInterval = setInterval(
       () => setShowGlitch(false),
-      GLITCH_EFFECT_DURATION
+      isDesktop()
+        ? GLITCH_EFFECT_DURATION_DESKTOP
+        : GLITCH_EFFECT_DURATION_MOBILE
     )
 
     return () => {
@@ -125,7 +132,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <GlobalStyles />
         {showGlitch && (
           <>
-            <GlitchEffect bgPath="url(/images/background-final.jpg)" />
+            <GlitchEffect bgPath="url(/images/home_bg.jpg)" />
             <StyledTransition />
           </>
         )}

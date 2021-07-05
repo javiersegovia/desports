@@ -7,7 +7,7 @@ import tw, { styled, theme } from 'twin.macro'
 
 import { down } from 'styled-breakpoints'
 import { config } from '@lib/config/config'
-import { BaseFooter } from '@components/Footer/BaseFooter'
+import { BaseFooter, DeSportsFooterLogo } from '@components/Footer/BaseFooter'
 
 const StyledBackgroundShape = styled.div`
   ${down('md')} {
@@ -103,21 +103,45 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
             >
               {t`shared.telegram`}
             </Button>
-            <Button
-              tw="w-full sm:w-auto sm:flex-1 lg:flex-none"
-              size="lg"
-            >{t`shared.buy-now`}</Button>
+            <Button tw="w-full sm:w-auto sm:flex-1 lg:flex-none" size="lg">
+              {t`shared.buy-now`}
+            </Button>
           </div>
+
           <p tw="text-right md:text-left mt-8 lg:mt-12">
             {t`footer.contact-us`}{' '}
             <a href={`mailto:${config.email.info}`}>
               <span tw="text-cyan-400">info@desports.network</span>
-            </a>
+            </a>{' '}
+            {/* todo: translate */}
+            or{' '}
+            <button type="button" onClick={goToStart} tw="underline">
+              go back
+            </button>
           </p>
         </Container>
       </StyledBackgroundShape>
 
-      <BaseFooter onClickLogo={goToStart} />
+      <div>
+        <Container tw="relative">
+          <button type="button" onClick={goToStart} tw="cursor-pointer">
+            <DeSportsFooterLogo tw="lg:hidden absolute top-[-100px]" />
+          </button>
+        </Container>
+      </div>
+
+      <BaseFooter
+        tw="pb-20"
+        logoComponent={
+          <button
+            type="button"
+            onClick={goToStart}
+            tw="hidden lg:block mr-10 my-auto cursor-pointer"
+          >
+            <DeSportsFooterLogo tw="flex items-center lg:visible" />
+          </button>
+        }
+      />
 
       <StyledGeometricBackground tw="hidden lg:block" />
     </>

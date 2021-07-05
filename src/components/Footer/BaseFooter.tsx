@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Container } from '@components/UI/Container'
 import tw, { styled } from 'twin.macro'
 import { config } from '@lib/config/config'
+import { ReactElement } from 'react'
 
 const StyledContainer = styled(Container)`
   li {
@@ -14,7 +15,7 @@ const StyledContainer = styled(Container)`
   }
 `
 
-const DeSportsFooterLogo = ({ ...props }) => {
+export const DeSportsFooterLogo = ({ ...props }) => {
   return (
     <div tw="w-16 h-16 lg:w-10 lg:h-10 relative flex items-center" {...props}>
       <Image src={logoImg} alt="DeSports Logo" />
@@ -23,67 +24,79 @@ const DeSportsFooterLogo = ({ ...props }) => {
 }
 
 interface FooterProps {
-  onClickLogo?: () => void
+  logoComponent?: ReactElement
 }
 
-export const BaseFooter = ({ onClickLogo }: FooterProps) => {
+export const BaseFooter = ({ logoComponent, ...props }: FooterProps) => {
   const { t } = useTranslation('common')
 
   return (
-    <StyledContainer tw="mt-auto text-sm lg:text-base relative flex justify-between items-end mb-20">
-      <footer tw="space-y-7 text-coolGray-300 relative lg:w-1/2">
-        <DeSportsFooterLogo tw="lg:hidden absolute top-[-100px]" />
-
-        <ul tw="flex justify-between sm:justify-around lg:justify-start lg:space-x-10 items-end">
-          {onClickLogo ? (
-            <button
-              type="button"
-              onClick={onClickLogo}
-              tw="my-auto cursor-pointer"
-            >
-              <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
-            </button>
-          ) : (
+    <StyledContainer
+      tw="mt-auto text-sm lg:text-base relative flex justify-between items-center lg:items-end"
+      {...props}
+    >
+      <footer tw="space-y-7 text-coolGray-300 relative w-full lg:w-1/2">
+        {/* <DeSportsFooterLogo tw="lg:hidden absolute top-[-100px]" /> */}
+        <nav tw="flex items-center">
+          {logoComponent || (
             <Link href={routes.home}>
-              <a tw="my-auto cursor-pointer">
-                <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
+              <a tw="mr-10 my-auto cursor-pointer">
+                <DeSportsFooterLogo tw="lg:flex items-center" />
               </a>
             </Link>
           )}
 
-          <div className="space-y-3 lg:space-y-0">
-            <li>
-              <Link href={routes.whitepaper}>{t`shared.whitepaper`}</Link>
-            </li>
-            <li>
-              <Link href={config.blockchain.contractUrl}>
-                {t`shared.contract`}
+          <ul tw="flex justify-start space-x-10 items-end">
+            {/* {onClickLogo ? (
+              <button
+                type="button"
+                onClick={onClickLogo}
+                tw="my-auto cursor-pointer"
+              >
+                <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
+              </button>
+            ) : (
+              <Link href={routes.home}>
+                <a tw="my-auto cursor-pointer">
+                  <DeSportsFooterLogo tw="hidden invisible lg:flex items-center lg:visible" />
+                </a>
               </Link>
-            </li>
-          </div>
+            )} */}
 
-          <div className="space-y-3 lg:space-y-0">
-            <li>
-              <Link href={routes.team}>{t`shared.team`}</Link>
-            </li>
-            <li>
-              <Link href={routes.how_to_buy}>{t`shared.how-to-buy`}</Link>
-            </li>
-          </div>
+            <div className="space-y-3 lg:space-y-0">
+              <li>
+                <Link href={routes.whitepaper}>{t`shared.whitepaper`}</Link>
+              </li>
+              <li>
+                <Link href={config.blockchain.contractUrl}>
+                  {t`shared.contract`}
+                </Link>
+              </li>
+            </div>
 
-          <div className="space-y-3 lg:space-y-0">
-            {/* <li>
-              <Link href={routes.blog}>{t`shared.blog`}</Link>
-            </li> */}
-            <li>
-              <Link href={config.brand_guidelines_pdf}>
-                {t`footer.brand-guidelines`}
-              </Link>
-            </li>
-          </div>
-        </ul>
+            <div className="space-y-3 lg:space-y-0">
+              <li>
+                <Link href={routes.team}>{t`shared.team`}</Link>
+              </li>
+              <li>
+                <Link href={routes.how_to_buy}>{t`shared.how-to-buy`}</Link>
+              </li>
+            </div>
 
-        <div tw="pt-3 lg:pt-0 text-center lg:text-left">
+            <div className="space-y-3 lg:space-y-0">
+              {/* <li>
+                <Link href={routes.blog}>{t`shared.blog`}</Link>
+              </li> */}
+              <li>
+                <Link href={config.brand_guidelines_pdf}>
+                  {t`footer.brand-guidelines`}
+                </Link>
+              </li>
+            </div>
+          </ul>
+        </nav>
+
+        <div tw="pt-3 lg:pt-0 text-left">
           <p>
             <span tw="font-bold">DeSports Network</span>{' '}
             {t`footer.dao-description`}
@@ -92,7 +105,7 @@ export const BaseFooter = ({ onClickLogo }: FooterProps) => {
             <span tw="font-bold">$DESP</span> {t`footer.desp-description`}
           </p>
         </div>
-        <div tw="text-center lg:text-left">
+        <div tw="text-left">
           <p>{t`footer.copyright`}</p>
           <p>{t`footer.trademarks`}</p>
         </div>

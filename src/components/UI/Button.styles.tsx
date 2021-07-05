@@ -112,7 +112,7 @@ export const StyledButton = styled.button<ButtonProps | AnchorProps>`
 
   ${down('md')} {
     min-width: 8rem;
-    max-width: 18rem;
+    /* max-width: 18rem; */
   }
 
   ${({ size }) => {

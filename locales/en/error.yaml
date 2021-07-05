@@ -1,0 +1,9 @@
+---
+'404':
+  title: Error 404
+  description: Not found
+  go_back: Go back to the home page
+'500':
+  title: Error 500
+  description: Server error
+  go_back: Go back to the home page

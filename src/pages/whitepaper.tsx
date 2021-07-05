@@ -6,12 +6,12 @@ import useTranslation from 'next-translate/useTranslation'
 import { styled } from 'twin.macro'
 import Image from 'next/image'
 import { IStage } from '../views/home/StageFullPage'
-import bgImg from '@public/images/background-final.jpg'
 import { Footer } from '@components/Footer/Footer'
 import { Nav } from '@components/Nav'
+import bgImg from '@public/images/home_bg.jpg'
 
 const StyledBackground = styled(Image)`
-  filter: brightness(30%);
+  opacity: 0.2;
 `
 
 // TODO: Split the contents of this page between multiple ones in @views/whitepaper
@@ -91,8 +91,15 @@ const WhitepaperPage = () => {
       <Nav />
 
       <div tw="fixed w-full h-full z-index[-1]">
-        <StyledBackground src={bgImg} layout="fill" objectFit="cover" />
+        <StyledBackground
+          src={bgImg}
+          layout="fill"
+          placeholder="blur"
+          objectFit="cover"
+          objectPosition="0 100px"
+        />
       </div>
+
       <div>
         <NavSpacer />
         <Container tw="mx-auto mt-10">
@@ -108,7 +115,7 @@ const WhitepaperPage = () => {
         </Container>
 
         <Container tw="mx-auto mt-10 mb-20">
-          <div tw="rounded bg-gray-800 text-coolGray-300 p-10 text-lg space-y-20 text-justify overflow-hidden">
+          <div tw="rounded bg-gray-900 text-coolGray-300 p-10 text-lg space-y-20 text-justify overflow-hidden">
             {generalSections.map(({ title, content }) => (
               <article key={title}>
                 <Title as="h3" tw="lg:text-4xl text-left">
