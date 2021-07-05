@@ -20,7 +20,7 @@
   },
   "tokenomics": {
     "title": "Tokenomics",
-    "description": "$DESP a deflationary token launched on July 12th, 2021, running on the BSC Network. **293,333,333.3304 tokens limitation per trade, which is 0.33% of the total supply.\nWallets will only be able to hold a maximum of 2% of the total supply at any given time (1,777,777,777.76 DESP), making DeSports Network truly whale-proof.\nEvery transaction will consist of a 10% fee, which will be applied in the following manner:",
+    "description": "$DESP a deflationary token launched on July 12th, 2021, running on the BSC Network. 293,333,333.3304 tokens limitation per trade, which is 0.33% of the total supply.\nWallets will only be able to hold a maximum of 2% of the total supply at any given time (1,777,777,777.76 DESP), making DeSports Network truly whale-proof.\nEvery transaction will consist of a 10% fee, which will be applied in the following manner:",
     "token_supply": "Token Supply",
     "list": [
       {
