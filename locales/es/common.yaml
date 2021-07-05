@@ -1,0 +1,41 @@
+{
+  "shared": {
+    "team": "Equipo",
+    "whitepaper": "Libro Blanco",
+    "telegram": "Telegram",
+    "buy-now": "Comprar",
+    "contract": "Contrato",
+    "how-to-buy": "Cómo comprar",
+    "blog": "Blog",
+    "trackers": {
+      "title": "Rastreadores",
+      "description": "Al hacer clic en un enlace se abrirá la página en una nueva pestaña.",
+      "list": [
+        { "title": "BSCScan", "key": "bscscan" },
+        { "title": "Coinmarketcap", "key": "coinmarketcap" },
+        { "title": "Coingecko", "key": "coingecko" }
+      ]
+    }
+  },
+  "navBar": {
+    "buy-now": "Comprar",
+    "links": {
+      "platform": "Plataforma",
+      "team": "Equipo",
+      "whitepaper": "Libro blanco",
+      "shop": "Tienda",
+      "news": "Blog"
+    }
+  },
+  "footer": {
+    "title": "Este es solo el comienzo",
+    "pre-sale": "Pre-venta en",
+    "launch": "Lanzamiento en",
+    "contact-us": "Contacta con nosotros",
+    "brand-guidelines": "Guía de la marca",
+    "dao-description": "Está completamente impulsada por DAO",
+    "desp-description": "es un token centrado en los eSports",
+    "copyright": "Copyright DeSports Network © 2021. Todos los derechos reservados.",
+    "trademarks": "Todos los demás derechos de autor y marcas comerciales son propiedad de sus respectivos dueños."
+  }
+}

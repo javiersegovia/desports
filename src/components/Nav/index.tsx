@@ -32,8 +32,6 @@ export const Nav = () => {
 
     let show = showNavbar
 
-    console.log({ showNavbar, isInsideRoadmapOrFooter })
-
     if (isInsideRoadmapOrFooter === showNavbar) {
       dispatch(toggleShowNavbar())
       show = !showNavbar

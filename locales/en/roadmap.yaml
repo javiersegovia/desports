@@ -1,6 +1,6 @@
 ---
 stage1:
-  date: 07/2021 - 12/2021
+  date: 2021
   timeframe: July – December 2021
   name: Galaxy
   title: Stage 1
@@ -13,40 +13,45 @@ stage1:
   - Techrate Audit
   - Presale on DxSale
   - DEX Listing
-  - Blog with Project Updates
-  - Team Expansion
   - Video presentation (describing the entire ecosystem)
-  - eSports Player and Teams Sponsorship
-  - eSports Competition Sponsorship
+  - Blog with Weekly Updates
+  - Team Expansion
+  - Competitions and Players Sponsorships
   - DeSports Merch
   - BSC/ETH/MATIC Bridge – so you can obtain your DESP utilizing any token
   - CEX Listing
   - DeSports dApp Demo
 stage2:
-  date: 2022 - 2023
+  date: 2022
   timeframe: January – December 2022
   title: Stage 2
   name: Pendulum
   subtitle: Growth
-  description: First crucial token and technology foundations and planning development.
-    Building a community and getting people involved.
+  description: The second phase will implement various stages of testing the platform,
+    along with the products used by the ecosystem and aggressive marketing.
   list:
+  - Team Reveal
   - Certik Audit
-  - Closed Beta Phase of DeSports dApp
-  - Open Beta Phase of DeSports dApp
+  - CEX Listings
+  - Unique ID | Decentralized gaming profiles
   - DeSports Wallet
-  - DeSports dApp Launch
-  - Start of DeSports Seasons
-  - NFT Trophies and Unique Achievements
+  - NFT Trophies, Badges, and Achievements
+  - Alpha Phase of Platform/Network
+  - DeSports Crypto Donation Feature
+  - Tournaments and Challenges
+  - Closed & Open Beta Phase of Platform/Network
   - More to be announced...
 stage3:
-  date: 2023 - 2024
+  date: 2023
   timeframe: January – December 2023
   title: Stage 3
   name: Dimension
   subtitle: Full Decentralization
-  description: First crucial token and technology foundations and planning development.
-    Building a community and getting people involved.
-  unlocking_in: Releasing in
+  description: The third phase will see complete autonomy of the platform.
+  unlocking_in: Unlocking in
   list:
-  - To be announced in Q3, 2022
+  - From this stage onwards, DeSports Network will already have a self-sustaining,
+    solid ecosystem in place, which will enable us to take 1% from the marketing and
+    promotion wallet and 1% from the dev wallet, allocating it to the eSports Financing
+    wallet, making it 3%
+  - The rest to be revealed in Q3, 2022 when Stage 3 is unlocked to the public.

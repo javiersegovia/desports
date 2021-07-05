@@ -37,7 +37,7 @@ export const BaseFooter = ({ logoComponent, ...props }: FooterProps) => {
     >
       <footer tw="space-y-7 text-coolGray-300 relative w-full lg:w-1/2">
         {/* <DeSportsFooterLogo tw="lg:hidden absolute top-[-100px]" /> */}
-        <nav tw="flex items-center">
+        <nav tw="sm:flex items-center">
           {logoComponent || (
             <Link href={routes.home}>
               <a tw="mr-10 my-auto cursor-pointer">

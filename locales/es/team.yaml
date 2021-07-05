@@ -1,0 +1,59 @@
+---
+title: Equipo
+description: 'DeSports Network se rige completamente a través de una estructura DAO.
+  A continuación, puede conocer a los miembros de nuestro equipo:'
+team_members:
+- name: NATIC
+  pos_1: Gerente de Proyecto
+  pos_2: Diseñador de producto
+- name: AL
+  pos_1: Gerente de Proyecto
+  pos_2: Desarrollo de negocios
+- name: JASA
+  pos_1: Gerente de Proyecto
+  pos_2: Desarrollador de software
+- name: Ai
+  pos_1: Gerente de Proyecto
+  pos_2: Desarrollador de software
+work_with_us:
+  title: Join us
+  description: DeSports Network está buscando personas talentosas e impulsadas en
+    las industrias de blockchain, videojuegos y desarrollo de software.
+  list:
+  - title: Desarrollador de Solidity
+    time: Tiempo Completo
+    location: Remoto
+  - title: Organizador de eventos de eSports
+    time: Tiempo Completo
+    location: Remoto
+  - title: Marketing Manager
+    time: Tiempo Completo
+    location: Remoto
+contact_us: "¿Interesado? Contactanos"
+readyplayerme:
+  title: Partners Oficiales
+  description: "¿Quieres un avatar personalizado como el nuestro? Elija entre más
+    de 300 opciones de personalización y cree su propio avatar."
+  button: Crea tu propio avatar
+  responsive_button: Crea tu avatar
+dao_1:
+  title: "¿Qué es el DAO de DeSports Network?"
+  content: 'DAO significa "Organización autónoma descentralizada". El DAO de DeSports
+    Network desarrolla los contratos inteligentes y NFT más importantes que componen
+    DeSports Network: los contratos de competencia, donaciones y logros. También posee
+    una pequeña bolsa de $ DESP que le permite ser verdaderamente autónomo y subsidiar
+    varias operaciones e iniciativas en DeSports Network.'
+dao_2:
+  title: "¿Cómo funciona la DAO y qué importancia tiene para mí?"
+  content: 'Es importante que los usuarios y holders estén informados y también tengan
+    voz y voto en lo que suceda en el futuro del token y el proyecto. Participa en
+    el desarrollo de:'
+  bullets:
+  - Listado de juegos nuevos dentro de la plataforma
+  - Verificación de jugadores
+  - Verificación de equipos
+  - Plantillas de torneo y reglas personalizadas
+  - Condiciones de recompensas de competiciones
+  - Tamaño y alcance de las competiciones organizadas
+  - Nuevas características del ecosistema
+  - "... Y mucho más por venir."

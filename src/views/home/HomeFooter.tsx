@@ -80,13 +80,13 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
               color={theme`colors.emerald.400`}
               title={t`footer.pre-sale`}
               date={config.presale_date}
-              tw="text-xl lg:min-w-[200px] xl:min-w-[330px] lg:text-xl xl:text-4xl text-left"
+              tw="text-xl lg:min-w-[200px] xl:min-w-[330px] lg:text-xl xl:text-2xl 2xl:text-4xl text-left"
             />
             <CountdownItem
               color={theme`colors.yellow.400`}
               title={t`footer.launch`}
               date={config.launch_date}
-              tw="text-xl lg:min-w-[200px] xl:min-w-[330px] lg:text-xl xl:text-4xl text-left"
+              tw="text-xl lg:min-w-[200px] xl:min-w-[330px] lg:text-xl xl:text-2xl 2xl:text-4xl text-left"
             />
           </div>
           <div tw="flex flex-row items-center justify-start space-y-0 space-x-6 sm:space-x-10 mt-12">

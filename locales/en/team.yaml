@@ -19,7 +19,7 @@ work_with_us:
   title: Join us
   description: DeSports Network is looking for talented and driven individuals with
     experience in marketing & social media, software development, the blockchain,
-    video games & eSports
+    video games and eSports
   list:
   - title: Solidity Developer
     time: Full Time
@@ -30,12 +30,11 @@ work_with_us:
   - title: Marketing Manager
     time: Full Time
     location: Remote
-contact_us: Interested? Contact us at
+contact_us: Interested? Contact us
 readyplayerme:
   title: Official Partner
   description: Do you want to have a custom avatar like ours? Create your own by choosing
-    from over 300+ customization options. These will be used as your profile pictures
-    in our platform.
+    from over 300+ customization options.
   button: Create your own avatar
   responsive_button: Create your avatar
 dao_1:

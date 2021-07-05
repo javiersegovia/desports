@@ -1,0 +1,61 @@
+---
+stage1:
+  date: 2021
+  timeframe: Julio – Diciembre 2021
+  name: Galaxia
+  title: Fase 1
+  subtitle: Fundamentos
+  description: Primeras bases cruciales tecnológicas y del tokens. Construir una comunidad
+    e involucrar a las personas en el ecosistema de cadenas de bloques de deportes
+    electrónicos más descentralizado y gratificante.
+  list:
+  - Lanzamiento de sitio web y redes sociales
+  - Lanzamiento de la campaña de marketing
+  - Auditoría de Techrate
+  - Preventa en DxSale
+  - Listado DEX
+  - Presentación de video (que describe todo el ecosistema)
+  - Blog con actualizaciones semanales
+  - Expansión del equipo
+  - Concursos y patrocinios de jugadores
+  - DeSports Merch
+  - Puente BSC / ETH / MATIC - para que pueda obtener su DESP utilizando cualquier
+    token
+  - Listado CEX
+  - DeSports dApp Demo
+stage2:
+  date: 2022
+  timeframe: Enero – Diciembre 2022
+  title: Fase 2
+  name: Péndulo
+  subtitle: Crecimiento
+  description: La segunda fase implementará varias etapas de prueba de la plataforma,
+    junto con los productos utilizados por el ecosistema y el marketing agresivo
+  list:
+  - Revelación del equipo
+  - Auditoría Certik
+  - Listados CEX
+  - ID único | Perfiles de juego descentralizados
+  - Cartera DeSports
+  - Trofeos, insignias y logros de NFT
+  - Fase alfa de plataforma / red
+  - Función de donación de criptomonedas de DeSports
+  - Torneos y desafíos
+  - Fase beta cerrada y abierta de la plataforma / red
+  - Más por anunciar ...
+stage3:
+  date: 2023
+  timeframe: Enero – Diciembre 2023
+  title: Fase 3
+  name: Dimensión
+  subtitle: Descentralización completa
+  description: First crucial token and technology foundations and planning development.
+    Building a community and getting people involved.
+  unlocking_in: Se desbloquea en
+  list:
+  - A partir de esta etapa, DeSports Network ya contará con un ecosistema sólido y
+    autosostenible, que nos permitirá tomar el 1% de la billetera de marketing y promoción
+    y el 1% de la billetera de desarrollo, asignándolo a la billetera de financiación
+    de eSports. haciéndolo 3%
+  - El resto se revelará en el tercer trimestre de 2022 cuando la Etapa 3 se desbloquee
+    al público.

@@ -83,8 +83,8 @@ export const PancakeswapGuide = () => {
         <Trans
           i18nKey="how-to-buy:pancakeswap.guide.step_1.description"
           components={[
-            <Anchor key="trust" href="/trust" />,
-            <Anchor key="metamask" href="/metamask" />,
+            <Anchor key="trust" href={config.external.trust_wallet} />,
+            <Anchor key="metamask" href={config.external.metamask} />,
           ]}
         />
 

@@ -42,6 +42,11 @@ export const config = {
   presale_date: new Date('July 12, 2021 13:00:00'),
   launch_date: new Date('July 12, 2021 15:00:00'),
 
+  external: {
+    metamask: 'https://metamask.io/',
+    trust_wallet: 'https://trustwallet.com/',
+  },
+
   languages: {
     es: 'Español',
     en: 'English',
