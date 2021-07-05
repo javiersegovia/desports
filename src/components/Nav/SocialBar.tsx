@@ -1,7 +1,7 @@
 import { LanguageDropdown } from '@components/Dropdown/LanguageDropdown'
 import { Container } from '@components/UI/Container'
+import { config } from '@lib/config/config'
 import {
-  FaFacebook,
   FaTwitter,
   FaInstagram,
   FaDiscord,
@@ -11,27 +11,27 @@ import {
 
 const socialNetworks = [
   {
-    url: 'twit',
+    url: config.social.twitter,
     icon: FaTwitter,
   },
   {
-    url: 'tlg',
+    url: config.social.telegram,
     icon: FaTelegram,
   },
   {
-    url: 'disc',
+    url: config.social.discord,
     icon: FaDiscord,
   },
   {
-    url: 'redd',
+    url: config.social.reddit,
     icon: FaReddit,
   },
+  // {
+  //   url: config.social.facebook,
+  //   icon: FaFacebook,
+  // },
   {
-    url: 'fac',
-    icon: FaFacebook,
-  },
-  {
-    url: 'ig',
+    url: config.social.instagram,
     icon: FaInstagram,
   },
 ]

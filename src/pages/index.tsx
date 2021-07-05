@@ -16,6 +16,7 @@ import { MobileRoadmap } from '../views/home/MobileRoadmap'
 import { up } from 'styled-breakpoints'
 import { Global, css } from '@emotion/react'
 import { useEffect } from 'react'
+import { Nav } from '@components/Nav'
 
 const styles = css`
   body.home {
@@ -60,6 +61,8 @@ export default function Home() {
 
   return (
     <>
+      <Nav />
+
       <Global styles={styles} />
       <div
         ref={wrapperRef}

@@ -12,7 +12,7 @@ import { routes } from '@lib/config/routes'
 import { Logo } from './Logo'
 import { SocialIcons } from './SocialBar'
 import useTranslation from 'next-translate/useTranslation'
-import { config } from '@lib/config/config'
+// import { config } from '@lib/config/config'
 import { useRef } from 'react'
 import { useOnClickOutside } from '@lib/hooks/useOnClickOutside'
 import dynamic from 'next/dynamic'
@@ -29,7 +29,7 @@ const TrackersModal = dynamic<InstanceModalProps>(() =>
 const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
-  shop: config.shop,
+  // shop: config.shop,
   // blog: routes.blog,
 } as const
 

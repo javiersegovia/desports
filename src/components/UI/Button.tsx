@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string
+  targetBlank?: boolean
   size?: TButtonSize
   color?: string
   bgColor?: string
@@ -30,11 +31,20 @@ export const ButtonElement = forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'md',
       children,
       href,
+      targetBlank = false,
       ...otherProps
     },
     ref
   ) => {
     const tag = href ? 'a' : 'button'
+
+    const targetProps =
+      targetBlank && href
+        ? {
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          }
+        : {}
 
     return (
       <StyledButton
@@ -47,6 +57,7 @@ export const ButtonElement = forwardRef<HTMLButtonElement, ButtonProps>(
         color={color as string}
         bgColor={bgColor as string}
         size={size}
+        {...targetProps}
         {...otherProps}
       >
         {children}

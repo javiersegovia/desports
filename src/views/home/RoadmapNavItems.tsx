@@ -136,51 +136,57 @@ export const RoadmapNavItems = memo(
       // Entering Roadmap
       if (shouldMorph) {
         stageRefs.forEach((navItem, index) => {
-          gsap.to(navItem.current, {
-            ease: 'power2.inOut',
-            delay: animationSpeed * 0.85,
-            duration: animationSpeed * 0.3,
-            height: 80,
-          })
+          navItem.current &&
+            gsap.to(navItem.current, {
+              ease: 'power2.inOut',
+              delay: animationSpeed * 0.85,
+              duration: animationSpeed * 0.3,
+              height: 80,
+            })
 
-          gsap.to(navItem.current, {
-            ease: 'linear',
-            clipPath: navClipPaths[index],
-            delay: animationSpeed,
-            duration: animationSpeed * 0.1,
-          })
+          navItem.current &&
+            gsap.to(navItem.current, {
+              ease: 'linear',
+              clipPath: navClipPaths[index],
+              delay: animationSpeed,
+              duration: animationSpeed * 0.1,
+            })
         })
 
         arrowRefs.current.forEach((arrowItem) => {
-          gsap.to(arrowItem, {
-            autoAlpha: 1,
-            ease: 'power2.inOut',
-            delay: animationSpeed * 0.85,
-            duration: animationSpeed,
-          })
+          arrowItem &&
+            gsap.to(arrowItem, {
+              autoAlpha: 1,
+              ease: 'power2.inOut',
+              delay: animationSpeed * 0.85,
+              duration: animationSpeed,
+            })
         })
       } else {
         stageRefs.forEach((navItem) => {
-          gsap.to(navItem.current, {
-            ease: 'power2.inOut',
-            delay: animationSpeed * 0.85,
-            duration: animationSpeed * 0.3,
-            height: 'auto',
-          })
-          gsap.to(navItem.current, {
-            ease: 'linear',
-            clipPath: squareClipPath,
-            delay: animationSpeed * 0.85,
-            duration: animationSpeed * 0.1,
-          })
+          navItem.current &&
+            gsap.to(navItem.current, {
+              ease: 'power2.inOut',
+              delay: animationSpeed * 0.85,
+              duration: animationSpeed * 0.3,
+              height: 'auto',
+            })
+          navItem.current &&
+            gsap.to(navItem.current, {
+              ease: 'linear',
+              clipPath: squareClipPath,
+              delay: animationSpeed * 0.85,
+              duration: animationSpeed * 0.1,
+            })
         })
 
         arrowRefs.current.forEach((arrowItem) => {
-          gsap.to(arrowItem, {
-            autoAlpha: 0,
-            ease: 'power2.inOut',
-            duration: animationSpeed,
-          })
+          arrowItem &&
+            gsap.to(arrowItem, {
+              autoAlpha: 0,
+              ease: 'power2.inOut',
+              duration: animationSpeed,
+            })
         })
       }
     }, [

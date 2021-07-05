@@ -7,6 +7,8 @@ import { styled } from 'twin.macro'
 import Image from 'next/image'
 import { IStage } from '../views/home/StageFullPage'
 import bgImg from '@public/images/background-final.jpg'
+import { Footer } from '@components/Footer/Footer'
+import { Nav } from '@components/Nav'
 
 const StyledBackground = styled(Image)`
   filter: brightness(30%);
@@ -86,6 +88,8 @@ const WhitepaperPage = () => {
 
   return (
     <>
+      <Nav />
+
       <div tw="fixed w-full h-full z-index[-1]">
         <StyledBackground src={bgImg} layout="fill" objectFit="cover" />
       </div>
@@ -191,6 +195,8 @@ const WhitepaperPage = () => {
           </div>
         </Container>
       </div>
+
+      <Footer />
     </>
   )
 }

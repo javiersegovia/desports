@@ -9,19 +9,6 @@ import {
   selectShowNavbar,
   toggleShowNavbar,
 } from '@lib/redux/slices/navSlice'
-// import { RootState } from '@lib/redux/store'
-
-// const selectFooterSection = (state: RootState) =>
-//   state.screenAnimation.sections.footer
-
-// const selectStage1Section = (state: RootState) =>
-//   state.screenAnimation.sections.stage1
-
-// const selectStage2Section = (state: RootState) =>
-//   state.screenAnimation.sections.stage2
-
-// const selectStage3Section = (state: RootState) =>
-//   state.screenAnimation.sections.stage3
 
 export const Nav = () => {
   const navbarRef = useRef<HTMLDivElement>(null)
@@ -32,8 +19,6 @@ export const Nav = () => {
   const navPosition = useAppSelector(selectNavPosition)
 
   useEffect(() => {
-    if (gsap.isTweening(navbarRef.current)) return
-
     const isInsideRoadmapOrFooter =
       navPosition === 'roadmap' || navPosition === 'footer'
 
@@ -46,6 +31,8 @@ export const Nav = () => {
      */
 
     let show = showNavbar
+
+    console.log({ showNavbar, isInsideRoadmapOrFooter })
 
     if (isInsideRoadmapOrFooter === showNavbar) {
       dispatch(toggleShowNavbar())

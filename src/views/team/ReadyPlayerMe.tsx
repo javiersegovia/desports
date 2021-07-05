@@ -9,6 +9,7 @@ import { theme } from 'twin.macro'
 // todo: change readyplayerme path
 import readyPlayerLogoImg from '@public/images/readyplayerme_logo.png'
 import readyPlayerImg from '@public/images/readyplayerme_image.png'
+import { config } from '../../lib/config/config'
 
 export const ReadyPlayerMe = () => {
   const { t } = useTranslation('team')
@@ -32,6 +33,8 @@ export const ReadyPlayerMe = () => {
         <p tw="mt-4 lg:w-7/12 xl:w-7/12">{t`readyplayerme.description`}</p>
 
         <Button
+          targetBlank
+          href={config.ready_player_me}
           bgColor={theme`colors.yellow.400`}
           tw="w-full sm:w-auto mt-10 mx-auto sm:mx-0"
         >

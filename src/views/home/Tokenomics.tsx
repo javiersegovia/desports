@@ -47,7 +47,7 @@ export const Tokenomics = () => {
               tw="width[100%] mt-10 lg:mt-0 mx-auto max-w-xs"
               shadowColor="emerald"
             >
-              <Title as="h5" tw="lg:text-xl mt-4 mx-auto">
+              <Title as="h5" tw="text-2xl sm:text-3xl lg:text-xl mt-4 mx-auto">
                 {t`tokenomics.token_supply`}
               </Title>
 

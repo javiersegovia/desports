@@ -1,5 +1,5 @@
 import { isDesktop } from '@root/src/views/home/useAnimations'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface ActiveIndexDefaultState {
   index: number
@@ -21,16 +21,12 @@ export const useActiveIndex = ({
   const [activeIndex, setActiveIndex] =
     useState<ActiveIndexDefaultState>(initialState)
 
-  const timer = useRef<NodeJS.Timer | null>(null)
   const desktop = isDesktop()
 
   useEffect(() => {
-    timer.current && clearInterval(timer.current)
     if (!desktop) return
 
-    const currentTimer = timer.current
-
-    timer.current = setInterval(() => {
+    const timer = setInterval(() => {
       if (activeIndex.pause) return
 
       const newIndex =
@@ -43,7 +39,7 @@ export const useActiveIndex = ({
     }, 4000)
 
     return () => {
-      currentTimer && clearInterval(currentTimer)
+      clearInterval(timer)
     }
   }, [activeIndex, maxIndex, desktop])
 

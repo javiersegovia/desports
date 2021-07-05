@@ -109,7 +109,13 @@ export const StageFullPage = ({
             tw="hidden lg:block max-w-sm relative mt-14"
             css={[isLocked && tw`mx-auto`]}
           >
-            <Image src={image} objectFit="contain" alt="Stage Image" />
+            <Image
+              src={image}
+              objectFit="contain"
+              alt="Stage Image"
+              placeholder="blur"
+            />
+
             {isLocked && (
               <div tw="z-10 absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400 animate-pulse">
                 <VscLock tw="text-8xl" />
@@ -188,7 +194,7 @@ export const StageFullPage = ({
           src={bgImage}
           alt="Background"
           layout="fill"
-          loading="eager"
+          placeholder="blur"
           objectFit="cover"
           objectPosition="center"
           tw="absolute w-full h-full z-index[-5] opacity-20"

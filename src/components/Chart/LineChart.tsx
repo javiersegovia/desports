@@ -45,7 +45,7 @@ export const LineChart = ({ max, current, ...props }: LineChartProps) => {
     >
       <StyledCompletionBar
         tw="absolute bg-red-500 z-10 left-0 top-0 bottom-0"
-        className="animate-burn-ping"
+        className="hidden lg:block animate-burn-ping"
         style={{ width: `${completion}%` }}
       />
       <StyledCompletionBar

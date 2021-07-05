@@ -2,7 +2,6 @@
 
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
-import { Nav } from '@components/Nav'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import { GlobalStyles } from './Global.styles'
 import { Provider } from 'react-redux'
@@ -12,7 +11,7 @@ import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 
 const PROGRESS_BAR_DELAY = 500
-const GLITCH_EFFECT_DURATION = 200
+const GLITCH_EFFECT_DURATION = 300
 
 const dummyArray = Array.from({ length: 20 })
 
@@ -87,8 +86,6 @@ export const Layout = ({ children }: LayoutProps) => {
     router.events.on('routeChangeStart', () => {
       currentInterval = setInterval(() => NProgress.start(), PROGRESS_BAR_DELAY)
     })
-    // router.events.on('routeChangeComplete', () => NProgress.done())
-    // router.events.on('routeChangeError', () => NProgress.done())
 
     router.events.on('routeChangeComplete', () => {
       currentInterval && clearInterval(currentInterval)
@@ -111,12 +108,11 @@ export const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     glitchInterval.current && clearInterval(glitchInterval.current)
     let currentInterval = glitchInterval.current
-    if (showGlitch) {
-      currentInterval = setInterval(
-        () => setShowGlitch(false),
-        GLITCH_EFFECT_DURATION
-      )
-    }
+
+    currentInterval = setInterval(
+      () => setShowGlitch(false),
+      GLITCH_EFFECT_DURATION
+    )
 
     return () => {
       currentInterval && clearInterval(currentInterval)
@@ -126,7 +122,6 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <Nav />
         <GlobalStyles />
         {showGlitch && (
           <>

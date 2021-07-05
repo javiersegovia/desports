@@ -81,16 +81,6 @@ interface ISectionEvents {
 }
 
 interface NavState {
-  // // Controls
-  // oldIndex: number
-  // activeIndex: number
-  // newIndex: number
-  // insideRoadmap: boolean
-  // lastY: number
-  // lastX: number
-  // offsetsY: number[]
-  // offsetsX: number[]
-
   // Core
   animationSpeed: number
   oldSection: INavSection | null
@@ -116,17 +106,6 @@ interface NavState {
 }
 
 export const animationDefaultState: NavState = {
-  // // Controls
-  // oldIndex: 0, // could be replaced by oldSection.index?
-  // activeIndex: 0, // could be replaced by activeSection.index?
-
-  // newIndex: 0, // could be local?
-  // insideRoadmap: false, // could be replaced by navPosition // local ?
-  // lastY = 0
-  // lastX = 0
-  // offsetsY: number[] = []
-  // offsetsX: number[] = []
-
   // Core
   animationSpeed: 0.75,
   oldSection: null,

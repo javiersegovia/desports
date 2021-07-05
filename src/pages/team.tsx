@@ -10,6 +10,8 @@ import { TeamMembers } from '@views/team/TeamMember'
 import { ReadyPlayerMe } from '@views/team/ReadyPlayerMe'
 import { config } from '@lib/config/config'
 import teamImg from '@public/images/team_background.webp'
+import { Footer } from '@components/Footer/Footer'
+import { Nav } from '@components/Nav'
 
 const StyledBackground = styled(Image)`
   filter: brightness(50%);
@@ -29,6 +31,8 @@ const TeamPage = () => {
 
   return (
     <>
+      <Nav />
+
       <StyledBackground src={teamImg} layout="fill" objectFit="contain" />
       <NavSpacer />
 
@@ -86,6 +90,8 @@ const TeamPage = () => {
           </p>
         </section>
       </Container>
+
+      <Footer />
     </>
   )
 }

@@ -10,8 +10,8 @@ import tw, { styled, theme } from 'twin.macro'
 
 import { GiTrophyCup } from 'react-icons/gi'
 
-import coinmarketcapImg from '@public/images/trackers/coinmarketcap.png'
-import coingeckoImg from '@public/images/trackers/coingecko.png'
+// import coinmarketcapImg from '@public/images/trackers/coinmarketcap.png'
+// import coingeckoImg from '@public/images/trackers/coingecko.png'
 import { FaYoutube } from 'react-icons/fa'
 import { SquareFrame } from '../../components/UI/Frames/SquareFrame'
 import { RiFileCopyLine } from 'react-icons/ri'
@@ -26,6 +26,7 @@ import introVideoImg from '@public/images/bg__intro-video.jpg'
 import { VscLock } from 'react-icons/vsc'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
+import { routes } from '@lib/config/routes'
 
 const DemoVideoModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/DemoVideoModal').then(
@@ -134,23 +135,23 @@ const PrizePool = ({ ...props }) => {
   )
 }
 
-const PartnerLogos = ({ ...props }) => {
-  return (
-    <div tw="flex items-center space-x-4" {...props}>
-      <div>
-        <Image src={coingeckoImg} alt="Coingecko" width={42} height={42} />
-      </div>
-      <div>
-        <Image
-          src={coinmarketcapImg}
-          alt="Coinmarketcap"
-          width={42}
-          height={42}
-        />
-      </div>
-    </div>
-  )
-}
+// const PartnerLogos = ({ ...props }) => {
+//   return (
+//     <div tw="flex items-center space-x-4" {...props}>
+//       <div>
+//         <Image src={coingeckoImg} alt="Coingecko" width={42} height={42} />
+//       </div>
+//       <div>
+//         <Image
+//           src={coinmarketcapImg}
+//           alt="Coinmarketcap"
+//           width={42}
+//           height={42}
+//         />
+//       </div>
+//     </div>
+//   )
+// }
 
 const MarketItems = ({ ...props }) => {
   const { t } = useTranslation('home')
@@ -238,6 +239,9 @@ export const Landing = () => {
       window.navigator) ||
     null
 
+  // todo: remove this
+  const prizePoolIsAvailable = false
+
   return (
     <>
       {/* <StyledBackground tw="hidden lg:block absolute z-index[-1] bg-cover bg-center bg-no-repeat opacity[.35] w-full h-full" /> */}
@@ -292,7 +296,9 @@ export const Landing = () => {
                 {t`landing.trackers`}
               </Button>
 
-              <Button tw="flex-1 lg:flex-grow-0">{t`landing.buy-now`}</Button>
+              <Button href={routes.how_to_buy} tw="flex-1 lg:flex-grow-0">
+                {t`landing.buy-now`}
+              </Button>
             </div>
 
             <div tw="pt-4 relative inline-block">
@@ -374,7 +380,7 @@ export const Landing = () => {
                 </div>
                 {/* todo: fix this based on countdown time */}
                 {/* ~~~~~~~~~~~~~~~~~ COUNTDOWNS ~~~~~~~~~~~~~~~~~ */}
-                {false ? (
+                {prizePoolIsAvailable ? (
                   <PrizePool tw="mt-16 ml-10" />
                 ) : (
                   <CountdownItems tw="mt-16 ml-10" />
