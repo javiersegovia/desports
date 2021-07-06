@@ -60,7 +60,8 @@ export interface NavBarProps {
 export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
   const [
     trackersModalIsOpen,
-    { setTrue: openTrackersModal, setFalse: closeTrackersModal },
+    // { setTrue: openTrackersModal, setFalse: closeTrackersModal },
+    { setFalse: closeTrackersModal },
   ] = useToggle()
 
   const dropdownRef = useRef<HTMLDivElement>(null)
