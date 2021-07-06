@@ -1,7 +1,6 @@
 ---
 title: Equipo
-description: 'DeSports Network se rige completamente a través de una estructura DAO.
-  A continuación, puede conocer a los miembros de nuestro equipo:'
+description: "DeSports Network se rige completamente a través de una estructura DAO. A continuación, conoce al equipo:"
 team_members:
 - name: NATIC
   pos_1: Gerente de Proyecto
@@ -16,7 +15,7 @@ team_members:
   pos_1: Gerente de Proyecto
   pos_2: Desarrollador de software
 work_with_us:
-  title: Join us
+  title: Únete a nosotr@s
   description: DeSports Network está buscando personas talentosas e impulsadas en
     las industrias de blockchain, videojuegos y desarrollo de software.
   list:
@@ -29,25 +28,20 @@ work_with_us:
   - title: Marketing Manager
     time: Tiempo Completo
     location: Remoto
-contact_us: "¿Interesado? Contactanos"
+contact_us: "¿Interesado? Contáctanos"
 readyplayerme:
   title: Partners Oficiales
-  description: "¿Quieres un avatar personalizado como el nuestro? Elija entre más
-    de 300 opciones de personalización y cree su propio avatar."
+  description: ¿Quieres tener un avatar personalizado como el nuestro? Cree el suyo eligiendo entre más de 300 opciones de personalización.
   button: Crea tu propio avatar
   responsive_button: Crea tu avatar
 dao_1:
-  title: "¿Qué es el DAO de DeSports Network?"
-  content: 'DAO significa "Organización autónoma descentralizada". El DAO de DeSports
-    Network desarrolla los contratos inteligentes y NFT más importantes que componen
-    DeSports Network: los contratos de competencia, donaciones y logros. También posee
-    una pequeña bolsa de $ DESP que le permite ser verdaderamente autónomo y subsidiar
-    varias operaciones e iniciativas en DeSports Network.'
+  title: ¿Qué es el DAO de DeSports Network?
+  content: |
+    DAO significa "Organización autónoma descentralizada". Un DAO es una organización creada por desarrolladores para automatizar decisiones y facilitar las transacciones de criptomonedas.
+    El DAO de DeSports Network ejecutará automáticamente ciertas acciones como competiciones, apuestas, donaciones y logros sin la necesidad de intermediarios. El DAO utilizará $ DESP de la billetera de marketing y promociones para subsidiar varias operaciones e iniciativas en toda la red DeSports.
 dao_2:
-  title: "¿Cómo funciona la DAO y qué importancia tiene para mí?"
-  content: 'Es importante que los usuarios y holders estén informados y también tengan
-    voz y voto en lo que suceda en el futuro del token y el proyecto. Participa en
-    el desarrollo de:'
+  title: ¿Cómo es la DAO relevante para mí?
+  content: "Es importante que los usuarios y holders estén informados, tengan voz y voten sobre lo que sucede con el futuro del token y el proyecto. Puedes participar en el desarrollo de:"
   bullets:
   - Listado de juegos nuevos dentro de la plataforma
   - Verificación de jugadores

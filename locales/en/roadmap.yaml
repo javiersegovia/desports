@@ -5,8 +5,7 @@ stage1:
   name: Galaxy
   title: Stage 1
   subtitle: Foundation
-  description: First crucial token and technology foundations and planning development.
-    Building a community and getting people involved.
+  description: Initial phases of planning and development are crucial to the advancement of the token and the project. Building a community and getting people involved.
   list:
   - Website and Social Media launch
   - Marketing Campaign launch
@@ -16,7 +15,7 @@ stage1:
   - Video presentation (describing the entire ecosystem)
   - Blog with Weekly Updates
   - Team Expansion
-  - Competitions and Players Sponsorships
+  - Competition and Player Sponsorships
   - DeSports Merch
   - BSC/ETH/MATIC Bridge – so you can obtain your DESP utilizing any token
   - CEX Listing
@@ -27,8 +26,7 @@ stage2:
   title: Stage 2
   name: Pendulum
   subtitle: Growth
-  description: The second phase will implement various stages of testing the platform,
-    along with the products used by the ecosystem and aggressive marketing.
+  description: The second phase will implement various stages of testing the platform, products utilized by the ecosystem, and assertive marketing.
   list:
   - Team Reveal
   - Certik Audit
@@ -48,10 +46,9 @@ stage3:
   name: Dimension
   subtitle: Full Decentralization
   description: The third phase will see complete autonomy of the platform.
-  unlocking_in: Unlocking in
+  unlocking_in: |
+    Unlocking in
+    Q3 2022
   list:
-  - From this stage onwards, DeSports Network will already have a self-sustaining,
-    solid ecosystem in place, which will enable us to take 1% from the marketing and
-    promotion wallet and 1% from the dev wallet, allocating it to the eSports Financing
-    wallet, making it 3%
-  - The rest to be revealed in Q3, 2022 when Stage 3 is unlocked to the public.
+  - From this stage onwards, DeSports Network will already have a self-sustaining, solid ecosystem in place, which will enable us to take an additional 1% from the marketing and promotion wallet and 1% from the dev wallet, allocating it to the eSports Financing wallet, making it 3%.
+  - The rest is to be revealed in Q3, 2022 when Stage 3 is unlocked to the public.

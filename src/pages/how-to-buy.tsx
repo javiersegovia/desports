@@ -7,7 +7,6 @@ import Image from 'next/image'
 import { Footer } from '@components/Footer/Footer'
 import { Nav } from '@components/Nav'
 import bgImg from '@public/images/home_bg.jpg'
-import binanceLogoImg from '@public/images/logo_binance.svg'
 import {
   PancakeswapGuide,
   PancakeswapHeading,
@@ -20,13 +19,13 @@ const HowToBuyPage = () => {
     <>
       <Nav />
 
+      {/* todo: move this to a component (see whitepaper bg reference) */}
       <div tw="fixed w-full h-full z-index[-1]">
         <Image
           src={bgImg}
           layout="fill"
           placeholder="blur"
           alt="Background"
-          // objectFit="cover"
           objectPosition="0 60px"
           tw="opacity-20 object-contain lg:object-cover lg:object-position[0 100px]"
         />
@@ -50,10 +49,10 @@ const HowToBuyPage = () => {
               {t`how_to_buy`}
             </Title>
 
-            <Title tw="pb-10 lg:pb-0 text-xl sm:text-xl lg:text-xl flex items-center justify-center space-x-4">
+            {/* <Title tw="pb-10 lg:pb-0 text-xl sm:text-xl lg:text-xl flex items-center justify-center space-x-4">
               <Image src={binanceLogoImg} alt="Binance logo" />
               <span>Binance Smart Chain</span>
-            </Title>
+            </Title> */}
           </div>
 
           <div tw="mt-4">

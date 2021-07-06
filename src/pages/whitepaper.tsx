@@ -10,10 +10,6 @@ import { Footer } from '@components/Footer/Footer'
 import { Nav } from '@components/Nav'
 import bgImg from '@public/images/home_bg.jpg'
 
-const StyledBackground = styled(Image)`
-  opacity: 0.2;
-`
-
 // TODO: Split the contents of this page between multiple ones in @views/whitepaper
 
 interface ContentItemI18n {
@@ -91,12 +87,13 @@ const WhitepaperPage = () => {
       <Nav />
 
       <div tw="fixed w-full h-full z-index[-1]">
-        <StyledBackground
+        <Image
           src={bgImg}
           layout="fill"
           placeholder="blur"
-          objectFit="cover"
-          objectPosition="0 100px"
+          objectPosition="0 60px"
+          alt="Background"
+          tw="opacity-20 object-contain lg:object-cover lg:object-position[0 100px]"
         />
       </div>
 

@@ -90,34 +90,35 @@ export const PancakeswapGuide = () => {
 
         <div tw="mt-3" />
 
-        {/* todo: add copy to clipboard and move LOGIC to a hook! */}
-        <div tw="relative block">
-          <button
-            type="button"
-            tw="p-2 bg-gray-800 w-full md:w-auto flex flex-col md:flex-row md:items-center text-left md:text-center rounded-md relative text-xs sm:text-sm md:text-base"
-            onClick={() => {
-              if (clipboard) {
-                clipboard?.writeText(config.blockchain.contractAddress)
-                openClipboardTooltip()
-              }
-            }}
-          >
-            <span tw="block sm:inline-block font-bold">
-              {t`pancakeswap.guide.step_1.contract_address`}:{' '}
-            </span>
-            <span tw="block sm:inline-block font-mono">
-              {config.blockchain.contractAddress}
-            </span>
-            {clipboard && (
-              <RiFileCopyLine tw="absolute top-2 right-2 md:top-auto md:right-auto md:relative ml-2 inline-block" />
-            )}
+        {config.blockchain.contractAddress && (
+          <div tw="relative block">
+            <button
+              type="button"
+              tw="p-2 bg-gray-800 w-full md:w-auto flex flex-col md:flex-row md:items-center text-left md:text-center rounded-md relative text-xs sm:text-sm md:text-base"
+              onClick={() => {
+                if (clipboard) {
+                  clipboard?.writeText(config.blockchain.contractAddress)
+                  openClipboardTooltip()
+                }
+              }}
+            >
+              <span tw="block sm:inline-block font-bold">
+                {t`pancakeswap.guide.step_1.contract_address`}:{' '}
+              </span>
+              <span tw="block sm:inline-block font-mono">
+                {config.blockchain.contractAddress}
+              </span>
+              {clipboard && (
+                <RiFileCopyLine tw="absolute top-2 right-2 md:top-auto md:right-auto md:relative ml-2 inline-block" />
+              )}
 
-            <ClipboardTooltip
-              tw="top-full left-auto text-cyan-400 right-0 md:top-0 bottom-0 md:left-full md:right-auto cursor-default whitespace-nowrap translate-x-2 h-0"
-              isOpen={isClipboardTooltipOpen}
-            />
-          </button>
-        </div>
+              <ClipboardTooltip
+                tw="top-full left-auto text-cyan-400 right-0 md:top-0 bottom-0 md:left-full md:right-auto cursor-default whitespace-nowrap translate-x-2 h-0"
+                isOpen={isClipboardTooltipOpen}
+              />
+            </button>
+          </div>
+        )}
       </StyledStepContent>
 
       <StyledStepTitle>{t`pancakeswap.guide.step_2.title`}</StyledStepTitle>

@@ -1,93 +1,87 @@
 ---
-coming-soon: Próximamente
+coming-soon: Coming soon
 landing:
-  pre-sale: Pre-venta
-  launch: Lanzamiento
+  pre-sale: Pre-Sale
+  launch: Launch
   title: DeSports Network
-  description: "Descentralizando los eSports a través de un ecosistema P2P sostenible.
-    \nCrea eventos personalizados, compite, apuesta, dona, gana recompensas,
-    trofeos NFT y logros; todo sin la intermediación de terceros, utilizando $DESP"
+  description: "Decentralizing eSports through a sustainable P2P ecosystem. \nCreate
+    custom events, compete, bet, tip, earn rewards, NFT trophies, and achievements,
+    all without any third-party involvement, by utilizing $DESP"
   join-telegram: Telegram
-  trackers: Rastreadores
-  buy-now: Comprar
-  contract-address: Dirección del contrato
-  available-pool: Financiamiento de eSports
-  total-rewarded: Total otorgado
-  current-price: Precio actual
+  trackers: Trackers
+  buy-now: Buy Now
+  contract-address: Contract Address
+  available-pool: eSports Financing
+  total-rewarded: Total Awarded
+  current-price: Current Price
   holders: Holders
-  supply: Suministro
-  marketcap: Capitalización
-  scroll-more: Desplázate hacia abajo para saber más
-  intro-release: Se desbloqueará pronto
+  supply: Supply
+  marketcap: Marketcap
+  scroll-more: Scroll down to know more
+  intro-release: Unlocking video soon
 tokenomics:
-  title: Economía del token
-  description: "$DESP, un token deflacionario lanzado el 12 de julio de 2021, que
-    se ejecuta en la red BSC. 0,33% de limitación de oferta total por transacción.
-    Las billeteras solo podrán contener un máximo del 2% del suministro total. \nCada
-    transacción consistirá en una tarifa del 10%, que se aplicará de la siguiente
-    manera:"
-  token_supply: Suministro
+  title: Tokenomics
+  description: |-
+    $DESP is a deflationary token launched on July 12th, 2021, running on the BSC Network. Wallets will only be able to hold a maximum of 2% of the total supply, with a 0.33% of the total supply limitation per transaction. 
+    Every transaction will consist of a 10% fee, which will be applied in the following manner:
+  token_supply: Token Supply
   list:
-  - title: 4% Agregado automáticamente a la liquidez
-    description: Bloqueado hasta el año 8888. Esta liquidez se guardará en el contrato
-      inteligente hasta que alcance el 0,1% del suministro total. En este punto, el
-      contrato venderá automáticamente los $ DESP por BNB en PCS y lo agregara como
-      liquidez.
-  - title: 0.5% quemado suave por transacción
-    description: El 0,5% de cada transacción se enviará automáticamente a una billetera
-      de quemado, lo que convierte a $DESP en un token deflacionario.
-  - title: 0.5% redistribuido a los holders
-    description: El 0,5% de cada transacción se distribuirá automáticamente entre
-      todos los titulares. Cuanto más tiempo mantengas tus tokens en tu billetera,
-      más $ DESP tendrás
-  - title: 1% financiamiento de eSports
-    description: El financiamiento de eSports incluirá principalmente, bolsas de premios
-      y financiamiento de competiciones, patrocinio de equipos de eSports, recompensas
-      NFT
+  - title: 4% Automatic Liquidity Pool
+    description: Locked until the year 2088. This liquidity fee will be saved in the smart contract until it reaches 0.1% of the total supply. At this point, the contract will automatically sell the $DESP for BNB in PCS and add it as liquidity.
+  - title: 0.5% Burned Per Transaction
+    description: 0.5% of every transaction will be automatically sent to a “burn” wallet,
+      making $DESP a deflationary token.
+  - title: 0.5% Redistributed to Holders
+    description: 0.5% of every transaction will be automatically distributed amongst
+      all holders. The longer you hold the more $DESP you'll have.
+  - title: 1% eSports Financing
+    description: eSports financing will mainly include but will not be limited to
+      Prize Pools, Sponsorships, and financing competitions.
   - title: 2% Marketing
-    description: El presupuesto de marketing de DeSports Network permitirá la promoción
-      continua y tenaz del ecosistema entre jugadores, espectadores e inversores.
-  - title: 2% Fundación y desarrollo de las bases
-    description: El desarrollo incluirá el avance y los costos operativos de toda
-      la tecnología y el capital humano para completar nuestra hoja de ruta.
-  - title: Recompras y quemados manuales
-    description: Las recompras y quemados manuales se realizarán de manera aleatoria
+    description: DeSports Network’s marketing budget will allow for the continuous
+      and tenacious promotion of the ecosystem to gamers, spectators and investors.
+  - title: 2% Foundation and Development
+    description: The development will include advancement and operational costs of
+      all technology and human capital to full the completion of our roadmap.
+  - title: Manual Buybacks and Burns
+    description: Manual buybacks and burns will be performed on an ad-hoc basis.
 features:
-  title: Plataforma y utilidad de token
-  description: DeSports Network tiene como objetivo ser la plataforma descentralizada
-    más grande para concursos, eventos, recompensas NFT y logros de Esports. Creando,
-    apoyando y proporcionando un escenario para jugadores, equipos y entusiastas de
-    los deportes electrónicos a través de la cadena de bloques.
+  title: Platform Features and Token Utility
+  description: DeSports Network aims to be the largest decentralized platform for
+    Esports contests, events, NFT rewards, and achievements. Creating, supporting,
+    and providing a stage for players, teams, and eSports enthusiasts through the
+    blockchain.
   list:
-  - title: Nueva era de premios para gamers
-    description: DeSports Network creará un sistema para que los jugadores sean justamente
-      recompensados ​​por la liquidez que brindan, en una plataforma descentralizada
-      competitiva, sin necesidad de pagar comisiones o tarifas de socios.
-  - title: Torneos, showmatches y eventos personalizados
-    description: Los torneos, showmatches y eventos personalizados serán duelos de
-      uno a uno, o competiciones de equipos, donde el organizador del evento podra
-      establecer sus propias reglas, incluyendo las tarifas de inscripción y recompensa.
-  - title: Propinas y donaciones
-    description: Los usuarios podrán recibir donaciones, sin necesidad de KYC, ni
-      información; simplemente usando el token $DESP. A diferencia de otras plataformas,
-      los usuarios y los streamers no necesitarán afiliarse a ningún programa de asociación
-      y obtendran el 100% de las ganancias.
-  - title: Apuestas
-    description: Las formas más comunes de apostar en la plataforma DeSports Network
-      serán el resultado de la competencia o desafío de un individuo / equipo. Siempre
-      que haya alguien que contrarreste su apuesta con al menos la misma cantidad
-      que su apuesta.
-  - title: Logros y recompensas
-    description: Los ganadores de torneos, concursos y desafíos recibirán logros,
-      insignias que se pueden mostrar en sus perfiles. Ciertos logros e insignias
-      recibirán NFT especiales.
-  - title: La Cartera dApp de DeSports Network
-    description: Un aspecto fundamental de todo el ecosistema. Agilizará las experiencias
-      del usuario con una vista detallada de los activos que poseen, con datos procesables
-      para rastrear, comprar y vender, al cerrar las brechas entre nuestra plataforma,
-      intercambios y casos de uso futuros para el token DESP.
+  - title: New Era of Gaming Prize Pools
+    description: DeSports Network will create a system for players to be justly rewarded
+      for the liquidity they provide, in a competitive, decentralized platform, without
+      needing to pay subscriptions or partner fees.
+  - title: Tournaments, showmatches and custom events
+    description: Tournaments, showmatches and custom events will either be one-on-one,
+      or team competitions, where the organizers of the events can set their own rules,
+      including entry fees. Participants will then be rewarded by the parameters previously
+      set forth by the organizer.
+  - title: Tips and Donations
+    description: Users of the platform will be able to receive donations directly,
+      without the need for KYC, or information, simply by using the $DESP token. Unlike
+      other platforms, users and broadcasters won’t need to apply for a partnership
+      program and will get 100% of the profits.
+  - title: Betting
+    description: The most common way to bet on the DeSports Network platform will
+      be on the outcome of an individual/team’s competition or challenge. As long
+      as there’s someone who will counter your bet with at least the same quantity
+      as your $DESP wager.
+  - title: Achievements & Rewards
+    description: Tournament, contests, and challenge winners will be awarded achievements, and
+      badges that can be displayed on their profiles. Certain achievements and badges
+      will be granted as special NFTs.
+  - title: DeSports Network dApp Wallet
+    description: A fundamental aspect of the entire ecosystem. It will streamline
+      user experiences with a detailed view of the assets they hold, with actionable
+      data to track, buy and sell, by bridging the gaps between our platform, exchanges,
+      and future use cases of the $DESP token.
 roadmap:
-  title: Nuestra hoja de ruta
-  description: 'La hoja de ruta de DeSports Network es un resumen del desarrollo de
-    DeSports Network, que se ha organizado en tres fases: Galaxy, Pendulum y Dimension.
-    Cada fase se centra en un conjunto de características y objetivos.'
+  title: Our roadmap
+  description: 'The DeSports Network roadmap is a summary of DeSports Network development,
+    which has been organized into three stages: Galaxy, Pendulum, and Dimension. Each
+    stage is centered around a set of features and objectives.'

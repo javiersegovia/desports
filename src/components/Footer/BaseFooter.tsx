@@ -68,8 +68,8 @@ export const BaseFooter = ({ logoComponent, ...props }: FooterProps) => {
                 <Link href={routes.whitepaper}>{t`shared.whitepaper`}</Link>
               </li>
               <li>
-                <Link href={config.blockchain.contractUrl}>
-                  {t`shared.contract`}
+                <Link href={config.brand_guidelines_pdf}>
+                  {t`footer.brand-guidelines`}
                 </Link>
               </li>
             </div>
@@ -87,11 +87,12 @@ export const BaseFooter = ({ logoComponent, ...props }: FooterProps) => {
               {/* <li>
                 <Link href={routes.blog}>{t`shared.blog`}</Link>
               </li> */}
-              <li>
-                <Link href={config.brand_guidelines_pdf}>
-                  {t`footer.brand-guidelines`}
+              {/* todo: uncomment contractURL */}
+              {/* <li>
+                <Link href={config.blockchain.contractUrl}>
+                  {t`shared.contract`}
                 </Link>
-              </li>
+              </li> */}
             </div>
           </ul>
         </nav>

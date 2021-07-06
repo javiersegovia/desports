@@ -18,6 +18,7 @@ import { useOnClickOutside } from '@lib/hooks/useOnClickOutside'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
 import { useRouter } from 'next/router'
+import { ReactNode } from 'react'
 
 const TrackersModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/TrackersModal').then(
@@ -52,7 +53,11 @@ const StyledMobileLine = styled.div`
   clip-path: polygon(100% 0%, calc(100% - 1rem) 100%, 0 100%, 0 0);
 `
 
-export const NavBar = () => {
+export interface NavBarProps {
+  navbarLogo?: ReactNode
+}
+
+export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
   const [
     trackersModalIsOpen,
     { setTrue: openTrackersModal, setFalse: closeTrackersModal },
@@ -87,11 +92,13 @@ export const NavBar = () => {
         tw="w-full bg-gray-800 text-white py-2 items-center shadow"
       >
         <Container tw="flex items-center">
-          <Link href="/" passHref>
-            <a>
-              <Logo />
-            </a>
-          </Link>
+          {NavLogo || (
+            <Link href={routes.home} passHref>
+              <a>
+                <Logo />
+              </a>
+            </Link>
+          )}
 
           <div tw="hidden lg:flex ml-auto mr-10 space-x-10 items-center">
             <div tw="flex space-x-10 items-center text-white">
@@ -111,7 +118,7 @@ export const NavBar = () => {
             </div>
           </div>
 
-          <Button tw="ml-auto lg:ml-0" href={routes.how_to_buy}>
+          <Button tw="hidden lg:block ml-auto lg:ml-0" href={routes.how_to_buy}>
             {t`navBar.buy-now`}
           </Button>
 
@@ -119,7 +126,7 @@ export const NavBar = () => {
           <button
             type="button"
             onClick={toggleDropdownNav}
-            tw="ml-6 sm:ml-10 lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            tw="ml-auto sm:ml-10 lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span className="sr-only">Open main menu</span>
             {dropdownNavIsOpen ? (

@@ -5,9 +5,7 @@ stage1:
   name: Galaxia
   title: Fase 1
   subtitle: Fundamentos
-  description: Primeras bases cruciales tecnológicas y del tokens. Construir una comunidad
-    e involucrar a las personas en el ecosistema de cadenas de bloques de deportes
-    electrónicos más descentralizado y gratificante.
+  description: Fases iniciales de planificación y desarrollo que son cruciales para el avance del token y el proyecto. Construir una comunidad e involucrar a la gente.
   list:
   - Lanzamiento de sitio web y redes sociales
   - Lanzamiento de la campaña de marketing
@@ -29,8 +27,7 @@ stage2:
   title: Fase 2
   name: Péndulo
   subtitle: Crecimiento
-  description: La segunda fase implementará varias etapas de prueba de la plataforma,
-    junto con los productos utilizados por el ecosistema y el marketing agresivo
+  description: La segunda fase implementará varias etapas de prueba de la plataforma, productos utilizados por el ecosistema y marketing asertivo.
   list:
   - Revelación del equipo
   - Auditoría Certik
@@ -57,5 +54,4 @@ stage3:
     autosostenible, que nos permitirá tomar el 1% de la billetera de marketing y promoción
     y el 1% de la billetera de desarrollo, asignándolo a la billetera de financiación
     de eSports. haciéndolo 3%
-  - El resto se revelará en el tercer trimestre de 2022 cuando la Etapa 3 se desbloquee
-    al público.
+  - El resto se revelará en el tercer trimestre de 2022 cuando la Etapa 3 se desbloquee al público.

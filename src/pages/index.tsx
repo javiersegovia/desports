@@ -17,6 +17,7 @@ import { up } from 'styled-breakpoints'
 import { Global, css } from '@emotion/react'
 import { useEffect } from 'react'
 import { Nav } from '@components/Nav'
+import { Logo } from '@components/Nav/Logo'
 
 const styles = css`
   body.home {

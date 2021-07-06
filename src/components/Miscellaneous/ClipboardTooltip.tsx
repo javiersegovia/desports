@@ -22,7 +22,7 @@ export const ClipboardTooltip = ({
     >
       <div
         aria-hidden="true"
-        tw="absolute font-mono z-20 top-full mt-1 left-1/2 transform -translate-x-1/2 rounded bg-gray-900 font-medium py-1 px-2 text-sm"
+        tw="absolute font-mono z-20 top-full mt-1 left-1/2 transform -translate-x-1/2 rounded bg-gray-900 font-medium py-1 px-2 text-sm whitespace-nowrap"
         {...props}
       >
         {/* todo: translate!! */}

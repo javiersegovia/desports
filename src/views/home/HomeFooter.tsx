@@ -9,6 +9,7 @@ import { down } from 'styled-breakpoints'
 import { config } from '@lib/config/config'
 import { BaseFooter, DeSportsFooterLogo } from '@components/Footer/BaseFooter'
 import { useTimeLeft } from '@lib/hooks/useTimeLeft'
+import { routes } from '@lib/config/routes'
 
 const StyledBackgroundShape = styled.div`
   ${down('md')} {
@@ -93,11 +94,17 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
             <Button
               tw="w-full sm:w-auto sm:flex-1 lg:flex-none"
               size="lg"
+              targetBlank
+              href={config.social.telegram}
               bgColor={theme`colors.cyan.400`}
             >
               {t`shared.telegram`}
             </Button>
-            <Button tw="w-full sm:w-auto sm:flex-1 lg:flex-none" size="lg">
+            <Button
+              tw="w-full sm:w-auto sm:flex-1 lg:flex-none"
+              size="lg"
+              href={routes.how_to_buy}
+            >
               {t`shared.buy-now`}
             </Button>
           </div>

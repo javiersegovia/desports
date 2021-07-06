@@ -43,7 +43,6 @@ const TrackersModal = dynamic<InstanceModalProps>(() =>
 
 const StyledVideoFrame = styled.div`
   .background {
-    background: url('/images/background-final.jpg');
     filter: brightness(30%);
     z-index: -1;
 
@@ -55,7 +54,7 @@ const StyledVideoFrame = styled.div`
 `
 
 const StyledVideoThumbnail = styled.div<any>`
-  background-image: url('/images/background-final.jpg');
+  background-image: url('/images/bg__intro-video.jpg');
   ${tw`bg-cover bg-no-repeat bg-center relative`}
 
   &:after {
@@ -275,13 +274,33 @@ export const Landing = () => {
 
       <main tw="relative flex-1 flex flex-col">
         <StyledVideoThumbnail tw="h-40 w-full relative lg:hidden">
-          <button
+          {config.demoVideo ? (
+            <button
+              type="button"
+              tw="absolute w-full h-full z-10"
+              onClick={openDemoVideoModal}
+            >
+              <FaYoutube tw="text-cyan-400 text-5xl mx-auto" />
+            </button>
+          ) : (
+            <div tw="z-10 absolute bg-gray-900 bg-opacity-60 top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400 ">
+              <div tw="relative flex items-end justify-center">
+                <FaYoutube tw="text-cyan-400 text-4xl mx-auto absolute opacity-40" />
+                <VscLock tw="text-7xl animate-pulse opacity-80" />
+              </div>
+              <p tw="font-mono uppercase font-bold animate-pulse opacity-80 text-base mt-4 text-center letter-spacing[1px]">
+                {t`landing.intro-release`}
+                {/* <br /> 2022 */}
+              </p>
+            </div>
+          )}
+          {/* <button
             type="button"
             tw="absolute w-full h-full z-10"
             onClick={openDemoVideoModal}
           >
             <FaYoutube tw="text-cyan-400 text-5xl mx-auto" />
-          </button>
+          </button> */}
         </StyledVideoThumbnail>
 
         <Container tw="relative w-full flex-1 lg:flex">
@@ -316,30 +335,32 @@ export const Landing = () => {
               </Button>
             </div>
 
-            <div tw="pt-4 relative inline-block">
-              <button
-                type="button"
-                tw="block font-normal text-left"
-                onClick={() => {
-                  if (clipboard) {
-                    clipboard?.writeText(config.blockchain.contractAddress)
-                    openClipboardTooltip()
-                  }
-                }}
-              >
-                <span tw="font-bold font-sans">
-                  {t`landing.contract-address`}:{' '}
-                </span>
-                <span tw="whitespace-nowrap">
-                  <span tw="text-xs md:text-sm font-mono">
-                    {config.blockchain.contractAddress}
+            {config.blockchain.contractAddress && (
+              <div tw="pt-4 relative inline-block">
+                <button
+                  type="button"
+                  tw="block font-normal text-left"
+                  onClick={() => {
+                    if (clipboard) {
+                      clipboard?.writeText(config.blockchain.contractAddress)
+                      openClipboardTooltip()
+                    }
+                  }}
+                >
+                  <span tw="font-bold font-sans">
+                    {t`landing.contract-address`}:{' '}
                   </span>
-                  {clipboard && <RiFileCopyLine tw="ml-2 inline-block" />}
-                </span>
-              </button>
+                  <span tw="whitespace-nowrap">
+                    <span tw="text-xs md:text-sm font-mono">
+                      {config.blockchain.contractAddress}
+                    </span>
+                    {clipboard && <RiFileCopyLine tw="ml-2 inline-block" />}
+                  </span>
+                </button>
 
-              <ClipboardTooltip isOpen={isClipboardTooltipOpen} />
-            </div>
+                <ClipboardTooltip isOpen={isClipboardTooltipOpen} />
+              </div>
+            )}
           </div>
 
           <div tw="hidden lg:block relative flex-1 max-h-full">
@@ -396,7 +417,7 @@ export const Landing = () => {
             <StyledDataLine tw="hidden lg:block -ml-10 w-full min-h-[1rem] -mt-4 bg-gray-900" />
             <div tw="bg-transparent mx-0 text-coolGray-300">
               {/* TODO: ACTIVATE MARKET_ITEMS */}
-              <MarketItems tw="flex flex-nowrap space-x-20" />
+              {/* <MarketItems tw="flex flex-nowrap space-x-20" /> */}
             </div>
           </Container>
         </div>
@@ -419,12 +440,12 @@ export const Landing = () => {
         </div>
       </section>
 
-      <SquareFrame tw="mt-8 block lg:hidden mx-auto max-w-xs">
+      {/* TODO: ACTIVATE square_frame */}
+      {/* <SquareFrame tw="mt-8 block lg:hidden mx-auto max-w-xs">
         <MarketItems tw="grid grid-cols-2 gap-y-5" />
-        {/* TODO: ACTIVATE square_frame */}
-        {/* <PartnerLogos tw="mt-5 mx-auto" /> */}
+        <PartnerLogos tw="mt-5 mx-auto" />
         <PrizePool tw="py-5" />
-      </SquareFrame>
+      </SquareFrame> */}
 
       <TrackersModal isOpen={trackersModalIsOpen} close={closeTrackersModal} />
       <DemoVideoModal
