@@ -3,8 +3,7 @@
 export const config = {
   blockchain: {
     contractAddress: '',
-    contractUrl:
-      'https://bscscan.com/address/0x92d7142ba886c710ba72994972d108fb2fb1889a#code',
+    contractUrl: '',
   },
 
   social: {
@@ -30,7 +29,7 @@ export const config = {
   },
   // todo: add pdf!
   brand_guidelines_pdf:
-    'https://drive.google.com/file/d/1c2ovSBbta2fbnc2oDbXHHUOLWnb5c1jF/view?usp=sharing',
+    'https://www.figma.com/file/RcCdIdCau5AF5fiZGOSQJt/Basic-Brand-Guidelines-DN-(Community-and-Team)?node-id=0%3A1',
 
   // todo: add real shop url!
   shop: '/',

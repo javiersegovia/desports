@@ -68,9 +68,13 @@ export const BaseFooter = ({ logoComponent, ...props }: FooterProps) => {
                 <Link href={routes.whitepaper}>{t`shared.whitepaper`}</Link>
               </li>
               <li>
-                <Link href={config.brand_guidelines_pdf}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={config.brand_guidelines_pdf}
+                >
                   {t`footer.brand-guidelines`}
-                </Link>
+                </a>
               </li>
             </div>
 

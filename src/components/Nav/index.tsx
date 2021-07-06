@@ -1,9 +1,9 @@
 import { gsap } from 'gsap'
-import { ReactNode, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { NavBar, NavBarProps } from '@components/Nav/NavBar'
 import { SocialBar } from '@components/Nav/SocialBar'
 import { useAppDispatch, useAppSelector } from '@lib/redux/hooks'
-import { routes } from '../../lib/config/routes'
+import { routes } from '@lib/config/routes'
 import {
   selectAnimationSpeed,
   selectNavPosition,

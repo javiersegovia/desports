@@ -2,18 +2,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { Container } from '@components/UI/Container'
 import { Title } from '@components/UI/Title'
-import { MarketInfo } from './MarketInfo'
 import { Button } from '@components/UI/Button'
 import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
 import tw, { styled, theme } from 'twin.macro'
 
 import { GiTrophyCup } from 'react-icons/gi'
+import { FaYoutube } from 'react-icons/fa'
 
 // import coinmarketcapImg from '@public/images/trackers/coinmarketcap.png'
 // import coingeckoImg from '@public/images/trackers/coingecko.png'
-import { FaYoutube } from 'react-icons/fa'
-import { SquareFrame } from '../../components/UI/Frames/SquareFrame'
+// import { MarketInfo } from './MarketInfo'
+// import { SquareFrame } from '../../components/UI/Frames/SquareFrame'
 import { RiFileCopyLine } from 'react-icons/ri'
 import { useToggle } from '@lib/hooks/useToggle'
 import { config } from '@lib/config/config'
@@ -153,32 +153,32 @@ const PrizePool = ({ ...props }) => {
 //   )
 // }
 
-const MarketItems = ({ ...props }) => {
-  const { t } = useTranslation('home')
+// const MarketItems = ({ ...props }) => {
+//   const { t } = useTranslation('home')
 
-  return (
-    <div {...props}>
-      <MarketInfo title={t`landing.current-price`} value="123124" />
-      <MarketInfo title={t`landing.marketcap`} value="123124" />
+//   return (
+//     <div {...props}>
+//       <MarketInfo title={t`landing.current-price`} value="123124" />
+//       <MarketInfo title={t`landing.marketcap`} value="123124" />
 
-      <FrameDivider
-        color={theme`colors.pink.600`}
-        frameWidth={4}
-        frameHeight={4}
-        tw="lg:hidden col-span-2"
-      />
-      <MarketInfo title={t`landing.holders`} value="123124" />
-      <MarketInfo title={t`landing.supply`} value="123124" />
-      <FrameDivider
-        color={theme`colors.purple.600`}
-        frameWidth={4}
-        frameHeight={4}
-        tw="lg:hidden col-span-2"
-      />
-      {/* <div tw="lg:hidden bg-purple-600 height[2px] w-full block col-span-2" /> */}
-    </div>
-  )
-}
+//       <FrameDivider
+//         color={theme`colors.pink.600`}
+//         frameWidth={4}
+//         frameHeight={4}
+//         tw="lg:hidden col-span-2"
+//       />
+//       <MarketInfo title={t`landing.holders`} value="123124" />
+//       <MarketInfo title={t`landing.supply`} value="123124" />
+//       <FrameDivider
+//         color={theme`colors.purple.600`}
+//         frameWidth={4}
+//         frameHeight={4}
+//         tw="lg:hidden col-span-2"
+//       />
+//       {/* <div tw="lg:hidden bg-purple-600 height[2px] w-full block col-span-2" /> */}
+//     </div>
+//   )
+// }
 
 const PresaleTimer = () => {
   const { TimeComponent: PresaleCountdown } = useTimeLeft(config.presale_date)
@@ -323,9 +323,10 @@ export const Landing = () => {
 
             <div tw="flex lg:flex-row pt-2 md:pt-4 space-x-6">
               <Button
+                disabled
                 bgColor={theme`colors.cyan.400`}
                 tw="flex-1 lg:flex-grow-0"
-                onClick={openTrackersModal}
+                // onClick={openTrackersModal}
               >
                 {t`landing.trackers`}
               </Button>

@@ -102,10 +102,13 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
 
           <div tw="hidden lg:flex ml-auto mr-10 space-x-10 items-center">
             <div tw="flex space-x-10 items-center text-white">
+              {/* todo: enable trackers */}
               <button
                 type="button"
-                tw="hover:text-yellow-400"
-                onClick={openTrackersModal}
+                // tw="hover:text-yellow-400 cursor-not-allowed opacity-20"
+                tw="cursor-not-allowed opacity-20"
+                disabled
+                // onClick={openTrackersModal}
               >
                 {t`shared.trackers.title`}
               </button>

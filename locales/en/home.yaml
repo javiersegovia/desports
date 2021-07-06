@@ -24,7 +24,11 @@ tokenomics:
   description: |-
     $DESP is a deflationary token launched on July 12th, 2021, running on the BSC Network. Wallets will only be able to hold a maximum of 2% of the total supply, with a 0.33% of the total supply limitation per transaction. 
     Every transaction will consist of a 10% fee, which will be applied in the following manner:
-  token_supply: Token Supply
+  token_supply:
+    title: Token Supply
+    total: Total
+    circulating: Circulating
+    burned: Burned
   list:
   - title: 4% Automatic Liquidity Pool
     description: Locked until the year 2088. This liquidity fee will be saved in the smart contract until it reaches 0.1% of the total supply. At this point, the contract will automatically sell the $DESP for BNB in PCS and add it as liquidity.

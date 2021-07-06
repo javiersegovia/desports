@@ -8,6 +8,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import bgImg from '@public/images/tokenomics_background.webp'
+import { config } from '@lib/config/config'
 
 const StyledBackground = styled(Image)`
   ${tw`absolute z-index[-1] bg-contain bg-center bg-no-repeat w-full h-full opacity-[.15]`}
@@ -48,29 +49,31 @@ export const Tokenomics = () => {
               shadowColor="emerald"
             >
               <Title as="h5" tw="text-2xl sm:text-3xl lg:text-xl mt-4 mx-auto">
-                {t`tokenomics.token_supply`}
+                {t`tokenomics.token_supply.title`}
               </Title>
 
-              <div tw="mt-6 mx-auto space-y-4">
+              <div tw="mt-6 mx-auto px-10 w-full space-y-4">
                 <LineChart tw="m-auto mb-0" current={333} max={1000} />
 
                 <div tw="pt-4">
-                  <div tw="font-bold">Original Supply</div>
-                  <div tw="font-mono">8,8888,8888,888</div>
+                  <div tw="font-bold">{t`tokenomics.token_supply.total`}</div>
+                  <div tw="font-mono">{config.total_supply}</div>
                 </div>
 
                 <div>
                   <div tw="font-bold text-emerald-400">
-                    Circulating Supply (66.14%)
+                    {t`tokenomics.token_supply.circulating`} (66.67%)
                   </div>
                   <div tw="font-mono text-emerald-400">
-                    1020310201302103203310
+                    {config.total_circulating}
                   </div>
                 </div>
 
                 <div tw="pb-10">
-                  <div tw="font-bold text-red-500">Total Burned (33.86%)</div>
-                  <div tw="font-mono text-red-500">1231,12312,231,231,32</div>
+                  <div tw="font-bold text-red-500">
+                    {t`tokenomics.token_supply.burned`} (33.33%)
+                  </div>
+                  <div tw="font-mono text-red-500">{config.total_burned}</div>
                 </div>
               </div>
             </SquareFrame>
