@@ -10,6 +10,7 @@ import { config } from '@lib/config/config'
 import { BaseFooter, DeSportsFooterLogo } from '@components/Footer/BaseFooter'
 import { useTimeLeft } from '@lib/hooks/useTimeLeft'
 import { routes } from '@lib/config/routes'
+import Link from 'next/link'
 
 const StyledBackgroundShape = styled.div`
   ${down('md')} {
@@ -116,9 +117,16 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
             </a>{' '}
             {/* todo: translate */}
             or{' '}
-            <button type="button" onClick={goToStart} tw="underline">
+            <button
+              type="button"
+              onClick={goToStart}
+              tw="underline hidden lg:block"
+            >
               go back
             </button>
+            <Link href={routes.home} passHref tw="block lg:hidden">
+              <a tw="underline">go back</a>
+            </Link>
           </p>
         </Container>
       </StyledBackgroundShape>

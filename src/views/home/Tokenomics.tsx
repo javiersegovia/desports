@@ -56,7 +56,9 @@ export const Tokenomics = () => {
                 <LineChart tw="m-auto mb-0" current={333} max={1000} />
 
                 <div tw="pt-4">
-                  <div tw="font-bold">{t`tokenomics.token_supply.total`}</div>
+                  <div tw="font-bold">
+                    {t`tokenomics.token_supply.total`} (100%)
+                  </div>
                   <div tw="font-mono">{config.total_supply}</div>
                 </div>
 

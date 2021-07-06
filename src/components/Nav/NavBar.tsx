@@ -156,13 +156,17 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
               <div tw="lg:hidden top-0 absolute left-0 right-0 bg-gray-800 -mb-2 flex flex-col z-10">
                 <StyledMobileLine tw="absolute -bottom-4 w-2/3 min-h-[1rem] bg-gray-800" />
                 <Container tw="w-auto pt-8 pb-8 grid grid-cols-2 gap-y-2 gap-x-10 justify-center items-center">
+                  {/* todo: enable trackers */}
                   <button
                     type="button"
-                    tw="text-left py-2 hover:text-yellow-400"
-                    onClick={openTrackersModal}
+                    // tw="text-left py-2 hover:text-yellow-400"
+                    tw="cursor-not-allowed opacity-20 text-left py-2"
+                    disabled
+                    // onClick={openTrackersModal}
                   >
                     {t`shared.trackers.title`}
                   </button>
+
                   {(Object.keys(paths) as Array<keyof typeof paths>).map(
                     (key, index) => (
                       <Fragment key={key}>
