@@ -226,7 +226,8 @@ export const Landing = () => {
   const { t } = useTranslation('home')
   const [
     trackersModalIsOpen,
-    { setTrue: openTrackersModal, setFalse: closeTrackersModal },
+    // { setTrue: openTrackersModal, setFalse: closeTrackersModal },
+    { setFalse: closeTrackersModal },
   ] = useToggle()
 
   const [
