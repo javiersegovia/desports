@@ -166,7 +166,7 @@ export const StyledButton = styled.button<ButtonProps | AnchorProps>`
   }
 
   ${up('lg')} {
-    &:hover:enabled .glitch {
+    &:hover:not([disabled]) .glitch {
       display: block;
     }
   }
