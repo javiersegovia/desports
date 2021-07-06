@@ -120,11 +120,11 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
             <button
               type="button"
               onClick={goToStart}
-              tw="underline hidden lg:block"
+              tw="underline hidden lg:inline-block"
             >
               go back
             </button>
-            <div tw="block lg:hidden">
+            <div tw="inline-block lg:hidden">
               <Link href={routes.home} passHref>
                 <a tw="underline">go back</a>
               </Link>
