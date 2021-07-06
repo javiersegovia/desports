@@ -124,9 +124,11 @@ export const HomeFooter = ({ goToStart }: HomeFooterProps) => {
             >
               go back
             </button>
-            <Link href={routes.home} passHref tw="block lg:hidden">
-              <a tw="underline">go back</a>
-            </Link>
+            <div tw="block lg:hidden">
+              <Link href={routes.home} passHref>
+                <a tw="underline">go back</a>
+              </Link>
+            </div>
           </p>
         </Container>
       </StyledBackgroundShape>
