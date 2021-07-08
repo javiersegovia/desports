@@ -64,18 +64,20 @@ export const Tokenomics = () => {
 
                 <div>
                   <div tw="font-bold text-emerald-400">
-                    {t`tokenomics.token_supply.circulating`} (66.67%)
+                    {t`tokenomics.token_supply.circulating`} {/* (66.67%) */}
                   </div>
-                  <div tw="font-mono text-emerald-400">
+                  {/* <div tw="font-mono text-emerald-400">
                     {config.total_circulating}
-                  </div>
+                  </div> */}
+                  <div tw="font-mono text-emerald-400">Soon</div>
                 </div>
 
                 <div tw="pb-10">
                   <div tw="font-bold text-red-500">
-                    {t`tokenomics.token_supply.burned`} (33.33%)
+                    {t`tokenomics.token_supply.burned`} {/* (33.33%) */}
                   </div>
-                  <div tw="font-mono text-red-500">{config.total_burned}</div>
+                  {/* <div tw="font-mono text-red-500">{config.total_burned}</div> */}
+                  <div tw="font-mono text-red-500">Soon</div>
                 </div>
               </div>
             </SquareFrame>
