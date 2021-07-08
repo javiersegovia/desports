@@ -8,7 +8,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import bgImg from '@public/images/tokenomics_background.webp'
-// import { config } from '@lib/config/config'
+import { config } from '@lib/config/config'
 
 const StyledBackground = styled(Image)`
   ${tw`absolute z-index[-1] bg-contain bg-center bg-no-repeat w-full h-full opacity-[.15]`}
@@ -59,7 +59,7 @@ export const Tokenomics = () => {
                   <div tw="font-bold">
                     {t`tokenomics.token_supply.total`} (100%)
                   </div>
-                  {/* <div tw="font-mono">{config.total_supply}</div> */}
+                  <div tw="font-mono">{config.total_supply}</div>
                 </div>
 
                 <div>
