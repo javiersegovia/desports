@@ -7,7 +7,7 @@ how_to_buy: How to buy on
 
 pancakeswap:
   description: Decentralized exchange which allows you to trade cryptocurrencies and tokens without a centralized intermediary, allowing you to keep custody of your tokens throughout the process. It is built on automated smart contracts deployed on Binance Smart Chain.
-  buy_now: Buy now on Pancakeswap
+  buy_now: Buy now on PancakeSwap
 
   guide:
     recommendation: For ease of use, this set of instructions is recommended to be read on a separate device from the one you’ll be performing the wallet set-up and token purchase on. This will take approximately 15-30 minutes if you're new.
@@ -52,7 +52,7 @@ pancakeswap:
           Tap on the “Connect” icon in the top-right hand side. On the left-hand side menu, click on “Trade” and then on “Exchange”
 
         b: | 
-          Once connected and on the exchange, go to https://desports.network/ and copy the contract. Go back to the “Exchange” section of Pancackeswap, click on “Select Currency” and paste the contract
+          Once connected and on the exchange, go to https://desports.network/ and copy the contract. Go back to the “Exchange” section of PancakeSwap, click on “Select Currency” and paste the contract
 
           To swap, you will need to press the settings cod wheel and set the slippage to 12%. Set the amount to swap, press “Swap”, and then “Confirm”.
 
