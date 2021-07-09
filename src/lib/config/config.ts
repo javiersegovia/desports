@@ -2,8 +2,9 @@
 
 export const config = {
   blockchain: {
-    contractAddress: '',
     contractUrl: '',
+    contractAddress: '',
+    fundraisingAddress: '0x81E4d494b85A24a58a6BA45c9B418b32a4E039de',
   },
 
   social: {
@@ -35,7 +36,7 @@ export const config = {
   shop: '/',
 
   // todo: add real demoVideo url (and follow the format below)!
-  demoVideo: '',
+  demoVideo: 'https://www.youtube.com/embed/q3PjFkSiDsc',
   // demoVideo: 'https://www.youtube.com/embed/ANDeiXFiYC4',
 
   ready_player_me: 'https://cyberpunk.readyplayer.me/',

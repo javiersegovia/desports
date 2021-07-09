@@ -23,7 +23,6 @@ export const DemoVideoModal = ({ isOpen, close }: InstanceModalProps) => {
           tw="w-full h-full flex-1"
           frameBorder="0"
           allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
         />
       </div>
     </BaseModal>
