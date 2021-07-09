@@ -324,13 +324,21 @@ export const Landing = () => {
 
             <div tw="flex lg:flex-row pt-2 md:pt-4 space-x-6">
               <Button
+                bgColor={theme`colors.cyan.400`}
+                tw="flex-1 lg:flex-grow-0"
+                href={config.social.telegram}
+                targetBlank
+              >
+                {t`landing.join-telegram`}
+              </Button>
+              {/* <Button
                 disabled
                 bgColor={theme`colors.cyan.400`}
                 tw="flex-1 lg:flex-grow-0"
                 // onClick={openTrackersModal}
               >
                 {t`landing.trackers`}
-              </Button>
+              </Button> */}
 
               <Button href={routes.how_to_buy} tw="flex-1 lg:flex-grow-0">
                 {t`landing.buy-now`}
