@@ -16,9 +16,10 @@ import { theme } from 'twin.macro'
 
 interface NavProps {
   navbarLogo?: NavBarProps['navbarLogo']
+  bgTransparent?: boolean
 }
 
-export const Nav = ({ navbarLogo }: NavProps) => {
+export const Nav = ({ navbarLogo, bgTransparent }: NavProps) => {
   const navbarRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
 

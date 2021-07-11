@@ -5,8 +5,8 @@ interface LineChartProps {
   current: number
 }
 
-const StyledCompletionBar = styled.div`
-  clip-path: polygon(0% 100%, 5% 0%, 100% 0%, 95% 100%);
+export const StyledCompletionBar = styled.div`
+  clip-path: polygon(0% 100%, 0.75rem 0%, calc(100% - 0.75rem) 0%, 100% 100%);
 
   @keyframes burnPing {
     75%,
@@ -31,8 +31,8 @@ const StyledCompletionBar = styled.div`
   }
 `
 
-const StyledFullfillnessBar = styled.div`
-  clip-path: polygon(0% 100%, 5% 0%, 100% 0%, 95% 100%);
+export const StyledFullfillnessBar = styled.div`
+  clip-path: polygon(0% 100%, 0.75rem 0%, calc(100% - 0.75rem) 0%, 100% 100%);
 `
 
 export const LineChart = ({ max, current, ...props }: LineChartProps) => {

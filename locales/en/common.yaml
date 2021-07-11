@@ -1,5 +1,6 @@
 ---
 shared:
+  contract_address: Contract Address
   team: Team
   whitepaper: Whitepaper
   telegram: Telegram
@@ -26,6 +27,7 @@ navBar:
     whitepaper: Whitepaper
     shop: Shop
     blog: Blog
+    fundraising: Fundraising
 footer:
   title: This is just the beginning
   pre-sale: Pre-sale in

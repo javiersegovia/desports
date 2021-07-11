@@ -17,6 +17,7 @@ import { useClipboard } from '@lib/hooks/useClipboard'
 import { useToggle } from '@lib/hooks/useToggle'
 import { ClipboardTooltip } from '../../components/Miscellaneous/ClipboardTooltip'
 import { RiFileCopyLine } from 'react-icons/ri'
+import { ContractAddress } from '@components/Miscellaneous/ContractAddress'
 
 export const PancakeswapHeading = () => {
   const { t } = useTranslation('how-to-buy')
@@ -27,8 +28,8 @@ export const PancakeswapHeading = () => {
         tw="text-left lg:text-4xl text-cyan-400 flex items-center space-x-4"
         as="h2"
       >
-        <Image src={pancakeswapLogoImg} alt="Pancakeswap logo" />
-        <span>Pancakeswap</span>
+        <Image src={pancakeswapLogoImg} alt="PancakeSwap logo" />
+        <span>PancakeSwap</span>
       </Title>
 
       <p tw="mt-4 max-w-4xl">{t`pancakeswap.description`}</p>
@@ -95,33 +96,7 @@ export const PancakeswapGuide = () => {
         <div tw="mt-3" />
 
         {config.blockchain.contractAddress && (
-          <div tw="relative block">
-            <button
-              type="button"
-              tw="p-2 bg-gray-800 w-full md:w-auto flex flex-col md:flex-row md:items-center text-left md:text-center rounded-md relative text-xs sm:text-sm md:text-base"
-              onClick={() => {
-                if (clipboard) {
-                  clipboard?.writeText(config.blockchain.contractAddress)
-                  openClipboardTooltip()
-                }
-              }}
-            >
-              <span tw="block sm:inline-block font-bold">
-                {t`pancakeswap.guide.step_1.contract_address`}:{' '}
-              </span>
-              <span tw="block sm:inline-block font-mono">
-                {config.blockchain.contractAddress}
-              </span>
-              {clipboard && (
-                <RiFileCopyLine tw="absolute top-2 right-2 md:top-auto md:right-auto md:relative ml-2 inline-block" />
-              )}
-
-              <ClipboardTooltip
-                tw="top-full left-auto text-cyan-400 right-0 md:top-0 bottom-0 md:left-full md:right-auto cursor-default whitespace-nowrap translate-x-2 h-0"
-                isOpen={isClipboardTooltipOpen}
-              />
-            </button>
-          </div>
+          <ContractAddress address={config.blockchain.contractAddress} />
         )}
       </StyledStepContent>
 
