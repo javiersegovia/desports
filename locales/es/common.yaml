@@ -1,5 +1,6 @@
 ---
 shared:
+  contract_address: Dirección del contrato
   team: Equipo
   whitepaper: Libro Blanco
   telegram: Telegram

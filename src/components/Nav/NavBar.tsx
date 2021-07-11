@@ -30,6 +30,7 @@ const TrackersModal = dynamic<InstanceModalProps>(() =>
 const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
+  fundraising: routes.fundraising,
   // shop: config.shop,
   // blog: routes.blog,
 } as const
@@ -57,7 +58,7 @@ export interface NavBarProps {
   navbarLogo?: ReactNode
 }
 
-export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
+export const NavBar = ({ navbarLogo: NavLogo, ...props }: NavBarProps) => {
   const [
     trackersModalIsOpen,
     { setTrue: openTrackersModal, setFalse: closeTrackersModal },
@@ -90,6 +91,7 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
       <div
         ref={dropdownRef}
         tw="w-full bg-gray-800 text-white py-2 items-center shadow"
+        {...props}
       >
         <Container tw="flex items-center">
           {NavLogo || (

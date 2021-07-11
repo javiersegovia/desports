@@ -1,0 +1,34 @@
+title:
+  a: "Fundraising:"
+  b: The fuel
+
+contract_address_fundraise: Contract Address (ETH/BNB)
+
+description: DeSports Network aims to build a huge community all over the world, and we have a clear path of how to do it. This fundraise, in addition to the marketing budget already allowed, will help us achieve ambitious marketing goals much faster while rewarding you for your involvement.
+
+contract_address: Contract Address (ETH/BNB)
+
+meter:
+  raised: Raised
+  next_goal: Next Goal
+
+goals: 
+  - In your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
+  - In your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
+  - In your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
+  - In your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
+
+latest_donations: 
+  title: Latest Donations
+  from: From
+
+rewarding_support:
+  title: Rewarding your support
+  description:
+    a: "Each month, we will be creating an unique collection of 2 NFTs in collaboration with two talented digital artists. They will be given to 8 fundraisers as a compensation:"
+
+    bullets:
+      - The top three fundraisers will get both of them.
+      - Five random fundraisers will get one of them.
+
+    b: Help us grow DeSports Network and get a piece of our history in return.

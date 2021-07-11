@@ -55,7 +55,14 @@ const StyledFrame = styled.div<{ shadowColor?: FrameShadowColor }>`
 
 export const SquareFrame = forwardRef<HTMLDivElement, FrameProps>(
   (
-    { children, color, shadowColor, removePadding, ...otherProps }: FrameProps,
+    {
+      children,
+      color,
+      shadowColor,
+      removePadding,
+      bgColor,
+      ...otherProps
+    }: FrameProps,
     ref
   ) => {
     return (
@@ -66,16 +73,22 @@ export const SquareFrame = forwardRef<HTMLDivElement, FrameProps>(
               shadow: !!shadowColor,
               'bg-cyan-400': color === 'cyan',
               'bg-yellow-400': color === 'yellow',
+              'bg-emerald-400': color === 'emerald',
             })}
             tw="absolute top-2 left-0 bottom[-6px] right[-6px]"
           />
         )}
         <div
-          className={cx('frame w-full h-full relative flex flex-col', {
-            'p-6': !removePadding,
-          })}
+          className={cx(
+            'frame w-full bg-gray-800 h-full relative flex flex-col',
+            {
+              'p-6': !removePadding,
+            }
+          )}
           ref={ref}
-          tw="bg-gray-800"
+          style={{
+            backgroundColor: bgColor,
+          }}
         >
           {children}
         </div>
