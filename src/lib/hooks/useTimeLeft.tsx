@@ -42,9 +42,10 @@ export const useTimeLeft = (date: Date) => {
 
   const TimeComponent = () => (
     <div tw="space-x-2 flex">
-      {days && <div>{days}D</div>}
-      {hours && <div>{hours}H</div>}
-      {minutes && <div>{minutes}M</div>}
+      {days > 0 && <div>{days}D</div>}
+      {hours > 0 && <div>{hours}H</div>}
+      {minutes > 0 && <div>{minutes}M</div>}
+      {/* todo: add live link here in case there are no seconds left! */}
       {<div>{seconds}S</div>}
     </div>
   )
