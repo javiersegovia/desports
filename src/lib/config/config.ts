@@ -2,7 +2,8 @@
 
 export const config = {
   blockchain: {
-    contractUrl: '',
+    contractUrl:
+      'https://bscscan.com/token/0x92d7142ba886c710ba72994972d108fb2fb1889a',
 
     // TODOPRESALE:
     contractAddress: '0x92D7142ba886c710bA72994972D108FB2fB1889a',
@@ -22,7 +23,7 @@ export const config = {
   buy_on: {
     // TODOPRESALE:
     pancakeswap: '',
-    presale: '',
+    presale: 'https://dxsale.app/app/v2_9/defipresale?saleID=951&chain=BSC',
   },
 
   email: {
@@ -33,8 +34,10 @@ export const config = {
   trackers: {
     // todo: add real urls!
     // TODOPRESALE:
-    poocoin: '',
-    bscscan: '',
+    poocoin:
+      'https://poocoin.app/tokens/0x92d7142ba886c710ba72994972d108fb2fb1889a',
+    bscscan:
+      'https://bscscan.com/token/0x92d7142ba886c710ba72994972d108fb2fb1889a',
     coingecko: '',
     coinmarketcap: '',
   },
