@@ -25,10 +25,10 @@ import introVideoImg from '@public/images/bg__intro-video.jpg'
 import { VscLock } from 'react-icons/vsc'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
-import { routes } from '@lib/config/routes'
 import { useClipboard } from '@lib/hooks/useClipboard'
 import { ClipboardTooltip } from '@components/Miscellaneous/ClipboardTooltip'
-import { useTimeLeft } from '@lib/hooks/useTimeLeft'
+// import { routes } from '@lib/config/routes'
+// import { useTimeLeft } from '@lib/hooks/useTimeLeft'
 
 const DemoVideoModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/DemoVideoModal').then(
@@ -184,90 +184,85 @@ const PartnerLogos = ({ ...props }) => {
 //   )
 // }
 
-const PresaleTimer = () => {
-  const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
-    config.presale_date
-  )
-  return (
-    <>
-      <PresaleCountdown />
+// const PresaleTimer = () => {
+//   const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
+//     config.presale_date
+//   )
+//   return (
+//     <>
+//       <PresaleCountdown />
 
-      {config.buy_on.presale && (
-        <>
-          {isLive && (
-            <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
-              LIVE NOW!
-            </span>
-          )}
-          <a
-            href={config.buy_on.presale}
-            target="_blank"
-            rel="noopener noreferrer"
-            tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
-          >
-            {config.buy_on.presale}
-          </a>
-        </>
-      )}
-    </>
-  )
-}
-const LaunchTimer = () => {
-  const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
-    config.launch_date
-  )
+//       {config.buy_on.presale && (
+//         <>
+//           {isLive && (
+//             <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
+//               LIVE NOW!
+//             </span>
+//           )}
+//           <a
+//             href={config.buy_on.presale}
+//             target="_blank"
+//             rel="noopener noreferrer"
+//             tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
+//           >
+//             {config.buy_on.presale}
+//           </a>
+//         </>
+//       )}
+//     </>
+//   )
+// }
+// const LaunchTimer = () => {
+//   const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
+//     config.launch_date
+//   )
 
-  // TODOPRESALE:
+//   // TODOPRESALE:
 
-  return (
-    <>
-      <PresaleCountdown />
-      {config.buy_on.pancakeswap && (
-        <>
-          {isLive && (
-            <>
-              <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
-                TOKEN LAUNCHED!
-              </span>
-              <a
-                href={config.buy_on.pancakeswap}
-                target="_blank"
-                rel="noopener noreferrer"
-                tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
-              >
-                {config.buy_on.pancakeswap}
-              </a>
-            </>
-          )}
-        </>
-      )}
-    </>
-  )
-}
+//   return (
+//     <>
+//       <PresaleCountdown />
+//       {config.buy_on.pancakeswap && (
+//         <>
+//           {isLive && (
+//             <>
+//               <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
+//                 TOKEN LAUNCHED!
+//               </span>
+//               <a
+//                 href={config.buy_on.pancakeswap}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//                 tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
+//               >
+//                 {config.buy_on.pancakeswap}
+//               </a>
+//             </>
+//           )}
+//         </>
+//       )}
+//     </>
+//   )
+// }
 
 const CountdownItems = ({ ...props }) => {
-  const { t } = useTranslation('home')
+  // const { t } = useTranslation('home')
 
   // TODOPRESALE:
 
   return (
-    <div
-      tw="flex-col flex lg:space-y-4 uppercase font-bold font-mono tracking-widest xl:text-2xl"
-      {...props}
-    >
-      <div>
-        <span tw="text-emerald-400">{t`landing.pre-sale`}:</span>
-        <span>
-          <PresaleTimer />
-        </span>
-      </div>
-
-      <div>
-        <span tw="text-yellow-400">{t`landing.launch`}:</span>
-        <span>
-          <LaunchTimer />
-        </span>
-      </div>
+    <div tw="flex-col flex lg:space-y-4" {...props}>
+      <h4 tw="animate-pulse font-mono font-bold uppercase text-yellow-400 lg:text-2xl">
+        Live now:
+      </h4>
+      <a
+        href={config.buy_on.pancakeswap}
+        target="_blank"
+        rel="noopener noreferrer"
+        tw="text-base font-sans text-cyan-400 underline tracking-normal"
+      >
+        PancakeSwap
+      </a>
     </div>
   )
 }
@@ -350,7 +345,7 @@ export const Landing = () => {
           <div tw="lg:mt-20 xl:mt-32 space-y-4 lg:w-6/12">
             {/* ~~~~~~~~~~~~~~~~~ COUNTDOWN ~~~~~~~~~~~~~~~~~ */}
 
-            <CountdownItems tw="lg:hidden" />
+            {/* <CountdownItems tw="lg:hidden" /> */}
 
             {/* ~~~~~~~~~~~~~~~~~ TITLE AND DESCRIPTION ~~~~~~~~~~~~~~~~~ */}
 
@@ -373,8 +368,12 @@ export const Landing = () => {
                 {t`landing.trackers`}
               </Button>
 
-              <Button href={routes.how_to_buy} tw="flex-1 lg:flex-grow-0">
-                {t`landing.buy-now`}
+              <Button
+                href={config.buy_on.pancakeswap}
+                tw="flex-1 lg:flex-grow-0"
+                targetBlank
+              >
+                PancakeSwap
               </Button>
             </div>
 

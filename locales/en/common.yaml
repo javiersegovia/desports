@@ -15,6 +15,7 @@ shared:
       coinmarketcap: CoinMarketCap
       coingecko: CoinGecko
       poocoin: PooCoin
+      boggedfinance: Bogged Finance
 
 navBar:
   buy-now: Buy Now
