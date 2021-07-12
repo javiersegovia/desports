@@ -251,23 +251,18 @@ const CountdownItems = ({ ...props }) => {
   // TODOPRESALE:
 
   return (
-    <div
-      tw="flex-col flex lg:space-y-4 uppercase font-bold font-mono tracking-widest xl:text-2xl"
-      {...props}
-    >
-      <div>
-        <span tw="text-emerald-400">{t`landing.pre-sale`}:</span>
-        <span>
-          <PresaleTimer />
-        </span>
-      </div>
-
-      <div>
-        <span tw="text-yellow-400">{t`landing.launch`}:</span>
-        <span>
-          <LaunchTimer />
-        </span>
-      </div>
+    <div tw="flex-col flex lg:space-y-4" {...props}>
+      <h4 tw="animate-pulse font-mono font-bold uppercase text-yellow-400 lg:text-2xl">
+        Live now:
+      </h4>
+      <a
+        href={config.buy_on.pancakeswap}
+        target="_blank"
+        rel="noopener noreferrer"
+        tw="text-base font-sans text-cyan-400 underline tracking-normal"
+      >
+        PancakeSwap
+      </a>
     </div>
   )
 }
@@ -350,7 +345,7 @@ export const Landing = () => {
           <div tw="lg:mt-20 xl:mt-32 space-y-4 lg:w-6/12">
             {/* ~~~~~~~~~~~~~~~~~ COUNTDOWN ~~~~~~~~~~~~~~~~~ */}
 
-            <CountdownItems tw="lg:hidden" />
+            {/* <CountdownItems tw="lg:hidden" /> */}
 
             {/* ~~~~~~~~~~~~~~~~~ TITLE AND DESCRIPTION ~~~~~~~~~~~~~~~~~ */}
 
@@ -373,8 +368,12 @@ export const Landing = () => {
                 {t`landing.trackers`}
               </Button>
 
-              <Button href={routes.how_to_buy} tw="flex-1 lg:flex-grow-0">
-                {t`landing.buy-now`}
+              <Button
+                href={config.buy_on.pancakeswap}
+                tw="flex-1 lg:flex-grow-0"
+                targetBlank
+              >
+                PancakeSwap
               </Button>
             </div>
 
