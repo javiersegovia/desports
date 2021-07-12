@@ -22,7 +22,8 @@ export const config = {
 
   buy_on: {
     // TODOPRESALE:
-    pancakeswap: '',
+    pancakeswap:
+      'https://exchange.pancakeswap.finance/#/swap?inputCurrency=0x92D7142ba886c710bA72994972D108FB2fB1889a',
     presale: 'https://dxsale.app/app/v2_9/defipresale?saleID=951&chain=BSC',
   },
 
