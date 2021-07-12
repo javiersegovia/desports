@@ -11,12 +11,10 @@ shared:
     title: Rastreadores
     description: Al hacer clic en un enlace se abrirá la página en una nueva pestaña.
     list:
-    - title: BSCScan
-      key: bscscan
-    - title: Coinmarketcap
-      key: coinmarketcap
-    - title: Coingecko
-      key: coingecko
+      bscscan: BSCScan
+      coinmarketcap: CoinMarketCap
+      coingecko: CoinGecko
+      poocoin: PooCoin
 navBar:
   buy-now: Comprar
   links:

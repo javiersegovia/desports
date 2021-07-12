@@ -38,13 +38,14 @@ const StyledGeometricBackground = styled.div`
 interface CountdownItem {
   color: string
   title: string
-  date: Date // Todo: check the type of this date
+  date: Date
 }
 
 const CountdownItem = ({ date, color, title, ...props }: CountdownItem) => {
-  const { TimeComponent } = useTimeLeft(date)
+  const { TimeComponent, isLive } = useTimeLeft(date)
+  // TODOPRESALE:
 
-  return (
+  return !isLive ? (
     <div
       tw="font-mono letter-spacing[3px] uppercase font-bold space-y-2"
       {...props}
@@ -52,7 +53,7 @@ const CountdownItem = ({ date, color, title, ...props }: CountdownItem) => {
       <p style={{ color }}>{title}</p>
       <TimeComponent />
     </div>
-  )
+  ) : null
 }
 
 const StyledMobileBackgroundBottom = styled.div`

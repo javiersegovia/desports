@@ -12,6 +12,7 @@ import { FaYoutube } from 'react-icons/fa'
 
 // import coinmarketcapImg from '@public/images/trackers/coinmarketcap.png'
 // import coingeckoImg from '@public/images/trackers/coingecko.png'
+import techrateImg from '@public/images/logos/logo_techrate.webp'
 // import { MarketInfo } from './MarketInfo'
 // import { SquareFrame } from '../../components/UI/Frames/SquareFrame'
 import { RiFileCopyLine } from 'react-icons/ri'
@@ -135,23 +136,26 @@ const PrizePool = ({ ...props }) => {
   )
 }
 
-// const PartnerLogos = ({ ...props }) => {
-//   return (
-//     <div tw="flex items-center space-x-4" {...props}>
-//       <div>
-//         <Image src={coingeckoImg} alt="Coingecko" width={42} height={42} />
-//       </div>
-//       <div>
-//         <Image
-//           src={coinmarketcapImg}
-//           alt="Coinmarketcap"
-//           width={42}
-//           height={42}
-//         />
-//       </div>
-//     </div>
-//   )
-// }
+const PartnerLogos = ({ ...props }) => {
+  return (
+    <div tw="flex items-center space-x-4" {...props}>
+      <a href={config.external.audit} target="_blank" rel="noopener noreferrer">
+        <Image src={techrateImg} alt="Techrate" width={40} height={40} />
+      </a>
+      {/* <div>
+        <Image src={coingeckoImg} alt="Coingecko" width={42} height={42} />
+      </div>
+      <div>
+        <Image
+          src={coinmarketcapImg}
+          alt="Coinmarketcap"
+          width={42}
+          height={42}
+        />
+      </div> */}
+    </div>
+  )
+}
 
 // const MarketItems = ({ ...props }) => {
 //   const { t } = useTranslation('home')
@@ -181,24 +185,70 @@ const PrizePool = ({ ...props }) => {
 // }
 
 const PresaleTimer = () => {
-  const { TimeComponent: PresaleCountdown } = useTimeLeft(config.presale_date)
+  const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
+    config.presale_date
+  )
   return (
     <>
       <PresaleCountdown />
+
+      {config.buy_on.presale && (
+        <>
+          {isLive && (
+            <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
+              LIVE NOW!
+            </span>
+          )}
+          <a
+            href={config.buy_on.presale}
+            target="_blank"
+            rel="noopener noreferrer"
+            tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
+          >
+            {config.buy_on.presale}
+          </a>
+        </>
+      )}
     </>
   )
 }
 const LaunchTimer = () => {
-  const { TimeComponent: PresaleCountdown } = useTimeLeft(config.launch_date)
+  const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
+    config.launch_date
+  )
+
+  // TODOPRESALE:
+
   return (
     <>
       <PresaleCountdown />
+      {config.buy_on.pancakeswap && (
+        <>
+          {isLive && (
+            <>
+              <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
+                TOKEN LAUNCHED!
+              </span>
+              <a
+                href={config.buy_on.pancakeswap}
+                target="_blank"
+                rel="noopener noreferrer"
+                tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
+              >
+                {config.buy_on.pancakeswap}
+              </a>
+            </>
+          )}
+        </>
+      )}
     </>
   )
 }
 
 const CountdownItems = ({ ...props }) => {
   const { t } = useTranslation('home')
+
+  // TODOPRESALE:
 
   return (
     <div
@@ -226,8 +276,7 @@ export const Landing = () => {
   const { t } = useTranslation('home')
   const [
     trackersModalIsOpen,
-    // { setTrue: openTrackersModal, setFalse: closeTrackersModal },
-    { setFalse: closeTrackersModal },
+    { setTrue: openTrackersModal, setFalse: closeTrackersModal },
   ] = useToggle()
 
   const [
@@ -295,13 +344,6 @@ export const Landing = () => {
               </p>
             </div>
           )}
-          {/* <button
-            type="button"
-            tw="absolute w-full h-full z-10"
-            onClick={openDemoVideoModal}
-          >
-            <FaYoutube tw="text-cyan-400 text-5xl mx-auto" />
-          </button> */}
         </StyledVideoThumbnail>
 
         <Container tw="relative w-full flex-1 lg:flex">
@@ -326,19 +368,10 @@ export const Landing = () => {
               <Button
                 bgColor={theme`colors.cyan.400`}
                 tw="flex-1 lg:flex-grow-0"
-                href={config.social.telegram}
-                targetBlank
-              >
-                {t`landing.join-telegram`}
-              </Button>
-              {/* <Button
-                disabled
-                bgColor={theme`colors.cyan.400`}
-                tw="flex-1 lg:flex-grow-0"
-                // onClick={openTrackersModal}
+                onClick={openTrackersModal}
               >
                 {t`landing.trackers`}
-              </Button> */}
+              </Button>
 
               <Button href={routes.how_to_buy} tw="flex-1 lg:flex-grow-0">
                 {t`landing.buy-now`}
@@ -445,7 +478,7 @@ export const Landing = () => {
               <span tw="font-mono uppercase font-bold letter-spacing[1px] text-sm">{t`landing.scroll-more`}</span>
             </div>
             {/* TODO: ACTIVATE PARTNERS_LOGOS */}
-            {/* <PartnerLogos /> */}
+            <PartnerLogos />
           </Container>
         </div>
       </section>

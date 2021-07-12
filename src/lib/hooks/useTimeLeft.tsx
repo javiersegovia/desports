@@ -42,13 +42,19 @@ export const useTimeLeft = (date: Date) => {
 
   const TimeComponent = () => (
     <div tw="space-x-2 flex">
-      {days > 0 && <div>{days}D</div>}
-      {hours > 0 && <div>{hours}H</div>}
-      {minutes > 0 && <div>{minutes}M</div>}
-      {/* todo: add live link here in case there are no seconds left! */}
-      {<div>{seconds}S</div>}
+      {(days > 0 || hours > 0 || minutes > 0 || seconds > 0) && (
+        <>
+          {days > 0 && <div>{days}D</div>}
+          {hours > 0 && <div>{hours}H</div>}
+          {minutes > 0 && <div>{minutes}M</div>}
+          {/* todo: add live link here in case there are no seconds left! */}
+          {<div>{seconds}S</div>}
+        </>
+      )}
     </div>
   )
 
-  return { timeLeft, TimeComponent }
+  const difference = +date - +new Date()
+
+  return { timeLeft, TimeComponent, isLive: difference <= 0 }
 }

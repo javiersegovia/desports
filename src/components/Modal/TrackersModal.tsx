@@ -11,10 +11,7 @@ import { BaseModal, InstanceModalProps } from './BaseModal'
 interface TrackersI18N {
   title: string
   description: string
-  list: {
-    title: string
-    key: keyof typeof config.trackers
-  }[]
+  list: typeof config.trackers
 }
 
 export const TrackersModal = ({ isOpen, close }: InstanceModalProps) => {
@@ -49,16 +46,42 @@ export const TrackersModal = ({ isOpen, close }: InstanceModalProps) => {
             {trackers.description}
           </Dialog.Description>
 
+          {/* todo: refactor the "as keyof..." */}
           <ul tw="mt-8 space-y-6">
-            {trackers.list.map(({ title, key }) => (
+            {Object.keys(config.trackers).map((key) =>
+              config.trackers[key as keyof typeof config.trackers] ? (
+                <li key={key}>
+                  <a
+                    href={config.trackers[key as keyof typeof config.trackers]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tw="flex items-center space-x-2"
+                  >
+                    <span>
+                      {trackers.list[key as keyof typeof trackers.list]}
+                    </span>
+                    <span tw="inline-block">
+                      <HiOutlineExternalLink />
+                    </span>
+                  </a>
+                  <FrameDivider
+                    frameHeight={3}
+                    frameWidth={4}
+                    color="cyan"
+                    tw="mt-1"
+                  />
+                </li>
+              ) : null
+            )}
+            {/* {Object.keys(trackers.list).map((key) => (
               <li key={key}>
                 <a
-                  href={config.trackers[key]}
+                  href={config.trackers[key as keyof typeof config.trackers]}
                   target="_blank"
                   rel="noopener noreferrer"
                   tw="flex items-center space-x-2"
                 >
-                  <span>{title}</span>
+                  <span>trackers.list[key]</span>
                   <span tw="inline-block">
                     <HiOutlineExternalLink />
                   </span>
@@ -70,7 +93,7 @@ export const TrackersModal = ({ isOpen, close }: InstanceModalProps) => {
                   tw="mt-1"
                 />
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
       </SquareFrame>
