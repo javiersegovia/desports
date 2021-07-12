@@ -25,10 +25,10 @@ import introVideoImg from '@public/images/bg__intro-video.jpg'
 import { VscLock } from 'react-icons/vsc'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
-import { routes } from '@lib/config/routes'
 import { useClipboard } from '@lib/hooks/useClipboard'
 import { ClipboardTooltip } from '@components/Miscellaneous/ClipboardTooltip'
-import { useTimeLeft } from '@lib/hooks/useTimeLeft'
+// import { routes } from '@lib/config/routes'
+// import { useTimeLeft } from '@lib/hooks/useTimeLeft'
 
 const DemoVideoModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/DemoVideoModal').then(
@@ -184,69 +184,69 @@ const PartnerLogos = ({ ...props }) => {
 //   )
 // }
 
-const PresaleTimer = () => {
-  const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
-    config.presale_date
-  )
-  return (
-    <>
-      <PresaleCountdown />
+// const PresaleTimer = () => {
+//   const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
+//     config.presale_date
+//   )
+//   return (
+//     <>
+//       <PresaleCountdown />
 
-      {config.buy_on.presale && (
-        <>
-          {isLive && (
-            <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
-              LIVE NOW!
-            </span>
-          )}
-          <a
-            href={config.buy_on.presale}
-            target="_blank"
-            rel="noopener noreferrer"
-            tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
-          >
-            {config.buy_on.presale}
-          </a>
-        </>
-      )}
-    </>
-  )
-}
-const LaunchTimer = () => {
-  const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
-    config.launch_date
-  )
+//       {config.buy_on.presale && (
+//         <>
+//           {isLive && (
+//             <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
+//               LIVE NOW!
+//             </span>
+//           )}
+//           <a
+//             href={config.buy_on.presale}
+//             target="_blank"
+//             rel="noopener noreferrer"
+//             tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
+//           >
+//             {config.buy_on.presale}
+//           </a>
+//         </>
+//       )}
+//     </>
+//   )
+// }
+// const LaunchTimer = () => {
+//   const { TimeComponent: PresaleCountdown, isLive } = useTimeLeft(
+//     config.launch_date
+//   )
 
-  // TODOPRESALE:
+//   // TODOPRESALE:
 
-  return (
-    <>
-      <PresaleCountdown />
-      {config.buy_on.pancakeswap && (
-        <>
-          {isLive && (
-            <>
-              <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
-                TOKEN LAUNCHED!
-              </span>
-              <a
-                href={config.buy_on.pancakeswap}
-                target="_blank"
-                rel="noopener noreferrer"
-                tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
-              >
-                {config.buy_on.pancakeswap}
-              </a>
-            </>
-          )}
-        </>
-      )}
-    </>
-  )
-}
+//   return (
+//     <>
+//       <PresaleCountdown />
+//       {config.buy_on.pancakeswap && (
+//         <>
+//           {isLive && (
+//             <>
+//               <span tw="block md:inline font-bold text-base pr-2 animate-pulse">
+//                 TOKEN LAUNCHED!
+//               </span>
+//               <a
+//                 href={config.buy_on.pancakeswap}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//                 tw="text-base font-sans lowercase text-cyan-400 underline tracking-normal"
+//               >
+//                 {config.buy_on.pancakeswap}
+//               </a>
+//             </>
+//           )}
+//         </>
+//       )}
+//     </>
+//   )
+// }
 
 const CountdownItems = ({ ...props }) => {
-  const { t } = useTranslation('home')
+  // const { t } = useTranslation('home')
 
   // TODOPRESALE:
 
