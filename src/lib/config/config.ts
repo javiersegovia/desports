@@ -55,7 +55,7 @@ export const config = {
   ready_player_me: 'https://cyberpunk.readyplayer.me/',
 
   presale_date: new Date(Date.UTC(2021, 6, 12, 13, 0, 0)),
-  launch_date: new Date(Date.UTC(2021, 6, 12, 15, 0, 0)),
+  launch_date: new Date(Date.UTC(2021, 6, 12, 15, 5, 0)),
 
   external: {
     metamask: 'https://metamask.io/',
