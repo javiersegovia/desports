@@ -91,12 +91,15 @@ export const BaseFooter = ({ logoComponent, ...props }: FooterProps) => {
               {/* <li>
                 <Link href={routes.blog}>{t`shared.blog`}</Link>
               </li> */}
-              {/* todo: uncomment contractURL */}
-              {/* <li>
-                <Link href={config.blockchain.contractUrl}>
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={config.blockchain.contractUrl}
+                >
                   {t`shared.contract`}
-                </Link>
-              </li> */}
+                </a>
+              </li>
             </div>
           </ul>
         </nav>

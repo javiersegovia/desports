@@ -19,23 +19,24 @@ pancakeswap:
 
     step_2:
       title: "Step 2: Add DeSports Network to your Wallet"
-      bullets:
-        - In you are using Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network". If it's not there, type "Custom" on the search bar and click on the option “Add Custom Wallet”. Proceed to change the Network to “Smart Chain”. Paste the Contract Address. 
+      description:
+        a: |
+          <0><1>If you are using Trust wallet</1>, tap the icon in the top-right hand side and search for "DeSports Network". If it's not there, type "Custom" on the search bar and click on the option “Add Custom Wallet”. Proceed to change the Network to “Smart Chain”, and then paste the Contract Address.</0>
 
-        - If you are using Metamask wallet, tap the dropdown menu on the top-right hand side and ensure you are in the “Smart Chai” Network. Then, proceed to the bottom of the screen and click on “Add Tokens”. On the next page, paste the Token Address.
+          <2><3>If you are using Metamask wallet</3>, tap the dropdown menu on the top-right hand side and ensure you are in the “Smart Chain” Network. Then, proceed to the bottom of the screen and click on “Add Tokens”. On the next page, paste the Contract Address.</2>
 
-        - On both wallets, ensure the token is DESP, and the decimals (Tokens of Precision) is set to 9.
-
-        - Click "Done" or “Add Token” and you should now have DeSports Network added to your wallet!
+        b: On both wallets, ensure the token is <0>DESP</0>, and the decimals (Tokens of Precision) is set to 9.
+        c: Click "Done" or “Add Token” and you should now have DeSports Network added to your wallet!
 
     step_3:
       title: "Step 3: Buy \"Binance Coin\" (BNB)"
-      description: | 
-        Buy BNB with a credit card on Trust wallet, you can use the instruction here: https://trustwallet.com/buy-bnb/
+      description:
+        a: "Buy BNB with a credit card. If you are on Trust Wallet, you can use the instructions here: <0>https://trustwallet.com/buy-bnb/</0>"
 
-        To buy BNB on Centralized Exchange (CEX), please follow the instructions on the exchange. This step may require KYC verification, so have documents ready to prove your identity.
+        b: |
+          To buy BNB on Centralized Exchange (CEX), please follow the instructions on the exchange. This step may require KYC verification, so have documents ready to prove your identity.
       
-        Once this is done, you should send your BNB to your wallet if you didn’t buy it directly on Trust. After sending BNB to your wallet, there may be a delay while your transaction is processed. Be patient, this is normal!
+          Once this is done, you should send your BNB to your wallet if you didn’t buy it directly on Trust. After sending BNB to your wallet, there may be a delay while your transaction is processed. Be patient, this is normal!
       
       warn: If the transaction won't go through, you may need to contact your bank to allow international transactions.
 
@@ -43,17 +44,13 @@ pancakeswap:
       title: "Step 4: Buy the \"DeSports Network\" token (DESP)"
       description: 
         a: |
-          Once your transaction has been cleared, and you have BSC on your Trust Wallet, Go to DApps (or "Browser" for iPhones) at the bottom of the main screen. If the Browser button is not visible at the bottom for iPhone, open Safari and in the URL type trust://browser_enable, then return to trust wallet.
+          Once your transaction has been cleared, and you have BNB on your Trust Wallet, Go to DApps (or "Browser" for iPhones) at the bottom of the main screen. If the Browser button is not visible at the bottom for iPhone, open Safari and in the URL type trust://browser_enable, then return to trust wallet.
         
           Open the DApps, or Browser, section and find PancakeSwap and open it. Connect your Trust Wallet in the top-right. Scroll down a little to the "Exchange" box.
 
-          If you are using Metamask, go to https://pancakeswap.finance/
-
-          Tap on the “Connect” icon in the top-right hand side. On the left-hand side menu, click on “Trade” and then on “Exchange”
-
-        b: | 
-          Once connected and on the exchange, go to https://desports.network/ and copy the contract. Go back to the “Exchange” section of PancakeSwap, click on “Select Currency” and paste the contract
-
-          To swap, you will need to press the settings cod wheel and set the slippage to 12%. Set the amount to swap, press “Swap”, and then “Confirm”.
-
-          Now all that's left is to HODL!
+        b: If you are using Metamask, go to <0>https://pancakeswap.finance/</0>
+        c: Tap on the “Connect” icon in the top-right hand side. On the left-hand side menu, click on “Trade” and then on “Exchange”
+        d: "Once connected and inside PancakeSwap, go to the “Exchange” section, click on “Select Currency”, and paste the contract address below:"
+        e: To swap, you will need to press the settings cod wheel and set the slippage to 12%. Set the amount to swap, press “Swap”, and then “Confirm”.
+        f: "<0>Additional:</0> If it is your first time buying, a message should appear to approve the transaction, you must do so and pay the corresponding gas fee to be able to buy or sell $DESP"
+        g: Congratulations, now you are a holder of <0>$DESP!</0>

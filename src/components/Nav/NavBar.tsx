@@ -60,8 +60,7 @@ export interface NavBarProps {
 export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
   const [
     trackersModalIsOpen,
-    // { setTrue: openTrackersModal, setFalse: closeTrackersModal },
-    { setFalse: closeTrackersModal },
+    { setTrue: openTrackersModal, setFalse: closeTrackersModal },
   ] = useToggle()
 
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -106,10 +105,9 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
               {/* todo: enable trackers */}
               <button
                 type="button"
-                // tw="hover:text-yellow-400 cursor-not-allowed opacity-20"
-                tw="cursor-not-allowed opacity-20"
-                disabled
-                // onClick={openTrackersModal}
+                tw="hover:text-yellow-400"
+                // disabled
+                onClick={openTrackersModal}
               >
                 {t`shared.trackers.title`}
               </button>
@@ -160,10 +158,10 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
                   {/* todo: enable trackers */}
                   <button
                     type="button"
-                    // tw="text-left py-2 hover:text-yellow-400"
-                    tw="cursor-not-allowed opacity-20 text-left py-2"
-                    disabled
-                    // onClick={openTrackersModal}
+                    tw="text-left py-2 hover:text-yellow-400"
+                    // tw="cursor-not-allowed opacity-20 text-left py-2"
+                    // disabled
+                    onClick={openTrackersModal}
                   >
                     {t`shared.trackers.title`}
                   </button>
