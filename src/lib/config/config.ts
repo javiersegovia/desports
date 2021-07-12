@@ -7,7 +7,7 @@ export const config = {
 
     // TODOPRESALE:
     contractAddress: '0x92D7142ba886c710bA72994972D108FB2fB1889a',
-    // fundraisingAddress: '0x81E4d494b85A24a58a6BA45c9B418b32a4E039de',
+    fundraisingAddress: '0x81E4d494b85A24a58a6BA45c9B418b32a4E039de',
   },
 
   social: {
