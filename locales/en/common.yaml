@@ -8,7 +8,7 @@ shared:
   how-to-buy: How to buy
   blog: Blog
   trackers:
-    title: Trackers
+    title: Charts
     description: Clicking on a link will open the website in a new tab.
     list:
       bscscan: BSCScan
