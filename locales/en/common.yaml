@@ -16,6 +16,7 @@ shared:
       coingecko: CoinGecko
       poocoin: PooCoin
       boggedfinance: Bogged Finance
+      dextools: DexTools
 
 navBar:
   buy-now: Buy Now
