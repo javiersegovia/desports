@@ -41,6 +41,8 @@ export const config = {
       'https://bscscan.com/token/0x92d7142ba886c710ba72994972d108fb2fb1889a',
     boggedfinance:
       'https://charts.bogged.finance/0x92D7142ba886c710bA72994972D108FB2fB1889a',
+    dextools:
+      'https://www.dextools.io/app/pancakeswap/pair-explorer/0x0961a4da5025337074b68c405e9a2b3ad31c601c',
     coingecko: '',
     coinmarketcap: '',
   },
