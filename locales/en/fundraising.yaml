@@ -4,7 +4,10 @@ title:
 
 contract_address_fundraise: Contract Address (ETH/BNB)
 
-description: DeSports Network aims to build a huge community all over the world, and we have a clear path of how to do it. This fundraise, in addition to the marketing budget already allowed, will help us achieve ambitious marketing goals much faster while rewarding you for your involvement.
+description: |
+  DeSports Network aims to build a huge community around the world, and we have a clear vision of how to do it! 
+
+  In addition to the marketing budget already invested, and what our tokenomics has set aside for marketing, this fundraiser will help us achieve our ambitious marketing goals much faster, while rewarding you for your involvement.
 
 contract_address: Contract Address (ETH/BNB)
 
@@ -13,10 +16,8 @@ meter:
   next_goal: Next Goal
 
 goals: 
-  - Isn your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
-  - Inb your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
-  - Inx your Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
-  - In cyour Trust wallet, tap the icon in the top-right hand side and search for "DeSports Network".
+  - HotBit Listing.
+  - Youtube and TikTok promotional videos.
 
 top_fundraisers:
   title: Top Fundraisers
@@ -28,10 +29,10 @@ latest_donations:
 rewarding_support:
   title: Rewarding your support
   description:
-    a: "Each month, we will be creating an unique collection of 2 NFTs in collaboration with two talented digital artists. They will be given to 8 fundraisers as a compensation:"
+    a: "Each month, we'll be creating a collection of NFTs in collaboration with two talented digital artists. These will be awarded to 8 different contributors as a reward in the following manner:"
 
     bullets:
-      - The top three fundraisers will get both of them.
-      - Five random fundraisers will get one of them.
+      - The top three supporters will get a one-of-a-kind NFT.
+      - Five random supporters will get a 1/5 NFT from the collection.
 
-    b: Help us grow DeSports Network and get a piece of our history in return.
+    b: Support DeSports Network and make your investment in grow while obtaining a piece of our history in return!
