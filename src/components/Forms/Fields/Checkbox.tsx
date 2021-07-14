@@ -25,13 +25,6 @@ const StyledCheckbox = styled.div`
     ${tw`absolute bg-black`}
   }
 
-  /* &.checked .box-border {
-    top: 1px;
-    left: 1px;
-    bottom: 1px;
-    right: 1px;
-  } */
-
   .inner-block {
     clip-path: ${clipShape};
     top: 8px;

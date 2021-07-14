@@ -3,7 +3,6 @@ import { useToggle } from '@lib/hooks/useToggle'
 import React, { useEffect } from 'react'
 import { RiFileCopyLine } from 'react-icons/ri'
 import { ClipboardTooltip } from './ClipboardTooltip'
-import { config } from '@lib/config/config'
 import useTranslation from 'next-translate/useTranslation'
 
 interface ContractAddressProps {
@@ -49,14 +48,15 @@ export const ContractAddress = ({
         <span tw="block sm:inline-block font-bold">
           {title || t`shared.contract_address`}:
         </span>
-        <span tw="ml-2 block sm:inline-block font-mono">{address} </span>
+        <span tw="lg:ml-2 block sm:inline-block font-mono">{address}</span>
         {clipboard && (
           <RiFileCopyLine tw="absolute top-2 right-2 md:top-auto md:right-auto md:relative ml-2 inline-block" />
         )}
 
         <ClipboardTooltip
-          tw="top-full left-auto text-cyan-400 right-0 md:top-0 bottom-0 md:left-full md:right-auto cursor-default whitespace-nowrap translate-x-2 h-0"
+          tw="top-full left-1/2 text-cyan-400 right-auto bottom-auto cursor-default whitespace-nowrap -translate-x-1/2"
           isOpen={isClipboardTooltipOpen}
+          // isOpen={true}
         />
       </button>
     </div>
