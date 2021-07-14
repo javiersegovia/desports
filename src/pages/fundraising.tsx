@@ -12,15 +12,14 @@ import { FundraiseRewarding } from '@views/fundraising/FundraiseRewarding'
 import { Footer } from '@components/Footer/Footer'
 import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
-import bgImg from '@public/images/bg/fundraising.png'
-import { HiSortDescending } from 'react-icons/hi'
+import bgImg from '@public/images/bg/fundraising.jpg'
 
 const { fundraisingAddress } = config.blockchain
 
-const nextGoal = 50
-const raisedAmount = 15.2342
+// const nextGoal = 50
+// const raisedAmount = 35.2342
 
-const BNB_GOALS = [5, 15, 35, 50]
+const BNB_GOALS = [50, 100, 200]
 
 // TODO: LEAVE COMMENT EXPLAINING THE LOGIC HERE
 
@@ -32,6 +31,7 @@ const BNB_GOALS = [5, 15, 35, 50]
 export interface ITransaction {
   fromAddress: string
   amount: number
+  percentage: string
 }
 
 interface BSCTransactionResult {
@@ -42,32 +42,46 @@ interface BSCTransactionResult {
   }[]
 }
 
-const getTotalAmountsReceivedPerWallet = async (): Promise<ITransaction[]> => {
+const getTotalAmountsReceivedPerWallet = async (): Promise<{
+  totalRaised: number
+  fundraisers: ITransaction[]
+}> => {
   const data = await fetch(
     `https://api.bscscan.com/api?module=account&action=txlist&address=${fundraisingAddress}&startblock=1&endblock=99999999&sort=asc&apikey=IVDXS3EM4WMZ862UBIHFK3YD5N94ISA6N3`
   )
 
-  const { result }: BSCTransactionResult = await data.json()
+  const { result: transactions }: BSCTransactionResult = await data.json()
   const donations: Record<string, number> = {}
 
-  return result
-    .map((transaction) => {
-      if (
-        transaction.to === fundraisingAddress &&
-        transaction.from !== fundraisingAddress
-      ) {
-        const previousAmount = donations[transaction.from] || 0
-        const newAmount = +transaction.value / 10 ** 18
+  let previousAmount: number
+  let newAmount: number
 
-        donations[transaction.from] = previousAmount + newAmount
+  for (let i = 0; i < transactions.length; i++) {
+    if (
+      transactions[i].to.toLowerCase() === fundraisingAddress.toLowerCase() &&
+      transactions[i].from.toLowerCase() !== fundraisingAddress.toLowerCase()
+    ) {
+      previousAmount = +donations[transactions[i].from] || 0
+      newAmount = +transactions[i].value / 10 ** 18
 
-        return {
-          fromAddress: transaction.from,
-          amount: previousAmount + newAmount,
-        }
-      }
-    })
-    .filter(Boolean) as ITransaction[] // todo: check this "as"
+      donations[transactions[i].from] = previousAmount + newAmount
+    }
+  }
+
+  const totalRaised = Object.values(donations).reduce(
+    (total, amount) => total + amount,
+    0
+  )
+
+  const fundraisers = Object.keys(donations)
+    .map((key) => ({
+      fromAddress: key,
+      amount: donations[key],
+      percentage: ((donations[key] / totalRaised) * 100).toFixed(2),
+    }))
+    .sort((a, b) => b.amount - a.amount)
+
+  return { totalRaised: +totalRaised.toFixed(4), fundraisers }
 }
 
 const getNextGoal = (raisedAmount: number) =>
@@ -76,21 +90,24 @@ const getNextGoal = (raisedAmount: number) =>
 
 const FundraisingPage = () => {
   const { t } = useTranslation('fundraising')
-  const [topFundraisers, setTopFundraisers] = useState<ITransaction[]>([])
+  const [fundraisers, setFundraisers] = useState<ITransaction[]>()
+  const [totalRaised, setTotalRaised] = useState<number>(0)
 
-  const nextGoal = getNextGoal(raisedAmount)
+  const nextGoal = getNextGoal(totalRaised)
 
   useEffect(() => {
-    const updateDonators = async () => {
-      const transactions = await getTotalAmountsReceivedPerWallet()
+    const updateFundraising = async () => {
+      const { fundraisers } =
+        // const { totalRaised, fundraisers } =
+        await getTotalAmountsReceivedPerWallet()
 
-      setTopFundraisers(transactions.sort((a, b) => b.amount - a.amount))
+      // setTotalRaised(totalRaised || 0)
+      setTotalRaised(5.34)
+      setFundraisers(fundraisers)
     }
 
-    updateDonators()
+    updateFundraising()
   }, [])
-
-  console.log(topFundraisers)
 
   return (
     <>
@@ -102,9 +119,8 @@ const FundraisingPage = () => {
           src={bgImg}
           layout="fill"
           placeholder="blur"
-          objectPosition="0 0"
           alt="Background"
-          tw="opacity-20 object-contain lg:object-cover"
+          tw="opacity-20 object-cover object-center lg:object-top"
         />
       </div>
 
@@ -115,27 +131,29 @@ const FundraisingPage = () => {
       </Container>
 
       {fundraisingAddress && (
-        <ContractAddress
-          title={t`contract_address_fundraise`}
-          address={fundraisingAddress}
-          tw="mt-4 flex justify-center"
-        />
+        <Container tw="mx-auto mt-10 lg:mt-4">
+          <ContractAddress
+            title={t`contract_address_fundraise`}
+            address={fundraisingAddress}
+            tw="mt-4 flex justify-center"
+          />
+        </Container>
       )}
 
-      <Container tw="mx-auto">
-        <FundraiseMeter tw="mt-4" current={raisedAmount} max={nextGoal} />
+      <Container tw="mx-auto mt-10 lg:mt-4">
+        <FundraiseMeter current={totalRaised} max={nextGoal} />
       </Container>
 
       <Container tw="mt-10">
-        <Title tw="lg:text-2xl">Goals</Title>
-        <div tw="mt-10 flex justify-between space-x-10">
+        <Title tw="text-center lg:text-left lg:text-2xl">Goals</Title>
+        <div tw="mt-10 flex flex-col lg:flex-row lg:justify-between lg:space-x-10">
           <FundraiseGoals
             goalsAmounts={BNB_GOALS}
-            raisedAmount={raisedAmount}
-            tw="w-7/12"
+            raisedAmount={totalRaised}
+            tw="w-full lg:w-7/12"
           />
 
-          <FundraiseDonations />
+          <FundraiseDonations fundraisers={fundraisers} />
         </div>
       </Container>
 

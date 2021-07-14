@@ -19,7 +19,7 @@ interface NavProps {
   bgTransparent?: boolean
 }
 
-export const Nav = ({ navbarLogo, bgTransparent }: NavProps) => {
+export const Nav = ({ navbarLogo }: NavProps) => {
   const navbarRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
 

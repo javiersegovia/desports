@@ -1,9 +1,7 @@
 import {
-  LineChart,
   StyledCompletionBar,
   StyledFullfillnessBar,
 } from '@components/Chart/LineChart'
-import { Title } from '@components/UI/Title'
 import useTranslation from 'next-translate/useTranslation'
 import React from 'react'
 import tw, { styled } from 'twin.macro'
