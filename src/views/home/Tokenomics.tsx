@@ -22,6 +22,10 @@ export const Tokenomics = () => {
     returnObjects: true,
   })
 
+  const calculatePorcentageOf = (number1: number, number2: number) => {
+    return ((number1 / number2) * 100).toFixed(2)
+  }
+
   return (
     <>
       <StyledBackground
@@ -59,25 +63,24 @@ export const Tokenomics = () => {
                   <div tw="font-bold">
                     {t`tokenomics.token_supply.total`} (100%)
                   </div>
-                  <div tw="font-mono">{config.total_supply}</div>
+                  <div tw="font-mono">{config.total_supply.toLocaleString()}</div>
                 </div>
 
                 <div>
                   <div tw="font-bold text-emerald-400">
-                    {t`tokenomics.token_supply.circulating`} {/* (66.67%) */}
+                    {t`tokenomics.token_supply.circulating`} ({calculatePorcentageOf(config.total_circulating, config.total_supply)}%)
                   </div>
-                  {/* <div tw="font-mono text-emerald-400">
-                    {config.total_circulating}
-                  </div> */}
-                  <div tw="font-mono text-emerald-400">Soon</div>
+                  <div tw="font-mono text-emerald-400">
+                    {config.total_circulating.toLocaleString()}
+                  </div>
                 </div>
 
                 <div tw="pb-10">
                   <div tw="font-bold text-red-500">
-                    {t`tokenomics.token_supply.burned`} {/* (33.33%) */}
+                    {t`tokenomics.token_supply.burned`} ({calculatePorcentageOf(config.total_burned, config.total_supply)}%)
                   </div>
-                  {/* <div tw="font-mono text-red-500">{config.total_burned}</div> */}
-                  <div tw="font-mono text-red-500">Soon</div>
+                  <div tw="font-mono text-red-500">{config.total_burned.toLocaleString()}</div>
+
                 </div>
               </div>
             </SquareFrame>
