@@ -9,6 +9,7 @@ import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import bgImg from '@public/images/tokenomics_background.webp'
 import { config } from '@lib/config/config'
+import { calculatePercentageOf } from '@lib/utils/percentages'
 
 const StyledBackground = styled(Image)`
   ${tw`absolute z-index[-1] bg-contain bg-center bg-no-repeat w-full h-full opacity-[.15]`}
@@ -21,10 +22,6 @@ export const Tokenomics = () => {
   const tokenomics: IAccordionItem[] = t('tokenomics.list', null, {
     returnObjects: true,
   })
-
-  const calculatePorcentageOf = (number1: number, number2: number) => {
-    return ((number1 / number2) * 100).toFixed(2)
-  }
 
   return (
     <>
@@ -68,7 +65,7 @@ export const Tokenomics = () => {
 
                 <div>
                   <div tw="font-bold text-emerald-400">
-                    {t`tokenomics.token_supply.circulating`} ({calculatePorcentageOf(config.total_circulating, config.total_supply)}%)
+                    {t`tokenomics.token_supply.circulating`} ({calculatePercentageOf(config.total_circulating, config.total_supply)}%)
                   </div>
                   <div tw="font-mono text-emerald-400">
                     {config.total_circulating.toLocaleString()}
@@ -77,7 +74,7 @@ export const Tokenomics = () => {
 
                 <div tw="pb-10">
                   <div tw="font-bold text-red-500">
-                    {t`tokenomics.token_supply.burned`} ({calculatePorcentageOf(config.total_burned, config.total_supply)}%)
+                    {t`tokenomics.token_supply.burned`} ({calculatePercentageOf(config.total_burned, config.total_supply)}%)
                   </div>
                   <div tw="font-mono text-red-500">{config.total_burned.toLocaleString()}</div>
 
