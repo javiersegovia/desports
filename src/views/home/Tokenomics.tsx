@@ -57,7 +57,7 @@ export const Tokenomics = () => {
               </Title>
 
               <div tw="mt-6 mx-auto px-10 w-full space-y-4">
-                <LineChart tw="m-auto mb-0" current={333} max={1000} />
+                <LineChart tw="m-auto mb-0" current={config.total_burned} max={config.total_supply} />
 
                 <div tw="pt-4">
                   <div tw="font-bold">
