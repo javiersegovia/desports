@@ -72,9 +72,9 @@ export const config = {
       'https://github.com/TechRate/Smart-Contract-Audits/blob/main/DeSports%20Network.pdf',
   },
 
-  total_supply: '88,888,888,888',
-  total_burned: '29,626,666,666.4',
-  total_circulating: '59,253,333,332.7',
+  total_supply: 88888888888,
+  total_burned: 66280934784,
+  total_circulating: 22607954104,
 
   languages: {
     es: 'Español',

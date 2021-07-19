@@ -9,6 +9,7 @@ import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import bgImg from '@public/images/tokenomics_background.webp'
 import { config } from '@lib/config/config'
+import { calculatePercentageOf } from '@lib/utils/percentages'
 
 const StyledBackground = styled(Image)`
   ${tw`absolute z-index[-1] bg-contain bg-center bg-no-repeat w-full h-full opacity-[.15]`}
@@ -53,31 +54,47 @@ export const Tokenomics = () => {
               </Title>
 
               <div tw="mt-6 mx-auto px-10 w-full space-y-4">
-                <LineChart tw="m-auto mb-0" current={333} max={1000} />
+                <LineChart
+                  tw="m-auto mb-0"
+                  current={config.total_burned}
+                  max={config.total_supply}
+                />
 
                 <div tw="pt-4">
                   <div tw="font-bold">
                     {t`tokenomics.token_supply.total`} (100%)
                   </div>
-                  <div tw="font-mono">{config.total_supply}</div>
+                  <div tw="font-mono">
+                    {config.total_supply.toLocaleString()}
+                  </div>
                 </div>
 
                 <div>
                   <div tw="font-bold text-emerald-400">
-                    {t`tokenomics.token_supply.circulating`} {/* (66.67%) */}
+                    {t`tokenomics.token_supply.circulating`} (
+                    {calculatePercentageOf(
+                      config.total_circulating,
+                      config.total_supply
+                    )}
+                    %)
                   </div>
-                  {/* <div tw="font-mono text-emerald-400">
-                    {config.total_circulating}
-                  </div> */}
-                  <div tw="font-mono text-emerald-400">Soon</div>
+                  <div tw="font-mono text-emerald-400">
+                    {config.total_circulating.toLocaleString()}
+                  </div>
                 </div>
 
                 <div tw="pb-10">
-                  <div tw="font-bold text-red-500">
-                    {t`tokenomics.token_supply.burned`} {/* (33.33%) */}
+                  <div tw="font-bold text-rose-500">
+                    {t`tokenomics.token_supply.burned`} (
+                    {calculatePercentageOf(
+                      config.total_burned,
+                      config.total_supply
+                    )}
+                    %)
                   </div>
-                  {/* <div tw="font-mono text-red-500">{config.total_burned}</div> */}
-                  <div tw="font-mono text-red-500">Soon</div>
+                  <div tw="font-mono text-rose-500">
+                    {config.total_burned.toLocaleString()}
+                  </div>
                 </div>
               </div>
             </SquareFrame>

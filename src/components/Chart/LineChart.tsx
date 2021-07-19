@@ -6,7 +6,7 @@ interface LineChartProps {
 }
 
 const StyledCompletionBar = styled.div`
-  clip-path: polygon(0% 100%, 12% 0%, 88% 0%, 100% 100%);
+  clip-path: polygon(0% 100%, 5% 0%, 100% 0%, 95% 100%);
 
   @keyframes burnPing {
     75%,
@@ -44,12 +44,12 @@ export const LineChart = ({ max, current, ...props }: LineChartProps) => {
       {...props}
     >
       <StyledCompletionBar
-        tw="absolute bg-red-500 z-10 left-0 top-0 bottom-0"
+        tw="absolute bg-rose-400 z-10 left-0 top-0 bottom-0"
         className="hidden lg:block animate-burn-ping"
         style={{ width: `${completion}%` }}
       />
       <StyledCompletionBar
-        tw="absolute bg-red-500 z-10 left-0 top-0 bottom-0"
+        tw="absolute bg-rose-400 z-10 left-0 top-0 bottom-0"
         className="animate-burn-pulse"
         style={{ width: `${completion}%` }}
       />
