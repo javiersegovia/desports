@@ -54,18 +54,29 @@ export const Tokenomics = () => {
               </Title>
 
               <div tw="mt-6 mx-auto px-10 w-full space-y-4">
-                <LineChart tw="m-auto mb-0" current={config.total_burned} max={config.total_supply} />
+                <LineChart
+                  tw="m-auto mb-0"
+                  current={config.total_burned}
+                  max={config.total_supply}
+                />
 
                 <div tw="pt-4">
                   <div tw="font-bold">
                     {t`tokenomics.token_supply.total`} (100%)
                   </div>
-                  <div tw="font-mono">{config.total_supply.toLocaleString()}</div>
+                  <div tw="font-mono">
+                    {config.total_supply.toLocaleString()}
+                  </div>
                 </div>
 
                 <div>
                   <div tw="font-bold text-emerald-400">
-                    {t`tokenomics.token_supply.circulating`} ({calculatePercentageOf(config.total_circulating, config.total_supply)}%)
+                    {t`tokenomics.token_supply.circulating`} (
+                    {calculatePercentageOf(
+                      config.total_circulating,
+                      config.total_supply
+                    )}
+                    %)
                   </div>
                   <div tw="font-mono text-emerald-400">
                     {config.total_circulating.toLocaleString()}
@@ -73,11 +84,17 @@ export const Tokenomics = () => {
                 </div>
 
                 <div tw="pb-10">
-                  <div tw="font-bold text-red-500">
-                    {t`tokenomics.token_supply.burned`} ({calculatePercentageOf(config.total_burned, config.total_supply)}%)
+                  <div tw="font-bold text-rose-500">
+                    {t`tokenomics.token_supply.burned`} (
+                    {calculatePercentageOf(
+                      config.total_burned,
+                      config.total_supply
+                    )}
+                    %)
                   </div>
-                  <div tw="font-mono text-red-500">{config.total_burned.toLocaleString()}</div>
-
+                  <div tw="font-mono text-rose-500">
+                    {config.total_burned.toLocaleString()}
+                  </div>
                 </div>
               </div>
             </SquareFrame>
