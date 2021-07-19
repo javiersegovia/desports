@@ -84,7 +84,7 @@ export const Tokenomics = () => {
                 </div>
 
                 <div tw="pb-10">
-                  <div tw="font-bold text-rose-500">
+                  <div tw="font-bold text-rose-600">
                     {t`tokenomics.token_supply.burned`} (
                     {calculatePercentageOf(
                       config.total_burned,
@@ -92,7 +92,7 @@ export const Tokenomics = () => {
                     )}
                     %)
                   </div>
-                  <div tw="font-mono text-rose-500">
+                  <div tw="font-mono text-rose-600">
                     {config.total_burned.toLocaleString()}
                   </div>
                 </div>

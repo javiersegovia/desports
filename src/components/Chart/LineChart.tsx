@@ -44,16 +44,16 @@ export const LineChart = ({ max, current, ...props }: LineChartProps) => {
       {...props}
     >
       <StyledCompletionBar
-        tw="absolute bg-rose-400 z-10 left-0 top-0 bottom-0"
+        tw="absolute bg-gray-900 z-10 left-0 top-0 bottom-0"
         className="hidden lg:block animate-burn-ping"
         style={{ width: `${completion}%` }}
       />
       <StyledCompletionBar
-        tw="absolute bg-rose-400 z-10 left-0 top-0 bottom-0"
-        className="animate-burn-pulse"
+        tw="absolute bg-gray-900 z-10 left-0 top-0 bottom-0"
+        // className="animate-burn-pulse"
         style={{ width: `${completion}%` }}
       />
-      <StyledFullfillnessBar tw="flex-1 bg-green-400 absolute left-0 right-0 top-0 bottom-0 font-mono font-bold flex items-center justify-between" />
+      <StyledFullfillnessBar tw="flex-1 bg-emerald-400 absolute left-0 right-0 top-0 bottom-0 font-mono font-bold flex items-center justify-between" />
     </StyledFullfillnessBar>
   )
 }
