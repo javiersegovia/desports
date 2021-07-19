@@ -6,7 +6,6 @@ interface LineChartProps {
 }
 
 const StyledCompletionBar = styled.div`
-  /* clip-path: polygon(0% 100%, 12% 0%, 88% 0%, 100% 100%); */
   clip-path: polygon(0% 100%, 5% 0%, 100% 0%, 95% 100%);
 
   @keyframes burnPing {
