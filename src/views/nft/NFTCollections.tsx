@@ -1,11 +1,10 @@
 import React from 'react'
 import {
   collections,
+  locked,
   NFTCollectionItemType,
   NFTCollectionType,
-  NFTItem,
   NFTRarityType,
-  UnknownNFTItem,
 } from '@lib/config/nft'
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
 import { styled, theme } from 'twin.macro'
@@ -13,6 +12,9 @@ import Image from 'next/image'
 import { FrameBorder } from './raids/CurrentNFTCollection'
 import { StyledTextMono } from './raids/FundraiseMeter'
 import { Container } from '@components/UI/Container'
+import useTranslation from 'next-translate/useTranslation'
+import { Title } from '@components/UI/Title'
+import { VscLock } from 'react-icons/vsc'
 
 interface NFTCollectionItemProps {
   item: NFTCollectionItemType
@@ -81,13 +83,52 @@ interface NFTCollectionProps {
 }
 
 const NFTCollection = ({ collection }: NFTCollectionProps) => {
+  const { t } = useTranslation('nft-common')
+
+  const titleI18n: Record<NFTCollectionType['titleKey'], string> = t(
+    'nft_collections',
+    null,
+    {
+      returnObjects: true,
+    }
+  )
+
+  const title = titleI18n[collection.titleKey]
+
   return (
     <StyledNFTCollection tw="bg-gray-800 w-full py-20">
-      <Container tw="flex space-x-6">
-        {collection.items.map((item, index) => (
-          <NFTCollectionItem key={item.name || index} item={item} />
-        ))}
+      <Container>
+        <Title tw="lg:text-4xl">{title}</Title>
+        <div tw="mt-10 flex space-x-6">
+          {collection.items.map((item, index) => (
+            <NFTCollectionItem key={item.name || index} item={item} />
+          ))}
+        </div>
       </Container>
+    </StyledNFTCollection>
+  )
+}
+
+const LockedNFTCollection = () => {
+  const { t } = useTranslation('nft-common')
+
+  return (
+    <StyledNFTCollection tw="bg-gray-800 w-full py-20 relative">
+      <Container>
+        <Title tw="lg:text-4xl">{t`nft_collections.locked`}</Title>
+        <div tw="mt-10 flex space-x-6">
+          {locked.items.map((item, index) => (
+            <NFTCollectionItem key={item.name || index} item={item} />
+          ))}
+        </div>
+      </Container>
+
+      <div tw="z-10 bg-gray-900 bg-opacity-80 absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400">
+        <VscLock tw="text-8xl animate-pulse text-cyan-400" />
+        {/* <p tw="font-mono uppercase font-bold text-3xl mt-4 text-center letter-spacing[1px] whitespace-pre-line">
+          {unlocking_in}
+        </p> */}
+      </div>
     </StyledNFTCollection>
   )
 }
@@ -95,13 +136,14 @@ const NFTCollection = ({ collection }: NFTCollectionProps) => {
 export const NFTCollections = () => {
   return (
     <section tw="mt-20">
-      <div tw="flex space-x-4">
+      <div tw="space-y-20">
         {collections.list.map((collection, index) => (
           <NFTCollection
             key={collection.titleKey || index}
             collection={collection}
           />
         ))}
+        <LockedNFTCollection />
       </div>
     </section>
   )

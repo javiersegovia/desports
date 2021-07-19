@@ -1,0 +1,58 @@
+contract_address_fundraise: Contract Address (ETH/BNB)
+contract_address: Contract Address (ETH/BNB)
+
+raids:
+  title: NFT Raids
+  description: A competition where every raider (contributor) has the chance to obtain unique NFTs with limited availability, while supporting the ecosystem development at the same time.
+
+raid_description:
+  title: How does it works?
+  exchange:
+    a: 'You can choose your reward:'
+    b: the <0>NFT</0> or its value in <1>$DESP</1>
+  description:
+    a: |
+      In addition to what our tokenomics has set aside for marketing, every raid will act as a raffle that will help us achieve our ambitious marketing goals much faster while rewarding you for your involvement.
+
+    b: 'In every raid, we will be creating a unique NFT collection in collaboration with multiple talented digital artists. The loot (rewards) will be distributed to the raiders (contributors) as follows:'
+
+    b1: 'The top three raiders will obtain a <0>legendary NFT</0> (rarity: {{rarity}})'
+    b2: 'Five raiders will obtain an <0>epic NFT</0> (rarity: {{rarity}})'
+    b3: 'Twenty raiders will obtain a <0>rare NFT</0> (rarity: {{rarity}})'
+
+    c: |
+      The probability of obtaining a NFT is determined by the percentage of contribution, and the NFTs will have multiple utilities inside our platform. Support DeSports Network and make your investment grow up while obtaining an unique valuable piece in return.
+
+nft_collections:
+  current_raid_title: First Raid
+  title: Rewards
+  see_all: See all collections
+  artist_proposal: Would you like to be the artist of an upcoming piece or collection?
+
+goals:
+  title: Goals
+  list:
+    - title: HotBit Listing
+      description: 'We will be building a lore involving our platform and we want every NFT to have real utility, so you can expect all kind of things: characters, trophies, achievements, and special items.'
+    - title: Influencer Marketing & Advertising
+      description: 'We will be building a lore involving our platform and we want every NFT to have real utility, so you can expect all kind of things: characters, trophies, achievements, and special items.'
+    - title: ss Marketing & Advertising
+      description: 'We will be building a lore involving our platform and we want every NFT to have real utility, so you can expect all kind of things: characters, trophies, achievements, and special items.'
+
+top_fundraisers:
+  title: Raiders
+
+latest_donations:
+  title: Latest Donations
+  from: From
+
+rewarding_support:
+  title: Rewarding your support
+  description:
+    a: "Each month, we'll be creating a collection of NFTs in collaboration with two talented digital artists. These will be awarded to 8 different contributors as a reward in the following manner:"
+
+    bullets:
+      - 'Top three supporters will get a legendary NFT (rarity: 1/1).'
+      - 'Five random supporters will get an epic NFT (rarity: 1/5).'
+
+    b: Support DeSports Network and make your investment grow up while obtaining an unique valuable piece in return!

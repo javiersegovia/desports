@@ -29,7 +29,7 @@ export const FundraiseMeter = ({
   max,
   ...props
 }: FundraiseMeterProps) => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-common')
 
   const completion = (current * 100) / max
 
@@ -42,7 +42,7 @@ export const FundraiseMeter = ({
         <Container tw="flex">
           <div tw="">
             <StyledTextMono tw="text-base">{t`meter.progression`}</StyledTextMono>
-            <StyledTextMono tw="text-cyan-400 text-xs">{t`nft_collections.collections.classics`}</StyledTextMono>
+            <StyledTextMono tw="text-cyan-400 text-xs">{t`nft_collections.classics`}</StyledTextMono>
           </div>
           <div tw="ml-auto mt-1 w-8/12">
             <div tw="flex items-center space-x-2">
@@ -58,7 +58,7 @@ export const FundraiseMeter = ({
             </div>
             <div tw="mt-1 flex justify-center items-center">
               <StyledMeterLabel tw="text-yellow-400">
-                {current}BNB
+                {current % 1 === 0 ? current : current.toFixed(2)}BNB
               </StyledMeterLabel>
               <div tw="mx-2">&#47;&#47;</div>
               <StyledMeterLabel tw="">{max}BNB</StyledMeterLabel>

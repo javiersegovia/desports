@@ -1,10 +1,10 @@
-import { SquareFrame } from '@components/UI/Frames/SquareFrame'
-import { Title } from '@components/UI/Title'
-import { ITransaction } from '@pages/nft/raids'
-import useTranslation from 'next-translate/useTranslation'
 import React, { Fragment } from 'react'
 import { theme } from 'twin.macro'
-import { FrameDivider } from '../../home/Landing'
+import { SquareFrame } from '@components/UI/Frames/SquareFrame'
+import { Title } from '@components/UI/Title'
+import { ITransaction } from '@lib/hooks/useNftRaid'
+import useTranslation from 'next-translate/useTranslation'
+import { FrameDivider } from '@views/home/Landing'
 
 interface FundraiseDonationItemProps {
   transaction: ITransaction
@@ -34,7 +34,7 @@ interface FundraiseDonationsProps {
 export const FundraiseDonations = ({
   fundraisers = [],
 }: FundraiseDonationsProps) => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-raids')
 
   return (
     <SquareFrame

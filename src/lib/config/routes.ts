@@ -9,5 +9,6 @@ export const routes = {
   nft: {
     index: '/nft',
     raids: '/nft/raids',
+    collections: '/nft/collections',
   },
 } as const

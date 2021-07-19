@@ -91,7 +91,7 @@ const NFTSquareItem = ({ item }: NFTSquareItemProps) => {
 }
 
 export const CurrentNFTCollection = () => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-raids')
 
   return (
     <SquareFrame removePadding bgColor={theme`colors.gray.800`}>

@@ -5,14 +5,15 @@ import useTranslation from 'next-translate/useTranslation'
 import tw, { styled } from 'twin.macro'
 import { cx } from '@emotion/css'
 import { down } from 'styled-breakpoints'
+import { IBNBRaidGoal } from '@lib/hooks/useNftRaid'
 
 const StyledGoal = styled.div`
   clip-path: polygon(
     0% 0%,
     100% 0%,
     100% 62px,
-    calc(100% - 2rem) 88%,
-    49% 88%,
+    calc(100% - 2rem) 92%,
+    49% 92%,
     calc(49% - 1rem) 100%,
     0% 100%
   );
@@ -31,7 +32,7 @@ const StyledGoal = styled.div`
 
   min-height: 100px;
 
-  ${tw`bg-gray-800 w-full p-6`}
+  ${tw`bg-gray-800 w-full p-6 pb-7`}
 
   &.active {
     ${tw`bg-yellow-400 text-black`}
@@ -44,15 +45,15 @@ const StyledGoal = styled.div`
 
 interface FundraiseGoalItemProps {
   amount: number
-  description?: string
   isCompleted: boolean
   isActive: boolean
   isFirst?: boolean
   isLast?: boolean
+  item: IGoalItem
 }
 
 const FundraiseGoalItem = ({
-  description,
+  item,
   amount,
   isCompleted,
   isActive,
@@ -77,17 +78,22 @@ const FundraiseGoalItem = ({
           tw="font-mono font-bold uppercase text-cyan-400"
           css={[isActive && tw`text-black`]}
         >
-          {amount} BNB
+          {amount} BNB — {item.title}
         </h6>
-        <p>{description}</p>
+        <p>{item.description}</p>
       </StyledGoal>
     </div>
   )
 }
 
 interface FundraiseGoalsProps {
-  goalsAmounts: number[]
+  goalsAmounts: IBNBRaidGoal[]
   raisedAmount: number
+}
+
+interface IGoalItem {
+  title: string
+  description: string
 }
 
 export const FundraiseGoals = ({
@@ -95,28 +101,30 @@ export const FundraiseGoals = ({
   raisedAmount,
   ...props
 }: FundraiseGoalsProps) => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-raids')
 
-  const amountDescriptions: string[] = t('goals.list', null, {
+  const goalsList: IGoalItem[] = t('goals.list', null, {
     returnObjects: true,
   })
 
   return (
     <div tw="space-y-0" {...props}>
-      {goalsAmounts.map((amount, index) => (
-        <FundraiseGoalItem
-          key={amountDescriptions[index]}
-          amount={amount}
-          description={amountDescriptions[index]}
-          isCompleted={raisedAmount >= amount}
-          isActive={
-            raisedAmount < amount &&
-            raisedAmount >= (goalsAmounts[index - 1] || 0)
-          }
-          isFirst={index === 0}
-          isLast={index === goalsAmounts.length - 1}
-        />
-      ))}
+      {goalsAmounts.map((goal, index) =>
+        goalsList[index] ? (
+          <FundraiseGoalItem
+            key={goalsList[index].title}
+            amount={goal.amount}
+            item={goalsList[index]}
+            isCompleted={raisedAmount >= goal.totalAmount}
+            isActive={
+              raisedAmount < goal.totalAmount &&
+              raisedAmount >= (goalsAmounts[index - 1]?.totalAmount || 0)
+            }
+            isFirst={index === 0}
+            isLast={index === goalsList.length - 1}
+          />
+        ) : null
+      )}
     </div>
   )
 }

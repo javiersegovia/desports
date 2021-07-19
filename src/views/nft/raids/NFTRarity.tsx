@@ -27,7 +27,7 @@ const NFTRarityItem = ({ color, name }: NFTRarityItemProps) => {
 }
 
 export const NFTRarity = ({ ...props }) => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-common')
 
   return (
     <StyledRarityFrame {...props}>

@@ -20,8 +20,10 @@ export interface UnknownNFTItem {
 
 // todo: eventually, we should make this dynamic using our own server
 
+// todo: the "titleKey" of the collections
+// should be equal to the keys inside the locale nft-common:nft_collections
 export interface NFTCollectionType {
-  titleKey: string
+  titleKey: 'classics' | 'locked'
   items: NFTCollectionItemType[]
 }
 
@@ -29,12 +31,12 @@ export const classics: NFTCollectionType = {
   titleKey: 'classics',
   items: [
     {
-      name: 'Despy',
+      name: 'Despion',
       src: despyImg,
       rarity: NFTRarityType.LEGENDARY,
     },
     {
-      name: 'Red Despy',
+      name: 'Red Despion',
       src: despyImg,
       rarity: NFTRarityType.EPIC,
     },
@@ -45,6 +47,32 @@ export const classics: NFTCollectionType = {
     {
       name: null,
       rarity: NFTRarityType.RARE,
+    },
+    {
+      name: null,
+      rarity: NFTRarityType.COMMON,
+    },
+  ],
+}
+
+export const locked: NFTCollectionType = {
+  titleKey: 'locked',
+  items: [
+    {
+      name: null,
+      rarity: NFTRarityType.COMMON,
+    },
+    {
+      name: null,
+      rarity: NFTRarityType.COMMON,
+    },
+    {
+      name: null,
+      rarity: NFTRarityType.COMMON,
+    },
+    {
+      name: null,
+      rarity: NFTRarityType.COMMON,
     },
     {
       name: null,

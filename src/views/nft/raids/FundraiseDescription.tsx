@@ -13,7 +13,7 @@ import Trans from 'next-translate/Trans'
 const { fundraisingAddress } = config.blockchain
 
 export const FundraiseDescription = () => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-raids')
 
   // const rewardingSupportBullets: string[] = t(
   //   'description.description.bullets',
@@ -38,7 +38,7 @@ export const FundraiseDescription = () => {
             <div tw="text-center text-sm mt-2 whitespace-pre-wrap">
               <p>{t`raid_description.exchange.a`}</p>
               <Trans
-                i18nKey="raids:raid_description.exchange.b"
+                i18nKey="nft-raids:raid_description.exchange.b"
                 components={[
                   <span
                     key="exchange_nft"
@@ -60,7 +60,7 @@ export const FundraiseDescription = () => {
             <ul tw="list-disc ml-5 mt-5 space-y-1 font-bold">
               <li>
                 <Trans
-                  i18nKey="raids:raid_description.description.b1"
+                  i18nKey="nft-raids:raid_description.description.b1"
                   values={{
                     rarity: config.nft_rarity.legendary,
                   }}
@@ -71,7 +71,7 @@ export const FundraiseDescription = () => {
               </li>
               <li>
                 <Trans
-                  i18nKey="raids:raid_description.description.b2"
+                  i18nKey="nft-raids:raid_description.description.b2"
                   values={{
                     rarity: config.nft_rarity.epic,
                   }}
@@ -82,7 +82,7 @@ export const FundraiseDescription = () => {
               </li>
               <li>
                 <Trans
-                  i18nKey="raids:raid_description.description.b3"
+                  i18nKey="nft-raids:raid_description.description.b3"
                   values={{
                     rarity: config.nft_rarity.rare,
                   }}

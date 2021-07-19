@@ -5,7 +5,7 @@ import useTranslation from 'next-translate/useTranslation'
 import React from 'react'
 
 export const RaidFAQ = () => {
-  const { t } = useTranslation('raids')
+  const { t } = useTranslation('nft-common')
 
   const faqList: IAccordionItem[] = t('faq.list', null, { returnObjects: true })
 
