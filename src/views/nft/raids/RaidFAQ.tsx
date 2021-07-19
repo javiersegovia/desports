@@ -1,8 +1,8 @@
+import React from 'react'
 import { AccordionItem, IAccordionItem } from '@components/Accordion/Accordion'
 import { Title } from '@components/UI/Title'
 import { useActiveIndex } from '@lib/hooks/useActiveIndex'
 import useTranslation from 'next-translate/useTranslation'
-import React from 'react'
 
 export const RaidFAQ = () => {
   const { t } = useTranslation('nft-common')
@@ -30,24 +30,3 @@ export const RaidFAQ = () => {
     </>
   )
 }
-
-// export const Accordion = ({ items, ...props }: AccordionProps) => {
-//   // todo: update the pause value to true when the animations come in
-
-//   const { activeIndex, setActiveIndex, pause, unpause } = useActiveIndex({
-//     maxIndex: items.length - 1,
-//   })
-
-//   return (
-//     <div tw="space-y-4" onMouseEnter={pause} onMouseLeave={unpause} {...props}>
-//       {items.map((item, index) => (
-//         <AccordionItem
-//           key={item.title}
-//           item={item}
-//           isActive={index === activeIndex.index}
-//           onClick={() => setActiveIndex({ index, pause: true })}
-//         />
-//       ))}
-//     </div>
-//   )
-// }
