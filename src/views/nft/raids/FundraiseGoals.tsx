@@ -31,10 +31,10 @@ const StyledGoal = styled.div`
 
   min-height: 100px;
 
-  ${tw`bg-gray-900 w-full p-6`}
+  ${tw`bg-gray-800 w-full p-6`}
 
   &.active {
-    ${tw`bg-yellow-400 text-black animate-pulse`}
+    ${tw`bg-yellow-400 text-black`}
   }
 
   &.completed {
@@ -95,9 +95,11 @@ export const FundraiseGoals = ({
   raisedAmount,
   ...props
 }: FundraiseGoalsProps) => {
-  const { t } = useTranslation('fundraising')
+  const { t } = useTranslation('raids')
 
-  const amountDescriptions: string[] = t('goals', null, { returnObjects: true })
+  const amountDescriptions: string[] = t('goals.list', null, {
+    returnObjects: true,
+  })
 
   return (
     <div tw="space-y-0" {...props}>

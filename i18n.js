@@ -7,7 +7,8 @@ module.exports = {
     '/whitepaper': ['whitepaper', 'roadmap'],
     '/team': ['team'],
     '/how-to-buy': ['how-to-buy'],
-    '/fundraising': ['fundraising'],
+    '/nft': ['raids'],
+    '/nft/raids': ['raids'],
   },
   loadLocaleFrom: (lang, namespace) => {
     return import(`./locales/${lang}/${namespace}.yaml`).then((m) => m.default)

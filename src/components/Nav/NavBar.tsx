@@ -30,7 +30,7 @@ const TrackersModal = dynamic<InstanceModalProps>(() =>
 const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
-  fundraising: routes.fundraising,
+  raids: routes.nft.raids,
   // shop: config.shop,
   // blog: routes.blog,
 } as const

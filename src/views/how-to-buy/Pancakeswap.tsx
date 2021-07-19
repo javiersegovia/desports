@@ -18,6 +18,7 @@ import { useToggle } from '@lib/hooks/useToggle'
 import { ClipboardTooltip } from '../../components/Miscellaneous/ClipboardTooltip'
 import { RiFileCopyLine } from 'react-icons/ri'
 import { ContractAddress } from '@components/Miscellaneous/ContractAddress'
+import { Anchor } from '@components/UI/Anchor'
 
 export const PancakeswapHeading = () => {
   const { t } = useTranslation('how-to-buy')
@@ -51,15 +52,6 @@ const StyledStepTitle = styled.h4`
 const StyledStepContent = styled.div`
   ${tw`mt-4 whitespace-pre-wrap`}
 `
-
-const Anchor: React.FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
-  children,
-  ...props
-}) => (
-  <a target="_blank" rel="noopener noreferrer" tw="text-cyan-400" {...props}>
-    {children}
-  </a>
-)
 
 export const PancakeswapGuide = () => {
   const { t } = useTranslation('how-to-buy')

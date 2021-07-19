@@ -29,10 +29,42 @@ export const squareClipPath = `polygon(
   0 30%
 )`
 
-const StyledFrame = styled.div<{ shadowColor?: FrameShadowColor }>`
-  .frame,
-  .shadowFrame {
-    clip-path: ${squareClipPath};
+// todo: refactor the styles inside this component.
+// Instead of having separate components with "Rect" and "Square" Frames, we should use this one.
+// We should remove the unused components regarding the "Frames", move all the interfaces here,
+// and maybe give this component a more appropiate name.
+
+export const squareClipPathV2 = `polygon(
+  0px 10%,
+  10% 0,
+  calc(60% - 4px) 0,
+  60% min(4px, 2%),
+  calc(80% - 4px) min(4px, 2%),
+  80% 0,
+  90% 0,
+  100% 10%,
+  100% calc(90%),
+  calc(90%) 100%,
+  65% 100%,
+  calc(65% - 4px) max(calc(100% - 4px), 98%),
+  35% max(calc(100% - 4px), 98%),
+  calc(35% - 4px) 100%,
+  10% 100%,
+  0 90%,
+  0 65%,
+  min(4px, 3%) 63%,
+  min(4px, 3%) 32%,
+  0 30%
+)`
+
+const StyledFrame = styled.div<{
+  shadowColor?: FrameShadowColor
+  isSquare?: boolean
+}>`
+  & > .frame,
+  & > .shadowFrame {
+    clip-path: ${({ isSquare }) =>
+      isSquare ? squareClipPathV2 : squareClipPath};
   }
 
   ${({ shadowColor }) => {
@@ -61,12 +93,18 @@ export const SquareFrame = forwardRef<HTMLDivElement, FrameProps>(
       shadowColor,
       removePadding,
       bgColor,
+      isSquare = false,
       ...otherProps
     }: FrameProps,
     ref
   ) => {
     return (
-      <StyledFrame tw="relative" shadowColor={shadowColor} {...otherProps}>
+      <StyledFrame
+        tw="relative"
+        shadowColor={shadowColor}
+        isSquare={isSquare}
+        {...otherProps}
+      >
         {color && (
           <div
             className={cx('shadowFrame', {

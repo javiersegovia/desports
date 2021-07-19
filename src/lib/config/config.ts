@@ -76,6 +76,13 @@ export const config = {
   total_burned: 66280934784,
   total_circulating: 22607954104,
 
+  nft_rarity: {
+    legendary: '1',
+    epic: '2—5',
+    rare: '6—100',
+    common: '101—300',
+  },
+
   languages: {
     es: 'Español',
     en: 'English',

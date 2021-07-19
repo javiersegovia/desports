@@ -1,10 +1,10 @@
 import { SquareFrame } from '@components/UI/Frames/SquareFrame'
 import { Title } from '@components/UI/Title'
-import { ITransaction } from '@pages/fundraising'
+import { ITransaction } from '@pages/nft/raids'
 import useTranslation from 'next-translate/useTranslation'
 import React, { Fragment } from 'react'
 import { theme } from 'twin.macro'
-import { FrameDivider } from '../home/Landing'
+import { FrameDivider } from '../../home/Landing'
 
 interface FundraiseDonationItemProps {
   transaction: ITransaction
@@ -34,13 +34,12 @@ interface FundraiseDonationsProps {
 export const FundraiseDonations = ({
   fundraisers = [],
 }: FundraiseDonationsProps) => {
-  const { t } = useTranslation('fundraising')
+  const { t } = useTranslation('raids')
 
   return (
     <SquareFrame
       tw="w-full mt-10 mx-auto lg:mt-0 lg:ml-auto lg:mr-0 lg:w-5/12 max-w-md"
-      shadowColor="emerald"
-      bgColor={theme`colors.gray.900`}
+      bgColor={theme`colors.gray.800`}
     >
       <Title as="h5" tw="text-2xl sm:text-3xl lg:text-xl mt-4 mx-auto">
         {t`top_fundraisers.title`}

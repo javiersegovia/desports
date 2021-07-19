@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { theme } from 'twin.macro'
+
 import { Nav } from '@components/Nav'
 import { NavSpacer } from '@components/Nav/NavSpacer'
 import { Title } from '@components/UI/Title'
 import { Container } from '@components/UI/Container'
 import { config } from '@lib/config/config'
-import { ContractAddress } from '@components/Miscellaneous/ContractAddress'
-import { FundraiseMeter } from '@views/fundraising/FundraiseMeter'
-import { FundraiseGoals } from '@views/fundraising/FundraiseGoals'
-import { FundraiseDonations } from '@views/fundraising/FundraiseDonations'
-import { FundraiseRewarding } from '@views/fundraising/FundraiseRewarding'
+import { FundraiseMeter } from '@views/nft/raids/FundraiseMeter'
 import { Footer } from '@components/Footer/Footer'
 import useTranslation from 'next-translate/useTranslation'
-import Image from 'next/image'
-import bgImg from '@public/images/bg/fundraising.jpg'
+import bgImg from '@public/images/bg/fundraising.png'
+import { Button } from '@components/UI/Button'
+import { NFTRarity } from '@views/nft/raids/NFTRarity'
+import { RaidFAQ } from '@views/nft/raids/RaidFAQ'
+import { routes } from '@lib/config/routes'
+import { NFTCollections } from '@views/nft/NFTCollections'
 
 const { fundraisingAddress } = config.blockchain
-
-// const nextGoal = 50
-// const raisedAmount = 35.2342
 
 const BNB_GOALS = [50, 100, 200]
 
 // TODO: LEAVE COMMENT EXPLAINING THE LOGIC HERE
-
-// const FUNDRAISING_ADDRESS =
-//   '0x3E0FA79382e037f8eB8F6b2a7e8343c66668aCc4'.toLowerCase()
-// const TRANSACTIONS_API =
-//   'https://api.bscscan.com/api?module=account&action=txlist&address=0x3E0FA79382e037f8eB8F6b2a7e8343c66668aCc4&startblock=1&endblock=99999999&sort=asc&apikey=IVDXS3EM4WMZ862UBIHFK3YD5N94ISA6N3'
 
 export interface ITransaction {
   fromAddress: string
@@ -81,7 +76,7 @@ const getTotalAmountsReceivedPerWallet = async (): Promise<{
     }))
     .sort((a, b) => b.amount - a.amount)
 
-  return { totalRaised: +totalRaised.toFixed(4), fundraisers }
+  return { totalRaised: +totalRaised.toFixed(2), fundraisers }
 }
 
 const getNextGoal = (raisedAmount: number) =>
@@ -89,7 +84,7 @@ const getNextGoal = (raisedAmount: number) =>
   BNB_GOALS[BNB_GOALS.length - 1]
 
 const FundraisingPage = () => {
-  const { t } = useTranslation('fundraising')
+  const { t } = useTranslation('raids')
   const [fundraisers, setFundraisers] = useState<ITransaction[]>()
   const [totalRaised, setTotalRaised] = useState<number>(0)
 
@@ -97,12 +92,10 @@ const FundraisingPage = () => {
 
   useEffect(() => {
     const updateFundraising = async () => {
-      const { fundraisers } =
-        // const { totalRaised, fundraisers } =
+      const { totalRaised, fundraisers } =
         await getTotalAmountsReceivedPerWallet()
 
-      // setTotalRaised(totalRaised || 0)
-      setTotalRaised(5.34)
+      setTotalRaised(totalRaised || 0)
       setFundraisers(fundraisers)
     }
 
@@ -111,8 +104,14 @@ const FundraisingPage = () => {
 
   return (
     <>
-      <Nav />
+      <Nav>
+        <FundraiseMeter current={totalRaised} max={nextGoal} />
+      </Nav>
       <NavSpacer />
+
+      {/* this is an additional "spacer" for the Fundraise Meter */}
+      {/* todo: refactor this to automatically calculate the height inside "NavSpacer" */}
+      <div tw="block height[76px]" />
 
       <div tw="fixed w-full h-full max-h-screen z-index[-1]">
         <Image
@@ -124,41 +123,26 @@ const FundraisingPage = () => {
         />
       </div>
 
-      <Container tw="mt-10 mx-auto text-center">
-        <Title tw="lg:text-2xl">{t`title.a`}</Title>
-        <Title>{t`title.b`}</Title>
-        <p tw="mt-6 max-w-3xl mx-auto">{t`description`}</p>
-      </Container>
-
-      {fundraisingAddress && (
-        <Container tw="mx-auto mt-10 lg:mt-4">
-          <ContractAddress
-            title={t`contract_address_fundraise`}
-            address={fundraisingAddress}
-            tw="mt-4 flex justify-center"
-          />
-        </Container>
-      )}
-
-      <Container tw="mx-auto mt-10 lg:mt-4">
-        <FundraiseMeter current={totalRaised} max={nextGoal} />
-      </Container>
-
-      <Container tw="mt-10">
-        <Title tw="text-center lg:text-left lg:text-2xl">Goals</Title>
-        <div tw="mt-10 flex flex-col lg:flex-row lg:justify-between lg:space-x-10">
-          <FundraiseGoals
-            goalsAmounts={BNB_GOALS}
-            raisedAmount={totalRaised}
-            tw="w-full lg:w-7/12"
-          />
-
-          <FundraiseDonations fundraisers={fundraisers} />
+      <Container tw="mt-10 text-left flex">
+        <div>
+          <Title>{t`raids.title`}</Title>
+          <p tw="mt-6 max-w-3xl">{t`raids.description`}</p>
+          <div tw="mt-8 flex items-center space-x-6">
+            <Button bgColor={theme`colors.cyan.400`}>
+              {t`raids.marketplace`}
+            </Button>
+            <Button bgColor={theme`colors.pink.500`} href={routes.nft.raids}>
+              {t`raids.current_raid`}
+            </Button>
+          </div>
         </div>
+        <NFTRarity tw="ml-auto" />
       </Container>
+
+      <NFTCollections />
 
       <Container tw="mt-20">
-        <FundraiseRewarding />
+        <RaidFAQ />
       </Container>
 
       <Footer />

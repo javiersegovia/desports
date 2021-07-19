@@ -8,4 +8,5 @@ export interface FrameProps extends HTMLAttributes<HTMLDivElement> {
   removePadding?: boolean
   shouldMorph?: boolean
   bgColor?: string
+  isSquare?: boolean
 }

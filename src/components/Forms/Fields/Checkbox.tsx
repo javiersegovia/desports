@@ -1,8 +1,8 @@
 import { cx } from '@emotion/css'
 import React from 'react'
-import tw, { styled } from 'twin.macro'
+import tw, { styled, theme } from 'twin.macro'
 
-const clipShape = `polygon(0 0, 100% 0, 100% 79%, 79% 100%, 0% 100%)`
+const clipShape = `polygon(0 21%, 21% 0, 100% 0, 100% 79%, 79% 100%, 0% 100%)`
 
 const StyledCheckbox = styled.div`
   ${tw`relative w-8 h-7`}
@@ -13,7 +13,8 @@ const StyledCheckbox = styled.div`
   }
 
   &.checked .box-border {
-    ${tw`bg-cyan-400`}
+    /* ${tw`bg-cyan-400`} */
+    background: ${(p) => p.color};
   }
 
   .inner-bg {
@@ -27,31 +28,39 @@ const StyledCheckbox = styled.div`
 
   .inner-block {
     clip-path: ${clipShape};
-    top: 8px;
-    left: 8px;
-    bottom: 8px;
-    right: 8px;
+    top: 6px;
+    left: 6px;
+    bottom: 6px;
+    right: 6px;
 
     ${tw`absolute`}
   }
 
   &.checked .inner-block {
-    ${tw`bg-cyan-400`}
+    background: ${(p) => p.color};
   }
 `
 
 interface CheckboxProps {
   isChecked: boolean
   className?: string
+  color?: string
 }
 
 /**
  * This is a "fake" checkbox component
  * it is used only for the styling, not the checkbox functionality
  */
-export const Checkbox = ({ isChecked, className }: CheckboxProps) => {
+export const Checkbox = ({
+  color = theme`colors.cyan.400`,
+  isChecked,
+  className,
+}: CheckboxProps) => {
   return (
-    <StyledCheckbox className={cx(className, { checked: isChecked })}>
+    <StyledCheckbox
+      color={color}
+      className={cx(className, { checked: isChecked })}
+    >
       <div className="box-border" />
       <div className="inner-bg" />
       <div className="inner-block" />

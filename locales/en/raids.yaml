@@ -1,0 +1,118 @@
+contract_address_fundraise: Contract Address (ETH/BNB)
+contract_address: Contract Address (ETH/BNB)
+
+meter:
+  progression: Raid Progression
+  raised: Raised
+  next_goal: Next Goal
+
+raids:
+  title: NFT Raids
+  description: A competition where every raider (contributor) has the chance to obtain unique NFTs with limited availability, while supporting the ecosystem development at the same time. 
+  current_raid: Current Raid
+  marketplace: Marketplace
+  nft_collections: NFT Collections
+
+raid_description:
+  title: How does it works?
+  exchange:
+    a: "You can choose your reward:"
+    b: the <0>NFT</0> or its value in <1>$DESP</1>
+  description:
+    a: |
+      In addition to what our tokenomics has set aside for marketing, every raid will act as a raffle that will help us achieve our ambitious marketing goals much faster while rewarding you for your involvement.
+
+    b: "In every raid, we will be creating a unique NFT collection in collaboration with multiple talented digital artists. The loot (rewards) will be distributed to the raiders (contributors) as follows:"
+
+    b1: "The top three raiders will obtain a <0>legendary NFT</0> (rarity: {{rarity}})"
+    b2: "Five raiders will obtain an <0>epic NFT</0> (rarity: {{rarity}})"
+    b3: "Twenty raiders will obtain a <0>rare NFT</0> (rarity: {{rarity}})"
+
+    c: |
+      The probability of obtaining a NFT is determined by the percentage of contribution, and the NFTs will have multiple utilities inside our platform. Support DeSports Network and make your investment grow up while obtaining an unique valuable piece in return.
+
+nft_collections:
+  current_raid_title: First Raid
+  title: Rewards
+  see_all: See all collections
+  artist_proposal: Would you like to be the artist of an upcoming piece or collection?
+  collections:
+    classics: Classics
+
+rarity:
+  title: NFT Rarity
+  legendary: Legendary
+  epic: Epic
+  rare: Rare
+  common: Common
+
+goals:
+  title: Goals
+  list:
+    - HotBit Listing.
+    - Youtube and TikTok promotional videos.
+
+top_fundraisers:
+  title: Raiders
+
+latest_donations:
+  title: Latest Donations
+  from: From
+
+rewarding_support:
+  title: Rewarding your support
+  description:
+    a: "Each month, we'll be creating a collection of NFTs in collaboration with two talented digital artists. These will be awarded to 8 different contributors as a reward in the following manner:"
+
+    bullets:
+      - 'Top three supporters will get a legendary NFT (rarity: 1/1).'
+      - 'Five random supporters will get an epic NFT (rarity: 1/5).'
+
+    b: Support DeSports Network and make your investment grow up while obtaining an unique valuable piece in return!
+
+faq:
+  title: FAQ
+  list:
+  - title: When would I receive my NFT reward?
+    description: DeSports Network will create a system for players to be justly rewarded
+      for the liquidity they provide, in a competitive, decentralized platform, without
+      needing to pay subscriptions or partner fees.
+  - title: How do I receive my reward in $DESP?
+    description: Tournaments, showmatches and custom events will either be one-on-one,
+      or team competitions, where the organizers of the events can set their own rules,
+      including entry fees. Participants will then be rewarded by the parameters previously
+      set forth by the organizer.
+  - title: What are the use cases of the NFT?
+    description: The most common way to bet on the DeSports Network platform will
+      be on the outcome of an individual/team’s competition or challenge. As long
+      as there’s someone who will counter your bet with at least the same quantity
+      as your $DESP wager.
+  - title: How many NFT Collections will exist?
+    description: Users of the platform will be able to receive donations directly,
+      without the need for KYC, or information, simply by using the $DESP token. Unlike
+      other platforms, users and broadcasters won’t need to apply for a partnership
+      program and will get 100% of the profits.
+  - title: What kind of things are you going to include in the NFT Collections?
+    description: Users of the platform will be able to receive donations directly,
+      without the need for KYC, or information, simply by using the $DESP token. Unlike
+      other platforms, users and broadcasters won’t need to apply for a partnership
+      program and will get 100% of the profits.
+  - title: I am a Digital Artist. Can I create my own collection?
+    description: Tournament, contests, and challenge winners will be awarded achievements, and
+      badges that can be displayed on their profiles. Certain achievements and badges
+      will be granted as special NFTs.
+  - title: Is there another way to obtain the NFTs besides the raids?
+    description: A fundamental aspect of the entire ecosystem. It will streamline
+      user experiences with a detailed view of the assets they hold, with actionable
+      data to track, buy and sell, by bridging the gaps between our platform, exchanges,
+      and future use cases of the $DESP token.
+  - title: How does the NFT rarity system works?
+    description: A fundamental aspect of the entire ecosystem. It will streamline
+      user experiences with a detailed view of the assets they hold, with actionable
+      data to track, buy and sell, by bridging the gaps between our platform, exchanges,
+      and future use cases of the $DESP token.
+  - title: What are you going to do with the raised money?
+    description: A fundamental aspect of the entire ecosystem. It will streamline
+      user experiences with a detailed view of the assets they hold, with actionable
+      data to track, buy and sell, by bridging the gaps between our platform, exchanges,
+      and future use cases of the $DESP token.
