@@ -19,7 +19,7 @@ const NFTRarityItem = ({ color, name }: NFTRarityItemProps) => {
   return (
     <div tw="flex items-center space-x-3">
       <Checkbox color={color} isChecked />
-      <span tw="font-bold" style={{ color }}>
+      <span tw="font-bold font-mono" style={{ color }}>
         {name}
       </span>
     </div>

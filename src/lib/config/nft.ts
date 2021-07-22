@@ -36,8 +36,7 @@ export const classics: NFTCollectionType = {
       rarity: NFTRarityType.LEGENDARY,
     },
     {
-      name: 'Red Despion',
-      src: despyImg,
+      name: null,
       rarity: NFTRarityType.EPIC,
     },
     {

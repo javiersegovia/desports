@@ -1,5 +1,5 @@
 import { memo, RefObject, useEffect, useRef } from 'react'
-import tw, { styled, theme } from 'twin.macro'
+import { theme } from 'twin.macro'
 import { gsap } from 'gsap'
 import useTranslation from 'next-translate/useTranslation'
 import { Container } from '@components/UI/Container'
@@ -20,6 +20,7 @@ import {
   selectStage2Section,
   selectStage3Section,
 } from '@lib/redux/slices/navSlice'
+import { LeftArrow, RightArrow, StyledArrow } from '@components/UI/Arrow'
 
 const navClipPaths = [clipPathV1, clipPathV3, clipPathV4]
 
@@ -27,72 +28,6 @@ export interface RoadmapNavItemsProps {
   navigate: (index: number) => void
   stageRefs: RefObject<HTMLDivElement>[]
 }
-
-const arrowDefaultColor = theme`colors.blueGray.500`
-
-const StyledArrow = styled.button<{
-  className?: string
-  lightColor: string
-  darkColor: string
-}>`
-  ${tw`opacity-80`}
-
-  & > div {
-    ${tw`transition duration-200`}
-  }
-
-  .arrow {
-    transform: rotate(45deg);
-    border-style: solid;
-  }
-
-  .arrow.right {
-    border-width: 7px 7px 18px 18px;
-    border-color: ${() =>
-      `${arrowDefaultColor} ${arrowDefaultColor} transparent transparent`};
-  }
-
-  &:hover .arrow.right {
-    border-color: ${(p) =>
-      `${p.darkColor} ${p.darkColor} transparent transparent`};
-  }
-
-  .arrow.left {
-    border-width: 18px 18px 7px 7px;
-    border-color: ${() =>
-      `transparent transparent ${arrowDefaultColor} ${arrowDefaultColor}`};
-  }
-
-  &:hover .arrow.left {
-    border-color: ${(p) =>
-      `transparent transparent ${p.darkColor} ${p.darkColor}`};
-  }
-
-  .triangle {
-    width: 0;
-    height: 0;
-    border-top: 16px solid transparent;
-    border-bottom: 16px solid transparent;
-  }
-
-  .triangle.left {
-    margin-left: 6px;
-    border-right: 7px solid ${arrowDefaultColor};
-  }
-
-  &:hover .triangle.left {
-    border-right: 7px solid ${(p) => p.lightColor};
-  }
-
-  .triangle.right {
-    border-left: 7px solid ${arrowDefaultColor};
-    margin-left: 11px;
-  }
-
-  &:hover .triangle.right {
-    border-left: 7px solid ${(p) => p.lightColor};
-  }
-`
 
 const colors = [
   {
@@ -228,17 +163,13 @@ export const RoadmapNavItems = memo(
         <div tw="flex items-center flex-1 justify-center">
           {/* Left arrows */}
 
-          <StyledArrow
-            type="button"
+          <LeftArrow
             onClick={() => arrowNavigate(false)}
-            ref={(ref) => arrowRefs.current.push(ref)}
+            refFn={(ref) => arrowRefs.current.push(ref)}
             tw="absolute left-10 flex items-center space-x-0 mr-auto mb-4"
             lightColor={prevColors.light}
             darkColor={prevColors.dark}
-          >
-            <div className="left absolute triangle" />
-            <div className="arrow left" />
-          </StyledArrow>
+          />
 
           <StageItem
             innerRef={stageRefs[0]}
@@ -273,17 +204,13 @@ export const RoadmapNavItems = memo(
           />
 
           {/* Right arrow */}
-          <StyledArrow
-            type="button"
+          <RightArrow
             onClick={() => arrowNavigate(true)}
-            ref={(ref) => arrowRefs.current.push(ref)}
+            refFn={(ref) => arrowRefs.current.push(ref)}
             tw="absolute right-10 flex items-center space-x-0 ml-auto mb-4"
             lightColor={nextColors.light}
             darkColor={nextColors.dark}
-          >
-            <div className="right absolute triangle" />
-            <div className="arrow right" />
-          </StyledArrow>
+          />
         </div>
       </Container>
     )

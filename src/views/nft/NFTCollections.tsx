@@ -15,6 +15,83 @@ import { Container } from '@components/UI/Container'
 import useTranslation from 'next-translate/useTranslation'
 import { Title } from '@components/UI/Title'
 import { VscLock } from 'react-icons/vsc'
+import Slider from 'react-slick'
+
+import { down } from 'styled-breakpoints'
+
+const sliderSettings = {
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  swipeToSlide: true,
+  responsive: [
+    {
+      breakpoint: 1280,
+      settings: {
+        slidesToShow: 4,
+      },
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+        arrows: false,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        centerMode: true,
+        arrows: false,
+      },
+    },
+  ],
+}
+
+const StyledSlider = styled(Slider)`
+  .slick-list {
+    margin: 0 -1rem;
+  }
+  .slick-slide > div {
+    margin: 0 1rem;
+  }
+
+  .slick-arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    z-index: 10;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  .slick-next {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+  .slick-prev {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+
+  /* ${down('md')} {
+    .slick-arrow {
+      display: none;
+    }
+  } */
+`
 
 interface NFTCollectionItemProps {
   item: NFTCollectionItemType
@@ -26,7 +103,7 @@ const NFTCollectionItem = ({ item }: NFTCollectionItemProps) => {
   return (
     <div>
       <SquareFrame
-        tw="relative overflow-hidden w-56 h-72"
+        tw="relative overflow-hidden w-full h-72"
         removePadding
         isSquare
         bgColor={theme`colors.gray.900`}
@@ -76,6 +153,20 @@ const StyledNFTCollection = styled.div`
     calc(46% - 1rem) 100%,
     0% 100%
   );
+
+  ${down('md')} {
+    clip-path: polygon(
+      0% 0%,
+      5% 0%,
+      calc(33% - 1rem) 0%,
+      33% 1rem,
+      100% 1rem,
+      100% calc(100% - 1rem),
+      46% calc(100% - 1rem),
+      calc(46% - 1rem) 100%,
+      0% 100%
+    );
+  }
 `
 
 interface NFTCollectionProps {
@@ -99,11 +190,11 @@ const NFTCollection = ({ collection }: NFTCollectionProps) => {
     <StyledNFTCollection tw="bg-gray-800 w-full py-20">
       <Container>
         <Title tw="lg:text-4xl">{title}</Title>
-        <div tw="mt-10 flex space-x-6">
+        <StyledSlider tw="mt-10" {...sliderSettings}>
           {collection.items.map((item, index) => (
             <NFTCollectionItem key={item.name || index} item={item} />
           ))}
-        </div>
+        </StyledSlider>
       </Container>
     </StyledNFTCollection>
   )
