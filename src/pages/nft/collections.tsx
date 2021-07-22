@@ -16,6 +16,7 @@ import { RaidFAQ } from '@views/nft/raids/RaidFAQ'
 import { routes } from '@lib/config/routes'
 import { NFTCollections } from '@views/nft/NFTCollections'
 import { useNftRaid } from '@lib/hooks/useNftRaid'
+import nftRaidsLogo from '@public/images/logos/logo_nft-raids.png'
 
 const CollectionsPage = () => {
   const { t } = useTranslation('nft-collections')
@@ -23,17 +24,19 @@ const CollectionsPage = () => {
 
   return (
     <>
-      <Nav>
+      <Nav />
+      <NavSpacer />
+
+      <div tw="fixed w-full z-20">
         <FundraiseMeter
           current={currentGoalRaisedAmount}
           max={currentGoal.amount}
         />
-      </Nav>
-      <NavSpacer />
+      </div>
 
       {/* this is an additional "spacer" for the Fundraise Meter */}
       {/* todo: refactor this to automatically calculate the height inside "NavSpacer" */}
-      <div tw="block height[76px]" />
+      <div tw="block height[110px] lg:height[76px]" />
 
       <div tw="w-full h-full max-h-[30vh] z-index[-1]">
         <Image
@@ -45,21 +48,31 @@ const CollectionsPage = () => {
         />
       </div>
 
-      <Container tw="mt-10 text-left flex">
+      <Container tw="mt-10 text-left flex flex-col lg:flex-row">
         <div>
-          <Title>{t`collections.title`}</Title>
+          <div tw="flex space-x-4 items-center">
+            <Image src={nftRaidsLogo} alt="NFT Raids Logo" />
+            <Title>{t`collections.title`}</Title>
+          </div>
           <p tw="mt-6 max-w-3xl">{t`collections.description`}</p>
           <div tw="mt-8 flex items-center space-x-6">
-            <Button bgColor={theme`colors.cyan.400`}>
+            <Button
+              tw="flex[50%] sm:flex[none]"
+              bgColor={theme`colors.cyan.400`}
+            >
               {t`nft-common:buttons.marketplace`}
             </Button>
-            <Button bgColor={theme`colors.emerald.400`} href={routes.nft.raids}>
+            <Button
+              tw="flex[50%] sm:flex[none]"
+              bgColor={theme`colors.emerald.400`}
+              href={routes.nft.raids}
+            >
               {t`nft-common:buttons.nft_raids`}
             </Button>
           </div>
         </div>
 
-        <NFTRarity tw="ml-auto" />
+        <NFTRarity tw="mt-14 lg:mt-0 lg:ml-auto" />
       </Container>
 
       <NFTCollections />

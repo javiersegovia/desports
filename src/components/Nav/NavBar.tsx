@@ -130,7 +130,7 @@ export const NavBar = ({ navbarLogo: NavLogo, ...props }: NavBarProps) => {
           <button
             type="button"
             onClick={toggleDropdownNav}
-            tw="ml-auto sm:ml-10 lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            tw="ml-auto lg:ml-10 lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span className="sr-only">Open main menu</span>
             {dropdownNavIsOpen ? (

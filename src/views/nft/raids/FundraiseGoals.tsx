@@ -11,7 +11,7 @@ const StyledGoal = styled.div`
   clip-path: polygon(
     0% 0%,
     100% 0%,
-    100% 62px,
+    100% 62%,
     calc(100% - 2rem) 92%,
     49% 92%,
     calc(49% - 1rem) 100%,
@@ -22,9 +22,9 @@ const StyledGoal = styled.div`
     clip-path: polygon(
       0% 0%,
       100% 0%,
-      100% 62%,
-      calc(96% - 1rem) 88%,
-      49% 88%,
+      100% 85%,
+      calc(98% - 1rem) 95%,
+      49% 95%,
       calc(49% - 1rem) 100%,
       0% 100%
     );
@@ -61,7 +61,7 @@ const FundraiseGoalItem = ({
   isLast = false,
 }: FundraiseGoalItemProps) => {
   return (
-    <div tw="flex items-stretch space-x-10">
+    <div tw="flex items-stretch space-x-6 sm:space-x-10">
       <div tw="relative flex items-center">
         <Checkbox isChecked={isCompleted} className="mb-10" />
         <div
@@ -121,7 +121,10 @@ export const FundraiseGoals = ({
               raisedAmount >= (goalsAmounts[index - 1]?.totalAmount || 0)
             }
             isFirst={index === 0}
-            isLast={index === goalsList.length - 1}
+            isLast={
+              index === goalsList.length - 1 ||
+              index === goalsAmounts.length - 1
+            }
           />
         ) : null
       )}

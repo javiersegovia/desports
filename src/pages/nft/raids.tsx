@@ -9,7 +9,6 @@ import {
 } from '@root/src/views/nft/raids/FundraiseMeter'
 import { FundraiseGoals } from '@root/src/views/nft/raids/FundraiseGoals'
 import { FundraiseDonations } from '@root/src/views/nft/raids/FundraiseDonations'
-import { FundraiseDescription } from '@root/src/views/nft/raids/FundraiseDescription'
 import { Footer } from '@components/Footer/Footer'
 import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
@@ -21,6 +20,8 @@ import { NFTRarity } from '@root/src/views/nft/raids/NFTRarity'
 import { RaidFAQ } from '@root/src/views/nft/raids/RaidFAQ'
 import { routes } from '@lib/config/routes'
 import { useNftRaid, raidGoals } from '@lib/hooks/useNftRaid'
+import nftRaidsLogo from '@public/images/logos/logo_nft-raids.png'
+import { FundraiseDescription } from '@root/src/views/nft/raids/FundraiseDescription'
 
 const NFTRaidsPage = () => {
   const { t } = useTranslation('nft-raids')
@@ -29,17 +30,19 @@ const NFTRaidsPage = () => {
 
   return (
     <>
-      <Nav>
+      <Nav />
+      <NavSpacer />
+
+      <div tw="fixed w-full z-20">
         <FundraiseMeter
           current={currentGoalRaisedAmount}
           max={currentGoal.amount}
         />
-      </Nav>
-      <NavSpacer />
+      </div>
 
       {/* this is an additional "spacer" for the Fundraise Meter */}
       {/* todo: refactor this to automatically calculate the height inside "NavSpacer" */}
-      <div tw="block height[76px]" />
+      <div tw="block height[110px] lg:height[76px]" />
 
       <div tw="fixed w-full h-full max-h-screen z-index[-1]">
         <Image
@@ -51,15 +54,22 @@ const NFTRaidsPage = () => {
         />
       </div>
 
-      <Container tw="mt-10 text-left flex">
+      <Container tw="mt-10 text-left flex flex-col lg:flex-row">
         <div>
-          <Title>{t`raids.title`}</Title>
+          <div tw="flex space-x-4 items-center">
+            <Image src={nftRaidsLogo} alt="NFT Raids Logo" />
+            <Title>{t`raids.title`}</Title>
+          </div>
+
           <p tw="mt-6 max-w-3xl">{t`raids.description`}</p>
-          <div tw="mt-8 flex items-center space-x-6">
-            <Button bgColor={theme`colors.cyan.400`}>
+
+          <div tw="mt-8 sm:flex items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <Button tw="w-full sm:w-auto" bgColor={theme`colors.cyan.400`}>
               {t`nft-common:buttons.marketplace`}
             </Button>
+
             <Button
+              tw="w-full sm:w-auto"
               bgColor={theme`colors.emerald.400`}
               href={routes.nft.collections}
             >
@@ -67,21 +77,23 @@ const NFTRaidsPage = () => {
             </Button>
           </div>
         </div>
-        <NFTRarity tw="ml-auto" />
+
+        <NFTRarity tw="hidden lg:block mt-14 lg:mt-0 lg:ml-auto" />
       </Container>
 
       <Container tw="mt-10 text-center">
-        <StyledTextMono tw="text-xl">
+        <StyledTextMono tw="text-xl text-cyan-400">
           {t`nft_collections.current_raid_title`}:
         </StyledTextMono>
-        <Title tw="text-purple-500 letter-spacing[5px]">{t`nft-common:nft_collections.classics`}</Title>
+
+        <Title tw="text-white letter-spacing[5px]">{t`nft-common:nft_collections.classics`}</Title>
       </Container>
 
       <Container tw="mt-10">
         <CurrentNFTCollection />
       </Container>
 
-      <Container tw="mt-20">
+      <Container tw="mt-10 lg:mt-20">
         <div tw="mt-10 flex flex-col lg:flex-row lg:justify-between lg:space-x-10">
           <div tw="w-full lg:w-7/12 mt-8">
             <Title tw="ml-16 text-center lg:text-2xl">{t`goals.title`}</Title>

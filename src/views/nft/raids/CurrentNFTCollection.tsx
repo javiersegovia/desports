@@ -11,6 +11,10 @@ import {
   NFTRarityType,
   collections,
 } from '@lib/config/nft'
+import { StyledSlider } from '../NFTCollections'
+import Link from 'next/link'
+import { routes } from '@lib/config/routes'
+import { NFTRarity } from './NFTRarity'
 
 const StyledBorderFrame = styled.div<{ shadowColor?: string }>`
   ${tw`absolute z-20 inset-0`}
@@ -56,7 +60,7 @@ const NFTSquareItem = ({ item }: NFTSquareItemProps) => {
   return (
     <div>
       <SquareFrame
-        tw="relative overflow-hidden w-32 h-36"
+        tw="relative overflow-hidden w-full aspect-w-1 aspect-h-1"
         removePadding
         isSquare
         bgColor={theme`colors.gray.900`}
@@ -95,20 +99,68 @@ export const CurrentNFTCollection = () => {
 
   return (
     <SquareFrame removePadding bgColor={theme`colors.gray.800`}>
-      <div tw="px-14 pt-10 pb-12">
-        <div tw="flex items-center justify-between">
-          {/* <StyledTextMono>{t`nft_collections.title`}</StyledTextMono> */}
+      <div tw="px-10 lg:px-14 pt-10 pb-12">
+        <div tw="flex items-center justify-center lg:justify-between">
           <Title tw="lg:text-2xl">{t`nft_collections.title`}</Title>
 
-          <StyledTextMono tw="text-cyan-400">{t`nft_collections.see_all`}</StyledTextMono>
+          <Link href={routes.nft.collections} passHref>
+            <a>
+              <StyledTextMono tw="text-cyan-400 hidden lg:block">{t`nft_collections.see_all`}</StyledTextMono>
+            </a>
+          </Link>
         </div>
 
-        <div tw="flex space-x-4 mt-8">
+        <StyledSlider tw="mt-8" {...sliderSettings}>
           {collections.current.items.map((nftItem, index) => (
             <NFTSquareItem item={nftItem} key={nftItem.name || index} />
           ))}
-        </div>
+        </StyledSlider>
+
+        <NFTRarity tw="p-0 mt-10 block lg:hidden" noClip />
+
+        <Link href={routes.nft.collections} passHref>
+          <a>
+            <StyledTextMono tw="text-cyan-400 block lg:hidden text-center mt-10">{t`nft_collections.see_all`}</StyledTextMono>
+          </a>
+        </Link>
       </div>
     </SquareFrame>
   )
+}
+
+const sliderSettings = {
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  swipeToSlide: true,
+  responsive: [
+    {
+      breakpoint: 1280,
+      settings: {
+        slidesToShow: 4,
+      },
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+        arrows: false,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        centerMode: true,
+        arrows: false,
+      },
+    },
+  ],
 }

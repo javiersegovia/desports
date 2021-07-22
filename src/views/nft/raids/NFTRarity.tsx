@@ -4,10 +4,11 @@ import { Checkbox } from '@components/Forms/Fields/Checkbox'
 import { config } from '@lib/config/config'
 import { StyledTextMono } from './FundraiseMeter'
 
-const StyledRarityFrame = styled.div`
+const StyledRarityFrame = styled.div<{ noClip?: boolean }>`
   ${tw`bg-gray-800 space-y-3 px-8 pt-6 pb-10`}
 
   clip-path: polygon(0% 0%, 90% 0, 100% 10%, 100% 92%, 57% 92%, 48% 100%, 0% 100%);
+  ${(p) => p.noClip && `clip-path: none;`}
 `
 
 interface NFTRarityItemProps {
@@ -26,11 +27,15 @@ const NFTRarityItem = ({ color, name }: NFTRarityItemProps) => {
   )
 }
 
-export const NFTRarity = ({ ...props }) => {
+interface NFTRarityProps {
+  noClip?: boolean
+}
+
+export const NFTRarity = ({ noClip, ...props }: NFTRarityProps) => {
   const { t } = useTranslation('nft-common')
 
   return (
-    <StyledRarityFrame {...props}>
+    <StyledRarityFrame noClip={noClip} {...props}>
       <StyledTextMono>{t`rarity.title`}</StyledTextMono>
       <NFTRarityItem
         color={theme`colors.yellow.400`}

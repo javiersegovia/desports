@@ -20,7 +20,7 @@ import {
   selectStage2Section,
   selectStage3Section,
 } from '@lib/redux/slices/navSlice'
-import { LeftArrow, RightArrow, StyledArrow } from '@components/UI/Arrow'
+import { LeftArrow, RightArrow } from '@components/UI/Arrow'
 
 const navClipPaths = [clipPathV1, clipPathV3, clipPathV4]
 

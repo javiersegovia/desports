@@ -1,5 +1,5 @@
 import { gsap } from 'gsap'
-import { ReactNode, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { NavBar, NavBarProps } from '@components/Nav/NavBar'
 import { SocialBar } from '@components/Nav/SocialBar'
 import { useAppDispatch, useAppSelector } from '@lib/redux/hooks'
@@ -17,10 +17,9 @@ import { theme } from 'twin.macro'
 interface NavProps {
   navbarLogo?: NavBarProps['navbarLogo']
   bgTransparent?: boolean
-  children?: ReactNode
 }
 
-export const Nav = ({ navbarLogo, children }: NavProps) => {
+export const Nav = ({ navbarLogo }: NavProps) => {
   const navbarRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
 
@@ -60,7 +59,6 @@ export const Nav = ({ navbarLogo, children }: NavProps) => {
       <div ref={navbarRef} tw="fixed z-50 w-full transition-all duration-100">
         <SocialBar tw="hidden lg:block" />
         <NavBar navbarLogo={navbarLogo} />
-        {children}
       </div>
 
       <div tw="lg:hidden fixed z-50 w-full flex bottom-0 px-10 bg-gray-800 text-white py-2 items-center justify-center space-x-5 shadow">

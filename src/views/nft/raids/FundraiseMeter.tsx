@@ -39,12 +39,13 @@ export const FundraiseMeter = ({
         tw="w-full bg-gray-900 text-white pt-4 pb-3 items-center shadow"
         {...props}
       >
-        <Container tw="flex">
-          <div tw="">
+        <Container tw="flex flex-col lg:flex-row">
+          <div tw="flex items-center lg:items-start space-x-2 lg:space-x-0 lg:flex-col">
             <StyledTextMono tw="text-base">{t`meter.progression`}</StyledTextMono>
             <StyledTextMono tw="text-cyan-400 text-xs">{t`nft_collections.classics`}</StyledTextMono>
           </div>
-          <div tw="ml-auto mt-1 w-8/12">
+
+          <div tw="ml-auto mt-4 lg:mt-1 w-full lg:w-8/12">
             <div tw="flex items-center space-x-2">
               <StyledMeterLabel>{t`meter.raised`}</StyledMeterLabel>
               <StyledFullfillnessBar tw="relative flex-1 h-4 flex bg-white">
@@ -56,12 +57,13 @@ export const FundraiseMeter = ({
               </StyledFullfillnessBar>
               <StyledMeterLabel>{t`meter.next_goal`}</StyledMeterLabel>
             </div>
+
             <div tw="mt-1 flex justify-center items-center">
               <StyledMeterLabel tw="text-yellow-400">
                 {current % 1 === 0 ? current : current.toFixed(2)}BNB
               </StyledMeterLabel>
               <div tw="mx-2">&#47;&#47;</div>
-              <StyledMeterLabel tw="">{max}BNB</StyledMeterLabel>
+              <StyledMeterLabel tw="text-cyan-400">{max}BNB</StyledMeterLabel>
             </div>
           </div>
         </Container>

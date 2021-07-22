@@ -25,8 +25,8 @@ export const FundraiseDescription = () => {
 
   return (
     <SquareFrame removePadding bgColor={theme`colors.gray.800`}>
-      <div tw="p-14">
-        <div tw="relative w-full h-full text-left flex flex-col items-center lg:flex-row lg:space-x-20">
+      <div tw="px-8 py-10 lg:p-14">
+        <div tw="relative w-full h-full text-left flex flex-col items-center space-y-10 lg:flex-row lg:space-y-0 lg:space-x-20">
           <div>
             <Image
               src={nftImg}
@@ -54,9 +54,9 @@ export const FundraiseDescription = () => {
           </div>
 
           <div tw="w-full">
-            <Title tw="flex-1 text-2xl lg:w-auto lg:text-4xl">{t`raid_description.title`}</Title>
-            <p tw="mt-8 whitespace-pre-wrap">{t`raid_description.description.a`}</p>
-            <p tw="mt-4 whitespace-pre-wrap">{t`raid_description.description.b`}</p>
+            <Title tw="flex-1 text-2xl text-center lg:text-left lg:w-auto lg:text-4xl">{t`raid_description.title`}</Title>
+            <p tw="mt-8 whitespace-pre-wrap text-justify">{t`raid_description.description.a`}</p>
+            <p tw="mt-4 whitespace-pre-wrap text-justify">{t`raid_description.description.b`}</p>
             <ul tw="list-disc ml-5 mt-5 space-y-1 font-bold">
               <li>
                 <Trans
@@ -98,7 +98,7 @@ export const FundraiseDescription = () => {
         </div>
 
         {fundraisingAddress && (
-          <Container tw="mx-auto pt-10 lg:mt-4">
+          <Container tw="mx-auto p-0 py-10 lg:mt-4">
             <ContractAddress
               title={t`contract_address_fundraise`}
               address={fundraisingAddress}

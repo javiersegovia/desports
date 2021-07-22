@@ -30,7 +30,7 @@ export const AccordionItem = ({
       </h4>
       <p
         tw="overflow-hidden transition-all ease-linear duration-300 whitespace-pre-wrap text-sm 2xl:text-base"
-        css={[isActive ? tw`max-h-48` : tw`max-h-0`]}
+        css={[isActive ? tw`max-h-72` : tw`max-h-0`]}
       >
         {description}
       </p>

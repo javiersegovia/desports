@@ -1,4 +1,4 @@
-import { HTMLAttributes, RefObject } from 'react'
+import { HTMLAttributes } from 'react'
 import tw, { styled, theme } from 'twin.macro'
 
 const defaultColor = theme`colors.blueGray.500`

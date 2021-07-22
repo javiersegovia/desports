@@ -56,7 +56,7 @@ const sliderSettings = {
   ],
 }
 
-const StyledSlider = styled(Slider)`
+export const StyledSlider = styled(Slider)`
   .slick-list {
     margin: 0 -1rem;
   }
@@ -85,12 +85,6 @@ const StyledSlider = styled(Slider)`
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
   }
-
-  /* ${down('md')} {
-    .slick-arrow {
-      display: none;
-    }
-  } */
 `
 
 interface NFTCollectionItemProps {
@@ -207,11 +201,11 @@ const LockedNFTCollection = () => {
     <StyledNFTCollection tw="bg-gray-800 w-full py-20 relative">
       <Container>
         <Title tw="lg:text-4xl">{t`nft_collections.locked`}</Title>
-        <div tw="mt-10 flex space-x-6">
+        <StyledSlider tw="mt-10" {...sliderSettings} arrows={false}>
           {locked.items.map((item, index) => (
             <NFTCollectionItem key={item.name || index} item={item} />
           ))}
-        </div>
+        </StyledSlider>
       </Container>
 
       <div tw="z-10 bg-gray-900 bg-opacity-80 absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-coolGray-400">
