@@ -67,7 +67,7 @@ export const FundraiseDonations = ({
           ))}
         </div>
       ) : (
-        <span tw="text-center mt-8 block">
+        <span tw="text-center my-8 block">
           No raiders arrived yet. Be the first one!
         </span>
       )}
