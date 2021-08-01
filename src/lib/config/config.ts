@@ -76,7 +76,7 @@ export const config = {
   total_burned: 66280934784,
   total_circulating: 22607954104,
 
-  nft_goals: [1, 1.5, 2, 5.5],
+  nft_goals: [1.2, 1.8, 2.2, 6.2],
 
   nft_rarity: {
     legendary: '1',
