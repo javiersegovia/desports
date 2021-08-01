@@ -75,7 +75,6 @@ const getTotalAmountsReceivedPerWallet = async (): Promise<{
 
   return { totalRaised: +totalRaised.toFixed(2), fundraisers }
 }
-
 const getGoalInformation = (raisedAmount: number) => {
   let currentGoal = raidGoals[0]
   let currentGoalRaisedAmount = 0

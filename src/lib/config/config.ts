@@ -7,7 +7,7 @@ export const config = {
 
     // TODOPRESALE:
     contractAddress: '0x92D7142ba886c710bA72994972D108FB2fB1889a',
-    fundraisingAddress: '0x0eA1F1CB22FEF23D227378b9815F3dE08764AFdB',
+    fundraisingAddress: '0x5970C97aFE037a2499e787242c43Bd1d45509bd3',
   },
 
   social: {
@@ -53,9 +53,9 @@ export const config = {
   // todo: add real shop url!
   shop: '/',
 
-  // todo: add real demoVideo url (and follow the format below)!
   demoVideo: 'https://www.youtube.com/embed/q3PjFkSiDsc',
-  // demoVideo: 'https://www.youtube.com/embed/ANDeiXFiYC4',
+
+  medium: 'https://medium.com/desports-network',
 
   ready_player_me: 'https://cyberpunk.readyplayer.me/',
 
@@ -76,13 +76,13 @@ export const config = {
   total_burned: 66280934784,
   total_circulating: 22607954104,
 
-  nft_goals: [20, 40],
+  nft_goals: [1, 1.5, 2, 5.5],
 
   nft_rarity: {
     legendary: '1',
-    epic: '2—5',
-    rare: '6—100',
-    common: '101—300',
+    epic: '1/5',
+    rare: '1/100',
+    common: '',
   },
 
   languages: {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   collections,
   locked,
@@ -18,11 +18,21 @@ import { VscLock } from 'react-icons/vsc'
 import Slider from 'react-slick'
 
 import { down } from 'styled-breakpoints'
+import { useToggle } from '@lib/hooks/useToggle'
+import dynamic from 'next/dynamic'
+import { NFTCharacterModalProps } from '@components/Modal/NFTCharacterModal'
+
+const NFTCharacterModal = dynamic<NFTCharacterModalProps>(() =>
+  import('@components/Modal/NFTCharacterModal').then(
+    (module) => module.NFTCharacterModal
+  )
+)
 
 const sliderSettings = {
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 1,
+  infinite: false,
   swipeToSlide: true,
   responsive: [
     {
@@ -89,45 +99,63 @@ export const StyledSlider = styled(Slider)`
 
 interface NFTCollectionItemProps {
   item: NFTCollectionItemType
+  clickable?: boolean
 }
 
 // todo: move this to the "components" folder and make it reusable
 // there is another component in "CurrentNFTCollection" that renders almost the same thing besides the size and modal.
-const NFTCollectionItem = ({ item }: NFTCollectionItemProps) => {
-  return (
-    <div>
-      <SquareFrame
-        tw="relative overflow-hidden w-full h-72"
-        removePadding
-        isSquare
-        bgColor={theme`colors.gray.900`}
-      >
-        {item.name ? (
-          <Image src={item.src} alt="Image" objectFit="cover" layout="fill" />
-        ) : (
-          <div tw="absolute z-10 inset-0 flex items-center justify-center text-6xl font-mono">
-            ?
-          </div>
-        )}
-        <FrameBorder
-          shadowColor={
-            item.rarity === NFTRarityType.LEGENDARY
-              ? theme`colors.yellow.400`
-              : item.rarity === NFTRarityType.EPIC
-              ? theme`colors.purple.500`
-              : item.rarity === NFTRarityType.RARE
-              ? theme`colors.blue.500`
-              : ''
-          }
-        />
-      </SquareFrame>
+const NFTCollectionItem = ({
+  item,
+  clickable = true,
+}: NFTCollectionItemProps) => {
+  const [nftModalIsOpen, { setTrue: openNftModal, setFalse: closeNftModal }] =
+    useToggle()
 
-      {item.name && (
-        <StyledTextMono tw="text-sm mt-2 text-center">
-          {item.name}
-        </StyledTextMono>
-      )}
-    </div>
+  return (
+    <>
+      <button
+        type="button"
+        tw="w-full h-72"
+        onClick={() => clickable && openNftModal()}
+      >
+        <SquareFrame
+          tw="relative overflow-hidden w-full h-72"
+          removePadding
+          isSquare
+          bgColor={theme`colors.gray.900`}
+        >
+          {item.name ? (
+            <Image src={item.src} alt="Image" objectFit="cover" layout="fill" />
+          ) : (
+            <div tw="absolute z-10 inset-0 flex items-center justify-center text-6xl font-mono">
+              ?
+            </div>
+          )}
+          <FrameBorder
+            shadowColor={
+              item.rarity === NFTRarityType.LEGENDARY
+                ? theme`colors.yellow.400`
+                : item.rarity === NFTRarityType.EPIC
+                ? theme`colors.purple.500`
+                : item.rarity === NFTRarityType.RARE
+                ? theme`colors.blue.500`
+                : theme`colors.coolGray.300`
+            }
+          />
+        </SquareFrame>
+        {item.name && (
+          <StyledTextMono tw="text-sm mt-2 text-center">
+            {item.name}
+          </StyledTextMono>
+        )}
+      </button>
+
+      <NFTCharacterModal
+        isOpen={nftModalIsOpen}
+        close={closeNftModal}
+        item={item}
+      />
+    </>
   )
 }
 
@@ -180,13 +208,25 @@ const NFTCollection = ({ collection }: NFTCollectionProps) => {
 
   const title = titleI18n[collection.titleKey]
 
+  const [clickable, setClickable] = useState(true)
+
+  const settings = {
+    ...sliderSettings,
+    beforeChange: () => setClickable(false),
+    afterChange: () => setClickable(true),
+  }
+
   return (
     <StyledNFTCollection tw="bg-gray-800 w-full py-20">
       <Container>
         <Title tw="lg:text-4xl">{title}</Title>
-        <StyledSlider tw="mt-10" {...sliderSettings}>
+        <StyledSlider tw="mt-10" {...settings}>
           {collection.items.map((item, index) => (
-            <NFTCollectionItem key={item.name || index} item={item} />
+            <NFTCollectionItem
+              key={item.name || index}
+              item={item}
+              clickable={clickable}
+            />
           ))}
         </StyledSlider>
       </Container>

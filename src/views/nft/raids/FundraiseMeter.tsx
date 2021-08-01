@@ -60,7 +60,12 @@ export const FundraiseMeter = ({
 
             <div tw="mt-1 flex justify-center items-center">
               <StyledMeterLabel tw="text-yellow-400">
-                {current % 1 === 0 ? current : current.toFixed(2)}BNB
+                {current > max
+                  ? max
+                  : current % 1 === 0
+                  ? current
+                  : current.toFixed(2)}
+                BNB
               </StyledMeterLabel>
               <div tw="mx-2">&#47;&#47;</div>
               <StyledMeterLabel tw="text-cyan-400">{max}BNB</StyledMeterLabel>

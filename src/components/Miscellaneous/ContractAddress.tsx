@@ -40,7 +40,7 @@ export const ContractAddress = ({
     <div tw="relative block" {...props}>
       <button
         type="button"
-        tw="p-2 w-full md:w-auto flex flex-col md:flex-row md:items-center text-left md:text-center rounded-md relative text-xs sm:text-sm md:text-base overflow-x-auto"
+        tw="p-2 w-full md:w-auto flex flex-col md:flex-row md:items-center text-left md:text-center rounded-md relative text-xs sm:text-sm md:text-base"
         style={{ background: bgColor || theme`colors.gray.800` }}
         onClick={() => {
           if (clipboard) {

@@ -64,13 +64,17 @@ const NFTRaidsPage = () => {
           <p tw="mt-6 max-w-3xl">{t`raids.description`}</p>
 
           <div tw="mt-8 sm:flex items-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <Button tw="w-full sm:w-auto" bgColor={theme`colors.cyan.400`}>
+            <Button
+              tw="w-full sm:w-auto"
+              bgColor={theme`colors.cyan.400`}
+              disabled
+            >
               {t`nft-common:buttons.marketplace`}
             </Button>
 
             <Button
               tw="w-full sm:w-auto"
-              bgColor={theme`colors.emerald.400`}
+              bgColor={theme`colors.yellow.400`}
               href={routes.nft.collections}
             >
               {t`nft-common:buttons.nft_collections`}

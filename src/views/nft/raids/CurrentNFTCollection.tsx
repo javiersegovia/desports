@@ -66,7 +66,7 @@ const NFTSquareItem = ({ item }: NFTSquareItemProps) => {
         bgColor={theme`colors.gray.900`}
       >
         {item.name ? (
-          <Image src={item.src} alt="Image" />
+          <Image src={item.src} alt="Image" quality={100} objectFit="cover" />
         ) : (
           <div tw="absolute z-10 inset-0 flex items-center justify-center text-6xl font-mono">
             ?
@@ -80,7 +80,7 @@ const NFTSquareItem = ({ item }: NFTSquareItemProps) => {
               ? theme`colors.purple.500`
               : item.rarity === NFTRarityType.RARE
               ? theme`colors.blue.500`
-              : ''
+              : theme`colors.coolGray.300`
           }
         />
       </SquareFrame>
@@ -131,6 +131,7 @@ export const CurrentNFTCollection = () => {
 const sliderSettings = {
   speed: 500,
   slidesToShow: 5,
+  infinite: false,
   slidesToScroll: 1,
   swipeToSlide: true,
   responsive: [

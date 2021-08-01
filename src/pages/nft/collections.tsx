@@ -59,12 +59,13 @@ const CollectionsPage = () => {
             <Button
               tw="flex[50%] sm:flex[none]"
               bgColor={theme`colors.cyan.400`}
+              disabled
             >
               {t`nft-common:buttons.marketplace`}
             </Button>
             <Button
               tw="flex[50%] sm:flex[none]"
-              bgColor={theme`colors.emerald.400`}
+              bgColor={theme`colors.yellow.400`}
               href={routes.nft.raids}
             >
               {t`nft-common:buttons.nft_raids`}

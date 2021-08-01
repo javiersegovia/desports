@@ -91,6 +91,14 @@ export const FundraiseDescription = () => {
                   ]}
                 />
               </li>
+              <li>
+                <Trans
+                  i18nKey="nft-raids:raid_description.description.b4"
+                  components={[
+                    <span key="raid_description_b4" tw="text-coolGray-400" />,
+                  ]}
+                />
+              </li>
             </ul>
 
             <p tw="mt-5 whitespace-pre-wrap">{t`raid_description.description.c`}</p>

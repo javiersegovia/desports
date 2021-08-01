@@ -51,7 +51,7 @@ export const NFTRarity = ({ noClip, ...props }: NFTRarityProps) => {
       />
       <NFTRarityItem
         color={theme`colors.gray.400`}
-        name={`${t`rarity.common`} [${config.nft_rarity.common}]`}
+        name={`${t`rarity.common`}`}
       />
     </StyledRarityFrame>
   )

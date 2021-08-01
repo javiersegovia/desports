@@ -42,21 +42,35 @@ export const FundraiseDonations = ({
       bgColor={theme`colors.gray.800`}
     >
       <Title as="h5" tw="text-2xl sm:text-3xl lg:text-xl mt-4 mx-auto">
-        {t`top_fundraisers.title`}
+        {fundraisers.length > 0 && (
+          <div tw="pr-2 inline-block">{fundraisers.length}</div>
+        )}
+
+        <span tw="inline-block">
+          {fundraisers.length === 1
+            ? t`top_fundraisers.title_singular`
+            : t`top_fundraisers.title_plural`}
+        </span>
       </Title>
 
-      <div tw="mt-10 mx-auto px-4 lg:px-10 pb-10 w-full space-y-3">
-        {fundraisers.slice(0, 5).map((transaction) => (
-          <Fragment key={transaction.fromAddress}>
-            <FundraiseDonationItem transaction={transaction} />
-            <FrameDivider
-              color={theme`colors.blueGray.500`}
-              frameWidth={4}
-              frameHeight={3}
-            />
-          </Fragment>
-        ))}
-      </div>
+      {fundraisers.length ? (
+        <div tw="mt-10 mx-auto px-4 lg:px-10 pb-10 w-full space-y-3">
+          {fundraisers.slice(0, 5).map((transaction) => (
+            <Fragment key={transaction.fromAddress}>
+              <FundraiseDonationItem transaction={transaction} />
+              <FrameDivider
+                color={theme`colors.blueGray.500`}
+                frameWidth={4}
+                frameHeight={3}
+              />
+            </Fragment>
+          ))}
+        </div>
+      ) : (
+        <span tw="text-center mt-8 block">
+          No raiders arrived yet. Be the first one!
+        </span>
+      )}
     </SquareFrame>
   )
 }

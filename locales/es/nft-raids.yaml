@@ -3,7 +3,7 @@ contract_address: Contract Address (ETH/BNB)
 
 raids:
   title: NFT Raids
-  description: A competition where every raider (contributor) has the chance to obtain unique NFTs with limited availability, while supporting the ecosystem development at the same time.
+  description: A competition where every raider (contributor) has the chance to obtain unique NFTs with limited availability, while supporting DeSports Network's ecosystem development at the same time.
 
 raid_description:
   title: How does it works?
@@ -19,6 +19,7 @@ raid_description:
     b1: 'The top three raiders will obtain a <0>legendary NFT</0> (rarity: {{rarity}})'
     b2: 'Five raiders will obtain an <0>epic NFT</0> (rarity: {{rarity}})'
     b3: 'Twenty raiders will obtain a <0>rare NFT</0> (rarity: {{rarity}})'
+    b4: 'All raiders will obtain the <0>collector edition NFT</0>.'
 
     c: |
       The probability of obtaining a NFT is determined by the percentage of contribution, and the NFTs will have multiple utilities inside our platform. Support DeSports Network and make your investment grow up while obtaining an unique valuable piece in return.
@@ -32,15 +33,19 @@ nft_collections:
 goals:
   title: Goals
   list:
-    - title: HotBit Listing
-      description: 'We will be building a lore involving our platform and we want every NFT to have real utility, so you can expect all kind of things: characters, trophies, achievements, and special items.'
-    - title: Influencer Marketing & Advertising
-      description: 'We will be building a lore involving our platform and we want every NFT to have real utility, so you can expect all kind of things: characters, trophies, achievements, and special items.'
-    - title: ss Marketing & Advertising
-      description: 'We will be building a lore involving our platform and we want every NFT to have real utility, so you can expect all kind of things: characters, trophies, achievements, and special items.'
+    - title: Promotion in TG Group with +10K Members
+      description: ''
+    - title: Twitter Promotions 
+      description: ''
+    - title: Promotional video with Youtube Influencer
+      description: ''
+    - title: Promotional video with Youtube Influencer 
+      description: ''
 
 top_fundraisers:
-  title: Raiders
+  title_plural: Raiders
+  title_singular: Raider
+  no_raiders: No raiders arrived yet. Will you be the first one?
 
 latest_donations:
   title: Latest Donations

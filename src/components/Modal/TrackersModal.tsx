@@ -73,27 +73,6 @@ export const TrackersModal = ({ isOpen, close }: InstanceModalProps) => {
                 </li>
               ) : null
             )}
-            {/* {Object.keys(trackers.list).map((key) => (
-              <li key={key}>
-                <a
-                  href={config.trackers[key as keyof typeof config.trackers]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  tw="flex items-center space-x-2"
-                >
-                  <span>trackers.list[key]</span>
-                  <span tw="inline-block">
-                    <HiOutlineExternalLink />
-                  </span>
-                </a>
-                <FrameDivider
-                  frameHeight={3}
-                  frameWidth={4}
-                  color="cyan"
-                  tw="mt-1"
-                />
-              </li>
-            ))} */}
           </ul>
         </div>
       </SquareFrame>

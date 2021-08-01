@@ -12,13 +12,13 @@ import { routes } from '@lib/config/routes'
 import { Logo } from './Logo'
 import { SocialIcons } from './SocialBar'
 import useTranslation from 'next-translate/useTranslation'
-// import { config } from '@lib/config/config'
 import { useRef } from 'react'
 import { useOnClickOutside } from '@lib/hooks/useOnClickOutside'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+import { config } from '@lib/config/config'
 
 const TrackersModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/TrackersModal').then(
@@ -31,8 +31,8 @@ const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
   raids: routes.nft.raids,
+  blog: config.medium,
   // shop: config.shop,
-  // blog: routes.blog,
 } as const
 
 const StyledTransitions = styled.div`
@@ -104,11 +104,9 @@ export const NavBar = ({ navbarLogo: NavLogo, ...props }: NavBarProps) => {
 
           <div tw="hidden lg:flex ml-auto mr-10 space-x-10 items-center">
             <div tw="flex space-x-10 items-center text-white">
-              {/* todo: enable trackers */}
               <button
                 type="button"
                 tw="hover:text-yellow-400"
-                // disabled
                 onClick={openTrackersModal}
               >
                 {t`shared.trackers.title`}
@@ -116,7 +114,13 @@ export const NavBar = ({ navbarLogo: NavLogo, ...props }: NavBarProps) => {
 
               {(Object.keys(paths) as Array<keyof typeof paths>).map((key) => (
                 <Link key={key} href={paths[key]} passHref>
-                  <a tw="hover:text-yellow-400">{links[key]}</a>
+                  <a
+                    tw="hover:text-yellow-400"
+                    target={paths[key][0] !== '/' ? '_blank' : ''}
+                    rel="noopener noreferrer"
+                  >
+                    {links[key]}
+                  </a>
                 </Link>
               ))}
             </div>
@@ -161,8 +165,6 @@ export const NavBar = ({ navbarLogo: NavLogo, ...props }: NavBarProps) => {
                   <button
                     type="button"
                     tw="text-left py-2 hover:text-yellow-400"
-                    // tw="cursor-not-allowed opacity-20 text-left py-2"
-                    // disabled
                     onClick={openTrackersModal}
                   >
                     {t`shared.trackers.title`}
