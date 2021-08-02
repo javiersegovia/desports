@@ -5,7 +5,7 @@ raids:
   description: A competition where every raider (contributor) has the chance to obtain unique NFTs with limited availability, while supporting DeSports Network's ecosystem development at the same time.
 
 raid_description:
-  title: How does it works?
+  title: How does it work?
   exchange:
     a: 'You can choose your reward:'
     b: the <0>NFT</0> or its value in <1>$DESP</1>
