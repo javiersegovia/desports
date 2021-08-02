@@ -21,6 +21,7 @@ nft_collections:
 
 faq:
   title: FAQ
+  image_description: Official mascot of DeSports Network
   list:
     - title: How do I receive my NFT reward? What about $DESP?
       description: |
@@ -70,6 +71,9 @@ faq:
         Depending on their rarity, certain NFTs will be available for purchase through our NFT Marketplace.
         
         Additional options such as: winning them through tournaments and special events, or by exchanging them with other users will be available through our platform as future features.
+
+    - title: What happens when a goal is reached?
+      description: We will be using the funds instantly to complete the goal.
 
     - title: What are you going to do with the raised funds?
       description: |

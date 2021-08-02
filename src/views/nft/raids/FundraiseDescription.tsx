@@ -15,14 +15,6 @@ const { fundraisingAddress } = config.blockchain
 export const FundraiseDescription = () => {
   const { t } = useTranslation('nft-raids')
 
-  // const rewardingSupportBullets: string[] = t(
-  //   'description.description.bullets',
-  //   null,
-  //   {
-  //     returnObjects: true,
-  //   }
-  // )
-
   return (
     <SquareFrame removePadding bgColor={theme`colors.gray.800`}>
       <div tw="px-8 py-10 lg:p-14">

@@ -12,12 +12,14 @@ import { routes } from '@lib/config/routes'
 
 export interface NFTCharacterModalProps extends InstanceModalProps {
   item: NFTCollectionItemType
+  showGoToRaid?: boolean
 }
 
 export const NFTCharacterModal = ({
   isOpen,
   close,
   item,
+  showGoToRaid = true,
 }: NFTCharacterModalProps) => {
   return (
     <BaseModal isOpen={isOpen} close={close}>
@@ -91,13 +93,15 @@ export const NFTCharacterModal = ({
               {item.name !== null && item.description}
             </Dialog.Description>
 
-            <Button
-              tw="w-full sm:w-auto mt-10"
-              bgColor={theme`colors.emerald.400`}
-              href={routes.nft.raids}
-            >
-              Go to current raid
-            </Button>
+            {showGoToRaid && (
+              <Button
+                tw="w-full sm:w-auto mt-10"
+                bgColor={theme`colors.emerald.400`}
+                href={routes.nft.raids}
+              >
+                Go to current raid
+              </Button>
+            )}
           </div>
         </div>
       </div>

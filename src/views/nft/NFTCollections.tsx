@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   collections,
   locked,
@@ -21,6 +21,7 @@ import { down } from 'styled-breakpoints'
 import { useToggle } from '@lib/hooks/useToggle'
 import dynamic from 'next/dynamic'
 import { NFTCharacterModalProps } from '@components/Modal/NFTCharacterModal'
+import { useClickableSlider } from '@lib/hooks/useClickableSlider'
 
 const NFTCharacterModal = dynamic<NFTCharacterModalProps>(() =>
   import('@components/Modal/NFTCharacterModal').then(
@@ -208,19 +209,13 @@ const NFTCollection = ({ collection }: NFTCollectionProps) => {
 
   const title = titleI18n[collection.titleKey]
 
-  const [clickable, setClickable] = useState(true)
-
-  const settings = {
-    ...sliderSettings,
-    beforeChange: () => setClickable(false),
-    afterChange: () => setClickable(true),
-  }
+  const { clickableSettings, clickable } = useClickableSlider(sliderSettings)
 
   return (
     <StyledNFTCollection tw="bg-gray-800 w-full py-20">
       <Container>
         <Title tw="lg:text-4xl">{title}</Title>
-        <StyledSlider tw="mt-10" {...settings}>
+        <StyledSlider tw="mt-10" {...clickableSettings}>
           {collection.items.map((item, index) => (
             <NFTCollectionItem
               key={item.name || index}
