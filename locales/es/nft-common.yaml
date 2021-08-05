@@ -19,13 +19,14 @@ nft_collections:
   classics: Founders
   locked: Locked
 
+
 faq:
   title: FAQ
   image_description: Official mascot of DeSports Network
   list:
     - title: How do I receive my NFT reward? What about $DESP?
       description: |
-        When a goal has been met, DeSports Network will perform a live stream to showcase the NFT winners. Soon after, the team will proceed to send the NFTs to the respective parties.
+        When all goals have been met, DeSports Network will perform a live stream to showcase the NFT winners. Soon after, the team will proceed to send the NFTs to the respective parties.
 
         Once the next step in this feature is implemented, everyone will be able to trade their NFTs through our platform. If a Raider prefers crypto over the NFT, we will give the Raider the BNB value of said NFT in $DESP, and we keep the NFT to auction it, burn it, or use it as a reward inside our platform. 
         

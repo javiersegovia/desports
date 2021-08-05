@@ -1,4 +1,4 @@
-contract_address_fundraise: Raid Address (ETH/BNB)
+contract_address_fundraise: Raid Address (BNB)
 
 raids:
   title: NFT Raids
@@ -15,9 +15,9 @@ raid_description:
 
     b: 'In every raid, we will be creating a unique NFT collection in collaboration with multiple talented digital artists. The loot (rewards) will be distributed to the raiders (contributors) as follows:'
 
-    b1: 'The top three raiders will obtain a <0>legendary NFT</0> (rarity: {{rarity}})'
+    b1: 'The top raider will obtain a <0>legendary NFT</0> (rarity: {{rarity}})'
     b2: 'Five raiders will obtain an <0>epic NFT</0> (rarity: {{rarity}})'
-    b3: 'Twenty raiders will obtain a <0>rare NFT</0> (rarity: {{rarity}})'
+    b3: 'Ten raiders will obtain a <0>rare NFT</0> (rarity: {{rarity}})'
     b4: 'All raiders will obtain the <0>collector edition NFT</0>.'
 
     c: |
