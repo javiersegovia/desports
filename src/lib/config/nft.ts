@@ -39,7 +39,7 @@ export const classics: NFTCollectionType = {
       name: 'Despion',
       src: despionImg,
       rarity: NFTRarityType.LEGENDARY,
-      description: `This species of dragons had become extinct millions of years ago. At least, that's what everyone believed, but apparently, an egg survived all this time. It is not known how, but it was so. This dragon is one of a kind, and therefore quite valuable. Currently, nobody knows where he is located.`,
+      description: `This species of dragon had become extinct millions of years ago. At least, that’s what everyone believed, until now. It is not known how, or why, but apparently, an egg managed to survive all this time. This dragon is one of a kind, and therefore quite valuable. Currently, nobody knows where he is located.`,
       cardPath: '/images/nft/despion_card.mp4',
     },
     {
@@ -52,15 +52,15 @@ export const classics: NFTCollectionType = {
       name: 'Bullishtain',
       src: bullishtainImg,
       rarity: NFTRarityType.RARE,
-      description: `Bullishtain is a formidable warrior. He started out as a recruit in the Aho'gar tribe and, with great passion and dedication, managed to rise to become the leader. His goal was never to lead; but when the Yaon'ot clan attacked them, he had to organize his tribe and defend his village since the chiefs were hunting. Many doubted his ability to lead the tribe but then changed their minds because he was able to lead his people to times of prosperity, wealth, and peace.
+      description: `Bullishtain is a formidable warrior. He started out as a recruit in the Aho’gar tribe and, with great passion and dedication, managed to rise to become the leader. His goal was never to lead, but when the Yaon’ot clan attacked them, he had to organize his tribe and defend his village while the chiefs were away hunting. Many doubted his ability to lead, but they soon changed their minds as he was able to guide his people to times of prosperity, wealth, and peace.
 
-For that and much more, he is known as the Fearful Savior.`,
+      For that and much more, he is known as the Fearful Savior.`,
     },
     {
       name: 'Mekkabadger',
       src: mekkabadgerImg,
       rarity: NFTRarityType.COMMON,
-      description: `He may be small, but he has always shown intellectually superior to any mortal being. This difference brought him many problems with his relatives since everyone saw him as someone different and strange. He received a lot of harassment, and this made him develop a special hatred for others. The only thing that distracted him and made him feel good was technology and robotics; a passion full of curiosity that he has had from a very young age.`,
+      description: `He may be small, but he has always shown intellectual superiority to any mortal being. This distinction brought him many trials and tribulations with the people that surrounded him, as everyone saw him as someone awkward and strange. He was harassed and bullied, which made him develop a special hatred towards others. The only thing that distracted him and made him feel good was technology and robotics; a passion he’s had from a very young age.`,
     },
   ],
 }
