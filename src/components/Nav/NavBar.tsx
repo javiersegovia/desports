@@ -12,13 +12,13 @@ import { routes } from '@lib/config/routes'
 import { Logo } from './Logo'
 import { SocialIcons } from './SocialBar'
 import useTranslation from 'next-translate/useTranslation'
-// import { config } from '@lib/config/config'
 import { useRef } from 'react'
 import { useOnClickOutside } from '@lib/hooks/useOnClickOutside'
 import dynamic from 'next/dynamic'
 import { InstanceModalProps } from '@components/Modal/BaseModal'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+import { config } from '@lib/config/config'
 
 const TrackersModal = dynamic<InstanceModalProps>(() =>
   import('@components/Modal/TrackersModal').then(
@@ -30,8 +30,9 @@ const TrackersModal = dynamic<InstanceModalProps>(() =>
 const paths = {
   team: routes.team,
   whitepaper: routes.whitepaper,
+  raids: routes.nft.raids,
+  blog: config.medium,
   // shop: config.shop,
-  // blog: routes.blog,
 } as const
 
 const StyledTransitions = styled.div`
@@ -57,7 +58,7 @@ export interface NavBarProps {
   navbarLogo?: ReactNode
 }
 
-export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
+export const NavBar = ({ navbarLogo: NavLogo, ...props }: NavBarProps) => {
   const [
     trackersModalIsOpen,
     { setTrue: openTrackersModal, setFalse: closeTrackersModal },
@@ -90,6 +91,7 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
       <div
         ref={dropdownRef}
         tw="w-full bg-gray-800 text-white py-2 items-center shadow"
+        {...props}
       >
         <Container tw="flex items-center">
           {NavLogo || (
@@ -102,11 +104,9 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
 
           <div tw="hidden lg:flex ml-auto mr-10 space-x-10 items-center">
             <div tw="flex space-x-10 items-center text-white">
-              {/* todo: enable trackers */}
               <button
                 type="button"
                 tw="hover:text-yellow-400"
-                // disabled
                 onClick={openTrackersModal}
               >
                 {t`shared.trackers.title`}
@@ -114,7 +114,13 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
 
               {(Object.keys(paths) as Array<keyof typeof paths>).map((key) => (
                 <Link key={key} href={paths[key]} passHref>
-                  <a tw="hover:text-yellow-400">{links[key]}</a>
+                  <a
+                    tw="hover:text-yellow-400"
+                    target={paths[key][0] !== '/' ? '_blank' : ''}
+                    rel="noopener noreferrer"
+                  >
+                    {links[key]}
+                  </a>
                 </Link>
               ))}
             </div>
@@ -128,7 +134,7 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
           <button
             type="button"
             onClick={toggleDropdownNav}
-            tw="ml-auto sm:ml-10 lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            tw="ml-auto lg:ml-10 lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span className="sr-only">Open main menu</span>
             {dropdownNavIsOpen ? (
@@ -159,8 +165,6 @@ export const NavBar = ({ navbarLogo: NavLogo }: NavBarProps) => {
                   <button
                     type="button"
                     tw="text-left py-2 hover:text-yellow-400"
-                    // tw="cursor-not-allowed opacity-20 text-left py-2"
-                    // disabled
                     onClick={openTrackersModal}
                   >
                     {t`shared.trackers.title`}

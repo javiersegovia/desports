@@ -8,11 +8,13 @@ interface ActiveIndexDefaultState {
 
 interface UseActiveIndexProps {
   maxIndex: number
+  play?: boolean
   initialState?: ActiveIndexDefaultState
 }
 
 export const useActiveIndex = ({
   maxIndex,
+  play = false,
   initialState = {
     index: 0,
     pause: true,
@@ -24,7 +26,7 @@ export const useActiveIndex = ({
   const desktop = isDesktop()
 
   useEffect(() => {
-    if (!desktop) return
+    if (!desktop || !play) return
 
     const timer = setInterval(() => {
       if (activeIndex.pause) return
@@ -41,7 +43,7 @@ export const useActiveIndex = ({
     return () => {
       clearInterval(timer)
     }
-  }, [activeIndex, maxIndex, desktop])
+  }, [activeIndex, maxIndex, desktop, play])
 
   const pause = () => setActiveIndex((prev) => ({ ...prev, pause: true }))
   const unpause = () => setActiveIndex((prev) => ({ ...prev, pause: false }))

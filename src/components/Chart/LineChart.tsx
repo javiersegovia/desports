@@ -5,8 +5,8 @@ interface LineChartProps {
   current: number
 }
 
-const StyledCompletionBar = styled.div`
-  clip-path: polygon(0% 100%, 5% 0%, 100% 0%, 95% 100%);
+export const StyledCompletionBar = styled.div`
+  clip-path: polygon(0% 100%, 0.75rem 0%, calc(100% - 0.75rem) 0%, 100% 100%);
 
   @keyframes burnPing {
     75%,
@@ -31,8 +31,8 @@ const StyledCompletionBar = styled.div`
   }
 `
 
-const StyledFullfillnessBar = styled.div`
-  clip-path: polygon(0% 100%, 5% 0%, 100% 0%, 95% 100%);
+export const StyledFullfillnessBar = styled.div`
+  clip-path: polygon(0% 100%, 0.75rem 0%, calc(100% - 0.75rem) 0%, 100% 100%);
 `
 
 export const LineChart = ({ max, current, ...props }: LineChartProps) => {
@@ -43,16 +43,16 @@ export const LineChart = ({ max, current, ...props }: LineChartProps) => {
       tw="relative w-full h-4 flex overflow-hidden"
       {...props}
     >
-      <StyledCompletionBar
-        tw="absolute bg-gray-900 z-10 left-0 top-0 bottom-0"
+      {/* <StyledCompletionBar
+        tw="absolute bg-black z-10 right-0 top-0 bottom-0"
         className="hidden lg:block animate-burn-ping"
         style={{ width: `${completion}%` }}
-      />
+      /> */}
       <StyledCompletionBar
-        tw="absolute bg-gray-900 z-10 left-0 top-0 bottom-0"
+        tw="absolute bg-blueGray-600 z-10 right-[-1px] top-0 bottom-0"
         style={{ width: `${completion}%` }}
       />
-      <StyledFullfillnessBar tw="flex-1 bg-emerald-400 absolute left-0 right-0 top-0 bottom-0 font-mono font-bold flex items-center justify-between" />
+      <StyledFullfillnessBar tw="flex-1 bg-cyan-400 absolute left-0 right-0 top-0 bottom-0 font-mono font-bold flex items-center justify-between" />
     </StyledFullfillnessBar>
   )
 }

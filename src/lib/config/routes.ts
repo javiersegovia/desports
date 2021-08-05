@@ -6,4 +6,9 @@ export const routes = {
   whitepaper: '/whitepaper',
   blog: '/blog',
   how_to_buy: '/how-to-buy',
+  nft: {
+    index: '/nft',
+    raids: '/nft/raids',
+    collections: '/nft/collections',
+  },
 } as const

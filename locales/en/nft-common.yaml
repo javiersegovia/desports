@@ -1,0 +1,83 @@
+rarity:
+  title: NFT Rarity
+  legendary: Legendary
+  epic: Epic
+  rare: Rare
+  common: Collector's Edition
+
+meter:
+  progression: Raid Progression
+  raised: Raised
+  next_goal: Next Goal
+
+buttons:
+  marketplace: Marketplace
+  nft_collections: NFT Collections
+  nft_raids: NFT Raids
+
+nft_collections:
+  classics: Founders
+  locked: Locked
+
+
+faq:
+  title: FAQ
+  image_description: Official mascot of DeSports Network
+  list:
+    - title: How do I receive my NFT reward? What about $DESP?
+      description: |
+        When all goals have been met, DeSports Network will perform a live stream to showcase the NFT winners. Soon after, the team will proceed to send the NFTs to the respective parties.
+
+        Once the next step in this feature is implemented, everyone will be able to trade their NFTs through our platform. If a Raider prefers crypto over the NFT, we will give the Raider the BNB value of said NFT in $DESP, and we keep the NFT to auction it, burn it, or use it as a reward inside our platform. 
+        
+        If the Raider prefers the NFT, he still will be able to sell it later through auction.
+    - title: How do you calculate the NFT value in $DESP?
+      description: |
+        The funds raised will be split the following manner:
+          
+        90% of the funds will be used to achieve the specific goals of the raid.
+        10% will be allocated to determining the value of the NFTs.
+
+        For example: if 50 BNBs are needed for an exchange listing, we’ll raise 55 BNBs (50 BNBs for the exchange listing and 5 BNBs (10%) to support the price of these NFTs). Those 5 BNBs will be kept as collateral to give the NFTs an initial value.
+    - title: What are the use cases of the NFT?
+      description: |
+        NFTS will play a significant role on our platform’s foundation. NFT use cases will include, but not limited to avatars, trophies, achievements, and donations. You will be able to display your NFTs on your profile, on your personal museum, and integrate it to your surroundings via AR (Augmented Reality).
+        
+        NFTs will also be included throughout our branding, merchandise, and platform.
+
+        The DeSports Network team will be creating lore’s around the NFTS. These first use cases will be part of the foundations of the ecosystem that we intend to develop.
+    - title: How many NFT Collections will exist?
+      description: | 
+        We want to make every collection special, and stand out on its own, so there will be many collections on the DeSports Network’s platform.
+        
+        We want to create very collection in the style of the games that will be integrated onto the platform, emulating the aura and overall feel. This will be achieved by featuring numerous digital artists, making sure to integrate their unique styles to our vision. The art will consist of anything from 2D cartoons to realistic 3D models of anything you can imagine.
+
+    - title: What kind of things are you going to include in the NFT Collections?
+      description: | 
+        We will be building a lore involving our platform.
+        
+        Every collection will have a different style. We will not limit ourselves to just characters: art will include objects, landscapes, and everything that can be part of a virtual world.
+    
+    - title: How is the artist rewarded?
+      description: |
+        Every Raid will have a pre-negotiated compensation model.
+        
+        Artists can either be paid in advanced for their work, and DeSports Network can then allocate a value to the pieces once the Raid has reached its goal, or the artists and DeSports Network can come to an understanding of a percentage commission of the goals set forth in the Raid.
+
+    - title: I am a Digital Artist. How can I collaborate with you?
+      description: If you are an artist and would like to collaborate with us on future Raids, please send us an email to info@desports.network. Please include your name, social media links, portfolios, and preferred compensation model from the two noted above. 
+
+    - title: Is there another way to obtain the NFTs besides the raids?
+      description: |
+        Depending on their rarity, certain NFTs will be available for purchase through our NFT Marketplace.
+        
+        Additional options such as: winning them through tournaments and special events, or by exchanging them with other users will be available through our platform as future features.
+
+    - title: What happens when a goal is reached?
+      description: We will be using the funds instantly to complete the goal.
+
+    - title: What are you going to do with the raised funds?
+      description: |
+        100% of the funds raised by the raid will be used to finance the goals of set forth on raids and compensate the artists behind these NFTS.
+      
+        Other sources of revenue, such as: NFTs sold through the Marketplace, and even the profit generated by the DeSports Network merchandise will be directly re-invested in the project.

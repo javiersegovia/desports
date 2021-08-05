@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import tw from 'twin.macro'
-import { useActiveIndex } from '../../lib/hooks/useActiveIndex'
+import { useActiveIndex } from '@lib/hooks/useActiveIndex'
 export interface IAccordionItem {
   title: string
   description?: string
 }
 
-const AccordionItem = ({
+export const AccordionItem = ({
   item: { title, description },
   isActive,
   onClick,
@@ -29,8 +29,8 @@ const AccordionItem = ({
         {title}
       </h4>
       <p
-        tw="overflow-hidden transition-all ease-linear duration-300 text-sm 2xl:text-base"
-        css={[isActive ? tw`max-h-32` : tw`max-h-0`]}
+        tw="overflow-hidden transition-all ease-linear duration-300 whitespace-pre-wrap text-sm 2xl:text-base"
+        css={[isActive ? tw`max-h-96` : tw`max-h-0`]}
       >
         {description}
       </p>
@@ -47,6 +47,7 @@ export const Accordion = ({ items, ...props }: AccordionProps) => {
 
   const { activeIndex, setActiveIndex, pause, unpause } = useActiveIndex({
     maxIndex: items.length - 1,
+    play: true,
   })
 
   return (

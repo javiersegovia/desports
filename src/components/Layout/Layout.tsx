@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import { isDesktop } from '@views/home/useAnimations'
 
+// todo: move to config folder
 const PROGRESS_BAR_DELAY = 500
 const GLITCH_EFFECT_DURATION_DESKTOP = 250
 const GLITCH_EFFECT_DURATION_MOBILE = 550

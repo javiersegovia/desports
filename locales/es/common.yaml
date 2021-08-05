@@ -1,5 +1,6 @@
 ---
 shared:
+  contract_address: Dirección del contrato
   team: Equipo
   whitepaper: Libro Blanco
   telegram: Telegram
@@ -26,6 +27,7 @@ navBar:
     whitepaper: Libro blanco
     shop: Tienda
     news: Blog
+    raids: NFT Raids
 footer:
   title: Este es solo el comienzo
   pre-sale: Pre-venta en

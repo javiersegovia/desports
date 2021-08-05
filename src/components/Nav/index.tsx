@@ -16,6 +16,7 @@ import { theme } from 'twin.macro'
 
 interface NavProps {
   navbarLogo?: NavBarProps['navbarLogo']
+  bgTransparent?: boolean
 }
 
 export const Nav = ({ navbarLogo }: NavProps) => {

@@ -7,4 +7,6 @@ export interface FrameProps extends HTMLAttributes<HTMLDivElement> {
   shadowColor?: FrameShadowColor
   removePadding?: boolean
   shouldMorph?: boolean
+  bgColor?: string
+  isSquare?: boolean
 }
